@@ -38,7 +38,7 @@
 <div style="display:flex;align-items:flex-end;gap:18px">
 <div style="width:170px;height:170px;border-radius:16px;background:#111413;box-shadow:0 4px 14px rgba(17,20,19,.22);padding:10px;box-sizing:border-box">
 <div style="position:relative;width:100%;height:100%;border-radius:9px;background:#fff;overflow:hidden">
-<div style="position:absolute;left:11px;top:10px;display:flex;align-items:center;gap:5px"><div style="width:8px;height:8px;border-radius:2px;background:#0f7a54"></div><div style="font:600 9px 'Inter',sans-serif;color:#111413">Roastwell Coffee</div></div>
+<div style="position:absolute;left:11px;top:10px;display:flex;align-items:center;gap:5px"><div style="width:8px;height:8px;border-radius:2px;background:#0f7a54"></div><div style="font:600 9px 'Inter',sans-serif;color:#111413">Your shop</div></div>
 <div style="position:absolute;left:50%;top:36px;margin-left:-44px;width:88px;height:88px;display:grid;grid-template-columns:repeat(13,1fr);grid-template-rows:repeat(13,1fr)">
 <sc-for list="{{ t7Qr }}" as="c" hint-placeholder-count="169"><div style="background:{{ c }}"></div></sc-for>
 </div>
@@ -59,10 +59,10 @@
 <div style="box-sizing:border-box;padding:34px 34px 0">
 <div style="font:500 10.5px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8b9490;margin-bottom:8px">step by step</div>
 <h2 style="margin:0;font:500 27px 'Space Grotesk',sans-serif;color:#111413">So what actually happens?</h2>
-<p style="margin:8px 0 0;font:400 13.5px 'Inter',sans-serif;color:#5c645f">Five things, in order, every single time. Scroll the list — the map on the right follows. The small grey lines are for your developer; feel free to skip them.</p>
+<p style="margin:8px 0 0;font:400 13.5px 'Inter',sans-serif;color:#5c645f">Four things, in order, every single time. Scroll the list — the map on the right follows. The small grey lines are for your developer; feel free to skip them.</p>
 </div>
 <div style="display:grid;grid-template-columns:380px 1fr;height:540px;border-bottom:1px solid #eceee9;margin-top:10px">
-<div onScroll="{{ saScroll }}" style="height:540px;overflow-y:auto;scroll-snap-type:y mandatory">
+<div onScroll="{{ hwScroll }}" style="height:540px;overflow-y:auto;scroll-snap-type:y mandatory">
 <div style="height:100%;box-sizing:border-box;padding:34px 30px 34px 34px;display:flex;flex-direction:column;justify-content:center;scroll-snap-align:start">
 <div style="font:700 44px 'Space Grotesk',sans-serif;color:#0f7a54;line-height:1">01</div>
 <div style="margin-top:14px;font:500 21px 'Space Grotesk',sans-serif;color:#111413">Your till has something for the customer</div>
@@ -77,9 +77,9 @@
 </div>
 <div style="height:100%;box-sizing:border-box;padding:34px 30px 34px 34px;display:flex;flex-direction:column;justify-content:center;scroll-snap-align:start">
 <div style="font:700 44px 'Space Grotesk',sans-serif;color:#0f7a54;line-height:1">03</div>
-<div style="margin-top:14px;font:500 21px 'Space Grotesk',sans-serif;color:#111413">The code appears on that box</div>
-<div style="margin-top:10px;max-width:300px;font:400 14.5px/1.55 'Inter',sans-serif;color:#5c645f">About a second later, the exact box you named shows the square code. Only that one — the other tills carry on with their day.</div>
-<div style="margin-top:16px;max-width:300px;font:400 10px/1.6 'IBM Plex Mono',monospace;color:#8b9490">mqtt d/dev_8f21/cmd · ack: pending</div>
+<div style="margin-top:14px;font:500 21px 'Space Grotesk',sans-serif;color:#111413">The code appears — that's when you pay</div>
+<div style="margin-top:10px;max-width:300px;font:400 14.5px/1.55 'Inter',sans-serif;color:#5c645f">About a second later, the exact box you named shows the square code and confirms it. That confirmation spends the held credit — one credit, only for a code actually shown. Box off, moment passed? Nothing shows, nothing is charged.</div>
+<div style="margin-top:16px;max-width:300px;font:400 10px/1.6 'IBM Plex Mono',monospace;color:#8b9490">mqtt d/dev_8f21/cmd · ack { ok:true } · credit: settled · late trigger → expired, released</div>
 </div>
 <div style="height:100%;box-sizing:border-box;padding:34px 30px 34px 34px;display:flex;flex-direction:column;justify-content:center;scroll-snap-align:start">
 <div style="font:700 44px 'Space Grotesk',sans-serif;color:#0f7a54;line-height:1">04</div>
@@ -87,50 +87,44 @@
 <div style="margin-top:10px;max-width:300px;font:400 14.5px/1.55 'Inter',sans-serif;color:#5c645f">They point their camera — the page opens in their phone's browser. No app to download, no account to create, no email address to spell out loud.</div>
 <div style="margin-top:16px;max-width:300px;font:400 10px/1.6 'IBM Plex Mono',monospace;color:#8b9490">GET &lt;your url&gt; — their phone, their browser</div>
 </div>
-<div style="height:100%;box-sizing:border-box;padding:34px 30px 34px 34px;display:flex;flex-direction:column;justify-content:center;scroll-snap-align:start">
-<div style="font:700 44px 'Space Grotesk',sans-serif;color:#0f7a54;line-height:1">05</div>
-<div style="margin-top:14px;font:500 21px 'Space Grotesk',sans-serif;color:#111413">You pay only if it worked</div>
-<div style="margin-top:10px;max-width:300px;font:400 14.5px/1.55 'Inter',sans-serif;color:#5c645f">The box reports back: shown. Only then is the held credit spent. If the box was off or the moment had passed, nothing shows — and nothing is charged.</div>
-<div style="margin-top:16px;max-width:300px;font:400 10px/1.6 'IBM Plex Mono',monospace;color:#8b9490">ack { ok:true } · credit: settled · late trigger → expired, released</div>
-</div>
 </div>
 <div style="position:relative;height:540px;border-left:1px solid #eceee9">
-<div style="position:absolute;left:64px;width:2px;top:64px;height:132px;transition:background .5s;{{ saSeg0 }}"></div>
-<div style="position:absolute;left:64px;width:2px;top:196px;height:132px;transition:background .5s;{{ saSeg1 }}"></div>
-<div style="position:absolute;left:64px;width:2px;top:328px;height:132px;transition:background .5s;{{ saSeg2 }}"></div>
-<div style="position:absolute;left:58px;width:14px;height:14px;border-radius:50%;background:#0f7a54;box-shadow:0 0 0 5px rgba(15,122,84,.18);transition:top .6s cubic-bezier(.4,0,.2,1);{{ saPulse }}"></div>
-<div style="top:64px;left:96px;right:40px;position:absolute;transform:translateY(-50%);border:1.5px solid;border-radius:10px;padding:12px 16px;transition:all .4s;{{ saNode0 }}">
+<div style="position:absolute;left:64px;width:2px;top:64px;height:132px;transition:background .5s;{{ hwSeg0 }}"></div>
+<div style="position:absolute;left:64px;width:2px;top:196px;height:132px;transition:background .5s;{{ hwSeg1 }}"></div>
+<div style="position:absolute;left:64px;width:2px;top:328px;height:132px;transition:background .5s;{{ hwSeg2 }}"></div>
+<div style="position:absolute;left:58px;width:14px;height:14px;border-radius:50%;background:#0f7a54;box-shadow:0 0 0 5px rgba(15,122,84,.18);transition:top .6s cubic-bezier(.4,0,.2,1);{{ hwPulse }}"></div>
+<div style="top:64px;left:96px;right:40px;position:absolute;transform:translateY(-50%);border:1.5px solid;border-radius:10px;padding:12px 16px;transition:all .4s;{{ hwNode0 }}">
 <div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase">your system</div>
 <div style="margin-top:4px;font:400 13.5px 'Inter',sans-serif">one request out</div>
 </div>
-<div style="top:196px;left:96px;right:40px;position:absolute;transform:translateY(-50%);border:1.5px solid;border-radius:10px;padding:12px 16px;transition:all .4s;{{ saNode1 }}">
+<div style="top:196px;left:96px;right:40px;position:absolute;transform:translateY(-50%);border:1.5px solid;border-radius:10px;padding:12px 16px;transition:all .4s;{{ hwNode1 }}">
 <div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase">{{ brandName }} cloud</div>
 <div style="margin-top:4px;display:flex;align-items:center;justify-content:space-between;gap:10px">
 <div style="font:400 13.5px 'Inter',sans-serif">key ✓ · box online ✓</div>
-<div style="flex:none;border:1px solid;border-radius:99px;padding:2px 9px;font:500 9.5px 'IBM Plex Mono',monospace;transition:all .4s;{{ saCreditStyle }}">{{ saCredit }}</div>
+<div style="flex:none;border:1px solid;border-radius:99px;padding:2px 9px;font:500 9.5px 'IBM Plex Mono',monospace;transition:all .4s;{{ hwCreditStyle }}">{{ hwCredit }}</div>
 </div>
 </div>
-<div style="top:328px;left:96px;right:40px;position:absolute;transform:translateY(-50%);border:1.5px solid;border-radius:10px;padding:12px 16px;transition:all .4s;{{ saNode2 }}">
+<div style="top:328px;left:96px;right:40px;position:absolute;transform:translateY(-50%);border:1.5px solid;border-radius:10px;padding:12px 16px;transition:all .4s;{{ hwNode2 }}">
 <div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase">the box on the counter — till 2</div>
 <div style="margin-top:10px;display:flex;align-items:center;gap:16px">
 <div style="flex:none;position:relative;width:88px;height:88px;border-radius:12px;background:#111413;box-shadow:0 3px 10px rgba(17,20,19,.22)">
 <div style="position:absolute;inset:7px;border-radius:7px;background:#fff;overflow:hidden">
-<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;transition:opacity .4s;{{ saBoxIdle }}">
+<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;transition:opacity .4s;{{ hwBoxIdle }}">
 <div style="width:9px;height:9px;border-radius:50%;background:#0f7a54"></div>
 <div style="font:500 8px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#8b9490">ready</div>
 </div>
-<div style="position:absolute;inset:8px;display:grid;grid-template-columns:repeat(13,1fr);grid-template-rows:repeat(13,1fr);transition:all .4s;{{ saQrStyle }}">
-<sc-for list="{{ saQr }}" as="c" hint-placeholder-count="169"><div style="background:{{ c }}"></div></sc-for>
+<div style="position:absolute;inset:8px;display:grid;grid-template-columns:repeat(13,1fr);grid-template-rows:repeat(13,1fr);transition:all .4s;{{ hwQrStyle }}">
+<sc-for list="{{ hwQr }}" as="c" hint-placeholder-count="169"><div style="background:{{ c }}"></div></sc-for>
 </div>
 </div>
 </div>
-<div style="font:400 10.5px/1.6 'IBM Plex Mono',monospace;color:#8b9490">touch screen · wi-fi<br>nothing to install</div>
+<div style="font:400 10.5px/1.6 'IBM Plex Mono',monospace;color:#8b9490">touch screen · wi-fi<br>nothing to install · paid on show</div>
 </div>
 </div>
-<div style="top:460px;left:96px;right:40px;position:absolute;transform:translateY(-50%);border:1.5px solid;border-radius:10px;padding:12px 16px;transition:all .4s;{{ saNode3 }}">
+<div style="top:460px;left:96px;right:40px;position:absolute;transform:translateY(-50%);border:1.5px solid;border-radius:10px;padding:12px 16px;transition:all .4s;{{ hwNode3 }}">
 <div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase">their phone</div>
 <div style="margin-top:10px;display:flex;align-items:center;gap:16px">
-<div style="flex:none;width:40px;height:66px;border-radius:9px;border:1.5px solid #cfd6d0;background:#fff;box-sizing:border-box;padding:5px;display:flex;flex-direction:column;gap:4px;transition:all .4s;{{ saPhoneStyle }}">
+<div style="flex:none;width:40px;height:66px;border-radius:9px;border:1.5px solid #cfd6d0;background:#fff;box-sizing:border-box;padding:5px;display:flex;flex-direction:column;gap:4px;transition:all .4s;{{ hwPhoneStyle }}">
 <div style="width:7px;height:7px;border-radius:50%;background:#0f7a54"></div>
 <div style="width:100%;height:4px;border-radius:2px;background:#e3e8e4"></div>
 <div style="width:70%;height:4px;border-radius:2px;background:#e3e8e4"></div>
@@ -242,7 +236,7 @@
 <div style="position:relative;width:100%;height:100%;border-radius:10px;overflow:hidden;transition:all .35s;{{ taScreen }}">
 <div style="position:absolute;left:14px;top:13px;display:flex;align-items:center;gap:7px">
 <div style="width:11px;height:11px;border-radius:3px;transition:all .35s;{{ taAccent }}"></div>
-<div style="font:600 12px 'Inter',sans-serif;transition:all .35s;{{ taFgCol }}">Roastwell Coffee</div>
+<div style="font:600 12px 'Inter',sans-serif;transition:all .35s;{{ taFgCol }}">Your shop</div>
 </div>
 <div style="position:absolute;right:13px;top:15px;display:flex;gap:3px">
 <div style="width:4px;height:4px;border-radius:50%;transition:all .35s;{{ taAccent }}"></div>
@@ -1622,6 +1616,35 @@ class Component extends DCLogic {
     ];
   };
 
+  // ---- 7a: story slice (4-beat fork of sa* — credit settles at display, beat 3) ----
+  hwScroll = e => {
+    const t = e.target;
+    const b = Math.max(0, Math.min(3, Math.round(t.scrollTop / t.clientHeight)));
+    if (b !== (this.state.hwBeat ?? 0)) this.setState({ hwBeat: b });
+  };
+
+  hwVals() {
+    const b = this.state.hwBeat ?? 0;
+    const Y = [64, 196, 328, 460];           // station centers (px) in the 540px stage; beat i -> station i
+    const node = i => i === b
+      ? 'border-color:#0f7a54;background:#fff;box-shadow:0 0 0 3px rgba(15,122,84,.15);color:#111413'
+      : 'border-color:#d8ded9;background:#fff;color:#8b9490';
+    const seg = i => 'background:' + (b >= i + 1 ? '#0f7a54' : '#d3dad4');
+    const qr = (() => { let h = this.hash('hw' + b); const o = []; for (let i = 0; i < 169; i++) { h = (Math.imul(h, 1664525) + 1013904223) >>> 0; o.push(h / 4294967296 > 0.52 ? '#111413' : '#ffffff'); } return o; })();
+    return {
+      hwScroll: this.hwScroll,
+      hwNode0: node(0), hwNode1: node(1), hwNode2: node(2), hwNode3: node(3),
+      hwSeg0: seg(0), hwSeg1: seg(1), hwSeg2: seg(2),
+      hwPulse: 'top:' + (Y[b] - 7) + 'px',
+      hwQr: qr,
+      hwBoxIdle: b >= 2 ? 'opacity:0' : 'opacity:1',
+      hwQrStyle: b >= 2 ? 'opacity:1;transform:scale(1)' : 'opacity:0;transform:scale(.85)',
+      hwPhoneStyle: b >= 3 ? 'opacity:1' : 'opacity:.35',
+      hwCredit: b < 1 ? 'no charge yet' : b < 2 ? '1 credit · held' : '1 credit · settled',
+      hwCreditStyle: b < 2 ? 'background:#fff;color:#8b9490;border-color:#e3e8e4' : 'background:#0f7a54;color:#fbfaf7;border-color:#0f7a54'
+    };
+  }
+
   // ---- 7a: full-page demo (daylight twin of 5c's pd*) ----
   qdPick = k => () => this.setState({ qdKind: k });
 
@@ -1827,6 +1850,7 @@ class Component extends DCLogic {
       ...this.taVals(),
       ...this.tbVals(),
       ...this.qdVals(),
+      ...this.hwVals(),
       ...this.nbVals(),
       ...this.pdVals(),
       brandName: this.props.brandName ?? 'ditto',

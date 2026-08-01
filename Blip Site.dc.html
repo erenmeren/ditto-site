@@ -61,7 +61,7 @@
 <div style="margin-top:4px;font:400 13.5px 'Inter',sans-serif">one request out</div>
 </div>
 <div style="top:196px;left:96px;right:40px;position:absolute;transform:translateY(-50%);border:1.5px solid;border-radius:10px;padding:12px 16px;transition:all .4s;{{ saNode1 }}">
-<div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase">ditto cloud</div>
+<div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase">{{ brandName }} cloud</div>
 <div style="margin-top:4px;display:flex;align-items:center;justify-content:space-between;gap:10px">
 <div style="font:400 13.5px 'Inter',sans-serif">key ✓ · box online ✓</div>
 <div style="flex:none;border:1px solid;border-radius:99px;padding:2px 9px;font:500 9.5px 'IBM Plex Mono',monospace;transition:all .4s;{{ saCreditStyle }}">{{ saCredit }}</div>
@@ -93,7 +93,7 @@
 <div class="dv-card" style="width:1040px;height:560px;background:#0e141c;display:flex;flex-direction:column" onMouseEnter="{{ nbEnter }}" onMouseLeave="{{ nbLeave }}">
 <div style="flex:none;box-sizing:border-box;font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#5d6b7d;padding:14px 22px;border-bottom:1px solid #161f2b;display:flex;justify-content:space-between">
 <div>{{ nbTel }}</div>
-<div style="display:flex;gap:14px;align-items:center;color:#e8a24b"><span>{{ nbPauseLabel }}</span><span style="color:#5d6b7d">ditto · night shift</span></div>
+<div style="display:flex;gap:14px;align-items:center;color:#e8a24b"><span>{{ nbPauseLabel }}</span><span style="color:#5d6b7d">{{ brandName }} · night shift</span></div>
 </div>
 <div style="flex:1;position:relative;overflow:hidden">
 <div style="position:absolute;inset:0;background:radial-gradient(circle at 20% 30%, rgba(232,162,75,.16), transparent 60%);pointer-events:none"></div>
@@ -159,16 +159,16 @@
 </div>
 <div style="font:400 10.5px 'IBM Plex Mono',monospace;color:#8b95a1;word-break:break-all">{{ pdUrl }}</div>
 <div onClick="{{ pdSend }}" style="margin-top:auto;background:#1d4ed8;color:#fff;font:600 15px 'Bricolage Grotesque',sans-serif;letter-spacing:.06em;text-align:center;padding:18px;border-radius:10px;box-shadow:0 6px 0 #0a1e66;cursor:pointer;transition:all .12s;{{ pdBtnStyle }}" style-active="transform:translateY(4px);box-shadow:0 2px 0 #0a1e66">SEND</div>
-<div style="position:absolute;top:66px;right:-6px;border:1.5px solid #1d4ed8;color:#1d4ed8;border-radius:8px;padding:5px 10px;font:500 10px 'IBM Plex Mono',monospace;transition:all .5s cubic-bezier(.4,0,.2,1);{{ pdChip }}">{ url } →</div>
+<div style="position:absolute;top:92px;right:-6px;border:1.5px solid #1d4ed8;color:#1d4ed8;border-radius:8px;padding:5px 10px;font:500 10px 'IBM Plex Mono',monospace;transition:all .5s cubic-bezier(.4,0,.2,1);{{ pdChip }}">{ url } →</div>
 </div>
 
 <div style="border:1.5px solid #c6cdd6;border-radius:12px;padding:18px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:12px">
-<div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#8b95a1">ditto cloud</div>
+<div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#8b95a1">{{ brandName }} cloud</div>
 <div style="display:flex;flex-direction:column;gap:6px;font:400 12.5px 'Inter',sans-serif;color:#14181c">
 <div>key ✓ scope devices:trigger</div>
 <div>box online ✓</div>
 </div>
-<div style="align-self:flex-start;border:1.5px solid;border-radius:99px;padding:4px 12px;font:500 10px 'IBM Plex Mono',monospace;transition:all .3s;{{ pdHold }}">1 credit · held</div>
+<div style="align-self:flex-start;border:1.5px solid;border-radius:99px;padding:4px 12px;font:500 10px 'IBM Plex Mono',monospace;transition:all .3s;{{ pdHold }}">{{ pdHoldLabel }}</div>
 <div style="font:400 12px 'Inter',sans-serif;color:#5c6570">{{ pdNote }}</div>
 </div>
 
@@ -180,7 +180,7 @@
 </div>
 </div>
 <div style="margin-top:10px;font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#8b95a1">till 2 · dev_8f21</div>
-<div style="position:absolute;left:50%;top:56px;margin-left:-55px;width:110px;height:150px;border-radius:20px;background:#14181c;box-sizing:border-box;padding:8px;transition:all .5s cubic-bezier(.4,0,.2,1);{{ pdPhone }}">
+<div style="position:absolute;left:50%;top:86px;margin-left:-55px;width:110px;height:150px;border-radius:20px;background:#14181c;box-sizing:border-box;padding:8px;transition:all .5s cubic-bezier(.4,0,.2,1);{{ pdPhone }}">
 <div style="width:100%;height:100%;background:#fff;border-radius:13px;box-sizing:border-box;padding:12px;display:flex;flex-direction:column;gap:8px">
 <div style="width:8px;height:8px;border-radius:50%;background:#0f7a54"></div>
 <div style="font:600 13px 'Inter',sans-serif;color:#14181c">{{ pdPhoneTitle }}</div>
@@ -192,7 +192,7 @@
 </div>
 </div>
 </div>
-<div style="margin-top:44px;font:500 10px 'IBM Plex Mono',monospace;color:#0f7a54;transition:opacity .4s;{{ pdAckStyle }}">ack { ok:true } · settled</div>
+<div style="margin-top:74px;font:500 10px 'IBM Plex Mono',monospace;color:#0f7a54;transition:opacity .4s;{{ pdAckStyle }}">ack { ok:true } · settled</div>
 </div>
 
 </div>
@@ -996,6 +996,7 @@ class Component extends DCLogic {
     '',
     ''
   ], token: '' };
+  rm = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
   componentDidMount() {
     this.qrB = React.createRef();
@@ -1020,7 +1021,6 @@ class Component extends DCLogic {
     };
     window.addEventListener('mousemove', this._m);
     setTimeout(() => this.send(), 400);
-    this.rm = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
     this._nbT = setInterval(() => {
       if (this.state.nbPaused || this.rm) return;
       this.setState(s => {
@@ -1046,6 +1046,7 @@ class Component extends DCLogic {
     const b = this.state.saBeat ?? 0;
     const st = [0, 1, 2, 3, 1][b];           // beat -> active station (settle returns to cloud)
     const Y = [64, 196, 328, 460];           // station centers (px) in the 560px stage
+    const AY = [90, 228, 396, 514];          // annotation clearance per station (px)
     const ANN = [
       'POST /api/v1/devices/dev_8f21/trigger · { action:"show_qr", payload:{ url } } · Idempotency-Key',
       'api key · scope devices:trigger · device: online · credit: 1 reserved',
@@ -1064,7 +1065,7 @@ class Component extends DCLogic {
       saSeg0: seg(0), saSeg1: seg(1), saSeg2: seg(2),
       saPulse: 'top:' + (Y[st] - 7) + 'px',
       saAnn: ANN[b],
-      saAnnPos: 'top:' + (Y[st] + 26) + 'px',
+      saAnnPos: 'top:' + AY[st] + 'px',
       saQr: qr,
       saQrStyle: b >= 2 ? 'opacity:1;transform:scale(1)' : 'opacity:0;transform:scale(.85)',
       saPhoneStyle: b >= 3 ? 'opacity:1;transform:translateY(0)' : 'opacity:0;transform:translateY(14px)',
@@ -1126,9 +1127,10 @@ class Component extends DCLogic {
     const seed = (this.state.pdSeed ?? 0) + 1;
     if (this.rm) { this.setState({ pdSeed: seed, pdStep: 4, pdMs: total, pdRunning: false }); return; }
     const t0 = performance.now();
-    this.setState({ pdSeed: seed, pdStep: 1, pdMs: 0, pdRunning: true });
+    this.setState({ pdSeed: seed, pdStep: 0, pdMs: 0, pdRunning: true });
     this._pdTick = setInterval(() => this.setState({ pdMs: Math.round(performance.now() - t0) }), 30);
     this._pdTimers = [
+      setTimeout(() => this.setState({ pdStep: 1 }), 30),
       setTimeout(() => this.setState({ pdStep: 2 }), 260),
       setTimeout(() => this.setState({ pdStep: 3 }), 640),
       setTimeout(() => { clearInterval(this._pdTick); this.setState({ pdStep: 4, pdMs: total, pdRunning: false }); }, total)
@@ -1154,7 +1156,8 @@ class Component extends DCLogic {
       pdUrl: 'https://yourshop.example/' + kind + '/8f21',
       pdMsLabel: String(this.state.pdMs ?? 0).padStart(3, '0') + ' ms',
       pdChip: step >= 1 ? 'transform:translateX(224px);opacity:0' : 'transform:translateX(0);opacity:1',
-      pdHold: step >= 2 ? 'border-color:#1d4ed8;color:#1d4ed8;background:#fff' : 'border-color:#c6cdd6;color:#8b95a1;background:#fff',
+      pdHold: step >= 4 ? 'border-color:#0f7a54;color:#0f7a54;background:#fff' : step >= 2 ? 'border-color:#1d4ed8;color:#1d4ed8;background:#fff' : 'border-color:#c6cdd6;color:#8b95a1;background:#fff',
+      pdHoldLabel: step >= 4 ? '1 credit · settled' : '1 credit · held',
       pdQr: qr,
       pdQrStyle: step >= 3 ? 'opacity:1;transform:scale(1)' : 'opacity:0;transform:scale(.85)',
       pdPhone: step >= 4 ? 'opacity:1;transform:translateY(0)' : 'opacity:0;transform:translateY(26px)',
@@ -1285,7 +1288,7 @@ class Component extends DCLogic {
       ...this.saVals(),
       ...this.nbVals(),
       ...this.pdVals(),
-      brandName: this.props.brandName ?? 'blip',
+      brandName: this.props.brandName ?? 'ditto',
       txCount: (this.state.tx * (this.props.txMultiplier ?? 1)).toLocaleString('en-US'),
       paperM: Math.round(this.state.tx * 0.14).toLocaleString('en-US'),
       log: this.state.log,

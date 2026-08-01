@@ -15,7 +15,77 @@
 
 <div class="dv-opt" id="5a" data-screen-label="5a signal line">
 <div class="dv-olabel"><a class="dv-oid" href="#5a">5a</a>The Signal Line — scroll-driven story, daylight retail, Space Grotesk</div>
-<div class="dv-card" style="width:980px;height:640px;background:#fbfaf7"></div>
+<div class="dv-card" style="width:980px;height:640px;background:#fbfaf7">
+<div style="height:80px;box-sizing:border-box;padding:0 30px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eceee9">
+<div>
+<div style="font:500 10.5px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8b9490;margin-bottom:6px">how it works — 01</div>
+<div style="font:500 30px 'Space Grotesk',sans-serif;color:#111413">One request. One box. One scan.</div>
+</div>
+<div style="flex:none;padding:6px 14px;border-radius:99px;background:#111413;font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#f5b63f">scroll ↓</div>
+</div>
+<div style="display:grid;grid-template-columns:380px 1fr;height:560px">
+<div onScroll="{{ saScroll }}" style="height:560px;overflow-y:auto;scroll-snap-type:y mandatory">
+<div style="height:100%;box-sizing:border-box;padding:34px 30px;display:flex;flex-direction:column;justify-content:center;scroll-snap-align:start">
+<div style="font:700 44px 'Space Grotesk',sans-serif;color:#0f7a54;line-height:1">01</div>
+<div style="margin-top:14px;font:500 21px 'Space Grotesk',sans-serif;color:#111413">You send a link</div>
+<div style="margin-top:10px;max-width:300px;font:400 14.5px/1.55 'Inter',sans-serif;color:#5c645f">Your till, your booking system, your app — when it has something for the customer, it sends one request with your URL. We never see what's behind it.</div>
+</div>
+<div style="height:100%;box-sizing:border-box;padding:34px 30px;display:flex;flex-direction:column;justify-content:center;scroll-snap-align:start">
+<div style="font:700 44px 'Space Grotesk',sans-serif;color:#0f7a54;line-height:1">02</div>
+<div style="margin-top:14px;font:500 21px 'Space Grotesk',sans-serif;color:#111413">We check and hold a credit</div>
+<div style="margin-top:10px;max-width:300px;font:400 14.5px/1.55 'Inter',sans-serif;color:#5c645f">Right key? Box online? Then one credit goes on hold. Not charged — held.</div>
+</div>
+<div style="height:100%;box-sizing:border-box;padding:34px 30px;display:flex;flex-direction:column;justify-content:center;scroll-snap-align:start">
+<div style="font:700 44px 'Space Grotesk',sans-serif;color:#0f7a54;line-height:1">03</div>
+<div style="margin-top:14px;font:500 21px 'Space Grotesk',sans-serif;color:#111413">The code appears on that box</div>
+<div style="margin-top:10px;max-width:300px;font:400 14.5px/1.55 'Inter',sans-serif;color:#5c645f">One command lands on exactly the box you named, about a second later. The screen shows your QR.</div>
+</div>
+<div style="height:100%;box-sizing:border-box;padding:34px 30px;display:flex;flex-direction:column;justify-content:center;scroll-snap-align:start">
+<div style="font:700 44px 'Space Grotesk',sans-serif;color:#0f7a54;line-height:1">04</div>
+<div style="margin-top:14px;font:500 21px 'Space Grotesk',sans-serif;color:#111413">They scan it</div>
+<div style="margin-top:10px;max-width:300px;font:400 14.5px/1.55 'Inter',sans-serif;color:#5c645f">The customer points their camera and your page opens on their phone. No app, no account, no email.</div>
+</div>
+<div style="height:100%;box-sizing:border-box;padding:34px 30px;display:flex;flex-direction:column;justify-content:center;scroll-snap-align:start">
+<div style="font:700 44px 'Space Grotesk',sans-serif;color:#0f7a54;line-height:1">05</div>
+<div style="margin-top:14px;font:500 21px 'Space Grotesk',sans-serif;color:#111413">Paid only when it worked</div>
+<div style="margin-top:10px;max-width:300px;font:400 14.5px/1.55 'Inter',sans-serif;color:#5c645f">The box confirms it showed the code — only then is the credit charged. A late request never shows; it just expires.</div>
+</div>
+</div>
+<div style="position:relative;height:560px;border-left:1px solid #eceee9">
+<div style="position:absolute;left:64px;width:2px;top:64px;height:132px;transition:background .5s;{{ saSeg0 }}"></div>
+<div style="position:absolute;left:64px;width:2px;top:196px;height:132px;transition:background .5s;{{ saSeg1 }}"></div>
+<div style="position:absolute;left:64px;width:2px;top:328px;height:132px;transition:background .5s;{{ saSeg2 }}"></div>
+<div style="position:absolute;left:58px;width:14px;height:14px;border-radius:50%;background:#0f7a54;box-shadow:0 0 0 5px rgba(15,122,84,.18);transition:top .6s cubic-bezier(.4,0,.2,1);{{ saPulse }}"></div>
+<div style="top:64px;left:96px;right:40px;position:absolute;transform:translateY(-50%);border:1.5px solid;border-radius:10px;padding:12px 16px;transition:all .4s;{{ saNode0 }}">
+<div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase">your system</div>
+<div style="margin-top:4px;font:400 13.5px 'Inter',sans-serif">one request out</div>
+</div>
+<div style="top:196px;left:96px;right:40px;position:absolute;transform:translateY(-50%);border:1.5px solid;border-radius:10px;padding:12px 16px;transition:all .4s;{{ saNode1 }}">
+<div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase">ditto cloud</div>
+<div style="margin-top:4px;display:flex;align-items:center;justify-content:space-between;gap:10px">
+<div style="font:400 13.5px 'Inter',sans-serif">key ✓ · box online ✓</div>
+<div style="flex:none;border:1px solid;border-radius:99px;padding:2px 9px;font:500 9.5px 'IBM Plex Mono',monospace;transition:all .4s;{{ saCreditStyle }}">{{ saCredit }}</div>
+</div>
+</div>
+<div style="top:328px;left:96px;right:40px;position:absolute;transform:translateY(-50%);border:1.5px solid;border-radius:10px;padding:12px 16px;transition:all .4s;{{ saNode2 }}">
+<div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase">the box — till 2</div>
+<div style="margin-top:8px;width:72px;height:72px;display:grid;grid-template-columns:repeat(13,1fr);grid-template-rows:repeat(13,1fr);transition:all .4s;{{ saQrStyle }}">
+<sc-for list="{{ saQr }}" as="c" hint-placeholder-count="169"><div style="background:{{ c }}"></div></sc-for>
+</div>
+</div>
+<div style="top:460px;left:96px;right:40px;position:absolute;transform:translateY(-50%);border:1.5px solid;border-radius:10px;padding:12px 16px;transition:all .4s;{{ saNode3 }}">
+<div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase">their phone</div>
+<div style="margin-top:8px;display:flex;flex-direction:column;gap:6px;transition:all .4s;{{ saPhoneStyle }}">
+<div style="width:10px;height:10px;border-radius:50%;background:#0f7a54"></div>
+<div style="width:100%;height:6px;border-radius:3px;background:#e3e8e4"></div>
+<div style="width:70%;height:6px;border-radius:3px;background:#e3e8e4"></div>
+<div style="width:85%;height:6px;border-radius:3px;background:#e3e8e4"></div>
+</div>
+</div>
+<div style="position:absolute;left:96px;right:40px;font:400 10px/1.6 'IBM Plex Mono',monospace;color:#8b9490;transition:top .6s cubic-bezier(.4,0,.2,1);{{ saAnnPos }}">{{ saAnn }}</div>
+</div>
+</div>
+</div>
 </div>
 
 <div class="dv-opt" id="5b" data-screen-label="5b night shift">
@@ -854,6 +924,44 @@ class Component extends DCLogic {
 
   hash(s) { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
 
+  // ---- 5a: signal line (scroll story) ----
+  saScroll = e => {
+    const t = e.target;
+    const b = Math.max(0, Math.min(4, Math.round(t.scrollTop / t.clientHeight)));
+    if (b !== (this.state.saBeat ?? 0)) this.setState({ saBeat: b });
+  };
+
+  saVals() {
+    const b = this.state.saBeat ?? 0;
+    const st = [0, 1, 2, 3, 1][b];           // beat -> active station (settle returns to cloud)
+    const Y = [64, 196, 328, 460];           // station centers (px) in the 560px stage
+    const ANN = [
+      'POST /api/v1/devices/dev_8f21/trigger · { action:"show_qr", payload:{ url } } · Idempotency-Key',
+      'api key · scope devices:trigger · device: online · credit: 1 reserved',
+      'mqtt d/dev_8f21/cmd · ack: pending',
+      'GET <your url> — their phone, their browser',
+      'ack { ok:true } · credit: settled · late trigger → expired, released'
+    ];
+    const node = i => i === st
+      ? 'border-color:#0f7a54;background:#fff;box-shadow:0 0 0 3px rgba(15,122,84,.15);color:#111413'
+      : 'border-color:#d8ded9;background:#fff;color:#8b9490';
+    const seg = i => 'background:' + (b >= i + 1 ? '#0f7a54' : '#e3e8e4');
+    const qr = (() => { let h = this.hash('sa' + b); const o = []; for (let i = 0; i < 169; i++) { h = (Math.imul(h, 1664525) + 1013904223) >>> 0; o.push(h / 4294967296 > 0.52 ? '#111413' : '#ffffff'); } return o; })();
+    return {
+      saScroll: this.saScroll,
+      saNode0: node(0), saNode1: node(1), saNode2: node(2), saNode3: node(3),
+      saSeg0: seg(0), saSeg1: seg(1), saSeg2: seg(2),
+      saPulse: 'top:' + (Y[st] - 7) + 'px',
+      saAnn: ANN[b],
+      saAnnPos: 'top:' + (Y[st] + 26) + 'px',
+      saQr: qr,
+      saQrStyle: b >= 2 ? 'opacity:1;transform:scale(1)' : 'opacity:0;transform:scale(.85)',
+      saPhoneStyle: b >= 3 ? 'opacity:1;transform:translateY(0)' : 'opacity:0;transform:translateY(14px)',
+      saCredit: b < 1 ? 'no charge yet' : b < 4 ? '1 credit · held' : '1 credit · settled',
+      saCreditStyle: b < 4 ? 'background:#fff;color:#8b9490;border-color:#e3e8e4' : 'background:#0f7a54;color:#fbfaf7;border-color:#0f7a54'
+    };
+  }
+
   matrix(token) {
     const N = 21, m = [];
     let h = this.hash(token || 'x');
@@ -971,6 +1079,7 @@ class Component extends DCLogic {
     const mx = this.state.mx == null ? 300 : this.state.mx;
     const my = this.state.my == null ? 300 : this.state.my;
     return {
+      ...this.saVals(),
       brandName: this.props.brandName ?? 'blip',
       txCount: (this.state.tx * (this.props.txMultiplier ?? 1)).toLocaleString('en-US'),
       paperM: Math.round(this.state.tx * 0.14).toLocaleString('en-US'),

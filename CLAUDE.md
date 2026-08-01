@@ -27,7 +27,7 @@ One `POST /api/ingest` with a device key in the header → key is compared as a 
 </script>
 ```
 
-The template renders through React against the **flat object returned by `renderVals()`**, merged over props. `data-props` declares editor-exposed props (`brandName`, `txMultiplier`) reachable as `this.props.x`.
+The template renders through React against the **flat object returned by `renderVals()`**, merged over props. `data-props` declares editor-exposed props (`brandName`, default `"ditto"`; `txMultiplier`) reachable as `this.props.x`. The brand name is deliberately a prop — the product's naming decision is deferred (see `ditto-admin/docs/naming-candidates.md`); never hardcode it in new copy.
 
 **`{{ }}` is a path resolver, not JS.** It supports identifiers, `.` / `[…]` access, string/number/bool literals, `!`, and `==`/`===`/`!=`/`!==` — nothing else. No calls, no arithmetic, no ternaries. This is why `renderVals()` is huge: every computed style string, label, and handler is precomputed there and exposed as a flat key (`stNode0`…`stNode5`, `ds_head`, `dsDown_qr`, `stDot`). Adding interactive UI means adding keys to `renderVals()`, not logic to the markup.
 
@@ -43,10 +43,14 @@ Template features:
 
 ## Canvas structure and conventions
 
-The doc is a review canvas: newest turn first. Each `<section class="dv-turn" id="tN">` is one conversation turn (currently t4, t3, t2 top-to-bottom), containing `.dv-opt` design options with ids like `4a`, `2a`, `2c`, a `data-screen-label`, a fixed-width `.dv-card`, and a closing `.dv-next` paragraph proposing what to build next. New work goes in as a **new turn section at the top of `<x-dc>`**, with the next turn number.
+The doc is a review canvas: newest turn first. Each `<section class="dv-turn" id="tN">` is one conversation turn (currently t5, t4, t3, t2 top-to-bottom), containing `.dv-opt` design options with ids like `4a`, `2a`, `2c`, a `data-screen-label`, a fixed-width `.dv-card`, and a closing `.dv-next` paragraph proposing what to build next. New work goes in as a **new turn section at the top of `<x-dc>`**, with the next turn number.
 
-One `Component` class backs every option on the canvas, so state is namespaced by prefix: `st*` = the six-step flow storyboard (auto-advances on a 3.2 s interval, pauses on hover, clickable steps), `ds*` = the screen-designer mock (drag/resize/visibility per element, `code` vs `idle` page, page-vs-store scope), `b*` + `logoOn` = brand editor, `colorway`/`shell*` = device colourways, `explode`/`layer*` = the exploded-device view, `tx`/`log`/`token` = the live ingest demo. Keep new options in their own prefix.
+One `Component` class backs every option on the canvas, so state is namespaced by prefix: `st*` = the six-step flow storyboard (auto-advances on a 3.2 s interval, pauses on hover, clickable steps), `ds*` = the screen-designer mock (drag/resize/visibility per element, `code` vs `idle` page, page-vs-store scope), `b*` + `logoOn` = brand editor, `colorway`/`shell*` = device colourways, `explode`/`layer*` = the exploded-device view, `tx`/`log`/`token` = the live ingest demo, `sa*` = 5a scroll story, `nb*` = 5b auto loop, `pd*` = 5c interactive demo (`this.rm` class field = reduced-motion flag). Keep new options in their own prefix, and clear any timers in `componentWillUnmount`.
+
+**t4 vs t5:** t4's copy describes the pre-pivot ingest model and is kept only for comparison. t5 tells the current **trigger-only** story (caller passes a URL; Ditto never sees content; 1 credit reserved → settled on ack) — new work must follow t5's story, sourced from `ditto-admin/docs/DEVELOPMENT.md` and `device-protocol.md`.
+
+**Verification without a browser:** every `{{ }}` key must resolve to a `renderVals()` key — the plan doc `docs/superpowers/plans/2026-08-01-t5-how-it-works-redesign.md` (Task 1) contains a small `check-canvas.mjs` static checker for this; headless `firefox --screenshot` (write to /tmp, then copy) or a Marionette script gives real render/screenshot verification, and `magick` is available for cropping.
 
 QR codes are fake — deterministic FNV-1a hash + LCG (`hash()`, `matrix()`, `brandQr`, `tinyQr`), rendered either to canvas or as a 13×13 grid of divs. Don't reach for a QR library.
 
-Visual language (2a "quiet engineering" / 2c "hybrid"): ink `#16150f`, paper `#f4f3ee`, panel `#eae7de`, rules `#c3bfb3`/`#d8d5cc`, muted `#8a8577`, acid accent `#e8ff2f` used sparingly. Type is Helvetica Neue for headings/body with tight negative tracking, IBM Plex Mono for labels (uppercase, letter-spaced) and code, Archivo Black only in 2c. Copy is lowercase-leaning, plain-language, British spelling ("colours", "organisation").
+Visual language (2a "quiet engineering" / 2c "hybrid"): ink `#16150f`, paper `#f4f3ee`, panel `#eae7de`, rules `#c3bfb3`/`#d8d5cc`, muted `#8a8577`, acid accent `#e8ff2f` used sparingly. Type is Helvetica Neue for headings/body with tight negative tracking, IBM Plex Mono for labels (uppercase, letter-spaced) and code, Archivo Black only in 2c. Copy is lowercase-leaning, plain-language, British spelling ("colours", "organisation"). The t5 options each carry their own palette/type system (5a daylight retail/Space Grotesk+Inter, 5b night petrol/Instrument Serif subtitles, 5c workbench cobalt/Bricolage Grotesque) — spec: `docs/superpowers/specs/2026-08-01-t5-how-it-works-redesign-design.md`.

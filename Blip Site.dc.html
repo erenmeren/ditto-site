@@ -90,7 +90,47 @@
 
 <div class="dv-opt" id="5b" data-screen-label="5b night shift">
 <div class="dv-olabel"><a class="dv-oid" href="#5b">5b</a>Night Shift — cinematic auto loop, film subtitles + telemetry HUD</div>
-<div class="dv-card" style="width:1040px;height:560px;background:#0e141c"></div>
+<div class="dv-card" style="width:1040px;height:560px;background:#0e141c;display:flex;flex-direction:column" onMouseEnter="{{ nbEnter }}" onMouseLeave="{{ nbLeave }}">
+<div style="flex:none;box-sizing:border-box;font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#5d6b7d;padding:14px 22px;border-bottom:1px solid #161f2b;display:flex;justify-content:space-between">
+<div>{{ nbTel }}</div>
+<div style="display:flex;gap:14px;align-items:center;color:#e8a24b"><span>{{ nbPauseLabel }}</span><span style="color:#5d6b7d">ditto · night shift</span></div>
+</div>
+<div style="flex:1;position:relative;overflow:hidden">
+<div style="position:absolute;inset:0;background:radial-gradient(circle at 20% 30%, rgba(232,162,75,.16), transparent 60%);pointer-events:none"></div>
+<div style="position:absolute;left:0;top:350px;right:280px;bottom:0;background:#161f2b;border-top:1px solid rgba(238,243,248,.07)"></div>
+<div style="position:absolute;left:90px;top:270px;width:150px;height:120px;background:#1c2734;border-radius:8px 8px 3px 3px;box-shadow:0 6px 14px rgba(0,0,0,.35)">
+<div style="position:absolute;left:12px;right:12px;top:16px;box-sizing:border-box;padding:8px 10px;background:#0e141c;border-radius:4px;font:500 9.5px 'IBM Plex Mono',monospace;color:#e8a24b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ nbKindLine }}</div>
+<div style="position:absolute;left:12px;right:12px;bottom:12px;height:26px;border-radius:4px;background:rgba(238,243,248,.05)"></div>
+</div>
+<div style="position:absolute;left:590px;top:210px;width:130px;height:130px;border-radius:22px;background:#161f2b;border:1px solid rgba(238,243,248,.08);box-shadow:0 16px 34px rgba(0,0,0,.45)">
+<div style="position:absolute;inset:16px;border-radius:14px;background:#0e141c;overflow:hidden">
+<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:opacity .8s;{{ nbBoxIdle }}">
+<div style="width:16px;height:16px;border-radius:50%;background:#eef3f8;box-shadow:0 0 10px 2px rgba(238,243,248,.35)"></div>
+</div>
+<div style="position:absolute;inset:10px;display:grid;grid-template-columns:repeat(13,1fr);grid-template-rows:repeat(13,1fr);transition:all .8s;{{ nbBoxQr }}">
+<sc-for list="{{ nbQr }}" as="c" hint-placeholder-count="169"><div style="background:{{ c }}"></div></sc-for>
+</div>
+</div>
+</div>
+<div style="position:absolute;left:298px;top:267px;width:6px;height:6px;border-radius:50%;background:#5d6b7d;opacity:.5"></div>
+<div style="position:absolute;left:557px;top:241px;width:6px;height:6px;border-radius:50%;background:#5d6b7d;opacity:.5"></div>
+<div style="position:absolute;left:767px;top:305px;width:6px;height:6px;border-radius:50%;background:#5d6b7d;opacity:.5"></div>
+<div style="position:absolute;width:10px;height:10px;border-radius:50%;background:#eef3f8;box-shadow:0 0 18px 6px rgba(238,243,248,.45);{{ nbDot }}"></div>
+<div style="position:absolute;left:850px;top:110px;width:88px;height:170px;border-radius:18px;background:#000;border:2px solid #232a33;box-sizing:border-box;padding:8px;transition:all .9s;{{ nbPhone }}">
+<div style="width:100%;height:100%;background:#0e141c;border-radius:11px;box-sizing:border-box;padding:10px;display:flex;flex-direction:column;gap:7px">
+<div style="width:8px;height:8px;border-radius:50%;background:#e8a24b"></div>
+<div style="font:600 12px 'Inter',sans-serif;color:#eef3f8">{{ nbPhoneTitle }}</div>
+<div style="font:400 10px 'Inter',sans-serif;color:#5d6b7d">{{ nbPhoneLine }}</div>
+<div style="margin-top:auto;display:flex;flex-direction:column;gap:5px">
+<div style="width:100%;height:5px;border-radius:3px;background:rgba(238,243,248,.12)"></div>
+<div style="width:65%;height:5px;border-radius:3px;background:rgba(238,243,248,.12)"></div>
+</div>
+</div>
+</div>
+<div style="position:absolute;left:850px;top:290px;width:88px;text-align:center;font:500 10px 'IBM Plex Mono',monospace;transition:opacity .6s;{{ nbAck }}">ack ok — 1 credit settled</div>
+</div>
+<div style="flex:none;box-sizing:border-box;font:italic 400 21px 'Instrument Serif',serif;color:#eef3f8;text-align:center;padding:18px 40px 22px;border-top:1px solid #161f2b">{{ nbSub }}</div>
+</div>
 </div>
 
 <div class="dv-opt" id="5c" data-screen-label="5c press send">
@@ -918,8 +958,16 @@ class Component extends DCLogic {
     };
     window.addEventListener('mousemove', this._m);
     setTimeout(() => this.send(), 400);
+    this.rm = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    this._nbT = setInterval(() => {
+      if (this.state.nbPaused || this.rm) return;
+      this.setState(s => {
+        const p = ((s.nbPhase ?? 0) + 1) % 5;
+        return p === 0 ? { nbPhase: 0, nbCycle: ((s.nbCycle ?? 0) + 1) % 4 } : { nbPhase: p };
+      });
+    }, 2400);
   }
-  componentWillUnmount() { clearInterval(this._t); clearInterval(this._stT); window.removeEventListener('mousemove', this._m); }
+  componentWillUnmount() { clearInterval(this._t); clearInterval(this._stT); window.removeEventListener('mousemove', this._m); clearInterval(this._nbT); }
   componentDidUpdate() { this.draw(); }
 
   hash(s) { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
@@ -959,6 +1007,49 @@ class Component extends DCLogic {
       saPhoneStyle: b >= 3 ? 'opacity:1;transform:translateY(0)' : 'opacity:0;transform:translateY(14px)',
       saCredit: b < 1 ? 'no charge yet' : b < 4 ? '1 credit · held' : '1 credit · settled',
       saCreditStyle: b < 4 ? 'background:#fff;color:#8b9490;border-color:#e3e8e4' : 'background:#0f7a54;color:#fbfaf7;border-color:#0f7a54'
+    };
+  }
+
+  // ---- 5b: night shift (cinematic loop) ----
+  nbHover = v => () => this.setState({ nbPaused: v });
+
+  nbVals() {
+    const p = this.rm ? 2 : (this.state.nbPhase ?? 0);
+    const cyc = this.state.nbCycle ?? 0;
+    const KINDS = [
+      { pos: 'receipt — table 9', phone: 'Your receipt', line: 'total 7.00 · returns 30 days' },
+      { pos: 'ticket — row F seat 12', phone: 'Row F · Seat 12', line: 'doors 19:30' },
+      { pos: "menu — table 4", phone: "Today's menu", line: 'kitchen closes 21:00' },
+      { pos: 'warranty — 24 months', phone: 'Warranty · 24 mo', line: 'registered to this purchase' }
+    ];
+    const K = KINDS[cyc];
+    const SUBS = [
+      'One request leaves the till. The content stays theirs.',
+      'The cloud holds one credit and finds the box.',
+      'The box wakes — a code, addressed to one customer.',
+      'A phone lifts. The page is already there.',
+      'Confirmed shown. Only now does it cost a credit.'
+    ];
+    const TEL = [
+      'POST /trigger · payload { url } · idem 9f3a',
+      'key ok · scope devices:trigger · hold 1 credit',
+      'd/dev_8f21/cmd · qos 1 · ack pending',
+      'scan · GET their-url · no app, no account',
+      'ack { ok:true } · 41 ms · credit settled'
+    ];
+    const XY = [[150, 372], [452, 168], [668, 320], [872, 296], [452, 168]]; // dot waypoints (px)
+    const qr = (() => { let h = this.hash('nb' + cyc); const o = []; for (let i = 0; i < 169; i++) { h = (Math.imul(h, 1664525) + 1013904223) >>> 0; o.push(h / 4294967296 > 0.52 ? '#0e141c' : '#eef3f8'); } return o; })();
+    return {
+      nbEnter: this.nbHover(true), nbLeave: this.nbHover(false),
+      nbTel: TEL[p], nbSub: SUBS[p], nbKindLine: K.pos,
+      nbDot: 'left:' + XY[p][0] + 'px;top:' + XY[p][1] + 'px;transition:all 2.1s linear;opacity:' + (this.rm ? 0 : 1),
+      nbBoxIdle: p >= 2 ? 'opacity:0' : 'opacity:1',
+      nbBoxQr: p >= 2 ? 'opacity:1;transform:scale(1)' : 'opacity:0;transform:scale(.9)',
+      nbQr: qr,
+      nbPhone: p >= 3 ? 'opacity:1;transform:translateY(0)' : 'opacity:.35;transform:translateY(22px)',
+      nbPhoneTitle: K.phone, nbPhoneLine: K.line,
+      nbAck: p === 4 ? 'opacity:1;color:#2fbf83' : 'opacity:0',
+      nbPauseLabel: this.state.nbPaused ? 'paused — move away to resume' : ''
     };
   }
 
@@ -1080,6 +1171,7 @@ class Component extends DCLogic {
     const my = this.state.my == null ? 300 : this.state.my;
     return {
       ...this.saVals(),
+      ...this.nbVals(),
       brandName: this.props.brandName ?? 'blip',
       txCount: (this.state.tx * (this.props.txMultiplier ?? 1)).toLocaleString('en-US'),
       paperM: Math.round(this.state.tx * 0.14).toLocaleString('en-US'),

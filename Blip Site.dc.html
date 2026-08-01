@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Archivo+Black&display=swap" rel="stylesheet"><style>body{margin:0;background:#f0eee9;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif}a{color:inherit}a:hover{color:inherit}.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}.dv-tid{font:600 10px 'IBM Plex Mono',monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}.dv-tname{font:600 13px/1.2 'Helvetica Neue',Arial,sans-serif;color:#1a1a1a}.dv-opts{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}.dv-oid{font:600 10.5px 'IBM Plex Mono',monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 'Helvetica Neue',Arial,sans-serif;color:rgba(0,0,0,.55)}.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}.dv-next{margin:22px 0 0;font:12px/1.5 'Helvetica Neue',Arial,sans-serif;color:rgba(0,0,0,.5)}@keyframes blipspin{to{transform:rotate(360deg)}}@keyframes blipmarq{from{transform:translateX(0)}to{transform:translateX(-50%)}}@keyframes blipblink{0%,100%{opacity:1}50%{opacity:.15}}</style></helmet>
+
+<section class="dv-turn" id="t4">
+<div class="dv-thd"><a class="dv-tid" href="#t4">4</a><span class="dv-tname">Three flows — developer, plain language, and design/publishing</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="4a" data-screen-label="4a flows">
+<div class="dv-olabel"><a class="dv-oid" href="#4a">4a</a>Three diagrams — developer flow, the plain-language version, and branding as its own flow</div>
+<div class="dv-card" style="width:1040px;background:#f4f3ee">
+
+<div style="padding:44px 34px 26px;border-bottom:1px solid #d8d5cc;display:flex;justify-content:space-between;align-items:flex-end;gap:40px">
+<div>
+<div style="font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:#8a8577;margin-bottom:18px">01 · for developers</div>
+<h2 style="margin:0 0 14px;font:400 40px/1.02 'Helvetica Neue',Arial,sans-serif;letter-spacing:-.035em;color:#16150f;max-width:22ch">One call in. One addressed box out.</h2>
+<p style="margin:0;max-width:56ch;font:400 16px/1.55 'Helvetica Neue',Arial,sans-serif;color:#45423a;text-wrap:pretty">No SDK to install on the device, no local software, no polling from your side. You hold a device key; we own everything after the request.</p>
+</div>
+<div onClick="{{ stPlay }}" style="flex:none;padding:11px 18px;border:1px solid #b8b4a8;font:500 10.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#16150f;cursor:pointer" style-hover="border-color:#16150f">{{ stPlayLabel }}</div>
+</div>
+
+<div onMouseEnter="{{ stEnter }}" onMouseLeave="{{ stLeave }}" style="border-bottom:1px solid #d8d5cc;background:#eae7de;padding:34px 34px 30px">
+
+<div style="position:relative;height:96px;margin-bottom:26px">
+<div style="position:absolute;left:0;right:0;top:64px;border-top:1px solid #c3bfb3"></div>
+<div style="position:absolute;top:58px;width:13px;height:13px;border-radius:50%;background:#16150f;transition:left .45s cubic-bezier(.4,0,.2,1);{{ stDot }}"></div>
+<div style="position:absolute;left:0;right:0;top:0;display:grid;grid-template-columns:repeat(6,1fr);gap:14px">
+<div onClick="{{ stGo0 }}" style="cursor:pointer;padding:12px 12px 14px;border:1px solid #c3bfb3;transition:all .35s;{{ stNode0 }}"><div style="font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;opacity:.6">step 1</div><div style="margin-top:6px;font:400 13px 'IBM Plex Mono',monospace">your code</div></div>
+<div onClick="{{ stGo1 }}" style="cursor:pointer;padding:12px 12px 14px;border:1px solid #c3bfb3;transition:all .35s;{{ stNode1 }}"><div style="font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;opacity:.6">step 2</div><div style="margin-top:6px;font:400 13px 'IBM Plex Mono',monospace">POST /ingest</div></div>
+<div onClick="{{ stGo2 }}" style="cursor:pointer;padding:12px 12px 14px;border:1px solid #c3bfb3;transition:all .35s;{{ stNode2 }}"><div style="font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;opacity:.6">step 3</div><div style="margin-top:6px;font:400 13px 'IBM Plex Mono',monospace">key check</div></div>
+<div onClick="{{ stGo3 }}" style="cursor:pointer;padding:12px 12px 14px;border:1px solid #c3bfb3;transition:all .35s;{{ stNode3 }}"><div style="font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;opacity:.6">step 4</div><div style="margin-top:6px;font:400 13px 'IBM Plex Mono',monospace">render · store</div></div>
+<div onClick="{{ stGo4 }}" style="cursor:pointer;padding:12px 12px 14px;border:1px solid #c3bfb3;transition:all .35s;{{ stNode4 }}"><div style="font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;opacity:.6">step 5</div><div style="margin-top:6px;font:400 13px 'IBM Plex Mono',monospace">to one box</div></div>
+<div onClick="{{ stGo5 }}" style="cursor:pointer;padding:12px 12px 14px;border:1px solid #c3bfb3;transition:all .35s;{{ stNode5 }}"><div style="font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;opacity:.6">step 6</div><div style="margin-top:6px;font:400 13px 'IBM Plex Mono',monospace">scan</div></div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:300px 1fr 210px;gap:22px;align-items:stretch">
+
+<div style="background:#16150f;display:flex;flex-direction:column">
+<div style="display:flex;justify-content:space-between;padding:11px 14px;border-bottom:1px solid #2e2c26;font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577;white-space:nowrap"><span>your&nbsp;code</span><span>{{ stKind }}</span></div>
+<div style="padding:16px 14px;font:400 11px/1.95 'IBM Plex Mono',monospace;color:#8a8577;flex:1">
+<div style="white-space:nowrap"><span style="color:#6f6d66;display:inline-block;width:20px">1</span><span style="color:#c9c5b8">await</span> blip.send({</div>
+<div style="white-space:nowrap"><span style="color:#6f6d66;display:inline-block;width:20px">2</span><span style="display:inline-block;width:14px"></span>device: <span style="color:#e8ff2f">"dev_8f21"</span>,</div>
+<div style="white-space:nowrap"><span style="color:#6f6d66;display:inline-block;width:20px">3</span><span style="display:inline-block;width:14px"></span>kind: <span style="color:#e8ff2f">"{{ stKind }}"</span>,</div>
+<div style="white-space:nowrap"><span style="color:#6f6d66;display:inline-block;width:20px">4</span><span style="display:inline-block;width:14px"></span>data: <span style="color:#c9c5b8">{{ stJson }}</span></div>
+<div style="white-space:nowrap"><span style="color:#6f6d66;display:inline-block;width:20px">5</span>})</div>
+</div>
+<div style="padding:11px 14px;border-top:1px solid #2e2c26;display:flex;justify-content:space-between;align-items:center">
+<div style="padding:7px 13px;font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;transition:all .35s;{{ stRunGlow }}">run</div>
+<div style="font:400 9.5px 'IBM Plex Mono',monospace;color:#6f6d66">1 call · 1 transaction</div>
+</div>
+</div>
+
+<div style="background:#f4f3ee;border:1px solid #c3bfb3;padding:22px;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;justify-content:space-between;align-items:baseline">
+<div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577">{{ stNum }} — {{ stTitle }}</div>
+<div style="font:400 10.5px 'IBM Plex Mono',monospace;color:#16150f">{{ stTiming }}</div>
+</div>
+<div style="font:400 17px/1.5 'Helvetica Neue',Arial,sans-serif;color:#16150f;max-width:46ch;text-wrap:pretty">{{ stBody }}</div>
+<div style="padding-top:14px;border-top:1px solid #d8d5cc;font:400 11.5px/1.7 'IBM Plex Mono',monospace;color:#45423a">{{ stTech }}</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="flex:1;background:#c3bfb3;border:1px solid #a8a49a;padding:10px;display:flex;flex-direction:column;gap:8px">
+<div style="flex:1;background:#fff;display:flex;flex-direction:column;overflow:hidden">
+<div style="display:flex;align-items:center;gap:6px;padding:10px 10px 0">
+<div style="width:14px;height:14px;background:#0f7a54"></div>
+<div style="font:600 10px 'Helvetica Neue',Arial,sans-serif;color:#16150f;white-space:nowrap">your logo</div>
+</div>
+<div style="position:relative;flex:1;min-height:120px">
+<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:400 11px 'Helvetica Neue',Arial,sans-serif;color:#8a8577;transition:opacity .4s;{{ stIdle }}">ready</div>
+<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;transition:all .4s;{{ stQr }}">
+<div style="font:400 10.5px 'Helvetica Neue',Arial,sans-serif;color:#16150f">{{ stScreenLine }}</div>
+<div style="width:88px;height:88px;display:grid;grid-template-columns:repeat(13,1fr);grid-template-rows:repeat(13,1fr)">
+<sc-for list="{{ brandQr }}" as="c" hint-placeholder-count="169"><div style="background:{{ c }}"></div></sc-for>
+</div>
+</div>
+</div>
+</div>
+<div style="display:flex;justify-content:space-between;font:500 8.5px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#45423a"><span>dev_8f21</span><span>{{ stBoxState }}</span></div>
+</div>
+<div style="border:1px solid #c3bfb3;background:#f4f3ee;padding:12px 13px;display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;justify-content:space-between;font:500 9px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#8a8577"><span>mqtt</span><span style="color:#16150f;transition:color .4s;{{ stLinkCol }}">{{ stLink }}</span></div>
+<div style="display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font:400 9.5px/1.5 'IBM Plex Mono',monospace;color:#45423a">
+<span style="color:#8a8577">topic</span><span>d/dev_8f21/cmd</span>
+<span style="color:#8a8577">ack</span><span style="transition:color .4s;{{ stAckCol }}">{{ stAck }}</span>
+<span style="color:#8a8577">hb</span><span>60 s · v0.18.0</span>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div style="padding:44px 34px 22px">
+<div style="font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:#8a8577;margin-bottom:18px">02 · the same thing, without the jargon</div>
+<h2 style="margin:0;font:400 40px/1.02 'Helvetica Neue',Arial,sans-serif;letter-spacing:-.035em;color:#16150f;max-width:24ch">You send it. The box shows it. They scan it.</h2>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid #d8d5cc">
+<div style="padding:28px 26px 32px;border-right:1px solid #d8d5cc;transition:background .4s;{{ stSimple0 }}">
+<div style="height:150px;margin-bottom:20px;display:flex;align-items:center;justify-content:center">
+<div style="width:200px;background:#fff;border:1px solid #b8b4a8">
+<div style="display:flex;align-items:center;gap:5px;padding:7px 9px;border-bottom:1px solid #e2e0d9">
+<div style="width:5px;height:5px;border-radius:50%;background:#c3bfb3"></div>
+<div style="width:5px;height:5px;border-radius:50%;background:#c3bfb3"></div>
+<div style="width:5px;height:5px;border-radius:50%;background:#c3bfb3"></div>
+<div style="margin-left:4px;font:500 8px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#8a8577;white-space:nowrap">your system</div>
+</div>
+<div style="padding:13px 12px 14px;display:flex;flex-direction:column;gap:7px">
+<div style="display:flex;justify-content:space-between;align-items:center"><div style="height:6px;width:64px;background:#e2e0d9"></div><div style="height:6px;width:28px;background:#e2e0d9"></div></div>
+<div style="display:flex;justify-content:space-between;align-items:center"><div style="height:6px;width:88px;background:#e2e0d9"></div><div style="height:6px;width:22px;background:#e2e0d9"></div></div>
+<div style="display:flex;justify-content:space-between;align-items:center"><div style="height:6px;width:52px;background:#e2e0d9"></div><div style="height:6px;width:30px;background:#e2e0d9"></div></div>
+<div style="margin-top:8px;display:flex;justify-content:space-between;align-items:center">
+<div style="font:400 9px 'IBM Plex Mono',monospace;color:#8a8577;white-space:nowrap">1 call</div>
+<div style="padding:6px 12px;background:#16150f;color:#f4f3ee;font:500 8px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase">send</div>
+</div>
+</div>
+</div>
+</div>
+<div style="font:400 42px/1 'Helvetica Neue',Arial,sans-serif;letter-spacing:-.04em;margin-bottom:18px">1</div>
+<div style="font:400 19px/1.4 'Helvetica Neue',Arial,sans-serif;margin-bottom:10px">You send whatever should be on the screen.</div>
+<div style="font:400 14.5px/1.5 'Helvetica Neue',Arial,sans-serif;opacity:.72">Your till, your booking system, your app. A receipt, a ticket, today's menu — it's your content, we don't read it.</div>
+</div>
+<div style="padding:28px 26px 32px;border-right:1px solid #d8d5cc;transition:background .4s;{{ stSimple1 }}">
+<div style="height:150px;margin-bottom:20px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+<div style="width:124px;height:124px;background:#d4d1c8;border:1px solid #a8a49a;padding:7px;box-sizing:border-box">
+<div style="width:100%;height:100%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;position:relative">
+<div style="position:absolute;left:7px;top:6px;display:flex;align-items:center;gap:4px"><div style="width:8px;height:8px;background:#0f7a54"></div><div style="font:600 6.5px 'Helvetica Neue',Arial,sans-serif;color:#16150f;white-space:nowrap">your logo</div></div>
+<div style="width:64px;height:64px;margin-top:8px;display:grid;grid-template-columns:repeat(13,1fr);grid-template-rows:repeat(13,1fr)">
+<sc-for list="{{ brandQr }}" as="c" hint-placeholder-count="169"><div style="background:{{ c }}"></div></sc-for>
+</div>
+</div>
+</div>
+<div style="width:16px;height:9px;background:#b5b1a7"></div>
+<div style="width:74px;height:5px;background:#a8a49a"></div>
+</div>
+<div style="font:400 42px/1 'Helvetica Neue',Arial,sans-serif;letter-spacing:-.04em;margin-bottom:18px">2</div>
+<div style="font:400 19px/1.4 'Helvetica Neue',Arial,sans-serif;margin-bottom:10px">The right box on the counter shows a code.</div>
+<div style="font:400 14.5px/1.5 'Helvetica Neue',Arial,sans-serif;opacity:.72">One second later. If you have forty boxes, only the one you named changes — the rest carry on.</div>
+</div>
+<div style="padding:28px 26px 32px;transition:background .4s;{{ stSimple2 }}">
+<div style="height:150px;margin-bottom:20px;display:flex;align-items:center;justify-content:center">
+<div style="width:88px;height:146px;background:#16150f;border-radius:12px;padding:5px;box-sizing:border-box">
+<div style="height:100%;background:#fff;border-radius:8px;padding:9px;box-sizing:border-box;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;align-items:center;gap:4px"><div style="width:8px;height:8px;background:#0f7a54"></div><div style="height:5px;width:30px;background:#e2e0d9"></div></div>
+<div style="margin-top:2px;height:5px;width:100%;background:#e2e0d9"></div>
+<div style="height:5px;width:78%;background:#e2e0d9"></div>
+<div style="height:5px;width:88%;background:#e2e0d9"></div>
+<div style="margin-top:auto;padding-top:7px;border-top:1px solid #f1efe9;display:flex;justify-content:space-between;align-items:center"><div style="height:5px;width:24px;background:#e2e0d9"></div><div style="height:5px;width:18px;background:#16150f"></div></div>
+</div>
+</div>
+</div>
+<div style="font:400 42px/1 'Helvetica Neue',Arial,sans-serif;letter-spacing:-.04em;margin-bottom:18px">3</div>
+<div style="font:400 19px/1.4 'Helvetica Neue',Arial,sans-serif;margin-bottom:10px">The customer scans and gets it on their phone.</div>
+<div style="font:400 14.5px/1.5 'Helvetica Neue',Arial,sans-serif;opacity:.72">No app to download, no email address, no account. They just look at it, or save it.</div>
+</div>
+</div>
+
+<div style="padding:44px 34px 22px">
+<div style="font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:#8a8577;margin-bottom:18px">03 · how the look of the screen gets there</div>
+<h2 style="margin:0 0 14px;font:400 40px/1.02 'Helvetica Neue',Arial,sans-serif;letter-spacing:-.035em;color:#16150f;max-width:26ch">Design is a separate flow. It never touches your code.</h2>
+<p style="margin:0;max-width:58ch;font:400 16px/1.55 'Helvetica Neue',Arial,sans-serif;color:#45423a;text-wrap:pretty">Your request carries the content. The layout, logo and colours come from the console, on their own release cycle — <a href="#3a" style="color:#16150f">the designer itself is on its own page</a>.</p>
+</div>
+
+<div style="padding:8px 34px 40px">
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+
+<div style="border:1px solid #c3bfb3;transition:all .4s;{{ stDes0 }}">
+<div style="height:146px;background:#eae7de;border-bottom:1px solid #c3bfb3;display:flex;align-items:center;justify-content:center;gap:11px">
+<div style="width:128px;background:#fff;border:1px solid #b8b4a8">
+<div style="display:flex;align-items:center;gap:4px;padding:5px 7px;border-bottom:1px solid #e2e0d9;white-space:nowrap"><div style="width:4px;height:4px;border-radius:50%;background:#c3bfb3"></div><div style="width:4px;height:4px;border-radius:50%;background:#c3bfb3"></div><div style="margin-left:3px;font:500 6.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#8a8577">console</div></div>
+<div style="position:relative;height:74px;margin:7px;border:1px dashed #b8b4a8">
+<div style="position:absolute;left:8px;top:8px;width:9px;height:9px;background:#0f7a54;outline:1px solid #16150f;outline-offset:2px"></div>
+<div style="position:absolute;left:8px;top:26px;width:44px;height:4px;background:#e2e0d9"></div>
+<div style="position:absolute;right:8px;bottom:8px;width:26px;height:26px;background:#16150f"></div>
+</div>
+</div>
+</div>
+<div style="padding:18px 18px 20px">
+<div style="font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;opacity:.6;margin-bottom:9px">a</div>
+<div style="font:400 16px/1.35 'Helvetica Neue',Arial,sans-serif;margin-bottom:9px">Lay the screen out in the console</div>
+<div style="font:400 13.5px/1.45 'Helvetica Neue',Arial,sans-serif;opacity:.78;margin-bottom:10px">Drag the logo, your text, the code and any image where you want them. The idle screen and the code screen are laid out separately, and you can do it for one store or the whole chain.</div>
+<div style="font:400 11px/1.5 'IBM Plex Mono',monospace;opacity:.6">nothing is live yet — this is a draft</div>
+</div>
+</div>
+
+<div style="border:1px solid #c3bfb3;transition:all .4s;{{ stDes1 }}">
+<div style="height:146px;background:#eae7de;border-bottom:1px solid #c3bfb3;display:flex;align-items:center;justify-content:center;gap:11px">
+<div style="padding:7px 12px;background:#16150f;color:#e8ff2f;font:500 8.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap">save</div>
+<div style="width:24px;border-top:1px dashed #8a8577"></div>
+<div style="padding:9px 11px;background:#fff;border:1px solid #16150f;font:400 9.5px 'IBM Plex Mono',monospace;color:#16150f;white-space:nowrap">config-changed</div>
+</div>
+<div style="padding:18px 18px 20px">
+<div style="font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;opacity:.6;margin-bottom:9px">b</div>
+<div style="font:400 16px/1.35 'Helvetica Neue',Arial,sans-serif;margin-bottom:9px">Saving sends the whole thing, not a patch</div>
+<div style="font:400 13.5px/1.45 'Helvetica Neue',Arial,sans-serif;opacity:.78;margin-bottom:10px">One save builds the complete display config — colours, layout, your images, screen settings — and hands it to the boxes concerned. A unit can never end up half-old and half-new.</div>
+<div style="font:400 11px/1.5 'IBM Plex Mono',monospace;opacity:.6">image links are signed fresh, valid 5 minutes</div>
+</div>
+</div>
+
+<div style="border:1px solid #c3bfb3;transition:all .4s;{{ stDes2 }}">
+<div style="height:146px;background:#eae7de;border-bottom:1px solid #c3bfb3;display:flex;align-items:center;justify-content:center;gap:11px">
+<div style="width:54px;display:flex;flex-direction:column;align-items:center;opacity:1">
+<div style="width:54px;height:54px;background:#d4d1c8;border:1px solid #a8a49a;padding:4px;box-sizing:border-box">
+<div style="width:100%;height:100%;background:#fff;padding:4px;box-sizing:border-box;display:flex;flex-direction:column;gap:4px">
+<div style="width:7px;height:7px;background:#d2541f"></div>
+<div style="flex:1;background:#f1efe9"></div>
+</div>
+</div>
+<div style="width:8px;height:5px;background:#b5b1a7"></div>
+<div style="width:34px;height:3px;background:#a8a49a"></div>
+</div>
+<div style="width:54px;display:flex;flex-direction:column;align-items:center;opacity:1">
+<div style="width:54px;height:54px;background:#d4d1c8;border:1px solid #a8a49a;padding:4px;box-sizing:border-box">
+<div style="width:100%;height:100%;background:#fff;padding:4px;box-sizing:border-box;display:flex;flex-direction:column;gap:4px">
+<div style="width:7px;height:7px;background:#d2541f"></div>
+<div style="flex:1;background:#f1efe9"></div>
+</div>
+</div>
+<div style="width:8px;height:5px;background:#b5b1a7"></div>
+<div style="width:34px;height:3px;background:#a8a49a"></div>
+</div>
+<div style="width:54px;display:flex;flex-direction:column;align-items:center;opacity:1">
+<div style="width:54px;height:54px;background:#d4d1c8;border:1px solid #a8a49a;padding:4px;box-sizing:border-box">
+<div style="width:100%;height:100%;background:#fff;padding:4px;box-sizing:border-box;display:flex;flex-direction:column;gap:4px">
+<div style="width:7px;height:7px;background:#d2541f"></div>
+<div style="flex:1;background:#f1efe9"></div>
+</div>
+</div>
+<div style="width:8px;height:5px;background:#b5b1a7"></div>
+<div style="width:34px;height:3px;background:#a8a49a"></div>
+</div>
+</div>
+<div style="padding:18px 18px 20px">
+<div style="font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;opacity:.6;margin-bottom:9px">c</div>
+<div style="font:400 16px/1.35 'Helvetica Neue',Arial,sans-serif;margin-bottom:9px">The boxes repaint and report back</div>
+<div style="font:400 13.5px/1.45 'Helvetica Neue',Arial,sans-serif;opacity:.78;margin-bottom:10px">Seconds, not a maintenance window. Each unit confirms it applied the change, so the console can show you exactly which screens are on the new look and which are not.</div>
+<div style="font:400 11px/1.5 'IBM Plex Mono',monospace;opacity:.6">no site visit · no firmware update</div>
+</div>
+</div>
+
+<div style="border:1px solid #c3bfb3;transition:all .4s;{{ stDes3 }}">
+<div style="height:146px;background:#eae7de;border-bottom:1px solid #c3bfb3;display:flex;align-items:center;justify-content:center;gap:11px">
+<div style="width:54px;display:flex;flex-direction:column;align-items:center;opacity:.4">
+<div style="width:54px;height:54px;background:#d4d1c8;border:1px solid #a8a49a;padding:4px;box-sizing:border-box">
+<div style="width:100%;height:100%;background:#fff;padding:4px;box-sizing:border-box;display:flex;flex-direction:column;gap:4px">
+<div style="width:7px;height:7px;background:#a8a49a"></div>
+<div style="flex:1;background:#f1efe9"></div>
+</div>
+</div>
+<div style="width:8px;height:5px;background:#b5b1a7"></div>
+<div style="width:34px;height:3px;background:#a8a49a"></div>
+</div>
+<div style="font:400 10px 'IBM Plex Mono',monospace;color:#8a8577">→</div>
+<div style="width:54px;display:flex;flex-direction:column;align-items:center;opacity:1">
+<div style="width:54px;height:54px;background:#d4d1c8;border:1px solid #a8a49a;padding:4px;box-sizing:border-box">
+<div style="width:100%;height:100%;background:#fff;padding:4px;box-sizing:border-box;display:flex;flex-direction:column;gap:4px">
+<div style="width:7px;height:7px;background:#d2541f"></div>
+<div style="flex:1;background:#f1efe9"></div>
+</div>
+</div>
+<div style="width:8px;height:5px;background:#b5b1a7"></div>
+<div style="width:34px;height:3px;background:#a8a49a"></div>
+</div>
+</div>
+<div style="padding:18px 18px 20px">
+<div style="font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;opacity:.6;margin-bottom:9px">d</div>
+<div style="font:400 16px/1.35 'Helvetica Neue',Arial,sans-serif;margin-bottom:9px">A box that was off catches up by itself</div>
+<div style="font:400 13.5px/1.45 'Helvetica Neue',Arial,sans-serif;opacity:.78;margin-bottom:10px">Unplugged, or the shop&rsquo;s wifi was down: the moment it comes back it asks for its current config and paints the new look. Nobody has to remember to redo it.</div>
+<div style="font:400 11px/1.5 'IBM Plex Mono',monospace;opacity:.6">also on every reboot — the box is never stale</div>
+</div>
+</div>
+
+</div>
+<div style="margin-top:18px;display:flex;justify-content:space-between;font:400 11.5px 'IBM Plex Mono',monospace;color:#8a8577">
+<span>content ← your request · appearance ← the console</span>
+<span>{{ stDesNote }}</span>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+<p class="dv-next">The developer rail drives everything: hover pauses it, any step is clickable. The plain-language row and the design flow follow the same clock, so the page reads top to bottom as one story.</p>
+</section>
+
+<section class="dv-turn" id="t3">
+<div class="dv-thd"><a class="dv-tid" href="#t3">3</a><span class="dv-tname">A separate page for the screen designer — the deep explanation the home page shouldn't carry</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="3a" data-screen-label="3a screen designer page">
+<div class="dv-olabel"><a class="dv-oid" href="#3a">3a</a>/screen — drag, resize, per-screen styles, publish. Works with 2a or 2c.</div>
+<div class="dv-card" style="width:1040px;background:#f4f3ee">
+
+<div style="display:flex;align-items:center;justify-content:space-between;padding:16px 28px;border-bottom:1px solid #d8d5cc;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#16150f">
+<div style="display:flex;align-items:center;gap:10px"><div style="width:12px;height:12px;background:#16150f;border-radius:50%"></div><span style="letter-spacing:.24em">{{ brandName }}</span></div>
+<div style="display:flex;gap:20px;color:#6b675c">
+<span style="cursor:pointer" style-hover="color:#16150f">home</span>
+<span style="cursor:pointer" style-hover="color:#16150f">the box</span>
+<span style="border-bottom:1px solid #16150f;color:#16150f">screen designer</span>
+<span style="cursor:pointer" style-hover="color:#16150f">pricing</span>
+<span style="cursor:pointer" style-hover="color:#16150f">docs</span>
+<span style="cursor:pointer" style-hover="color:#16150f">order →</span>
+</div>
+</div>
+
+<div style="padding:52px 28px 34px;border-bottom:1px solid #d8d5cc;display:grid;grid-template-columns:1fr 300px;gap:44px;align-items:end">
+<div>
+<div style="font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577;margin-bottom:24px">console · screen designer</div>
+<h1 style="margin:0 0 20px;font:400 58px/0.95 'Helvetica Neue',Arial,sans-serif;letter-spacing:-.038em;color:#16150f;text-wrap:balance">You lay the screen out yourself. Like slides, not like settings.</h1>
+<p style="margin:0;max-width:60ch;font:400 17px/1.55 'Helvetica Neue',Arial,sans-serif;color:#45423a;text-wrap:pretty">Drag each element where you want it. Make it bigger or smaller. Hide it. Give the idle screen a different look from the code screen. Save, and the boxes in that store repaint in seconds — you never touch the device.</p>
+</div>
+<div style="border:1px solid #d8d5cc;background:#fff;padding:20px;font:400 13px/1.6 'IBM Plex Mono',monospace;color:#45423a">
+<div style="color:#8a8577;text-transform:uppercase;letter-spacing:.12em;font-size:10.5px;margin-bottom:10px">who this page is for</div>
+Anyone who will actually run the screens. No code anywhere on this page — the API lives in <span style="color:#16150f;border-bottom:1px solid #b8b4a8;cursor:pointer">docs</span>.
+</div>
+</div>
+
+<div style="padding:14px 28px;border-bottom:1px solid #d8d5cc;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577">try it — this is a working stand-in for the real editor</div>
+
+<div style="display:grid;grid-template-columns:190px 1fr 250px;border-bottom:1px solid #d8d5cc">
+
+<div style="border-right:1px solid #d8d5cc;padding:20px 16px;display:flex;flex-direction:column;gap:18px">
+<div>
+<div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577;margin-bottom:10px">screens</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<div onClick="{{ dsPickCode }}" style="padding:9px 11px;border:1px solid #d8d5cc;font:400 12.5px 'Helvetica Neue',Arial,sans-serif;cursor:pointer;{{ dsTabCode }}">code screen</div>
+<div onClick="{{ dsPickIdle }}" style="padding:9px 11px;border:1px solid #d8d5cc;font:400 12.5px 'Helvetica Neue',Arial,sans-serif;cursor:pointer;{{ dsTabIdle }}">idle screen</div>
+</div>
+<div style="margin-top:9px;font:400 11px/1.45 'IBM Plex Mono',monospace;color:#8a8577">each screen keeps its own layout</div>
+</div>
+
+<div>
+<div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577;margin-bottom:10px">elements</div>
+<div style="display:flex;flex-direction:column;gap:4px;font:400 12px 'IBM Plex Mono',monospace">
+<div onClick="{{ dsPick_logo }}" style="display:flex;justify-content:space-between;align-items:center;padding:7px 9px;cursor:pointer;{{ dsRow_logo }}"><span style="white-space:nowrap">logo</span><span onClick="{{ dsVis_logo }}" style="font-size:9.5px;opacity:.7;flex:none;white-space:nowrap">{{ dsOn_logo }}</span></div>
+<div onClick="{{ dsPick_head }}" style="display:flex;justify-content:space-between;align-items:center;padding:7px 9px;cursor:pointer;{{ dsRow_head }}"><span style="white-space:nowrap">headline</span><span onClick="{{ dsVis_head }}" style="font-size:9.5px;opacity:.7;flex:none;white-space:nowrap">{{ dsOn_head }}</span></div>
+<div onClick="{{ dsPick_qr }}" style="display:flex;justify-content:space-between;align-items:center;padding:7px 9px;cursor:pointer;{{ dsRow_qr }}"><span style="white-space:nowrap">qr code</span><span onClick="{{ dsVis_qr }}" style="font-size:9.5px;opacity:.7;flex:none;white-space:nowrap">{{ dsOn_qr }}</span></div>
+<div onClick="{{ dsPick_img }}" style="display:flex;justify-content:space-between;align-items:center;padding:7px 9px;cursor:pointer;{{ dsRow_img }}"><span style="white-space:nowrap">image</span><span onClick="{{ dsVis_img }}" style="font-size:9.5px;opacity:.7;flex:none;white-space:nowrap">{{ dsOn_img }}</span></div>
+<div onClick="{{ dsPick_foot }}" style="display:flex;justify-content:space-between;align-items:center;padding:7px 9px;cursor:pointer;{{ dsRow_foot }}"><span style="white-space:nowrap">footer</span><span onClick="{{ dsVis_foot }}" style="font-size:9.5px;opacity:.7;flex:none;white-space:nowrap">{{ dsOn_foot }}</span></div>
+</div>
+<div style="margin-top:10px;font:400 11px/1.45 'IBM Plex Mono',monospace;color:#8a8577">click a name to select,<br>the word on the right<br>shows or hides it</div>
+</div>
+</div>
+
+<div style="padding:24px;display:flex;flex-direction:column;align-items:center;gap:12px;background:#eae7de">
+<div style="position:relative;width:300px;height:300px;background:#fff;border:1px solid #c3bfb3;box-shadow:0 3px 0 rgba(22,21,15,.07);cursor:{{ dsCursor }};user-select:none;overflow:hidden">
+<div onMouseDown="{{ dsDown_logo }}" style="position:absolute;display:flex;align-items:center;gap:7px;padding:4px 6px;{{ ds_logo }}">
+<div style="width:18px;height:18px;background:{{ bColor }};color:#fff;display:flex;align-items:center;justify-content:center;font:600 11px 'Helvetica Neue',Arial,sans-serif">{{ logoInitial }}</div>
+<div style="font:600 11px 'Helvetica Neue',Arial,sans-serif;color:{{ bColor }};white-space:nowrap">{{ bStore }}</div>
+</div>
+<div onMouseDown="{{ dsDown_head }}" style="position:absolute;max-width:220px;font:400 13px/1.35 'Helvetica Neue',Arial,sans-serif;color:#16150f;{{ ds_head }}">{{ bLine }}</div>
+<div onMouseDown="{{ dsDown_qr }}" style="position:absolute;width:130px;height:130px;display:grid;grid-template-columns:repeat(13,1fr);grid-template-rows:repeat(13,1fr);background:#fff;{{ ds_qr }}">
+<sc-for list="{{ brandQr }}" as="c" hint-placeholder-count="169"><div style="background:{{ c }}"></div></sc-for>
+</div>
+<div onMouseDown="{{ dsDown_img }}" style="position:absolute;width:130px;height:64px;border:1px dashed #b8b4a8;background:#f4f3ee;display:flex;align-items:center;justify-content:center;font:400 10px 'IBM Plex Mono',monospace;color:#8a8577;{{ ds_img }}">[ your image ]</div>
+<div onMouseDown="{{ dsDown_foot }}" style="position:absolute;font:400 9.5px 'IBM Plex Mono',monospace;color:#8a8577;white-space:nowrap;{{ ds_foot }}">{{ bFoot }}</div>
+</div>
+<div style="font:400 10.5px/1.5 'IBM Plex Mono',monospace;color:#8a8577;text-align:center">drag anything · 300 px here = the 720 × 720 panel<br>the real editor snaps to a grid and shows guides</div>
+</div>
+
+<div style="border-left:1px solid #d8d5cc;padding:20px 18px;display:flex;flex-direction:column;gap:20px">
+<div>
+<div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577;margin-bottom:8px">selected</div>
+<div style="font:400 17px 'Helvetica Neue',Arial,sans-serif;color:#16150f">{{ dsSelLabel }}</div>
+</div>
+<div>
+<div style="display:flex;justify-content:space-between;font:400 11.5px 'IBM Plex Mono',monospace;color:#8a8577;margin-bottom:8px"><span>size</span><span style="color:#16150f">{{ dsSizePct }}%</span></div>
+<input type="range" min="50" max="220" value="{{ dsSizePct }}" onInput="{{ dsSizeChange }}" style="width:100%;accent-color:#16150f">
+</div>
+<div>
+<div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577;margin-bottom:9px">this change applies to</div>
+<div style="display:flex;flex-direction:column;gap:6px;font:400 12.5px 'Helvetica Neue',Arial,sans-serif">
+<div onClick="{{ dsScopePage }}" style="padding:9px 11px;border:1px solid #d8d5cc;cursor:pointer;{{ dsScopeRow1 }}">this screen only</div>
+<div onClick="{{ dsScopeAll }}" style="padding:9px 11px;border:1px solid #d8d5cc;cursor:pointer;{{ dsScopeRow2 }}">every screen in this store</div>
+</div>
+</div>
+<div style="font:400 12px/1.5 'IBM Plex Mono',monospace;color:#8a8577">a chain can set a house layout and let each store override single elements</div>
+<div onClick="{{ dsReset }}" style="margin-top:auto;padding:10px 14px;border:1px solid #b8b4a8;text-align:center;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#16150f;cursor:pointer" style-hover="border-color:#16150f">reset layout</div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid #d8d5cc">
+<div style="padding:28px 22px;border-right:1px solid #d8d5cc"><div style="font:500 10.5px 'IBM Plex Mono',monospace;color:#8a8577;margin-bottom:10px">01 — place</div><div style="font:400 15px/1.45 'Helvetica Neue',Arial,sans-serif;color:#16150f">Drag the logo, the text, the code, a picture. Nothing is locked to a slot.</div></div>
+<div style="padding:28px 22px;border-right:1px solid #d8d5cc"><div style="font:500 10.5px 'IBM Plex Mono',monospace;color:#8a8577;margin-bottom:10px">02 — size &amp; style</div><div style="font:400 15px/1.45 'Helvetica Neue',Arial,sans-serif;color:#16150f">Resize with a handle, change colour, weight and alignment. The code has a minimum size so it stays scannable.</div></div>
+<div style="padding:28px 22px;border-right:1px solid #d8d5cc"><div style="font:500 10.5px 'IBM Plex Mono',monospace;color:#8a8577;margin-bottom:10px">03 — per screen</div><div style="font:400 15px/1.45 'Helvetica Neue',Arial,sans-serif;color:#16150f">Idle, code, thank-you and error each hold their own layout. Change one without touching the rest.</div></div>
+<div style="padding:28px 22px"><div style="font:500 10.5px 'IBM Plex Mono',monospace;color:#8a8577;margin-bottom:10px">04 — publish</div><div style="font:400 15px/1.45 'Helvetica Neue',Arial,sans-serif;color:#16150f">Preview on one box first, then roll out to a store, a region or the whole chain. Every version is kept; one click puts the old one back.</div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #d8d5cc">
+<div style="padding:34px 28px;border-right:1px solid #d8d5cc">
+<div style="font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577;margin-bottom:18px">what you can do</div>
+<div style="display:flex;flex-direction:column;gap:11px;font:400 15px/1.5 'Helvetica Neue',Arial,sans-serif;color:#16150f">
+<div>Upload a logo or any image — PNG, JPG or SVG, up to 2 MB.</div>
+<div>Put your own text anywhere, in your own colour and size.</div>
+<div>Move and resize every element, including the code itself.</div>
+<div>Hide anything you don't want. An empty screen is allowed.</div>
+<div>Different layout per screen, per store, or one for the whole chain.</div>
+<div>Schedule a layout — a promo image that appears Friday and leaves Monday.</div>
+</div>
+</div>
+<div style="padding:34px 28px;background:#eae7de">
+<div style="font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577;margin-bottom:18px">what you can't — on purpose</div>
+<div style="display:flex;flex-direction:column;gap:11px;font:400 15px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">
+<div>Shrink the code below the scannable minimum, or cover it with something.</div>
+<div>Use animation or video. The panel is made to be read in two seconds, not watched.</div>
+<div>Load a font we can't cache on the device — pick from the eight we ship.</div>
+<div>Write code in here. Anything that needs logic belongs in the payload you POST.</div>
+</div>
+<div style="margin-top:22px;padding-top:18px;border-top:1px solid #c3bfb3;font:400 14px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a;text-wrap:pretty">If the editor refuses something, it tells you why in the same sentence — no silent failures, no support ticket.</div>
+</div>
+</div>
+
+<div style="padding:34px 28px;display:flex;justify-content:space-between;align-items:center;gap:30px;border-bottom:1px solid #d8d5cc">
+<div style="font:400 16px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a;max-width:56ch;text-wrap:pretty">You can see all of this before you buy anything: the console has a sandbox store with a fake device, open to anyone with an email address.</div>
+<div style="display:flex;gap:12px">
+<div style="padding:14px 22px;border:1px solid #b8b4a8;font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#16150f;cursor:pointer" style-hover="border-color:#16150f">open the sandbox</div>
+<div style="padding:14px 22px;background:#16150f;color:#f4f3ee;font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="background:#3a3730">order a unit</div>
+</div>
+</div>
+
+<div style="padding:22px 28px;display:flex;justify-content:space-between;font:500 11px 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.1em;color:#8a8577">
+<span>{{ brandName }} · screen designer</span>
+<span style="display:flex;gap:18px"><span style="cursor:pointer;color:#16150f">home</span><span style="cursor:pointer;color:#16150f">pricing</span><span style="cursor:pointer;color:#16150f">docs</span><span style="cursor:pointer;color:#16150f">status</span></span>
+</div>
+
+</div>
+</div>
+
+</div>
+<p class="dv-next">If this reads right, I'd split the rest the same way: home (plain language, no jargon) · the box · screen designer · pricing · docs · about. Say which of <a class="dv-oid" href="#2a">2a</a> / <a class="dv-oid" href="#2c">2c</a> is the house style and I'll build the set.</p>
+</section>
+
+<section class="dv-turn" id="t2">
+<div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">Two directions — quiet engineering, and the hybrid</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="2a" data-screen-label="2a quiet engineering v2">
+<div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>Quiet engineering — swiss grid, spec-sheet honesty, working demo</div>
+<div class="dv-card" style="width:980px;background:#f4f3ee">
+
+<div style="display:flex;align-items:center;justify-content:space-between;padding:16px 28px;border-bottom:1px solid #d8d5cc;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#16150f">
+<div style="display:flex;align-items:center;gap:10px"><div style="width:12px;height:12px;background:#16150f;border-radius:50%"></div><span style="letter-spacing:.24em">{{ brandName }}</span></div>
+<div style="display:flex;gap:22px;color:#6b675c"><span style="border-bottom:1px solid #16150f;color:#16150f">product</span><span style="cursor:pointer" style-hover="color:#16150f">how it works</span><span style="cursor:pointer" style-hover="color:#16150f">about</span><span style="cursor:pointer" style-hover="color:#16150f">order →</span></div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 340px;border-bottom:1px solid #d8d5cc">
+<div style="padding:60px 28px 48px;border-right:1px solid #d8d5cc">
+<div style="font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577;margin-bottom:30px">unit dev-01 · shipping now · from stock</div>
+<h1 style="margin:0 0 26px;font:400 66px/0.93 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:-.038em;color:#16150f;text-wrap:balance">A small box that turns anything you send it into a QR code.</h1>
+<p style="margin:0 0 34px;max-width:54ch;font:400 17px/1.55 'Helvetica Neue',Arial,sans-serif;color:#45423a;text-wrap:pretty">It sits next to the till. Your system POSTs a payload, the box shows a code, the customer scans it. Receipt, ticket, warranty card, allergen list, a poem. One send is one transaction. We don't look inside.</p>
+<div style="display:flex;gap:12px;align-items:center">
+<div style="padding:14px 24px;background:#16150f;color:#f4f3ee;font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="background:#3a3730">order a unit</div>
+<div style="padding:14px 24px;border:1px solid #b8b4a8;color:#16150f;font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="border-color:#16150f">read the protocol</div>
+</div>
+</div>
+<div style="padding:26px;display:flex;flex-direction:column;gap:14px;background:#eae7de">
+<svg viewBox="0 0 240 300" style="width:100%;height:auto;display:block"><defs><pattern id="hatch2a" width="6" height="6" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="0" y2="6" stroke="#c3bfb3" stroke-width="1.5"/></pattern></defs><rect x="20" y="30" width="200" height="240" fill="url(#hatch2a)" stroke="#8a8577"/><rect x="52" y="70" width="136" height="96" fill="#eae7de" stroke="#8a8577"/><circle cx="120" cy="212" r="22" fill="none" stroke="#8a8577"/><text x="120" y="290" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#8a8577">DEV-01</text></svg>
+<div style="font:400 10.5px/1.5 'IBM Plex Mono',monospace;color:#8a8577">[ product photo — device on a real counter, top-down, hard light ]</div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid #d8d5cc">
+<div style="padding:32px 24px;border-right:1px solid #d8d5cc"><div style="font:500 11px 'IBM Plex Mono',monospace;color:#8a8577;margin-bottom:14px">01 — pair</div><div style="font:400 16px/1.45 'Helvetica Neue',Arial,sans-serif;color:#16150f">A one-time pairing code is printed on the underside. Six characters.</div></div>
+<div style="padding:32px 24px;border-right:1px solid #d8d5cc"><div style="font:500 11px 'IBM Plex Mono',monospace;color:#8a8577;margin-bottom:14px">02 — claim</div><div style="font:400 16px/1.45 'Helvetica Neue',Arial,sans-serif;color:#16150f">Claim it into a store from the console. You get a device key, shown once.</div></div>
+<div style="padding:32px 24px"><div style="font:500 11px 'IBM Plex Mono',monospace;color:#8a8577;margin-bottom:14px">03 — send</div><div style="font:400 16px/1.45 'Helvetica Neue',Arial,sans-serif;color:#16150f">POST your payload, get a token and a URL. Rendered in under a second.</div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 300px;border-bottom:1px solid #d8d5cc">
+<div style="padding:38px 28px;border-right:1px solid #d8d5cc">
+<div style="font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577;margin-bottom:18px">live — this is the real request shape</div>
+<div style="background:#16150f;color:#c9c5b8;padding:16px;font:400 12px/1.75 'IBM Plex Mono',monospace;height:110px;overflow:hidden">
+<sc-for list="{{ log }}" as="line" hint-placeholder-count="4"><div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ line }}</div></sc-for>
+</div>
+<div style="display:flex;gap:14px;align-items:center;margin-top:16px">
+<div onClick="{{ send }}" style="padding:12px 20px;background:#16150f;color:#f4f3ee;font:500 11px 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.1em;cursor:pointer" style-hover="background:#3a3730">send a payload</div>
+<div style="font:400 11.5px/1.5 'IBM Plex Mono',monospace;color:#8a8577">kind: {{ lastKind }} · {{ lastMs }} ms · 1 transaction</div>
+</div>
+</div>
+<div style="padding:38px 24px;display:flex;flex-direction:column;align-items:center;gap:12px;background:#eae7de">
+<canvas ref="{{ qr2a }}" width="132" height="132" style="width:150px;height:150px;background:#fff;image-rendering:pixelated;border:1px solid #d8d5cc"></canvas>
+<div style="font:400 10.5px/1.5 'IBM Plex Mono',monospace;color:#8a8577;text-align:center">what the panel shows<br>{{ tokenShort }}</div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #d8d5cc">
+<div style="padding:40px 28px;border-right:1px solid #d8d5cc">
+<div style="font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577;margin-bottom:22px">specification</div>
+<div style="display:grid;grid-template-columns:auto 1fr;gap:10px 24px;font:400 13px/1.5 'IBM Plex Mono',monospace;color:#16150f">
+<span style="color:#8a8577">interface</span><span>POST /api/ingest</span>
+<span style="color:#8a8577">auth</span><span>bearer device key, sha-256 at rest</span>
+<span style="color:#8a8577">payload</span><span>anything you can render</span>
+<span style="color:#8a8577">output</span><span>QR → 40-char capability token</span>
+<span style="color:#8a8577">storage</span><span>private bucket, 5-min signed links</span>
+<span style="color:#8a8577">commands</span><span>reboot · refresh · identify</span>
+<span style="color:#8a8577">billing</span><span>metered, per transaction</span>
+<span style="color:#8a8577">console</span><span>stores · devices · members · reports</span>
+</div>
+</div>
+<div style="padding:40px 28px;background:#eae7de">
+<div style="font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577;margin-bottom:22px">three ways people buy</div>
+<div style="display:flex;flex-direction:column;gap:20px">
+<div><div style="font:600 14px 'Helvetica Neue',Arial,sans-serif;color:#16150f;margin-bottom:5px">Chains</div><div style="font:400 15px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">One console, every store, every unit, one bill. Roles per store, reports per region.</div></div>
+<div><div style="font:600 14px 'Helvetica Neue',Arial,sans-serif;color:#16150f;margin-bottom:5px">Developers</div><div style="font:400 15px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">Buy one from this page, read the protocol, make it do something we didn't think of.</div></div>
+<div><div style="font:600 14px 'Helvetica Neue',Arial,sans-serif;color:#16150f;margin-bottom:5px">Resellers</div><div style="font:400 15px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">Buy five hundred, put your own name on the console, run your own business on top. Genuinely fine by us.</div></div>
+</div>
+</div>
+</div>
+
+<div style="border-bottom:1px solid #d8d5cc">
+<div style="padding:38px 28px 26px">
+<div style="font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577;margin-bottom:16px">the screen is yours — branding page in the console</div>
+<h2 style="margin:0 0 12px;font:400 38px/1.05 'Helvetica Neue',Arial,sans-serif;letter-spacing:-.03em;color:#16150f;max-width:26ch">Change it here, and the box changes. No firmware, no visit, no ticket.</h2>
+<p style="margin:0;max-width:62ch;font:400 16px/1.55 'Helvetica Neue',Arial,sans-serif;color:#45423a;text-wrap:pretty">Upload a logo, pick your colour, write the two lines of text the customer reads while they scan. Save, and the change is pushed to every unit in that store — they repaint in seconds and confirm it. Try it below; the panel on the right is what the counter shows.</p>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 320px;border-top:1px solid #d8d5cc">
+<div style="padding:28px;display:flex;flex-direction:column;gap:20px;border-right:1px solid #d8d5cc">
+<div style="font:500 10.5px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577">console · branding</div>
+
+<div style="display:grid;gap:8px">
+<label style="font:400 12px 'IBM Plex Mono',monospace;color:#8a8577">store name</label>
+<input value="{{ bStore }}" onInput="{{ onStore }}" style="padding:11px 13px;border:1px solid #b8b4a8;background:#fff;font:400 15px 'Helvetica Neue',Arial,sans-serif;color:#16150f;outline:none" style-focus="border-color:#16150f">
+</div>
+
+<div style="display:grid;gap:8px">
+<label style="font:400 12px 'IBM Plex Mono',monospace;color:#8a8577">line shown above the code</label>
+<input value="{{ bLine }}" onInput="{{ onLine }}" style="padding:11px 13px;border:1px solid #b8b4a8;background:#fff;font:400 15px 'Helvetica Neue',Arial,sans-serif;color:#16150f;outline:none" style-focus="border-color:#16150f">
+</div>
+
+<div style="display:grid;gap:8px">
+<label style="font:400 12px 'IBM Plex Mono',monospace;color:#8a8577">footer line</label>
+<input value="{{ bFoot }}" onInput="{{ onFoot }}" style="padding:11px 13px;border:1px solid #b8b4a8;background:#fff;font:400 15px 'Helvetica Neue',Arial,sans-serif;color:#16150f;outline:none" style-focus="border-color:#16150f">
+</div>
+
+<div style="display:grid;gap:10px">
+<label style="font:400 12px 'IBM Plex Mono',monospace;color:#8a8577">brand colour</label>
+<div style="display:flex;gap:10px;align-items:center">
+<div onClick="{{ pickG }}" style="width:34px;height:34px;background:#0f7a54;border:1px solid #b8b4a8;cursor:pointer" style-hover="border-color:#16150f"></div>
+<div onClick="{{ pickO }}" style="width:34px;height:34px;background:#d2541f;border:1px solid #b8b4a8;cursor:pointer" style-hover="border-color:#16150f"></div>
+<div onClick="{{ pickB }}" style="width:34px;height:34px;background:#1b3fa0;border:1px solid #b8b4a8;cursor:pointer" style-hover="border-color:#16150f"></div>
+<div onClick="{{ pickK }}" style="width:34px;height:34px;background:#16150f;border:1px solid #b8b4a8;cursor:pointer" style-hover="border-color:#16150f"></div>
+<div style="margin-left:6px;font:400 12px 'IBM Plex Mono',monospace;color:#8a8577">{{ bColor }}</div>
+</div>
+</div>
+
+<div style="display:grid;gap:10px">
+<label style="font:400 12px 'IBM Plex Mono',monospace;color:#8a8577">logo</label>
+<div style="display:flex;gap:12px;align-items:center">
+<div style="width:64px;height:44px;border:1px dashed #b8b4a8;background:#fff;display:flex;align-items:center;justify-content:center;font:400 9.5px 'IBM Plex Mono',monospace;color:#8a8577">png · svg</div>
+<div onClick="{{ toggleLogo }}" style="padding:10px 16px;border:1px solid #b8b4a8;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#16150f;cursor:pointer;white-space:nowrap;flex:none" style-hover="border-color:#16150f">{{ logoLabel }}</div>
+<div style="font:400 12px/1.4 'IBM Plex Mono',monospace;color:#8a8577">stored privately,<br>served signed</div>
+</div>
+</div>
+
+<div style="font:400 13.5px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a;max-width:52ch;text-wrap:pretty">This is the short version — colour, logo, two lines. The full editor also lets you drag elements around, resize them and give each screen its own layout. <a href="#3a" style="color:#16150f">See the screen designer →</a></div>
+</div>
+
+<div style="padding:28px 20px;background:#eae7de;display:flex;flex-direction:column;align-items:center;gap:14px">
+<div style="font:500 10.5px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577">device screen · live</div>
+<div style="width:236px;background:#fff;border:1px solid #c3bfb3;box-shadow:0 3px 0 rgba(22,21,15,.07)">
+<div style="padding:14px 14px 4px;display:flex;align-items:center;gap:9px">
+<sc-if value="{{ logoOn }}" hint-placeholder-val="{{ true }}"><div style="width:22px;height:22px;background:{{ bColor }};color:#fff;display:flex;align-items:center;justify-content:center;font:600 12px 'Helvetica Neue',Arial,sans-serif">{{ logoInitial }}</div></sc-if>
+<div style="font:600 12.5px 'Helvetica Neue',Arial,sans-serif;color:{{ bColor }};letter-spacing:-.01em;flex:1;min-width:0;white-space:nowrap">{{ bStore }}</div>
+</div>
+<div style="padding:16px 14px 8px;font:400 12.5px/1.4 'Helvetica Neue',Arial,sans-serif;color:#16150f;text-align:center;min-height:34px">{{ bLine }}</div>
+<div style="padding:0 14px 14px;display:flex;justify-content:center">
+<div style="width:150px;height:150px;display:grid;grid-template-columns:repeat(13,1fr);grid-template-rows:repeat(13,1fr);border:6px solid #fff;outline:1px solid #e2e0d9">
+<sc-for list="{{ brandQr }}" as="c" hint-placeholder-count="169"><div style="background:{{ c }}"></div></sc-for>
+</div>
+</div>
+<div style="padding:9px 14px;border-top:1px solid #e2e0d9;font:400 9.5px/1.4 'IBM Plex Mono',monospace;color:#8a8577;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ bFoot }}</div>
+</div>
+<div style="font:400 10.5px/1.5 'IBM Plex Mono',monospace;color:#8a8577;text-align:center">the receipt page the customer<br>lands on carries the same brand</div>
+</div>
+</div>
+</div>
+
+<div style="border-bottom:1px solid #d8d5cc">
+<div style="padding:34px 28px 8px;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577">everything you'd otherwise have to ask us</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
+<div style="padding:22px 28px;border-right:1px solid #d8d5cc"><div style="font:600 14.5px 'Helvetica Neue',Arial,sans-serif;color:#16150f;margin-bottom:6px">What does it cost?</div><div style="font:400 15px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">£149 per unit, once. Then £0.004 per transaction, billed monthly, first 2,000 each month free. No minimum, no contract, cancel by turning it off.</div></div>
+<div style="padding:22px 28px"><div style="font:600 14.5px 'Helvetica Neue',Arial,sans-serif;color:#16150f;margin-bottom:6px">What happens after I order?</div><div style="font:400 15px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">Box ships in 2–3 days. Plug in power and network, type the six-character code from the underside into the console, pick the store. Working in about four minutes.</div></div>
+<div style="padding:22px 28px;border-right:1px solid #d8d5cc;border-top:1px solid #d8d5cc"><div style="font:600 14.5px 'Helvetica Neue',Arial,sans-serif;color:#16150f;margin-bottom:6px">Does it work with my till?</div><div style="font:400 15px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">If your system can make an HTTPS request, yes. One POST with a bearer key. If it can't, we have a small print-driver bridge that pretends to be a receipt printer.</div></div>
+<div style="padding:22px 28px;border-top:1px solid #d8d5cc"><div style="font:600 14.5px 'Helvetica Neue',Arial,sans-serif;color:#16150f;margin-bottom:6px">Who can see the receipts?</div><div style="font:400 15px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">Anyone holding the link — the token is the key, so it's unguessable and the file itself sits in a private bucket behind 5-minute signed URLs. Your staff see their own store only.</div></div>
+<div style="padding:22px 28px;border-right:1px solid #d8d5cc;border-top:1px solid #d8d5cc"><div style="font:600 14.5px 'Helvetica Neue',Arial,sans-serif;color:#16150f;margin-bottom:6px">What if the internet drops?</div><div style="font:400 15px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">The unit queues and retries, and the console flags it offline within a minute. Nothing is lost; the codes go out when the line is back.</div></div>
+<div style="padding:22px 28px;border-top:1px solid #d8d5cc"><div style="font:600 14.5px 'Helvetica Neue',Arial,sans-serif;color:#16150f;margin-bottom:6px">Do I have to talk to anyone?</div><div style="font:400 15px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">No. Order from this page, docs are public, the console is self-serve. If you'd rather talk, email us and a person replies — but nothing here is gated behind a call.</div></div>
+</div>
+</div>
+
+<div style="padding:44px 28px;border-bottom:1px solid #d8d5cc;display:grid;grid-template-columns:1fr 320px;gap:40px;align-items:start">
+<div>
+<div style="font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577;margin-bottom:20px">about — in my own words</div>
+<p style="margin:0 0 14px;font:400 17px/1.55 'Helvetica Neue',Arial,sans-serif;color:#16150f;max-width:58ch;text-wrap:pretty">I got tired of the drawer of curled receipts, so I built the box. Then I noticed the box doesn't actually care what's in the payload — so I stopped caring too, and it became a general-purpose thing.</p>
+<p style="margin:0;font:400 17px/1.55 'Helvetica Neue',Arial,sans-serif;color:#45423a;max-width:58ch;text-wrap:pretty">People have told me hardware is a bad business and that this is a feature, not a company. Might be right. I'm enjoying myself, the thing works, and it's on sale.</p>
+</div>
+<div style="border:1px solid #d8d5cc;padding:22px;background:#fff">
+<div style="font:400 30px/1 'Helvetica Neue',Arial,sans-serif;color:#16150f;letter-spacing:-.02em">{{ txCount }}</div>
+<div style="margin-top:8px;font:400 12px/1.5 'IBM Plex Mono',monospace;color:#8a8577">transactions since we plugged in the first unit</div>
+<div style="margin-top:18px;padding-top:18px;border-top:1px solid #d8d5cc;font:400 30px/1 'Helvetica Neue',Arial,sans-serif;color:#16150f;letter-spacing:-.02em">{{ paperM }} m</div>
+<div style="margin-top:8px;font:400 12px/1.5 'IBM Plex Mono',monospace;color:#8a8577">of paper not printed</div>
+</div>
+</div>
+
+<div style="padding:34px 28px;display:flex;justify-content:space-between;align-items:center;gap:28px">
+<div style="font:400 15px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a;max-width:50ch;text-wrap:pretty">No customer logos here, because we don't have any worth showing yet. The demo above is the actual product.</div>
+<div style="padding:14px 24px;background:#16150f;color:#f4f3ee;font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="background:#3a3730">order a unit</div>
+</div>
+
+</div>
+</div>
+
+<div class="dv-opt" id="2c" data-screen-label="2c hybrid">
+<div class="dv-olabel"><a class="dv-oid" href="#2c">2c</a>The hybrid — the same grid, with a louder voice and one acid accent</div>
+<div class="dv-card" style="width:980px;background:#f4f3ee">
+
+<div style="display:flex;align-items:center;justify-content:space-between;padding:15px 26px;border-bottom:2px solid #16150f;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#16150f">
+<span style="font-family:'Archivo Black',Arial,sans-serif;font-size:15px;letter-spacing:-.02em;text-transform:lowercase">{{ brandName }}</span>
+<div style="display:flex;gap:20px;color:#6b675c"><span style="cursor:pointer" style-hover="color:#16150f">the box</span><span style="cursor:pointer" style-hover="color:#16150f">how it works</span><span style="cursor:pointer" style-hover="color:#16150f">about</span><span style="background:#e8ff2f;color:#16150f;padding:4px 10px;cursor:pointer">order</span></div>
+</div>
+
+<div style="padding:52px 26px 40px;border-bottom:2px solid #16150f">
+<div style="font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577;margin-bottom:26px">unit dev-01 · shipping now</div>
+<h1 style="margin:0;font-family:'Archivo Black',Arial,sans-serif;font-size:96px;line-height:.86;letter-spacing:-.05em;color:#16150f;text-transform:lowercase">no more<br>paper. <span style="background:#e8ff2f;padding:0 8px">bye.</span></h1>
+<div style="display:grid;grid-template-columns:1fr 300px;gap:38px;margin-top:34px;align-items:start">
+<p style="margin:0;font:400 18px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a;text-wrap:pretty">A small box that sits by the till. Your system POSTs a payload, the box shows a QR code, the customer scans it. Receipt, ticket, warranty card, the wifi password, a poem. The box doesn't read it and neither do we. One send is one transaction.</p>
+<div style="border:2px solid #16150f;padding:16px;font:500 12px/1.6 'IBM Plex Mono',monospace;color:#16150f;text-transform:uppercase">1 payload<br>= 1 transaction<br>= 1 <span style="background:#e8ff2f;padding:0 4px">blip</span></div>
+</div>
+<div style="display:flex;gap:12px;margin-top:30px">
+<div style="padding:14px 24px;background:#16150f;color:#f4f3ee;font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="background:#e8ff2f;color:#16150f">order a unit</div>
+<div style="padding:14px 24px;border:2px solid #16150f;color:#16150f;font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="background:#e8ff2f">read the protocol</div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:2px solid #16150f">
+<div style="padding:34px 26px;border-right:2px solid #16150f">
+<div style="display:flex;justify-content:space-between;align-items:baseline;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577;margin-bottom:16px"><span>exploded view — drag it apart</span><span style="color:#16150f">{{ explodeLabel }}</span></div>
+<div onMouseDown="{{ startDrag }}" style="height:330px;position:relative;margin:6px 0 10px;user-select:none;cursor:{{ dragCursor }};touch-action:none">
+<div style="position:absolute;left:50%;top:0;width:220px;margin-left:-110px;height:62px;border:2px solid #16150f;background:#eae7de;display:flex;align-items:center;justify-content:center;font:500 10px 'IBM Plex Mono',monospace;color:#45423a;text-transform:uppercase;transition:transform .12s ease-out;pointer-events:none;{{ cLay1 }}">top plate · anodised</div>
+<div style="position:absolute;left:50%;top:0;width:220px;margin-left:-110px;height:62px;border:2px solid #16150f;background:#eae7de;display:flex;align-items:center;justify-content:center;font:500 10px 'IBM Plex Mono',monospace;color:#45423a;text-transform:uppercase;transition:transform .12s ease-out;pointer-events:none;{{ cLay2 }}">e-ink panel · 2.9″</div>
+<div style="position:absolute;left:50%;top:0;width:220px;margin-left:-110px;height:62px;border:2px solid #16150f;background:#eae7de;display:flex;align-items:center;justify-content:center;font:500 10px 'IBM Plex Mono',monospace;color:#45423a;text-transform:uppercase;transition:transform .12s ease-out;pointer-events:none;{{ cLay3 }}">mainboard · wifi + poe</div>
+<div style="position:absolute;left:50%;top:0;width:220px;margin-left:-110px;height:62px;border:2px solid #16150f;background:#16150f;color:#e8ff2f;display:flex;align-items:center;justify-content:center;font:500 10px 'IBM Plex Mono',monospace;text-transform:uppercase;transition:transform .12s ease-out;pointer-events:none;{{ cLay4 }}">base · 180 g steel</div>
+</div>
+<input type="range" min="0" max="100" value="{{ explode }}" onInput="{{ onExplode }}" style="width:100%;accent-color:#16150f">
+</div>
+<div style="padding:34px 26px;background:#eae7de;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;justify-content:space-between;align-items:baseline;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577"><span>poke it — this actually runs</span><span style="display:flex;align-items:center;gap:6px;color:#16150f"><span style="width:7px;height:7px;border-radius:50%;background:#16150f;animation:blipblink 1.6s infinite"></span>live</span></div>
+
+<div style="display:grid;grid-template-columns:1fr 168px;gap:14px;align-items:stretch">
+<div style="border:2px solid #16150f;background:#16150f;display:flex;flex-direction:column;overflow:hidden">
+<div style="display:flex;justify-content:space-between;padding:7px 11px;background:#e8ff2f;color:#16150f;font:600 9.5px 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.14em"><span>dev-01 · store #3</span><span>{{ lastMs }} ms</span></div>
+<div style="padding:12px;font:400 11.5px/1.75 'IBM Plex Mono',monospace;color:#c9c5b8;flex:1;min-height:112px;overflow:hidden">
+<sc-for list="{{ log }}" as="line" hint-placeholder-count="4"><div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ line }}</div></sc-for>
+</div>
+</div>
+<div style="border:2px solid #16150f;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:12px">
+<canvas ref="{{ qr2c }}" width="132" height="132" style="width:118px;height:118px;image-rendering:pixelated;display:block"></canvas>
+<div style="font:500 9px 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.12em;color:#8a8577">the panel, right now</div>
+</div>
+</div>
+
+<div style="display:flex;gap:12px;align-items:stretch">
+<div onClick="{{ send }}" style="flex:1;padding:18px 22px;background:#e8ff2f;border:2px solid #16150f;color:#16150f;font-family:'Archivo Black',Arial,sans-serif;font-size:26px;text-transform:lowercase;letter-spacing:-.02em;line-height:1;white-space:nowrap;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:transform .1s" style-hover="background:#16150f;color:#e8ff2f" style-active="transform:translateY(3px)"><span>blip</span><span>→</span></div>
+<div style="width:150px;border:2px solid #16150f;padding:9px 11px;font:500 9.5px/1.5 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.06em;color:#45423a;display:flex;flex-direction:column;justify-content:center"><span style="color:#8a8577">payload</span><span style="color:#16150f;font-size:11px">{{ lastKind }}</span><span style="color:#8a8577;margin-top:4px">token</span><span style="color:#16150f;text-transform:none">{{ tokenShort }}</span></div>
+</div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);border-bottom:2px solid #16150f">
+<div style="padding:30px 24px;border-right:1px solid #d8d5cc"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:36px;color:#16150f">01</div><div style="margin-top:8px;font:400 15px/1.45 'Helvetica Neue',Arial,sans-serif;color:#45423a">Flip it over, type the six characters into the console.</div></div>
+<div style="padding:30px 24px;border-right:1px solid #d8d5cc"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:36px;color:#16150f">02</div><div style="margin-top:8px;font:400 15px/1.45 'Helvetica Neue',Arial,sans-serif;color:#45423a">Copy the device key. Shown once, then never again.</div></div>
+<div style="padding:30px 24px"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:36px;color:#16150f">03</div><div style="margin-top:8px;font:400 15px/1.45 'Helvetica Neue',Arial,sans-serif;color:#45423a">POST whatever you want. Code appears. Customer scans.</div></div>
+</div>
+
+<div style="border-bottom:2px solid #16150f">
+<div style="padding:40px 26px 24px">
+<div style="font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577;margin-bottom:18px">branding — the screen is yours</div>
+<h2 style="margin:0 0 14px;font-family:'Archivo Black',Arial,sans-serif;font-size:56px;line-height:.9;letter-spacing:-.04em;color:#16150f;text-transform:lowercase">your logo.<br>your colour. <span style="background:#e8ff2f;padding:0 8px">instantly.</span></h2>
+<p style="margin:0;max-width:62ch;font:400 17px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a;text-wrap:pretty">There's a branding page in the console. Drop in a logo, pick a colour, write the two lines the customer reads. Hit save and the new config is pushed to every box in that store — they repaint in seconds and report back. No firmware, no engineer, no ticket. Type in the fields — the panel on the right is the real thing.</p>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 300px;border-top:2px solid #16150f">
+<div style="padding:26px;display:flex;flex-direction:column;gap:18px;border-right:2px solid #16150f">
+<div style="display:grid;gap:7px">
+<label style="font:500 10.5px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#8a8577">store name</label>
+<input value="{{ bStore }}" onInput="{{ onStore }}" style="padding:12px 13px;border:2px solid #16150f;background:#fff;font:400 15px 'Helvetica Neue',Arial,sans-serif;color:#16150f;outline:none" style-focus="background:#e8ff2f">
+</div>
+<div style="display:grid;gap:7px">
+<label style="font:500 10.5px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#8a8577">line above the code</label>
+<input value="{{ bLine }}" onInput="{{ onLine }}" style="padding:12px 13px;border:2px solid #16150f;background:#fff;font:400 15px 'Helvetica Neue',Arial,sans-serif;color:#16150f;outline:none" style-focus="background:#e8ff2f">
+</div>
+<div style="display:grid;gap:7px">
+<label style="font:500 10.5px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#8a8577">footer line</label>
+<input value="{{ bFoot }}" onInput="{{ onFoot }}" style="padding:12px 13px;border:2px solid #16150f;background:#fff;font:400 15px 'Helvetica Neue',Arial,sans-serif;color:#16150f;outline:none" style-focus="background:#e8ff2f">
+</div>
+<div style="display:flex;gap:26px;flex-wrap:wrap">
+<div style="display:grid;gap:9px">
+<label style="font:500 10.5px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#8a8577">brand colour</label>
+<div style="display:flex;gap:9px;align-items:center">
+<div onClick="{{ pickG }}" style="width:36px;height:36px;background:#0f7a54;border:2px solid #16150f;cursor:pointer" style-hover="transform:translateY(-2px)"></div>
+<div onClick="{{ pickO }}" style="width:36px;height:36px;background:#d2541f;border:2px solid #16150f;cursor:pointer" style-hover="transform:translateY(-2px)"></div>
+<div onClick="{{ pickB }}" style="width:36px;height:36px;background:#1b3fa0;border:2px solid #16150f;cursor:pointer" style-hover="transform:translateY(-2px)"></div>
+<div onClick="{{ pickK }}" style="width:36px;height:36px;background:#16150f;border:2px solid #16150f;cursor:pointer" style-hover="transform:translateY(-2px)"></div>
+</div>
+</div>
+<div style="display:grid;gap:9px">
+<label style="font:500 10.5px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#8a8577">logo</label>
+<div style="display:flex;gap:10px;align-items:center">
+<div style="width:58px;height:36px;border:2px dashed #b8b4a8;display:flex;align-items:center;justify-content:center;font:400 9px 'IBM Plex Mono',monospace;color:#8a8577">png·svg</div>
+<div onClick="{{ toggleLogo }}" style="padding:10px 15px;border:2px solid #16150f;font:500 10.5px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#16150f;cursor:pointer;white-space:nowrap;flex:none" style-hover="background:#e8ff2f">{{ logoLabel }}</div>
+</div>
+</div>
+</div>
+<div style="font:400 14px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a;max-width:54ch;text-wrap:pretty">That's the quick version. The real editor also drags, resizes and gives every screen its own layout — <a href="#3a" style="color:#16150f">the whole thing is on its own page →</a></div>
+</div>
+
+<div style="padding:26px 18px;background:#16150f;display:flex;flex-direction:column;align-items:center;gap:13px">
+<div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#e8ff2f">what the counter shows</div>
+<div style="width:228px;background:#fff;border:2px solid #16150f">
+<div style="padding:14px 13px 4px;display:flex;align-items:center;gap:9px">
+<sc-if value="{{ logoOn }}" hint-placeholder-val="{{ true }}"><div style="width:22px;height:22px;background:{{ bColor }};color:#fff;display:flex;align-items:center;justify-content:center;font:600 12px 'Helvetica Neue',Arial,sans-serif">{{ logoInitial }}</div></sc-if>
+<div style="font:600 12.5px 'Helvetica Neue',Arial,sans-serif;color:{{ bColor }};flex:1;min-width:0;white-space:nowrap">{{ bStore }}</div>
+</div>
+<div style="padding:15px 13px 7px;font:400 12.5px/1.4 'Helvetica Neue',Arial,sans-serif;color:#16150f;text-align:center;min-height:34px">{{ bLine }}</div>
+<div style="padding:0 13px 13px;display:flex;justify-content:center">
+<div style="width:146px;height:146px;display:grid;grid-template-columns:repeat(13,1fr);grid-template-rows:repeat(13,1fr);border:6px solid #fff;outline:2px solid #16150f">
+<sc-for list="{{ brandQr }}" as="c" hint-placeholder-count="169"><div style="background:{{ c }}"></div></sc-for>
+</div>
+</div>
+<div style="padding:9px 13px;border-top:1px solid #e2e0d9;font:400 9.5px/1.4 'IBM Plex Mono',monospace;color:#8a8577;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ bFoot }}</div>
+</div>
+<div style="font:400 10px/1.5 'IBM Plex Mono',monospace;color:#8a8577;text-align:center">saved in the console →<br>live on the box in seconds</div>
+</div>
+</div>
+</div>
+
+<div style="border-bottom:2px solid #16150f">
+<div style="padding:34px 26px 6px;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577">no forms, no calls — here's everything</div>
+<div style="display:grid;grid-template-columns:1fr 1fr">
+<div style="padding:22px 26px;border-right:1px solid #d8d5cc"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:17px;color:#16150f;text-transform:lowercase;margin-bottom:6px">what it costs</div><div style="font:400 15px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">£149 for the box, once. £0.004 a transaction after the first 2,000 each month. No contract, no minimum, no "contact sales for pricing".</div></div>
+<div style="padding:22px 26px"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:17px;color:#16150f;text-transform:lowercase;margin-bottom:6px">after you order</div><div style="font:400 15px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">Ships in 2–3 days. Power, network, type the six characters from the underside into the console, pick the store. Four minutes, roughly.</div></div>
+<div style="padding:22px 26px;border-right:1px solid #d8d5cc;border-top:1px solid #d8d5cc"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:17px;color:#16150f;text-transform:lowercase;margin-bottom:6px">your till</div><div style="font:400 15px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">If it can make an HTTPS request, it works — one POST with a bearer key. If it can't, the bridge pretends to be a receipt printer and does it for you.</div></div>
+<div style="padding:22px 26px;border-top:1px solid #d8d5cc"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:17px;color:#16150f;text-transform:lowercase;margin-bottom:6px">who sees what</div><div style="font:400 15px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">The token is the key: unguessable, and the file lives in a private bucket behind 5-minute signed links. Staff see their own store, nothing else.</div></div>
+<div style="padding:22px 26px;border-right:1px solid #d8d5cc;border-top:1px solid #d8d5cc"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:17px;color:#16150f;text-transform:lowercase;margin-bottom:6px">if the wifi dies</div><div style="font:400 15px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">The box queues and retries; the console marks it offline within a minute. Nothing is lost — the codes go out when the line comes back.</div></div>
+<div style="padding:22px 26px;border-top:1px solid #d8d5cc;background:#e8ff2f"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:17px;color:#16150f;text-transform:lowercase;margin-bottom:6px">do you have to talk to us</div><div style="font:400 15px/1.5 'Helvetica Neue',Arial,sans-serif;color:#16150f">No. Buy it from this page, read the docs, run the console yourself. Email if you want — a person answers — but nothing is locked behind a call.</div></div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:2px solid #16150f">
+<div style="padding:38px 26px;border-right:2px solid #16150f">
+<div style="font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577;margin-bottom:20px">specification</div>
+<div style="display:grid;grid-template-columns:auto 1fr;gap:10px 24px;font:400 13px/1.5 'IBM Plex Mono',monospace;color:#16150f">
+<span style="color:#8a8577">endpoint</span><span>POST /api/ingest</span>
+<span style="color:#8a8577">auth</span><span>bearer device key, sha-256 at rest</span>
+<span style="color:#8a8577">out</span><span>{ token, url } · 40 chars</span>
+<span style="color:#8a8577">public page</span><span>/r/&lt;token&gt;</span>
+<span style="color:#8a8577">links</span><span>signed, 5 min, then gone</span>
+<span style="color:#8a8577">commands</span><span>reboot · refresh · identify</span>
+<span style="color:#8a8577">billing</span><span>metered, per transaction</span>
+<span style="color:#8a8577">power</span><span>usb-c or poe</span>
+</div>
+</div>
+<div style="padding:38px 26px;background:#16150f;color:#e8ff2f">
+<div style="font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;opacity:.55;margin-bottom:20px">honestly</div>
+<p style="margin:0 0 14px;font:400 16px/1.5 'Helvetica Neue',Arial,sans-serif;color:#f4f3ee;text-wrap:pretty">People told me nobody buys hardware and that this is a feature, not a company. Maybe. I'm having a great time either way.</p>
+<p style="margin:0;font:400 16px/1.5 'Helvetica Neue',Arial,sans-serif;color:#f4f3ee;text-wrap:pretty">One shop or four hundred, we'll ship you a box. Developer who wants to make it do something stupid — please do, then tell me. Want to buy five hundred and build your own business on top? Go ahead.</p>
+<div style="margin-top:24px;display:flex;gap:26px;font:400 12px/1.5 'IBM Plex Mono',monospace">
+<div><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:26px;color:#e8ff2f">{{ txCount }}</div>blips</div>
+<div><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:26px;color:#e8ff2f">{{ paperM }} m</div>paper skipped</div>
+<div><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:26px;color:#e8ff2f">2</div>of us</div>
+</div>
+</div>
+</div>
+
+<div style="padding:20px 26px;display:flex;justify-content:space-between;font:500 11px 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.1em;color:#16150f">
+<span>{{ brandName }} — a box, an api, two people</span><span style="cursor:pointer" style-hover="background:#e8ff2f">say hi</span>
+</div>
+
+</div>
+</div>
+
+</div>
+<p class="dv-next">Next: pick one and I'll build the real three pages (landing · how it works · about) at full width with nav that works — say "go with <a class="dv-oid" href="#2c">2c</a>, name it ___".</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;blip&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;txMultiplier&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:1,&quot;min&quot;:1,&quot;max&quot;:100,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Live counter&quot;}}">
+class Component extends DCLogic {
+  state = { tx: 128400, explode: 0, log: [
+    '$ waiting. press the button.',
+    '',
+    '',
+    ''
+  ], token: '' };
+
+  componentDidMount() {
+    this.qrB = React.createRef();
+    this.qrC = React.createRef();
+    this.qr2a = React.createRef();
+    this.qr2b = React.createRef();
+    this.qr2c = React.createRef();
+    this.qr3a = React.createRef();
+    this.qr3b = React.createRef();
+    this.forceUpdate();
+    this._t = setInterval(() => this.setState(s => ({ tx: s.tx + 1 + Math.floor(Math.random() * 3) })), 1400);
+    this._stT = setInterval(() => {
+      if (this.state.stPaused) return;
+      this.setState(s => {
+        const next = ((s.st ?? 0) + 1) % 6;
+        return next === 0 ? { st: 0, stLoop: ((s.stLoop ?? 0) + 1) % 4 } : { st: next };
+      });
+    }, 3200);
+    this._m = e => {
+      const r = e.currentTarget ? null : null;
+      this.setState({ mx: e.clientX, my: e.clientY });
+    };
+    window.addEventListener('mousemove', this._m);
+    setTimeout(() => this.send(), 400);
+  }
+  componentWillUnmount() { clearInterval(this._t); clearInterval(this._stT); window.removeEventListener('mousemove', this._m); }
+  componentDidUpdate() { this.draw(); }
+
+  hash(s) { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+
+  matrix(token) {
+    const N = 21, m = [];
+    let h = this.hash(token || 'x');
+    const rnd = () => { h = (Math.imul(h, 1664525) + 1013904223) >>> 0; return h / 4294967296; };
+    for (let y = 0; y < N; y++) { const row = []; for (let x = 0; x < N; x++) row.push(rnd() > 0.5 ? 1 : 0); m.push(row); }
+    const finder = (ox, oy) => {
+      for (let y = 0; y < 7; y++) for (let x = 0; x < 7; x++) {
+        const edge = x === 0 || y === 0 || x === 6 || y === 6;
+        const core = x > 1 && x < 5 && y > 1 && y < 5;
+        m[oy + y][ox + x] = edge || core ? 1 : 0;
+      }
+      for (let i = 0; i < 8; i++) { if (oy + 7 < N && ox + i < N) m[oy + 7][ox + i] = 0; if (ox + 7 < N && oy + i < N) m[oy + i][ox + 7] = 0; }
+    };
+    finder(0, 0); finder(N - 7, 0); finder(0, N - 7);
+    return m;
+  }
+
+  draw() {
+    const m = this.matrix(this.state.token);
+    [this.qrB, this.qrC, this.qr2a, this.qr2b, this.qr2c, this.qr3a, this.qr3b].forEach(ref => {
+      const c = ref && ref.current; if (!c) return;
+      const ctx = c.getContext('2d'), N = m.length, q = 2, cell = Math.floor(c.width / (N + q * 2));
+      ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, c.width, c.height);
+      ctx.fillStyle = '#111';
+      for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) if (m[y][x]) ctx.fillRect((x + q) * cell, (y + q) * cell, cell, cell);
+    });
+  }
+
+  send = () => {
+    const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    let t = ''; for (let i = 0; i < 40; i++) t += chars[Math.floor(Math.random() * chars.length)];
+    const kinds = ['receipt', 'ticket', 'warranty', 'menu', 'poem', 'wifi-password'];
+    const kind = kinds[Math.floor(Math.random() * kinds.length)];
+    const ms = 120 + Math.floor(Math.random() * 260);
+    this.setState(s => ({
+      token: t, tx: s.tx + 1, lastKind: kind, lastMs: ms,
+      log: [
+        '$ POST /api/ingest  { kind: "' + kind + '" }',
+        '  201 created in ' + ms + 'ms',
+        '  token ' + t.slice(0, 22) + '…',
+        '  → rendering on dev-01 · store #3'
+      ]
+    }));
+  };
+
+  onExplode = e => this.setState({ explode: Number(e.target.value) });
+
+  stGo = i => () => this.setState({ st: i, stPaused: true });
+  stHover = v => () => this.setState({ stPaused: v });
+  stPlay = () => this.setState({ st: 0, stPaused: false });
+
+  dsDefault() {
+    return {
+      code: { logo: { x: 14, y: 12, s: 1, vis: true }, head: { x: 14, y: 54, s: 1, vis: true }, qr: { x: 84, y: 92, s: 1, vis: true }, foot: { x: 20, y: 262, s: 1, vis: true }, img: { x: 16, y: 226, s: 1, vis: false } },
+      idle: { logo: { x: 42, y: 46, s: 1.3, vis: true }, head: { x: 26, y: 122, s: 1.25, vis: true }, qr: { x: 86, y: 96, s: 1, vis: false }, foot: { x: 20, y: 268, s: 1, vis: true }, img: { x: 24, y: 168, s: 1.15, vis: true } }
+    };
+  }
+  ds() { return this.state.ds ?? this.dsDefault(); }
+  dsPage() { return this.state.dsPage ?? 'code'; }
+  dsSel() { return this.state.dsSel ?? 'head'; }
+  dsSet(k, patch) {
+    const ds = JSON.parse(JSON.stringify(this.ds()));
+    Object.assign(ds[this.dsPage()][k], patch);
+    this.setState({ ds });
+  }
+  dsDown = k => e => {
+    e.preventDefault();
+    const rect = e.currentTarget.parentNode.getBoundingClientRect();
+    const el = this.ds()[this.dsPage()][k];
+    const ox = e.clientX - rect.left - el.x, oy = e.clientY - rect.top - el.y;
+    this.setState({ dsSel: k, dsDrag: true });
+    const move = ev => this.dsSet(k, {
+      x: Math.round(Math.max(0, Math.min(rect.width - 26, ev.clientX - rect.left - ox))),
+      y: Math.round(Math.max(0, Math.min(rect.height - 18, ev.clientY - rect.top - oy)))
+    });
+    const up = () => { this.setState({ dsDrag: false }); window.removeEventListener('mousemove', move); window.removeEventListener('mouseup', up); };
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', up);
+  };
+  dsPick = k => () => this.setState({ dsSel: k });
+  dsSize = e => this.dsSet(this.dsSel(), { s: Number(e.target.value) / 100 });
+  dsVis = k => () => { const cur = this.ds()[this.dsPage()][k]; this.setState({ dsSel: k }); this.dsSet(k, { vis: !cur.vis }); };
+  dsSetPage = p => () => this.setState({ dsPage: p });
+  dsScopeSet = v => () => this.setState({ dsScope: v });
+  dsReset = () => this.setState({ ds: this.dsDefault() });
+
+  onBrandField = field => e => this.setState({ [field]: e.target.value });
+  pickBrand = hex => () => this.setState({ bColor: hex });
+  toggleLogo = () => this.setState(s => ({ logoOn: !(s.logoOn ?? true) }));
+
+  startDrag = e => {
+    e.preventDefault();
+    const startY = e.clientY, start = this.state.explode;
+    const move = ev => {
+      const v = Math.max(0, Math.min(100, start + (ev.clientY - startY) * 0.55));
+      this.setState({ explode: v, dragging: true });
+    };
+    const up = () => {
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseup', up);
+      this.setState({ dragging: false });
+    };
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', up);
+  };
+
+  renderVals() {
+    const e = this.state.explode / 100;
+    const lay = i => 'transform:translateY(' + (-i * 26 * e) + 'px) scale(' + (1 + e * 0.02 * i) + ')';
+    const cl = i => {
+      const closed = 96 + i * 13, open = i * 76;
+      const y = closed + (open - closed) * e;
+      return 'transform:translateY(' + y.toFixed(1) + 'px) scale(' + (1 - (3 - i) * 0.012 * (1 - e)).toFixed(3) + ');z-index:' + (10 + i) + ';box-shadow:0 ' + (2 + 6 * e).toFixed(1) + 'px 0 rgba(22,21,15,' + (0.05 + 0.1 * e).toFixed(2) + ')';
+    };
+    const mx = this.state.mx == null ? 300 : this.state.mx;
+    const my = this.state.my == null ? 300 : this.state.my;
+    return {
+      brandName: this.props.brandName ?? 'blip',
+      txCount: (this.state.tx * (this.props.txMultiplier ?? 1)).toLocaleString('en-US'),
+      paperM: Math.round(this.state.tx * 0.14).toLocaleString('en-US'),
+      log: this.state.log,
+      token: this.state.token,
+      tokenShort: this.state.token ? this.state.token.slice(0, 10) + '…' : '—',
+      send: this.send,
+      explode: this.state.explode,
+      onExplode: this.onExplode,
+      layer1: lay(3), layer2: lay(2), layer3: lay(1), layer4: lay(0),
+      cLay1: cl(0), cLay2: cl(1), cLay3: cl(2), cLay4: cl(3),
+      startDrag: this.startDrag,
+      dragCursor: this.state.dragging ? 'grabbing' : 'grab',
+      explodeLabel: e < 0.03 ? 'assembled' : e > 0.97 ? 'fully apart' : Math.round(e * 100) + '% apart',
+      blobT: 'translate(' + (mx - 260) + 'px,' + (my - 260) + 'px)',
+      qrB: this.qrB, qrC: this.qrC, qr2a: this.qr2a, qr2b: this.qr2b, qr2c: this.qr2c, qr3a: this.qr3a, qr3b: this.qr3b,
+      colorway: this.state.colorway || 'grey',
+      grille: Array.from({ length: 24 }, (_, i) => i),
+      tinyQr: (() => { let h = this.hash(this.state.token || 'pair'); const out = []; for (let i = 0; i < 36; i++) { h = (Math.imul(h, 1664525) + 1013904223) >>> 0; out.push(h / 4294967296 > 0.55 ? '#16150f' : '#fff'); } return out; })(),
+      shellBg: (this.state.colorway === 'black') ? 'linear-gradient(160deg,#2b2b28,#161614)' : (this.state.colorway === 'yellow') ? 'linear-gradient(160deg,#e8ff2f,#c9dd18)' : 'linear-gradient(160deg,#e2e0d9,#c6c3ba)',
+      shellInk: (this.state.colorway === 'black') ? '#c9c5b8' : '#16150f',
+      shellEdge: (this.state.colorway === 'black') ? '#3d3d38' : '#a8a49a',
+      pickGrey: () => this.setState({ colorway: 'grey' }),
+      pickBlack: () => this.setState({ colorway: 'black' }),
+      pickYellow: () => this.setState({ colorway: 'yellow' }),
+      lastKind: this.state.lastKind || 'receipt',
+      lastMs: this.state.lastMs || 180,
+      hoverPage: this.state.hoverPage || 'index',
+      setPage: p => () => this.setState({ hoverPage: p }),
+      bStore: this.state.bStore ?? 'Roastwell Coffee',
+      bLine: this.state.bLine ?? 'Thanks — your receipt is inside.',
+      bFoot: this.state.bFoot ?? 'roastwell.co · returns within 30 days',
+      bColor: this.state.bColor ?? '#0f7a54',
+      logoOn: this.state.logoOn ?? true,
+      onStore: this.onBrandField('bStore'),
+      onLine: this.onBrandField('bLine'),
+      onFoot: this.onBrandField('bFoot'),
+      pickG: this.pickBrand('#0f7a54'),
+      pickO: this.pickBrand('#d2541f'),
+      pickB: this.pickBrand('#1b3fa0'),
+      pickK: this.pickBrand('#16150f'),
+      toggleLogo: this.toggleLogo,
+      logoLabel: (this.state.logoOn ?? true) ? 'logo: on' : 'logo: off',
+      logoInitial: (this.state.bStore ?? 'Roastwell Coffee').trim().charAt(0).toUpperCase() || 'R',
+      ...(() => {
+        const st = this.state.st ?? 0;
+        const loop = this.state.stLoop ?? 0;
+        const kinds = [
+          { key: 'ticket', body: '{ seat: "F12" }', screen: 'Row F · Seat 12', sub: 'doors 19:30' },
+          { key: 'warranty', body: '{ months: 24 }', screen: 'Warranty · 24 months', sub: 'registered to this purchase' },
+          { key: 'menu', body: '{ items: 11 }', screen: "Today's menu", sub: 'kitchen closes at 21:00' },
+          { key: 'receipt', body: '{ total: 7.00 }', screen: 'Your receipt', sub: 'returns within 30 days' }
+        ];
+        const k = kinds[loop];
+        const steps = [
+          ['you build the payload', 'Whatever should appear: a ticket, a warranty card, the menu, a receipt. Your code owns the content — we never read it.', 'kind + data, any JSON you like', '—'],
+          ['one request', 'A single POST to the ingest endpoint with the device key in the header. That is the whole integration — nothing to install on the box, nothing on your network.', 'POST /api/ingest · Authorization: Bearer <deviceKey>', '~8 ms'],
+          ['we check the key', 'Only the SHA-256 hash of the key is stored, so a leaked database gives nobody a working device. The hash resolves to an organisation, a store and one unit.', 'sha-256 compare → org → store → device', '~5 ms'],
+          ['we render and store', 'The image is written to private storage and a 40-character capability token is minted for the public page. Links to the file are presigned and short-lived.', 'private bucket · presigned 300 s · 40-char token', '~22 ms'],
+          ['we publish to that box', 'One MQTT command on the unit\'s own topic, and the unit acks it. If it is offline the trigger expires rather than showing a stranger\'s code later.', 'd/{deviceId}/cmd · trigger show_qr → ack', '~40 ms total'],
+          ['the customer scans', 'The code opens the public page. The token is the capability — no login, no account, nothing to install.', 'GET /r/<token> → fresh signed image url', 'instant']
+        ];
+        const node = i => i === st
+          ? 'background:#16150f;color:#f4f3ee;border-color:#16150f'
+          : 'background:#f4f3ee;color:#45423a;border-color:#c3bfb3';
+        const simple = i => Math.floor(st / 2) === i
+          ? 'background:#16150f;color:#f4f3ee'
+          : 'background:#f4f3ee;color:#16150f';
+        const desIdx = st % 4;
+        const des = i => i === desIdx
+          ? 'background:#16150f;color:#f4f3ee;border-color:#16150f'
+          : 'background:#f4f3ee;color:#16150f;border-color:#c3bfb3';
+        return {
+          st,
+          stDot: 'left:calc(' + (st * 16.667 + 8.33) + '% - 6px)',
+          stNode0: node(0), stNode1: node(1), stNode2: node(2),
+          stNode3: node(3), stNode4: node(4), stNode5: node(5),
+          stSimple0: simple(0), stSimple1: simple(1), stSimple2: simple(2),
+          stDes0: des(0), stDes1: des(1), stDes2: des(2), stDes3: des(3),
+          stDesNote: ['editing the camden screen', 'config pushed', 'boxes repainted · acked', 'offline box caught up on reconnect'][desIdx],
+          stTech: steps[st][2],
+          stTiming: steps[st][3],
+          stBoxState: st >= 4 ? 'showing' : 'idle',
+          stLink: st >= 4 ? 'connected' : 'connected',
+          stLinkCol: 'color:#0f7a54',
+          stAck: st >= 4 ? 'ok · 41 ms' : 'waiting',
+          stAckCol: st >= 4 ? 'color:#0f7a54' : 'color:#8a8577',
+          stKind: k.key,
+          stJson: k.body,
+          stScreenLine: k.screen,
+          stScreenSub: k.sub,
+          stTitle: steps[st][0],
+          stBody: steps[st][1],
+          stNum: '0' + (st + 1),
+          stRunGlow: st === 0 ? 'background:#e8ff2f;color:#16150f' : 'background:#2e2c26;color:#8a8577',
+          stQr: st >= 4 ? 'opacity:1;transform:scale(1)' : 'opacity:0;transform:scale(.9)',
+          stIdle: st >= 4 ? 'opacity:0' : 'opacity:1',
+          stRail0: st === 0 ? 'background:#16150f;color:#f4f3ee' : 'background:#fff;color:#8a8577',
+          stRail1: st === 1 ? 'background:#16150f;color:#f4f3ee' : 'background:#fff;color:#8a8577',
+          stRail2: st === 2 ? 'background:#16150f;color:#f4f3ee' : 'background:#fff;color:#8a8577',
+          stRail3: st === 3 ? 'background:#16150f;color:#f4f3ee' : 'background:#fff;color:#8a8577',
+          stRail4: st === 4 ? 'background:#16150f;color:#f4f3ee' : 'background:#fff;color:#8a8577',
+          stRail5: st === 5 ? 'background:#16150f;color:#f4f3ee' : 'background:#fff;color:#8a8577',
+          stTiles: Array.from({ length: 21 }, (_, i) => i === 9
+            ? (st >= 4 ? 'background:#16150f;border:1px solid #16150f' : 'background:#fff;border:1px solid #16150f')
+            : 'background:#fff;border:1px solid #d0ccc2;opacity:' + (st >= 4 ? '.4' : '.85')),
+          stGo0: this.stGo(0), stGo1: this.stGo(1), stGo2: this.stGo(2),
+          stGo3: this.stGo(3), stGo4: this.stGo(4), stGo5: this.stGo(5),
+          stEnter: this.stHover(true), stLeave: this.stHover(false), stPlay: this.stPlay,
+          stPlayLabel: this.state.stPaused ? 'play it again' : 'playing…'
+        };
+      })(),
+      dsPage: this.dsPage(),
+      dsSel: this.dsSel(),
+      dsSelLabel: ({ logo: 'logo', head: 'headline text', qr: 'qr code', foot: 'footer text', img: 'image' })[this.dsSel()],
+      dsSizePct: Math.round((this.ds()[this.dsPage()][this.dsSel()].s) * 100),
+      dsScope: this.state.dsScope ?? 'page',
+      dsScopeLabel: (this.state.dsScope ?? 'page') === 'page' ? 'this screen only' : 'every screen in this store',
+      dsPickCode: this.dsSetPage('code'),
+      dsPickIdle: this.dsSetPage('idle'),
+      dsTabCode: this.dsPage() === 'code' ? 'background:#16150f;color:#f4f3ee' : 'background:#fff;color:#16150f',
+      dsTabIdle: this.dsPage() === 'idle' ? 'background:#16150f;color:#f4f3ee' : 'background:#fff;color:#16150f',
+      dsScopeRow1: (this.state.dsScope ?? 'page') === 'page' ? 'background:#16150f;color:#f4f3ee' : 'background:#fff;color:#16150f',
+      dsScopeRow2: (this.state.dsScope ?? 'page') === 'all' ? 'background:#16150f;color:#f4f3ee' : 'background:#fff;color:#16150f',
+      dsScopePage: this.dsScopeSet('page'),
+      dsScopeAll: this.dsScopeSet('all'),
+      dsSizeChange: this.dsSize,
+      dsReset: this.dsReset,
+      dsCursor: this.state.dsDrag ? 'grabbing' : 'grab',
+      ...(() => {
+        const p = this.ds()[this.dsPage()], sel = this.dsSel(), out = {};
+        for (const k of Object.keys(p)) {
+          const el = p[k];
+          const ring = k === sel ? 'outline:2px solid #16150f;outline-offset:3px;' : '';
+          out['ds_' + k] = 'left:' + el.x + 'px;top:' + el.y + 'px;transform:scale(' + el.s + ');transform-origin:0 0;' + ring + (el.vis ? '' : 'display:none;');
+          out['dsDown_' + k] = this.dsDown(k);
+          out['dsVis_' + k] = this.dsVis(k);
+          out['dsPick_' + k] = this.dsPick(k);
+          out['dsOn_' + k] = el.vis ? 'shown' : 'hidden';
+          out['dsRow_' + k] = k === sel ? 'background:#16150f;color:#f4f3ee' : 'background:transparent;color:#16150f';
+        }
+        return out;
+      })(),
+      brandQr: (() => { let h = this.hash((this.state.bStore ?? 'Roastwell') + (this.state.bColor ?? '')); const out = []; for (let i = 0; i < 169; i++) { h = (Math.imul(h, 1664525) + 1013904223) >>> 0; out.push(h / 4294967296 > 0.52 ? '#16150f' : '#ffffff'); } return out; })()
+    };
+  }
+}
+</script>
+</body>
+</html>

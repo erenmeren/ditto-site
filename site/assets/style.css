@@ -49,12 +49,19 @@ input { font: inherit; }
 .nav-links .order { background: var(--acid); color: var(--ink); padding: 5px 11px; }
 .nav-links .gh { display: inline-flex; align-items: center; color: var(--ink); }
 .nav-links .gh:hover { color: var(--body); }
-.order-soon { border: 2px solid var(--ink); color: var(--ink); padding: 3px 10px; cursor: default; }
 .pilot { padding: 44px 0; }
 .pilot-cols { display: grid; grid-template-columns: 1fr 300px; gap: 34px; align-items: center; }
 .pilot h2 { font-size: clamp(24px, 3.8vw, 32px); line-height: .95; }
 .pilot p { margin-top: 12px; max-width: 52ch; font-size: 14.5px; line-height: 1.5; color: var(--body); }
 .pilot-btn { text-align: left; }
+.founder-note { margin-top: 14px; font: 400 12px/1.6 var(--mono); color: var(--muted); max-width: 56ch; }
+.founder-note a { color: var(--ink); border-bottom: 1px solid var(--ink); }
+
+/* ---------- faq ---------- */
+.faq-sec { padding: 40px 0 44px; }
+.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 40px; }
+.faq-grid h3 { font: 600 13.5px var(--sans); }
+.faq-grid p { margin-top: 5px; font: 400 12.5px/1.55 var(--sans); color: var(--body); }
 
 .footer .wrap { height: 54px; display: flex; align-items: center; justify-content: space-between; font: 500 10.5px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .footer .brand { color: var(--ink); font-size: 14px; }
@@ -91,13 +98,6 @@ input { font: inherit; }
 .meet-copy h2 { font-size: clamp(24px, 3.6vw, 30px); line-height: .95; }
 .meet-copy p { margin-top: 14px; max-width: 54ch; font-size: 15.5px; line-height: 1.5; color: var(--body); }
 .meet-copy .mono-note { margin-top: 14px; }
-
-/* ---------- steps row ---------- */
-.steps { display: grid; grid-template-columns: repeat(4, 1fr); }
-.steps > div { padding: 28px 22px; }
-.steps > div + div { border-left: 1px solid var(--hairline); }
-.steps .n { font-family: var(--display); font-size: 34px; }
-.steps p { margin-top: 8px; font-size: 14.5px; line-height: 1.45; color: var(--body); }
 
 /* ---------- acid cost band ---------- */
 .cost { padding: 40px 0; }
@@ -199,13 +199,16 @@ input { font: inherit; }
 /* ---------- responsive ---------- */
 @media (max-width: 880px) {
   .hero-cols { grid-template-columns: 1fr; }
-  .steps { grid-template-columns: 1fr 1fr; }
-  .steps > div { border-top: 1px solid var(--hairline); }
+  .faq-grid { grid-template-columns: 1fr; }
   .cost .wrap { flex-direction: column; gap: 14px; }
   .cost .side { max-width: none; }
+  /* No inner scroll-trap on touch: beats stack in the page flow and the
+     state-driven stage is dropped (each beat carries its own facts). */
   .story { grid-template-columns: 1fr; height: auto; }
-  .story-scroller { border-right: none; border-bottom: 2px solid var(--ink); }
-  .story-beat { padding-right: 0; }
+  .story-scroller { height: auto; overflow: visible; scroll-snap-type: none; border-right: none; }
+  .story-beat { height: auto; padding: 26px 0; scroll-snap-align: none; }
+  .story-beat + .story-beat { border-top: 1px solid var(--hairline); }
+  .stage { display: none; }
   .demo-grid { grid-template-columns: 1fr; }
   .demo-meta { width: auto; }
   .brand-sec { grid-template-columns: 1fr; }

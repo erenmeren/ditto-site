@@ -13,6 +13,8 @@ Files:
 - `github.md` — sync log against the product repo, with a screen map (screen → source of truth).
 - `.thumbnail` — WebP preview image, tooling-generated.
 
+**Language rule: everything tracked in this repo is English-only** (code, comments, commit messages, docs). Internal review notes may be Turkish but live untracked under `docs/reviews/` (gitignored — never commit or push them).
+
 There is no build, no tests, no lint, no package manager. To preview, serve the directory over HTTP (`python3 -m http.server`) and open the file — `file://` breaks sibling `.dc.html` fetches. Requires network: the runtime pulls React 18 UMD from unpkg and fonts from Google Fonts.
 
 ## Product model (what the designs describe)

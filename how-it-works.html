@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>how it works — ditto</title>
+<meta name="description" content="Four things, in order, every single time: your till sends a link, we check and hold a credit, the code shows — that's when you pay — and the customer scans it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+<div class="wrap">
+<a class="brand" href="index.html">ditto</a>
+<div class="nav-links">
+<a href="how-it-works.html" aria-current="page">how it works</a>
+<a href="#brand">screens</a>
+<a href="#price">pricing</a>
+<a class="order" href="#try">order</a>
+</div>
+</div>
+</nav>
+
+<header class="hero-sub rule-b">
+<div class="wrap">
+<div class="eyebrow" style="margin-bottom:20px">paper, replaced</div>
+<h1>a small screen,<br>instead of <span class="hl">paper.</span></h1>
+<p>Receipts, tickets, order slips — printed, handed over, lost. This box sits by your till; where you would have printed, it shows a square code. Their camera does the rest. Four things happen, in order, every single time — scroll the list, the map follows.</p>
+</div>
+</header>
+
+<section id="how">
+<div class="wrap">
+<div class="story rule-b" data-beat="0">
+<div class="story-scroller" tabindex="0" aria-label="The four steps, scrollable">
+<div class="story-beat">
+<div class="n">01</div>
+<h3>your till has something for the customer</h3>
+<p>A receipt, a ticket, a booking. Your system sends it our way — one message, carrying a link to the page you already host. We never see what's on that page.</p>
+<div class="mono-note">POST /api/v1/devices/dev_8f21/trigger · { action:"show_qr", payload:{ url } } · Idempotency-Key</div>
+</div>
+<div class="story-beat">
+<div class="n">02</div>
+<h3>we check, and set a credit aside</h3>
+<p>Is the request really from you? Is that box switched on? Then one credit goes on hold. On hold — not charged.</p>
+<div class="mono-note">api key · scope devices:trigger · device: online · credit: 1 reserved</div>
+</div>
+<div class="story-beat">
+<div class="n">03</div>
+<h3>the code appears — <span class="hl-s">that's when you pay</span></h3>
+<p>A couple of seconds later, the exact box you named shows the square code and confirms it. That confirmation spends the held credit. Box off, or a minute gone by? Nothing shows, nothing is charged.</p>
+<div class="mono-note">mqtt d/dev_8f21/cmd · ack { ok:true } · credit: settled · unacked 60 s → expired, released</div>
+</div>
+<div class="story-beat">
+<div class="n">04</div>
+<h3>the customer scans it</h3>
+<p>They point their camera — the page opens in their phone's browser. No app to download, no account to create, no email address to spell out loud.</p>
+<div class="mono-note">GET &lt;your url&gt; — their phone, their browser</div>
+</div>
+</div>
+<div class="stage" aria-hidden="true">
+<div class="seg seg1"></div><div class="seg seg2"></div><div class="seg seg3"></div>
+<div class="pulse"></div>
+<div class="station s1">
+<div class="label">your system</div>
+<div class="val">one request out</div>
+</div>
+<div class="station s2">
+<div class="label">ditto cloud</div>
+<div class="row"><div class="val">key ✓ · box online ✓</div><div class="credit-pill">1 credit</div></div>
+</div>
+<div class="station s3">
+<div class="label">the box on the counter — till 2</div>
+<div class="station-media">
+<div class="box-mock">
+<div class="screen">
+<div class="idle">ready</div>
+<div class="qr" data-seed="story0"></div>
+</div>
+</div>
+<div class="mono-note mono-up">touch screen · wi-fi<br>qr shows 60 s → back to idle<br><span class="hl-s" style="color:var(--ink)">paid on show</span></div>
+</div>
+</div>
+<div class="station s4">
+<div class="label">their phone</div>
+<div class="station-media">
+<div class="phone-sil"><span class="d"></span><i></i><i style="width:70%"></i><i style="width:85%"></i></div>
+<div class="mono-note mono-up">their camera<br>does the rest · free</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="try" class="demo-band rule-b">
+<div class="wrap inner">
+<div class="demo-head">
+<span class="eyebrow" style="color:var(--muted)">poke it — this actually runs</span>
+<span class="live">live</span>
+</div>
+<div class="demo-grid">
+<div class="terminal">
+<div class="terminal-bar"><span>dev_8f21 · till 2</span><span data-ms>— ms</span></div>
+<div class="terminal-log"><div>$ waiting. press the button.</div></div>
+</div>
+<div class="panel-qr">
+<div class="qr"></div>
+<span class="mono-note mono-up" style="letter-spacing:.12em">the panel, right now</span>
+</div>
+</div>
+<div class="demo-actions">
+<button class="keycap"><span>ditto</span><span>→</span></button>
+<div class="demo-meta"><span class="k">kind</span><span class="v" data-kind>—</span><span class="k" style="margin-top:4px">credit</span><span class="v">paid on show</span></div>
+</div>
+</div>
+</section>
+
+<section id="brand">
+<div class="wrap brand-sec rule-b">
+<div class="brand-copy">
+<div class="eyebrow">branding — the screen is yours</div>
+<h2>your logo. your colour. <span class="hl">instantly.</span></h2>
+<p>All eight screens are canvases in the console — drag, resize, theme, or derive a palette from one accent. Pick a colour; save would repaint every box across your stores, seconds later. Offline ones catch up when they're back.</p>
+<div class="swatches">
+<button class="swatch" data-color="#0f7a54" aria-pressed="true" aria-label="Green" style="background:#0f7a54"></button>
+<button class="swatch" data-color="#d2541f" aria-pressed="false" aria-label="Orange" style="background:#d2541f"></button>
+<button class="swatch" data-color="#1b3fa0" aria-pressed="false" aria-label="Blue" style="background:#1b3fa0"></button>
+<button class="swatch" data-color="#16150f" aria-pressed="false" aria-label="Ink" style="background:#16150f"></button>
+<span class="swatch-note" data-hex>#0f7a54 · every box, one save</span>
+</div>
+</div>
+<div class="brand-preview">
+<span class="cap">what the counter shows</span>
+<div class="panel-card">
+<div class="head"><span class="logo">Y</span><span class="name">Your shop</span></div>
+<div class="qr-wrap"><div class="qr" data-seed="brand0"></div></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="price" class="cost rule-b">
+<div class="wrap">
+<div class="big">one credit per code <span class="hl">actually shown.</span></div>
+<div class="side">Scanning is free, failures are released in full. Start prepaid with 50 credits on the house — chains can move to per-device plans later.</div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="wrap">
+<span class="brand">ditto</span>
+<span>made for counters — <span class="hl-s" style="color:var(--ink)">paid on show</span></span>
+</div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

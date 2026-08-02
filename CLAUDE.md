@@ -8,7 +8,7 @@ A **design canvas**, not a deployed site. `Blip Site.dc.html` is a single design
 
 Files:
 - `Blip Site.dc.html` — the design doc (template + one logic class). The canvas where design iterations happen.
-- `site/` — **the real static site**, lifted from the canvas (turns t7/t8): five plain-HTML pages + `assets/style.css` + `assets/site.js` (vanilla JS: deterministic fake QR, data-attribute-driven story/demo states, CSS-variable theme picker). No build step — serve the directory (`python3 -m http.server --directory site`) and open `index.html`. Design changes should land on the canvas first, then be mirrored here.
+- `site/` — **the real static site in the HYBRID voice** (canvas 10a → `index.html`, 10b → `how-it-works.html`; the earlier daylight pages screens/pricing/docs were removed — their content lives as `#brand`/`#price`/`#try` sections and the nav maps to those anchors). Two pages + `assets/style.css` + `assets/site.js` (vanilla JS: deterministic fake QR, data-attribute story/demo states, `--b-color` swatch picker). No build step — `python3 -m http.server --directory site`. Design changes land on the canvas first, then get mirrored here. All copy must respect the code-verified facts (202 `{id,status:"queued"}`, 60 s trigger TTL, "a couple of seconds" ack, org-wide branding push, 50-credit starter grant, per-device plans exist, pairing-code nuance) — see the fact list in the t10 commits.
 - `support.js` — **generated**, do not edit ("GENERATED from dc-runtime/src/*.ts"). The dc runtime.
 - `github.md` — sync log against the product repo, with a screen map (screen → source of truth).
 - `.thumbnail` — WebP preview image, tooling-generated.

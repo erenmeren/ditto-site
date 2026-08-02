@@ -7,7 +7,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 A **design canvas**, not a deployed site. `Blip Site.dc.html` is a single design doc holding proposed marketing-site designs for "blip" — the digital-receipt product whose real implementation lives in `erenmeren/ditto-admin` (see `github.md`). Nothing here ships; the artifact is the design doc itself. The product is not modified from this project.
 
 Files:
-- `Blip Site.dc.html` — the design doc (template + one logic class). This is the only file to edit.
+- `Blip Site.dc.html` — the design doc (template + one logic class). The canvas where design iterations happen.
+- `site/` — **the real static site**, lifted from the canvas (turns t7/t8): five plain-HTML pages + `assets/style.css` + `assets/site.js` (vanilla JS: deterministic fake QR, data-attribute-driven story/demo states, CSS-variable theme picker). No build step — serve the directory (`python3 -m http.server --directory site`) and open `index.html`. Design changes should land on the canvas first, then be mirrored here.
 - `support.js` — **generated**, do not edit ("GENERATED from dc-runtime/src/*.ts"). The dc runtime.
 - `github.md` — sync log against the product repo, with a screen map (screen → source of truth).
 - `.thumbnail` — WebP preview image, tooling-generated.

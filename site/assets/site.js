@@ -91,14 +91,86 @@
     setTimeout(run, 700);
   });
 
-  /* Brand colour picker: swatches set --b-color; the preview QR reseeds. */
-  document.querySelectorAll('.swatch[data-color]').forEach(btn =>
-    btn.addEventListener('click', () => {
-      document.documentElement.style.setProperty('--b-color', btn.dataset.color);
-      document.querySelectorAll('.swatch[data-color]').forEach(b =>
-        b.setAttribute('aria-pressed', String(b === btn)));
-      const hex = document.querySelector('[data-hex]');
-      if (hex) hex.textContent = btn.dataset.color + ' · every box, one save';
-      document.querySelectorAll('.panel-card .qr').forEach(el => fillQr(el, 'brand' + btn.dataset.color));
+  /* Branding studio: a looping replay of an editing session — logo and text
+     dragged onto the screen, then real console theme presets repainting
+     background, text and accent together. A theme click hands control over. */
+  const THEMES = {
+    'warm-cafe': { accent: '#B4541F', bg: '#FAF6F0', fg: '#2B211A', muted: '#9A8B7D' },
+    'minimal-mono': { accent: '#111827', bg: '#FFFFFF', fg: '#111827', muted: '#9CA3AF' },
+    'bold-retail': { accent: '#E5484D', bg: '#FFF8F7', fg: '#27191A', muted: '#A18C8D' },
+    'fresh-market': { accent: '#3F9D4E', bg: '#F5FAF4', fg: '#1B2A1D', muted: '#87977F' }
+  };
+  const ORDER = ['fresh-market', 'warm-cafe', 'bold-retail', 'minimal-mono'];
+  document.querySelectorAll('.studio').forEach(studio => {
+    const screen = studio.querySelector('.studio-screen');
+    const ghost = studio.querySelector('.drag-ghost');
+    const status = studio.querySelector('[data-status]');
+    const logo = studio.querySelector('.pc-logo');
+    const text = studio.querySelector('.pc-text');
+    const pills = document.querySelectorAll('.theme-pill');
+    let timers = [], userTook = false, paused = false;
+
+    function applyTheme(id) {
+      const t = THEMES[id];
+      if (!t) return;
+      screen.style.setProperty('--p-bg', t.bg);
+      screen.style.setProperty('--p-fg', t.fg);
+      screen.style.setProperty('--p-accent', t.accent);
+      screen.style.setProperty('--p-muted', t.muted);
+      pills.forEach(p => p.setAttribute('aria-pressed', String(p.dataset.theme === id)));
+    }
+    function say(t) { if (status) status.textContent = t; }
+    function fly(fromSel, label, done) {
+      const from = studio.querySelector(fromSel);
+      if (!from || !ghost) { done(); return; }
+      const a = from.getBoundingClientRect(), b = screen.getBoundingClientRect(), s = studio.getBoundingClientRect();
+      ghost.textContent = label;
+      ghost.style.transition = 'none';
+      ghost.style.transform = 'translate(' + (a.left - s.left) + 'px,' + (a.top - s.top) + 'px)';
+      ghost.classList.add('flying');
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        ghost.style.transition = '';
+        ghost.style.transform = 'translate(' + (b.left - s.left + b.width / 2 - 24) + 'px,' + (b.top - s.top + b.height / 2 - 12) + 'px) rotate(-4deg)';
+      }));
+      timers.push(setTimeout(() => { ghost.classList.remove('flying'); done(); }, 750));
+    }
+    function reset() {
+      logo.classList.remove('on'); text.classList.remove('on');
+      logo.style.opacity = ''; text.style.opacity = '';
+      studio.dataset.step = '0';
+    }
+    function loop() {
+      if (userTook) return;
+      if (paused) { timers.push(setTimeout(loop, 800)); return; }
+      reset();
+      applyTheme(ORDER[0]);
+      say('the studio, replaying —');
+      timers.push(
+        setTimeout(() => { studio.dataset.step = '1'; say('drag the logo anywhere on the 720 × 720 canvas'); fly('.tray-chip[data-obj="logo"]', 'logo', () => logo.classList.add('on')); }, 900),
+        setTimeout(() => { studio.dataset.step = '2'; say('drop text — it snaps where you put it'); fly('.tray-chip[data-obj="text"]', 'text', () => text.classList.add('on')); }, 3100),
+        setTimeout(() => { studio.dataset.step = '3'; say('a theme repaints background, text and accent together'); applyTheme(ORDER[1]); }, 5400),
+        setTimeout(() => applyTheme(ORDER[2]), 6700),
+        setTimeout(() => { studio.dataset.step = '4'; say('saved → every box across your stores repaints'); }, 8000),
+        setTimeout(loop, 10600)
+      );
+    }
+    studio.addEventListener('mouseenter', () => { paused = true; });
+    studio.addEventListener('mouseleave', () => { paused = false; });
+    pills.forEach(p => p.addEventListener('click', () => {
+      userTook = true;
+      timers.forEach(clearTimeout);
+      if (ghost) ghost.classList.remove('flying');
+      studio.dataset.step = '0';
+      logo.classList.add('on'); text.classList.add('on');
+      applyTheme(p.dataset.theme);
+      say('your theme — one save away from every box');
     }));
+    if (rm) {
+      logo.classList.add('on'); text.classList.add('on');
+      applyTheme(ORDER[0]);
+      say('a theme repaints background, text and accent together');
+      return;
+    }
+    loop();
+  });
 })();

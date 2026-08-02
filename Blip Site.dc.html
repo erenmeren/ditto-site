@@ -9,6 +9,326 @@
 <x-dc>
 <helmet data-dc-atomics><meta name="design_doc_mode" content="canvas"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet"><style>body{margin:0;background:#f0eee9;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif}a{color:inherit}a:hover{color:inherit}.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}.dv-tid{font:600 10px 'IBM Plex Mono',monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}.dv-tname{font:600 13px/1.2 'Helvetica Neue',Arial,sans-serif;color:#1a1a1a}.dv-opts{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}.dv-oid{font:600 10.5px 'IBM Plex Mono',monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 'Helvetica Neue',Arial,sans-serif;color:rgba(0,0,0,.55)}.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}.dv-next{margin:22px 0 0;font:12px/1.5 'Helvetica Neue',Arial,sans-serif;color:rgba(0,0,0,.5)}@keyframes blipspin{to{transform:rotate(360deg)}}@keyframes blipmarq{from{transform:translateX(0)}to{transform:translateX(-50%)}}@keyframes blipblink{0%,100%{opacity:1}50%{opacity:.15}}</style></helmet>
 
+<section class="dv-turn" id="t8">
+<div class="dv-thd"><a class="dv-tid" href="#t8">8</a><span class="dv-tname">The page set — home · screens · pricing · docs, all in the daylight dialect</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="8a" data-screen-label="8a home">
+<div class="dv-olabel"><a class="dv-oid" href="#8a">8a</a>Home — the whole story compressed to one pass: hero, three truths, four steps, branding teaser</div>
+<div class="dv-card" style="width:1040px;background:#fbfaf7">
+<div style="box-sizing:border-box;height:58px;padding:0 34px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eceee9">
+<div style="display:flex;align-items:center;gap:9px"><div style="width:13px;height:13px;border-radius:4px;background:#0f7a54"></div><div style="font:600 16px 'Space Grotesk',sans-serif;color:#111413">{{ brandName }}</div></div>
+<div style="display:flex;gap:26px;font:500 10.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#5c645f"><span>how it works</span><span>screens</span><span>pricing</span><span>docs</span></div>
+</div>
+<div style="box-sizing:border-box;padding:56px 34px 48px;display:grid;grid-template-columns:1fr 330px;gap:40px;align-items:center;border-bottom:1px solid #eceee9">
+<div>
+<h1 style="margin:0;font:500 46px/1.06 'Space Grotesk',sans-serif;letter-spacing:-.02em;color:#111413;max-width:16ch">Hand them a code, not a piece of paper.</h1>
+<p style="margin:16px 0 0;max-width:50ch;font:400 15.5px/1.6 'Inter',sans-serif;color:#5c645f">A palm-sized touch screen by your till. Where you would have printed a receipt, a ticket, an order slip — it shows a square code. One scan, and the page is on the customer's phone.</p>
+<div style="margin-top:24px;display:flex;gap:12px;align-items:center">
+<div style="background:#0f7a54;color:#fbfaf7;font:600 13px 'Space Grotesk',sans-serif;letter-spacing:.04em;padding:13px 22px;border-radius:10px;box-shadow:0 5px 0 #0a5238;cursor:pointer" style-hover="transform:translateY(2px);box-shadow:0 3px 0 #0a5238">see how it works</div>
+<div style="border:1.5px solid #d8ded9;color:#111413;font:500 12px 'IBM Plex Mono',monospace;padding:13px 20px;border-radius:10px;cursor:pointer" style-hover="border-color:#111413">try the live demo</div>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:12px">
+<div style="display:flex;align-items:flex-end;gap:18px">
+<div style="width:170px;height:170px;border-radius:16px;background:#111413;box-shadow:0 4px 14px rgba(17,20,19,.22);padding:10px;box-sizing:border-box">
+<div style="position:relative;width:100%;height:100%;border-radius:9px;background:#fff;overflow:hidden">
+<div style="position:absolute;left:11px;top:10px;display:flex;align-items:center;gap:5px"><div style="width:8px;height:8px;border-radius:2px;background:#0f7a54"></div><div style="font:600 9px 'Inter',sans-serif;color:#111413">Your shop</div></div>
+<div style="position:absolute;left:50%;top:36px;margin-left:-44px;width:88px;height:88px;display:grid;grid-template-columns:repeat(13,1fr);grid-template-rows:repeat(13,1fr)">
+<sc-for list="{{ t7Qr }}" as="c" hint-placeholder-count="169"><div style="background:{{ c }}"></div></sc-for>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:9px;text-align:center;font:400 8px 'Inter',sans-serif;color:#8b9490">scan for your receipt</div>
+</div>
+</div>
+<div style="width:58px;height:104px;border-radius:10px;border:1.5px solid #cfd6d0;background:#fff;box-sizing:border-box;padding:7px;display:flex;flex-direction:column;gap:5px">
+<div style="width:8px;height:8px;border-radius:50%;background:#0f7a54"></div>
+<div style="width:100%;height:5px;border-radius:2px;background:#e3e8e4"></div>
+<div style="width:70%;height:5px;border-radius:2px;background:#e3e8e4"></div>
+<div style="margin-top:auto;width:85%;height:5px;border-radius:2px;background:#e3e8e4"></div>
+</div>
+</div>
+<div style="font:400 10px 'IBM Plex Mono',monospace;color:#8b9490">counter → phone, in about a second</div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid #eceee9">
+<div style="box-sizing:border-box;padding:26px 30px 28px 34px;border-right:1px solid #eceee9">
+<div style="font:500 16px 'Space Grotesk',sans-serif;color:#111413">Nothing to install</div>
+<div style="margin-top:7px;font:400 13px/1.55 'Inter',sans-serif;color:#5c645f">Wi-fi and one request from your till. No app for the customer, no software on your network.</div>
+<div style="margin-top:10px;font:400 9.5px 'IBM Plex Mono',monospace;color:#8b9490">arrives pre-registered · connects itself</div>
+</div>
+<div style="box-sizing:border-box;padding:26px 30px 28px;border-right:1px solid #eceee9">
+<div style="font:500 16px 'Space Grotesk',sans-serif;color:#111413">Paid on show</div>
+<div style="margin-top:7px;font:400 13px/1.55 'Inter',sans-serif;color:#5c645f">One credit when a code is actually shown. Box off, moment passed — nothing appears, nothing is charged.</div>
+<div style="margin-top:10px;font:400 9.5px 'IBM Plex Mono',monospace;color:#8b9490">prepaid credits · scanning is free</div>
+</div>
+<div style="box-sizing:border-box;padding:26px 30px 28px">
+<div style="font:500 16px 'Space Grotesk',sans-serif;color:#111413">Yours to design</div>
+<div style="margin-top:7px;font:400 13px/1.55 'Inter',sans-serif;color:#5c645f">Between codes the box is a little sign for your shop — every screen it shows is yours to lay out.</div>
+<div style="margin-top:10px;font:400 9.5px 'IBM Plex Mono',monospace;color:#8b9490">8 screens · themes · one save, every box</div>
+</div>
+</div>
+<div style="box-sizing:border-box;padding:34px 34px 38px;border-bottom:1px solid #eceee9">
+<div style="font:500 10.5px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8b9490;margin-bottom:20px">four steps, about a second</div>
+<div style="position:relative">
+<div style="position:absolute;left:20px;right:20px;top:19px;height:2px;background:#d3dad4"></div>
+<div style="position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:18px">
+<div><div style="width:40px;height:40px;border-radius:50%;background:#fbfaf7;border:2px solid #0f7a54;display:flex;align-items:center;justify-content:center;font:700 15px 'Space Grotesk',sans-serif;color:#0f7a54">1</div><div style="margin-top:10px;font:500 13.5px 'Inter',sans-serif;color:#111413">Your till sends one request</div><div style="margin-top:3px;font:400 11.5px/1.5 'Inter',sans-serif;color:#8b9490">with a link to the page you host — we never see it</div></div>
+<div><div style="width:40px;height:40px;border-radius:50%;background:#fbfaf7;border:2px solid #0f7a54;display:flex;align-items:center;justify-content:center;font:700 15px 'Space Grotesk',sans-serif;color:#0f7a54">2</div><div style="margin-top:10px;font:500 13.5px 'Inter',sans-serif;color:#111413">We check, hold a credit</div><div style="margin-top:3px;font:400 11.5px/1.5 'Inter',sans-serif;color:#8b9490">your key, your box, online — held, not charged</div></div>
+<div><div style="width:40px;height:40px;border-radius:50%;background:#0f7a54;border:2px solid #0f7a54;display:flex;align-items:center;justify-content:center;font:700 15px 'Space Grotesk',sans-serif;color:#fbfaf7">3</div><div style="margin-top:10px;font:500 13.5px 'Inter',sans-serif;color:#111413">The code shows — you pay</div><div style="margin-top:3px;font:400 11.5px/1.5 'Inter',sans-serif;color:#8b9490">the box confirms it; that confirmation spends the credit</div></div>
+<div><div style="width:40px;height:40px;border-radius:50%;background:#fbfaf7;border:2px solid #0f7a54;display:flex;align-items:center;justify-content:center;font:700 15px 'Space Grotesk',sans-serif;color:#0f7a54">4</div><div style="margin-top:10px;font:500 13.5px 'Inter',sans-serif;color:#111413">They scan, they keep it</div><div style="margin-top:3px;font:400 11.5px/1.5 'Inter',sans-serif;color:#8b9490">their camera, their browser — scanning is free</div></div>
+</div>
+</div>
+</div>
+<div style="box-sizing:border-box;padding:30px 34px;display:flex;align-items:center;justify-content:space-between;gap:30px;border-bottom:1px solid #eceee9">
+<div>
+<div style="font:500 20px 'Space Grotesk',sans-serif;color:#111413">Every screen on the box is yours.</div>
+<div style="margin-top:6px;max-width:48ch;font:400 13px/1.55 'Inter',sans-serif;color:#5c645f">Logo, colours, layout — set once in the console, live on every counter a second later.</div>
+<div style="margin-top:12px;display:inline-block;border:1.5px solid #d8ded9;border-radius:99px;padding:7px 16px;font:500 10.5px 'IBM Plex Mono',monospace;color:#111413;cursor:pointer" style-hover="border-color:#111413">screens →</div>
+</div>
+<div style="flex:none;width:120px;height:120px;border-radius:14px;background:#111413;padding:7px;box-sizing:border-box">
+<div style="position:relative;width:100%;height:100%;border-radius:8px;overflow:hidden;transition:all .35s;{{ taScreen }}">
+<div style="position:absolute;left:9px;top:8px;display:flex;align-items:center;gap:4px"><div style="width:7px;height:7px;border-radius:2px;transition:all .35s;{{ taAccent }}"></div><div style="font:600 8px 'Inter',sans-serif;transition:all .35s;{{ taFgCol }}">Your shop</div></div>
+<div style="position:absolute;left:0;right:0;top:44px;text-align:center;font:500 21px 'Space Grotesk',sans-serif;transition:all .35s;{{ taFgCol }}">12:41</div>
+<div style="position:absolute;left:0;right:0;bottom:8px;text-align:center;font:400 7px 'Inter',sans-serif;transition:all .35s;{{ taMutedCol }}">thanks — see you soon</div>
+</div>
+</div>
+</div>
+<div style="box-sizing:border-box;height:52px;padding:0 34px;display:flex;align-items:center;justify-content:space-between">
+<div style="display:flex;align-items:center;gap:8px"><div style="width:10px;height:10px;border-radius:3px;background:#0f7a54"></div><div style="font:600 13px 'Space Grotesk',sans-serif;color:#111413">{{ brandName }}</div></div>
+<div style="font:400 10px 'IBM Plex Mono',monospace;color:#8b9490">made for counters</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="8b" data-screen-label="8b screens">
+<div class="dv-olabel"><a class="dv-oid" href="#8b">8b</a>Screens — the branding studio page: all eight screens, painted live by the theme you pick</div>
+<div class="dv-card" style="width:1040px;background:#fbfaf7">
+<div style="box-sizing:border-box;height:58px;padding:0 34px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eceee9">
+<div style="display:flex;align-items:center;gap:9px"><div style="width:13px;height:13px;border-radius:4px;background:#0f7a54"></div><div style="font:600 16px 'Space Grotesk',sans-serif;color:#111413">{{ brandName }}</div></div>
+<div style="display:flex;gap:26px;font:500 10.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#5c645f"><span>how it works</span><span style="color:#111413">screens</span><span>pricing</span><span>docs</span></div>
+</div>
+<div style="box-sizing:border-box;padding:44px 34px 26px">
+<div style="font:500 10.5px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8b9490;margin-bottom:12px">the branding studio</div>
+<h1 style="margin:0;font:500 38px/1.1 'Space Grotesk',sans-serif;letter-spacing:-.02em;color:#111413;max-width:22ch">Design every screen it ever shows.</h1>
+<p style="margin:14px 0 0;max-width:58ch;font:400 14.5px/1.6 'Inter',sans-serif;color:#5c645f">The box is on your counter all day — so every screen it shows is a canvas. Pick a theme below and watch all eight repaint, exactly the way every box in your stores would.</p>
+<div style="margin-top:20px;display:flex;gap:10px">
+<div onClick="{{ taGo0 }}" style="cursor:pointer;display:flex;align-items:center;gap:7px;border:1.5px solid;border-radius:99px;padding:6px 12px;font:500 10px 'IBM Plex Mono',monospace;color:#111413;transition:all .25s;{{ taChip0 }}"><div style="width:10px;height:10px;border-radius:50%;{{ taSw0 }}"></div>warm café</div>
+<div onClick="{{ taGo1 }}" style="cursor:pointer;display:flex;align-items:center;gap:7px;border:1.5px solid;border-radius:99px;padding:6px 12px;font:500 10px 'IBM Plex Mono',monospace;color:#111413;transition:all .25s;{{ taChip1 }}"><div style="width:10px;height:10px;border-radius:50%;{{ taSw1 }}"></div>minimal mono</div>
+<div onClick="{{ taGo2 }}" style="cursor:pointer;display:flex;align-items:center;gap:7px;border:1.5px solid;border-radius:99px;padding:6px 12px;font:500 10px 'IBM Plex Mono',monospace;color:#111413;transition:all .25s;{{ taChip2 }}"><div style="width:10px;height:10px;border-radius:50%;{{ taSw2 }}"></div>bold retail</div>
+<div onClick="{{ taGo3 }}" style="cursor:pointer;display:flex;align-items:center;gap:7px;border:1.5px solid;border-radius:99px;padding:6px 12px;font:500 10px 'IBM Plex Mono',monospace;color:#111413;transition:all .25s;{{ taChip3 }}"><div style="width:10px;height:10px;border-radius:50%;{{ taSw3 }}"></div>fresh market</div>
+<div style="align-self:center;font:400 10px 'IBM Plex Mono',monospace;color:#8b9490">— or derive a palette from one accent colour</div>
+</div>
+</div>
+<div style="box-sizing:border-box;padding:8px 34px 34px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;border-bottom:1px solid #eceee9">
+<div>
+<div style="aspect-ratio:1;border-radius:12px;background:#111413;padding:7px;box-sizing:border-box"><div style="position:relative;width:100%;height:100%;border-radius:7px;overflow:hidden;transition:all .35s;{{ taScreen }}">
+<div style="position:absolute;left:10px;top:9px;display:flex;align-items:center;gap:4px"><div style="width:8px;height:8px;border-radius:2px;transition:all .35s;{{ taAccent }}"></div><div style="font:600 8.5px 'Inter',sans-serif;transition:all .35s;{{ taFgCol }}">Your shop</div></div>
+<div style="position:absolute;left:0;right:0;top:52px;text-align:center;font:500 26px 'Space Grotesk',sans-serif;transition:all .35s;{{ taFgCol }}">12:41</div>
+<div style="position:absolute;left:0;right:0;bottom:10px;text-align:center;font:400 8px 'Inter',sans-serif;transition:all .35s;{{ taMutedCol }}">thanks — see you soon</div>
+</div></div>
+<div style="margin-top:8px;font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#8b9490;text-align:center">idle — the little sign</div>
+</div>
+<div>
+<div style="aspect-ratio:1;border-radius:12px;background:#111413;padding:7px;box-sizing:border-box"><div style="position:relative;width:100%;height:100%;border-radius:7px;overflow:hidden;transition:all .35s;{{ taScreen }}">
+<div style="position:absolute;left:50%;top:22px;margin-left:-39px;width:78px;height:78px;display:grid;grid-template-columns:repeat(13,1fr);grid-template-rows:repeat(13,1fr)">
+<sc-for list="{{ taQr }}" as="c" hint-placeholder-count="169"><div style="background:{{ c }}"></div></sc-for>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:14px;text-align:center;font:500 9px 'Inter',sans-serif;transition:all .35s;{{ taFgCol }}">scan for your receipt</div>
+</div></div>
+<div style="margin-top:8px;font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#8b9490;text-align:center">qr — the main event</div>
+</div>
+<div>
+<div style="aspect-ratio:1;border-radius:12px;background:#111413;padding:7px;box-sizing:border-box"><div style="position:relative;width:100%;height:100%;border-radius:7px;overflow:hidden;transition:all .35s;{{ taScreen }}">
+<div style="position:absolute;left:50%;top:58px;margin-left:-22px;display:flex;gap:8px">
+<div style="width:9px;height:9px;border-radius:50%;transition:all .35s;{{ taAccent }}"></div>
+<div style="width:9px;height:9px;border-radius:50%;opacity:.55;transition:all .35s;{{ taAccent }}"></div>
+<div style="width:9px;height:9px;border-radius:50%;opacity:.25;transition:all .35s;{{ taAccent }}"></div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:16px;text-align:center;font:400 9px 'Inter',sans-serif;transition:all .35s;{{ taMutedCol }}">one moment…</div>
+</div></div>
+<div style="margin-top:8px;font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#8b9490;text-align:center">processing</div>
+</div>
+<div>
+<div style="aspect-ratio:1;border-radius:12px;background:#111413;padding:7px;box-sizing:border-box"><div style="position:relative;width:100%;height:100%;border-radius:7px;overflow:hidden;transition:all .35s;{{ taScreen }}">
+<div style="position:absolute;left:50%;top:46px;margin-left:-17px;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:600 16px 'Inter',sans-serif;color:#fff;transition:all .35s;{{ taAccent }}">✓</div>
+<div style="position:absolute;left:0;right:0;bottom:16px;text-align:center;font:400 9px 'Inter',sans-serif;transition:all .35s;{{ taMutedCol }}">sent to your phone</div>
+</div></div>
+<div style="margin-top:8px;font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#8b9490;text-align:center">sent</div>
+</div>
+<div>
+<div style="aspect-ratio:1;border-radius:12px;background:#111413;padding:7px;box-sizing:border-box"><div style="position:relative;width:100%;height:100%;border-radius:7px;overflow:hidden;transition:all .35s;{{ taScreen }}">
+<div style="position:absolute;left:50%;top:48px;margin-left:-11px;font:600 22px 'Inter',sans-serif;transition:all .35s;{{ taFgCol }}">✕</div>
+<div style="position:absolute;left:0;right:0;bottom:16px;text-align:center;font:400 9px 'Inter',sans-serif;transition:all .35s;{{ taMutedCol }}">didn't go through — nothing charged</div>
+</div></div>
+<div style="margin-top:8px;font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#8b9490;text-align:center">error</div>
+</div>
+<div>
+<div style="aspect-ratio:1;border-radius:12px;background:#111413;padding:7px;box-sizing:border-box"><div style="position:relative;width:100%;height:100%;border-radius:7px;overflow:hidden;transition:all .35s;{{ taScreen }}">
+<div style="position:absolute;left:50%;top:48px;margin-left:-10px;display:flex;gap:6px">
+<div style="width:7px;height:22px;border-radius:2px;transition:all .35s;{{ taFgCol }};background:currentColor"></div>
+<div style="width:7px;height:22px;border-radius:2px;transition:all .35s;{{ taFgCol }};background:currentColor"></div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:16px;text-align:center;font:400 9px 'Inter',sans-serif;transition:all .35s;{{ taMutedCol }}">paused from the console</div>
+</div></div>
+<div style="margin-top:8px;font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#8b9490;text-align:center">paused</div>
+</div>
+<div>
+<div style="aspect-ratio:1;border-radius:12px;background:#111413;padding:7px;box-sizing:border-box"><div style="position:relative;width:100%;height:100%;border-radius:7px;overflow:hidden;transition:all .35s;{{ taScreen }}">
+<div style="position:absolute;left:0;right:0;top:44px;text-align:center;font:600 20px 'IBM Plex Mono',monospace;letter-spacing:.3em;transition:all .35s;{{ taFgCol }}">7F2K</div>
+<div style="position:absolute;left:0;right:0;bottom:16px;text-align:center;font:400 9px 'Inter',sans-serif;transition:all .35s;{{ taMutedCol }}">pairing code — or none at all</div>
+</div></div>
+<div style="margin-top:8px;font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#8b9490;text-align:center">setup — usually skipped</div>
+</div>
+<div>
+<div style="aspect-ratio:1;border-radius:12px;background:#111413;padding:7px;box-sizing:border-box"><div style="position:relative;width:100%;height:100%;border-radius:7px;overflow:hidden;transition:all .35s;{{ taScreen }}">
+<div style="position:absolute;left:50%;top:20px;margin-left:-28px;width:56px;height:56px;display:grid;grid-template-columns:repeat(13,1fr);grid-template-rows:repeat(13,1fr)">
+<sc-for list="{{ taQr }}" as="c" hint-placeholder-count="169"><div style="background:{{ c }}"></div></sc-for>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:14px;text-align:center;font:400 9px 'Inter',sans-serif;transition:all .35s;{{ taMutedCol }}">one link, always up</div>
+</div></div>
+<div style="margin-top:8px;font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#8b9490;text-align:center">pinned — menus, wi-fi, reviews</div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid #eceee9">
+<div style="box-sizing:border-box;padding:24px 30px 26px 34px;border-right:1px solid #eceee9">
+<div style="font:500 15px 'Space Grotesk',sans-serif;color:#111413">Drag, don't code</div>
+<div style="margin-top:6px;font:400 12.5px/1.55 'Inter',sans-serif;color:#5c645f">Text, images, a clock, the wi-fi dot — drop them anywhere, resize, done.</div>
+<div style="margin-top:8px;font:400 9.5px 'IBM Plex Mono',monospace;color:#8b9490">objects: text · image · clock · wi-fi · qr · countdown</div>
+</div>
+<div style="box-sizing:border-box;padding:24px 30px 26px;border-right:1px solid #eceee9">
+<div style="font:500 15px 'Space Grotesk',sans-serif;color:#111413">Per screen, or per store</div>
+<div style="margin-top:6px;font:400 12.5px/1.55 'Inter',sans-serif;color:#5c645f">Lay out each screen on the 720 × 720 canvas; keep one look across the chain or vary it.</div>
+<div style="margin-top:8px;font:400 9.5px 'IBM Plex Mono',monospace;color:#8b9490">720×720 · zoom 50–200%</div>
+</div>
+<div style="box-sizing:border-box;padding:24px 30px 26px">
+<div style="font:500 15px 'Space Grotesk',sans-serif;color:#111413">One save, every box</div>
+<div style="margin-top:6px;font:400 12.5px/1.55 'Inter',sans-serif;color:#5c645f">Save, and every box repaints in about a second. Offline boxes catch up when they reconnect.</div>
+<div style="margin-top:8px;font:400 9.5px 'IBM Plex Mono',monospace;color:#8b9490">config-changed → d/{device}/cmd</div>
+</div>
+</div>
+<div style="box-sizing:border-box;height:52px;padding:0 34px;display:flex;align-items:center;justify-content:space-between">
+<div style="display:flex;align-items:center;gap:8px"><div style="width:10px;height:10px;border-radius:3px;background:#0f7a54"></div><div style="font:600 13px 'Space Grotesk',sans-serif;color:#111413">{{ brandName }}</div></div>
+<div style="font:400 10px 'IBM Plex Mono',monospace;color:#8b9490">made for counters</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="8c" data-screen-label="8c pricing">
+<div class="dv-olabel"><a class="dv-oid" href="#8c">8c</a>Pricing — one sentence, honestly expanded: hold → shown → spent, no invented numbers</div>
+<div class="dv-card" style="width:1040px;background:#fbfaf7">
+<div style="box-sizing:border-box;height:58px;padding:0 34px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eceee9">
+<div style="display:flex;align-items:center;gap:9px"><div style="width:13px;height:13px;border-radius:4px;background:#0f7a54"></div><div style="font:600 16px 'Space Grotesk',sans-serif;color:#111413">{{ brandName }}</div></div>
+<div style="display:flex;gap:26px;font:500 10.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#5c645f"><span>how it works</span><span>screens</span><span style="color:#111413">pricing</span><span>docs</span></div>
+</div>
+<div style="box-sizing:border-box;padding:48px 34px 36px;text-align:center;border-bottom:1px solid #eceee9">
+<div style="font:500 10.5px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8b9490;margin-bottom:12px">pricing</div>
+<h1 style="margin:0;font:500 40px 'Space Grotesk',sans-serif;letter-spacing:-.02em;color:#111413">One credit per code actually shown.</h1>
+<p style="margin:14px auto 0;max-width:54ch;font:400 14.5px/1.6 'Inter',sans-serif;color:#5c645f">That's the whole model. No subscriptions, no per-box fees, no charge for scanning. You only ever pay for a code a customer could actually see.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid #eceee9">
+<div style="box-sizing:border-box;padding:28px 30px 30px 34px;border-right:1px solid #eceee9">
+<div style="font:700 26px 'Space Grotesk',sans-serif;color:#0f7a54">1</div>
+<div style="margin-top:8px;font:500 15.5px 'Space Grotesk',sans-serif;color:#111413">A request comes in</div>
+<div style="margin-top:6px;font:400 13px/1.55 'Inter',sans-serif;color:#5c645f">One credit goes on hold — reserved for this code, charged for nothing yet.</div>
+<div style="margin-top:10px;font:400 9.5px 'IBM Plex Mono',monospace;color:#8b9490">credit: 1 reserved</div>
+</div>
+<div style="box-sizing:border-box;padding:28px 30px 30px;border-right:1px solid #eceee9">
+<div style="font:700 26px 'Space Grotesk',sans-serif;color:#0f7a54">2</div>
+<div style="margin-top:8px;font:500 15.5px 'Space Grotesk',sans-serif;color:#111413">The box shows it — spent</div>
+<div style="margin-top:6px;font:400 13px/1.55 'Inter',sans-serif;color:#5c645f">The box confirms the code is on screen. That confirmation spends the credit. Done.</div>
+<div style="margin-top:10px;font:400 9.5px 'IBM Plex Mono',monospace;color:#8b9490">ack { ok:true } → credit: settled</div>
+</div>
+<div style="box-sizing:border-box;padding:28px 30px 30px">
+<div style="font:700 26px 'Space Grotesk',sans-serif;color:#0f7a54">3</div>
+<div style="margin-top:8px;font:500 15.5px 'Space Grotesk',sans-serif;color:#111413">Anything fails — released</div>
+<div style="margin-top:6px;font:400 13px/1.55 'Inter',sans-serif;color:#5c645f">Box offline, request too late, display error: nothing shows, and the hold is released in full.</div>
+<div style="margin-top:10px;font:400 9.5px 'IBM Plex Mono',monospace;color:#8b9490">failed / expired → credit: released</div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;box-sizing:border-box;padding:30px 34px;border-bottom:1px solid #eceee9">
+<div style="border:1.5px solid #d8ded9;border-radius:12px;padding:20px;box-sizing:border-box;background:#fff">
+<div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#8b9490">to start</div>
+<div style="margin-top:8px;font:500 18px 'Space Grotesk',sans-serif;color:#111413">Credits on the house</div>
+<div style="margin-top:6px;font:400 12.5px/1.55 'Inter',sans-serif;color:#5c645f">Every new account starts with a credit grant — enough to put a box on a counter and feel it work.</div>
+</div>
+<div style="border:1.5px solid #0f7a54;border-radius:12px;padding:20px;box-sizing:border-box;background:#fff;box-shadow:0 0 0 3px rgba(15,122,84,.12)">
+<div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#0f7a54">as you grow</div>
+<div style="margin-top:8px;font:500 18px 'Space Grotesk',sans-serif;color:#111413">Top up in the console</div>
+<div style="margin-top:6px;font:400 12.5px/1.55 'Inter',sans-serif;color:#5c645f">Buy credit packs when you run low — checkout takes a minute, credits land instantly, every till shares the balance.</div>
+</div>
+<div style="border:1.5px solid #d8ded9;border-radius:12px;padding:20px;box-sizing:border-box;background:#fff">
+<div style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#8b9490">at scale</div>
+<div style="margin-top:8px;font:500 18px 'Space Grotesk',sans-serif;color:#111413">Chains, talk to us</div>
+<div style="margin-top:6px;font:400 12.5px/1.55 'Inter',sans-serif;color:#5c645f">Many stores, many counters, your own volume — we'll shape a pack that fits.</div>
+</div>
+</div>
+<div style="box-sizing:border-box;padding:26px 34px 30px;border-bottom:1px solid #eceee9">
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+<div><div style="font:500 12.5px 'Inter',sans-serif;color:#111413">What if the box is offline?</div><div style="margin-top:4px;font:400 12px/1.5 'Inter',sans-serif;color:#8b9490">Nothing shows, nothing is charged — the request quietly expires.</div></div>
+<div><div style="font:500 12.5px 'Inter',sans-serif;color:#111413">Does scanning cost anything?</div><div style="margin-top:4px;font:400 12px/1.5 'Inter',sans-serif;color:#8b9490">No. One person or fifty can scan the same code — the credit was spent on showing it.</div></div>
+<div><div style="font:500 12.5px 'Inter',sans-serif;color:#111413">Fees per box, per store?</div><div style="margin-top:4px;font:400 12px/1.5 'Inter',sans-serif;color:#8b9490">None. Credits are the only thing you ever pay for.</div></div>
+</div>
+</div>
+<div style="box-sizing:border-box;height:52px;padding:0 34px;display:flex;align-items:center;justify-content:space-between">
+<div style="display:flex;align-items:center;gap:8px"><div style="width:10px;height:10px;border-radius:3px;background:#0f7a54"></div><div style="font:600 13px 'Space Grotesk',sans-serif;color:#111413">{{ brandName }}</div></div>
+<div style="font:400 10px 'IBM Plex Mono',monospace;color:#8b9490">made for counters</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="8d" data-screen-label="8d docs">
+<div class="dv-olabel"><a class="dv-oid" href="#8d">8d</a>Docs — one endpoint, ten minutes: quickstart with the real request shape</div>
+<div class="dv-card" style="width:1040px;background:#fbfaf7">
+<div style="box-sizing:border-box;height:58px;padding:0 34px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eceee9">
+<div style="display:flex;align-items:center;gap:9px"><div style="width:13px;height:13px;border-radius:4px;background:#0f7a54"></div><div style="font:600 16px 'Space Grotesk',sans-serif;color:#111413">{{ brandName }}</div></div>
+<div style="display:flex;gap:26px;font:500 10.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#5c645f"><span>how it works</span><span>screens</span><span>pricing</span><span style="color:#111413">docs</span></div>
+</div>
+<div style="display:grid;grid-template-columns:220px 1fr">
+<div style="box-sizing:border-box;padding:30px 24px 30px 34px;border-right:1px solid #eceee9;font:400 11px/2.3 'IBM Plex Mono',monospace;color:#8b9490">
+<div style="color:#111413;font-weight:500">getting started</div>
+<div>authentication</div>
+<div>trigger a device</div>
+<div>acks &amp; retries</div>
+<div>errors</div>
+<div>openapi.json</div>
+</div>
+<div style="box-sizing:border-box;padding:34px 34px 38px">
+<h1 style="margin:0;font:500 30px 'Space Grotesk',sans-serif;letter-spacing:-.01em;color:#111413">One endpoint. Ten minutes.</h1>
+<p style="margin:10px 0 0;max-width:60ch;font:400 13.5px/1.6 'Inter',sans-serif;color:#5c645f">There is no SDK to install and nothing runs on the device side. You hold an API key, you name a box, you pass a URL. Everything after that is ours.</p>
+<div style="margin-top:24px;font:500 13px 'Space Grotesk',sans-serif;color:#111413">1 · Get your key</div>
+<p style="margin:6px 0 0;max-width:60ch;font:400 12.5px/1.6 'Inter',sans-serif;color:#5c645f">Create an API key in the console with the <span style="font:500 11px 'IBM Plex Mono',monospace;background:#f0efe9;border-radius:4px;padding:1px 6px">devices:trigger</span> scope. It's shown once — store it like a password.</p>
+<div style="margin-top:20px;font:500 13px 'Space Grotesk',sans-serif;color:#111413">2 · Trigger a box</div>
+<div style="margin-top:10px;background:#111413;border-radius:10px;padding:16px 18px;font:400 11px/1.9 'IBM Plex Mono',monospace;color:#c9c5b8;overflow:hidden">
+<div><span style="color:#8b9490">$</span> curl -X POST https://api.{{ brandName }}.example/api/v1/devices/<span style="color:#f5b63f">dev_8f21</span>/trigger \</div>
+<div>&nbsp;&nbsp;-H <span style="color:#7dc9a6">"Authorization: Bearer sk_live_…"</span> \</div>
+<div>&nbsp;&nbsp;-H <span style="color:#7dc9a6">"Idempotency-Key: 9f3a-…"</span> \</div>
+<div>&nbsp;&nbsp;-H <span style="color:#7dc9a6">"Content-Type: application/json"</span> \</div>
+<div>&nbsp;&nbsp;-d <span style="color:#7dc9a6">'{ "action": "show_qr", "payload": { "url": "https://yourshop.example/r/8f21" } }'</span></div>
+</div>
+<div style="margin-top:10px;background:#f6f5f0;border:1px solid #eceee9;border-radius:10px;padding:12px 18px;font:400 11px/1.8 'IBM Plex Mono',monospace;color:#5c645f">201 · commandId cmd_… · credit held → the box shows your QR → ack settles it</div>
+<div style="margin-top:20px;font:500 13px 'Space Grotesk',sans-serif;color:#111413">3 · That's the integration</div>
+<p style="margin:6px 0 0;max-width:60ch;font:400 12.5px/1.6 'Inter',sans-serif;color:#5c645f">The box shows the code and confirms it — that confirmation spends the credit. A request that can't be delivered in time expires instead of showing late, and the hold is released.</p>
+<div style="margin-top:18px;border-left:3px solid #0f7a54;background:#fff;border-radius:0 10px 10px 0;padding:12px 16px;max-width:60ch">
+<div style="font:500 12px 'Inter',sans-serif;color:#111413">You host the content. Always.</div>
+<div style="margin-top:4px;font:400 12px/1.55 'Inter',sans-serif;color:#5c645f">The URL goes straight into the QR — we never fetch, render, or store what's behind it. Your customer data never leaves your systems.</div>
+</div>
+<div style="margin-top:20px;display:flex;gap:10px;align-items:center">
+<div style="border:1.5px solid #d8ded9;border-radius:99px;padding:7px 16px;font:500 10.5px 'IBM Plex Mono',monospace;color:#111413;cursor:pointer" style-hover="border-color:#111413">GET /api/v1/openapi.json</div>
+<div style="font:400 10px 'IBM Plex Mono',monospace;color:#8b9490">the machine-readable version of everything above</div>
+</div>
+</div>
+</div>
+<div style="box-sizing:border-box;height:52px;padding:0 34px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #eceee9">
+<div style="display:flex;align-items:center;gap:8px"><div style="width:10px;height:10px;border-radius:3px;background:#0f7a54"></div><div style="font:600 13px 'Space Grotesk',sans-serif;color:#111413">{{ brandName }}</div></div>
+<div style="font:400 10px 'IBM Plex Mono',monospace;color:#8b9490">made for counters</div>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">The set is complete: home compresses the story to one pass, screens shows all eight surfaces repainting live, pricing expands one honest sentence (no invented numbers — real packs come from the console), docs is the ten-minute quickstart. Together with 7a these are the site. Next natural step: lift them out of the canvas into real pages.</p>
+</section>
+
 <section class="dv-turn" id="t7">
 <div class="dv-thd"><a class="dv-tid" href="#t7">7</a><span class="dv-tname">One page, zero prior knowledge — 5a + 5c + 6a stitched in the daylight dialect</span></div>
 <div class="dv-opts">
@@ -1522,7 +1842,8 @@ class Component extends DCLogic {
       taScreen: 'background:' + t.bg,
       taAccent: 'background:' + t.accent,
       taFgCol: 'color:' + t.fg,
-      taMutedCol: 'color:' + t.muted
+      taMutedCol: 'color:' + t.muted,
+      taQr: (() => { let h = this.hash('ta' + i); const o = []; for (let n = 0; n < 169; n++) { h = (Math.imul(h, 1664525) + 1013904223) >>> 0; o.push(h / 4294967296 > 0.52 ? t.fg : t.bg); } return o; })()
     };
   }
 

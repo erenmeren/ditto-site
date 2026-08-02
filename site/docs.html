@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>docs — ditto</title>
+<meta name="description" content="One endpoint, ten minutes. The trigger API: auth, idempotency, the real request shape, every error code, and how billing settles.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://erenmeren.github.io/ditto-site/docs.html">
+<meta property="og:title" content="ditto docs — one endpoint. ten minutes.">
+<meta property="og:description" content="The trigger API: auth, idempotency, the real request shape, every error code, and how billing settles.">
+<meta property="og:image" content="https://erenmeren.github.io/ditto-site/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+<div class="wrap">
+<a class="brand" href="index.html">ditto</a>
+<div class="nav-links">
+<a href="index.html#how">how it works</a>
+<a href="docs.html" aria-current="page">docs</a>
+<a class="gh" href="https://github.com/erenmeren/ditto-admin" aria-label="ditto on GitHub" title="the console, on GitHub">
+<svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+</a>
+<a class="order" href="mailto:erenaltan@gmail.com?subject=ditto%20pilot&body=Hi%20%E2%80%94%20I%20run%20___%20(shop%2Fchain%2C%20city)%2C%20with%20___%20tills.%0AI%27d%20like%20to%20put%20a%20box%20on%20a%20counter.">join the pilot</a>
+</div>
+</div>
+</nav>
+
+<header class="hero-sub rule-b">
+<div class="wrap">
+<div class="eyebrow" style="margin-bottom:20px">docs — the whole api</div>
+<h1>one endpoint.<br><span class="hl">ten minutes.</span></h1>
+<p>No SDK, nothing runs on the device side. You hold an API key, you name a box, you pass a URL. This page is the entire integration — the machine-readable version is <a class="doc-link" href="https://github.com/erenmeren/ditto-admin">openapi.json in the console repo</a>.</p>
+</div>
+</header>
+
+<section class="doc-sec rule-b">
+<div class="wrap">
+<h2 class="display doc-h2">1 · get your key</h2>
+<p class="doc-p">Create an API key in the console with the <span class="inline-code">devices:trigger</span> scope. It's shown once — store it like a password. Every request carries it as a bearer token.</p>
+</div>
+</section>
+
+<section class="doc-sec rule-b">
+<div class="wrap">
+<h2 class="display doc-h2">2 · trigger a box</h2>
+<p class="doc-p">One POST. The <span class="inline-code">Idempotency-Key</span> header is required — retry with the same key and you get the stored response back, never a double charge.</p>
+<div class="codeblock">$ curl -X POST https://&lt;your-console-host&gt;/api/v1/devices/<span class="c-hl">dev_8f21</span>/trigger \
+  -H "Authorization: Bearer sk_live_…" \
+  -H "Idempotency-Key: 9f3a-…" \
+  -H "Content-Type: application/json" \
+  -d '{ "action": "show_qr", "payload": { "url": "https://yourshop.example/r/8f21" } }'</div>
+<div class="resultblock">202 · { "id": "cmd_…", "status": "queued" } — one credit is now on hold</div>
+<p class="doc-p">The URL must be http(s), at most 2048 characters. We never fetch, render, or store what's behind it — it goes straight into the QR.</p>
+</div>
+</section>
+
+<section class="doc-sec rule-b">
+<div class="wrap">
+<h2 class="display doc-h2">3 · how you know it worked</h2>
+<p class="doc-p"><strong>202 means queued, not shown.</strong> Within a couple of seconds the box displays the code and confirms it — that confirmation spends the held credit. If the box can't confirm within <strong>60 seconds</strong>, the request expires and the hold is released in full. A late code never appears.</p>
+<p class="doc-p">There is no status endpoint or callback yet — that's deliberate minimalism at this stage, not an accident. Billing is self-reconciling (you're only ever charged for confirmed showings); the console's activity and credit ledger show every command's outcome, and <span class="inline-code">GET /api/v1/usage</span> returns your organisation's usage programmatically. If your integration needs a per-command status call, tell us — it's on the roadmap.</p>
+</div>
+</section>
+
+<section class="doc-sec rule-b">
+<div class="wrap">
+<h2 class="display doc-h2">every answer the api gives</h2>
+<div class="err-table">
+<div class="err-row err-ok"><span>202</span><span>—</span><span>queued; one credit on hold, settled on the box's confirmation</span></div>
+<div class="err-row"><span>400</span><span>missing_idempotency_key</span><span>add the Idempotency-Key header</span></div>
+<div class="err-row"><span>401</span><span>invalid_api_key</span><span>bad or revoked bearer token</span></div>
+<div class="err-row"><span>402</span><span>insufficient_credits</span><span>balance is empty — top up in the console; nothing was charged</span></div>
+<div class="err-row"><span>403</span><span>insufficient_scope</span><span>key lacks devices:trigger</span></div>
+<div class="err-row"><span>404</span><span>device_not_found</span><span>unknown device, or not in your organisation</span></div>
+<div class="err-row"><span>409</span><span>device_offline</span><span>box offline or paused — rejected before any credit is held</span></div>
+<div class="err-row"><span>409</span><span>conflict</span><span>same Idempotency-Key is being processed right now</span></div>
+<div class="err-row"><span>422</span><span>invalid_request</span><span>malformed JSON, or the url isn't valid http(s) ≤ 2048 chars</span></div>
+<div class="err-row"><span>429</span><span>fair_use_exceeded</span><span>per-device monthly ceiling (non-credit plans) — honours Retry-After</span></div>
+<div class="err-row"><span>503</span><span>transport_unavailable</span><span>broker hiccup — safe to retry with the same Idempotency-Key</span></div>
+</div>
+</div>
+</section>
+
+<section class="doc-sec rule-b">
+<div class="wrap">
+<h2 class="display doc-h2">bonus: pin a durable code</h2>
+<p class="doc-p">Beyond the transient trigger, a box (or a whole store, or the whole organisation) can hold a <strong>pinned</strong> QR — a menu, a wi-fi login, a review link that stays up until you change it. <span class="inline-code">POST /api/v1/devices/{id}/pin</span> (also <span class="inline-code">/stores/{id}/pin</span>, <span class="inline-code">/org/pin</span>). Setting a pin spends one credit immediately — a pin can't fail to display, so there's nothing to hold.</p>
+</div>
+</section>
+
+<section class="pilot rule-b">
+<div class="wrap pilot-cols">
+<div>
+<h2 class="display">stuck, or missing an endpoint?</h2>
+<p>The console and API are developed in the open. Read the source, open an issue, or just write — the person answering is the person who wrote the code.</p>
+<p class="founder-note"><a href="https://github.com/erenmeren/ditto-admin">github.com/erenmeren/ditto-admin</a> · <a href="mailto:erenaltan@gmail.com">erenaltan@gmail.com</a></p>
+</div>
+<a class="keycap pilot-btn" href="mailto:erenaltan@gmail.com?subject=ditto%20api&body=Hi%20%E2%80%94%20I%27m%20integrating%20___%20and%20I%20need%20___."><span>ask a question</span><span>→</span></a>
+</div>
+</section>
+
+<footer class="footer">
+<div class="wrap">
+<span class="brand">ditto</span>
+<span><a href="mailto:erenaltan@gmail.com">erenaltan@gmail.com</a> · made for counters</span>
+</div>
+</footer>
+
+</body>
+</html>

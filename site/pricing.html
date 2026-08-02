@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>pricing — ditto</title>
+<meta name="description" content="One credit per code actually shown. No subscriptions, no per-box fees, no charge for scanning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+<div class="wrap">
+<a class="brand" href="index.html">ditto</a>
+<div class="nav-links">
+<a href="how-it-works.html">how it works</a>
+<a href="screens.html">screens</a>
+<a href="pricing.html" aria-current="page">pricing</a>
+<a href="docs.html">docs</a>
+</div>
+</div>
+</nav>
+
+<header class="cost rule-b" style="padding:56px 0 44px">
+<div class="wrap">
+<div class="eyebrow" style="margin-bottom:12px">pricing</div>
+<h1>One credit per code actually shown.</h1>
+<p style="font-size:14.5px">That's the whole model. No subscriptions, no per-box fees, no charge for scanning. You only ever pay for a code a customer could actually see.</p>
+</div>
+</header>
+
+<section class="rule-b">
+<div class="wrap credit-steps">
+<div>
+<div class="n">1</div>
+<h3>A request comes in</h3>
+<p>One credit goes on hold — reserved for this code, charged for nothing yet.</p>
+<div class="mono-note">credit: 1 reserved</div>
+</div>
+<div>
+<div class="n">2</div>
+<h3>The box shows it — spent</h3>
+<p>The box confirms the code is on screen. That confirmation spends the credit. Done.</p>
+<div class="mono-note">ack { ok:true } → credit: settled</div>
+</div>
+<div>
+<div class="n">3</div>
+<h3>Anything fails — released</h3>
+<p>Box offline, request too late, display error: nothing shows, and the hold is released in full.</p>
+<div class="mono-note">failed / expired → credit: released</div>
+</div>
+</div>
+</section>
+
+<section class="rule-b">
+<div class="wrap packs">
+<div class="pack">
+<div class="eyebrow">to start</div>
+<h3>Credits on the house</h3>
+<p>Every new account starts with a credit grant — enough to put a box on a counter and feel it work.</p>
+</div>
+<div class="pack hot">
+<div class="eyebrow">as you grow</div>
+<h3>Top up in the console</h3>
+<p>Buy credit packs when you run low — checkout takes a minute, credits land instantly, every till shares the balance.</p>
+</div>
+<div class="pack">
+<div class="eyebrow">at scale</div>
+<h3>Chains, talk to us</h3>
+<p>Many stores, many counters, your own volume — we'll shape a pack that fits.</p>
+</div>
+</div>
+</section>
+
+<section class="rule-b">
+<div class="wrap faq">
+<div>
+<h3>What if the box is offline?</h3>
+<p>Nothing shows, nothing is charged — the request quietly expires.</p>
+</div>
+<div>
+<h3>Does scanning cost anything?</h3>
+<p>No. One person or fifty can scan the same code — the credit was spent on showing it.</p>
+</div>
+<div>
+<h3>Fees per box, per store?</h3>
+<p>None. Credits are the only thing you ever pay for.</p>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="wrap">
+<span class="brand">ditto</span>
+<span class="tag">made for counters</span>
+</div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

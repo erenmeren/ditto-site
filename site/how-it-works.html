@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>how it works — ditto</title>
+<meta name="description" content="Four things, in order, every single time: your till sends a link, we check and hold a credit, the code shows — that's when you pay — and the customer scans it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+<div class="wrap">
+<a class="brand" href="index.html">ditto</a>
+<div class="nav-links">
+<a href="how-it-works.html" aria-current="page">how it works</a>
+<a href="screens.html">screens</a>
+<a href="pricing.html">pricing</a>
+<a href="docs.html">docs</a>
+</div>
+</div>
+</nav>
+
+<header class="hero rule-b">
+<div class="wrap">
+<div>
+<div class="eyebrow" style="margin-bottom:14px">paper, replaced</div>
+<h1>A small screen, instead of a piece of paper.</h1>
+<p class="lede">Receipts, tickets, order slips — printed, handed over, lost. <strong>ditto</strong> is a palm-sized touch screen that sits by your till. Where you would have printed, it shows a square code instead. The customer points their phone camera at it, and the page opens right there — theirs to keep.</p>
+<p class="aside">Nothing to install — not for you, not for them.</p>
+</div>
+<div class="hero-scene">
+<div class="row">
+<div class="device hero-device">
+<div class="device-screen">
+<span class="shop">Your shop</span>
+<div class="qr" data-seed="hero" aria-hidden="true"></div>
+<span class="cap">scan for your receipt</span>
+</div>
+</div>
+<div class="phone-mini" aria-hidden="true"><span class="dot"></span><i></i><i style="width:70%"></i><i style="margin-top:auto;width:85%"></i></div>
+</div>
+<div class="mono-note">counter → phone, in about a second</div>
+</div>
+</div>
+</header>
+
+<section>
+<div class="wrap section-head">
+<div class="eyebrow">step by step</div>
+<h2>So what actually happens?</h2>
+<p>Four things, in order, every single time. Scroll the list — the map on the right follows. The small grey lines are for your developer; feel free to skip them.</p>
+</div>
+<div class="wrap">
+<div class="story rule-b" data-beat="0">
+<div class="story-scroller" tabindex="0" aria-label="The four steps, scrollable">
+<div class="story-beat">
+<div class="num">01</div>
+<h3>Your till has something for the customer</h3>
+<p>A receipt, a ticket, a booking. Your system sends it our way — one message, carrying a link to the page you already host. We never see what's on that page.</p>
+<div class="mono-note">POST /api/v1/devices/dev_8f21/trigger · { action:"show_qr", payload:{ url } } · Idempotency-Key</div>
+</div>
+<div class="story-beat">
+<div class="num">02</div>
+<h3>We check, and set a credit aside</h3>
+<p>Is the request really from you? Is that box switched on? Then one credit goes on hold. On hold — not charged.</p>
+<div class="mono-note">api key · scope devices:trigger · device: online · credit: 1 reserved</div>
+</div>
+<div class="story-beat">
+<div class="num">03</div>
+<h3>The code appears — that's when you pay</h3>
+<p>About a second later, the exact box you named shows the square code and confirms it. That confirmation spends the held credit — one credit, only for a code actually shown. Box off, moment passed? Nothing shows, nothing is charged.</p>
+<div class="mono-note">mqtt d/dev_8f21/cmd · ack { ok:true } · credit: settled · late trigger → expired, released</div>
+</div>
+<div class="story-beat">
+<div class="num">04</div>
+<h3>The customer scans it</h3>
+<p>They point their camera — the page opens in their phone's browser. No app to download, no account to create, no email address to spell out loud.</p>
+<div class="mono-note">GET &lt;your url&gt; — their phone, their browser</div>
+</div>
+</div>
+<div class="stage" aria-hidden="true">
+<div class="seg seg1"></div><div class="seg seg2"></div><div class="seg seg3"></div>
+<div class="pulse"></div>
+<div class="station s1">
+<div class="label">your system</div>
+<div class="val">one request out</div>
+</div>
+<div class="station s2">
+<div class="label">ditto cloud</div>
+<div class="row"><div class="val">key ✓ · box online ✓</div><div class="credit-pill">1 credit</div></div>
+</div>
+<div class="station s3">
+<div class="label">the box on the counter — till 2</div>
+<div class="station-box">
+<div class="box-mock">
+<div class="screen">
+<div class="idle"><span class="dot" style="width:9px;height:9px"></span>ready</div>
+<div class="qr" data-seed="story0"></div>
+</div>
+</div>
+<div class="mono-note" style="font-size:10.5px">touch screen · wi-fi<br>nothing to install · paid on show</div>
+</div>
+</div>
+<div class="station s4">
+<div class="label">their phone</div>
+<div class="station-box">
+<div class="phone-sil"><span class="dot"></span><i></i><i style="width:70%"></i><i style="width:85%"></i></div>
+<div class="mono-note" style="font-size:10.5px">their camera<br>does the rest</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="demo">
+<div class="wrap section-head">
+<div class="eyebrow">try it</div>
+<h2>See it for yourself.</h2>
+<p>A working model of the real thing. Pick what the till is sending, press send, and watch the counter — the clock on the right is counting real milliseconds.</p>
+</div>
+<div class="wrap">
+<div class="demo rule-b" data-kind="receipt" data-step="" data-autoplay="true">
+<div class="panel" style="position:relative">
+<div class="panel-head">your system</div>
+<div class="kinds">
+<button class="kind" data-kind="receipt" aria-pressed="true">receipt</button>
+<button class="kind" data-kind="ticket" aria-pressed="false">ticket</button>
+<button class="kind" data-kind="menu" aria-pressed="false">menu</button>
+</div>
+<div class="demo-url">https://yourshop.example/receipt/8f21</div>
+<div class="req-preview">POST /api/v1/devices/dev_8f21/trigger<br>{ action: "show_qr",<br>&nbsp;&nbsp;payload: { url } }</div>
+<button class="keycap">SEND</button>
+<div class="fly-chip" aria-hidden="true">{ url } →</div>
+</div>
+<div class="panel cloud-panel">
+<div class="panel-head"><span>ditto cloud</span><span class="sub">← request in</span></div>
+<div class="cloud-checks">
+<div>key ✓ scope devices:trigger<br>box online ✓</div>
+<div class="hold-pill">1 credit · held</div>
+<div class="demo-note">pick a kind, press send</div>
+</div>
+<div class="cloud-out">one command to the box →</div>
+</div>
+<div class="panel demo-right">
+<div class="panel-head" style="align-self:stretch"><span>the box on your counter</span><span class="sub">till 2 · dev_8f21</span></div>
+<div class="demo-stagewrap">
+<div class="device-lg">
+<div class="screen">
+<div class="idle"><span class="dot" style="width:10px;height:10px"></span>ready</div>
+<div class="qr" data-seed="demo0"></div>
+</div>
+</div>
+<div class="counter-bar" aria-hidden="true"></div>
+<div class="phone-overlay" aria-hidden="true">
+<div class="page"><span class="dot"></span><h4>Your receipt</h4><div class="line">total 7.00 · returns 30 days</div><div class="bars"><i></i><i style="width:65%"></i></div></div>
+</div>
+</div>
+<div class="demo-result">
+<div class="stopwatch">000 ms</div>
+<div class="ack-line">ack { ok:true } · settled</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="themed">
+<div class="wrap section-head">
+<div class="eyebrow">your brand</div>
+<h2>Your counter, your brand.</h2>
+<p>Between codes, the box is a little sign for your shop — and every one of its screens is yours to design. Set it once in the console; every box repaints a second later.</p>
+</div>
+<div class="wrap">
+<div class="themes">
+<button class="pill" data-theme="warm-cafe" aria-pressed="true"><span class="swatch" style="background:#B4541F"></span>warm café</button>
+<button class="pill" data-theme="minimal-mono" aria-pressed="false"><span class="swatch" style="background:#111827"></span>minimal mono</button>
+<button class="pill" data-theme="bold-retail" aria-pressed="false"><span class="swatch" style="background:#E5484D"></span>bold retail</button>
+<button class="pill" data-theme="fresh-market" aria-pressed="false"><span class="swatch" style="background:#3F9D4E"></span>fresh market</button>
+<span class="mono-note">pick a theme — the box repaints as you click</span>
+</div>
+<div class="screen-tiles rule-b" style="grid-template-columns:repeat(2,minmax(0,260px));justify-content:center;padding-bottom:44px">
+<div>
+<div class="tile"><div class="face">
+<span class="t-shop">Your shop</span>
+<div class="t-clock">12:41</div>
+<div class="t-foot">thanks — see you soon</div>
+</div></div>
+<div class="tile-cap">idle — the little sign</div>
+</div>
+<div>
+<div class="tile"><div class="face">
+<div class="qr big" data-seed="themeqr" data-themed></div>
+<div class="t-foot" style="color:var(--t-fg)">scan for your receipt</div>
+</div></div>
+<div class="tile-cap">qr — the main event</div>
+</div>
+</div>
+<p class="mono-note" style="padding-bottom:34px;text-align:center">all eight screens are on the <a href="screens.html" style="color:var(--ink)">screens page</a> — idle · qr · processing · sent · error · paused · setup · pinned</p>
+</div>
+</section>
+
+<section class="cost rule-b" style="border-top:1px solid var(--line)">
+<div class="wrap">
+<div class="eyebrow" style="margin-bottom:10px">what it costs</div>
+<h2>One credit per code actually shown.</h2>
+<p>No subscriptions, no per-box fees. A code that never appears costs nothing. Top up in the console when you run low — and every new customer starts with credits on the house.</p>
+<div class="mono-note">prepaid credits · failed display = free · starter grant included</div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="wrap">
+<span class="brand">ditto</span>
+<span class="tag">made for counters</span>
+</div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

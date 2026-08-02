@@ -154,21 +154,29 @@
 <div class="brand-copy">
 <div class="eyebrow">branding — the screen is yours</div>
 <h2>your logo. your colour. instantly.</h2>
-<p>All eight screens are canvases in the console — drag, resize, theme, or derive a palette from one accent. Pick a colour; save would repaint every box across your stores, seconds later. Offline ones catch up when they're back.</p>
-<div class="swatches">
-<button class="swatch" data-color="#0f7a54" aria-pressed="true" aria-label="Green" style="background:#0f7a54"></button>
-<button class="swatch" data-color="#d2541f" aria-pressed="false" aria-label="Orange" style="background:#d2541f"></button>
-<button class="swatch" data-color="#1b3fa0" aria-pressed="false" aria-label="Blue" style="background:#1b3fa0"></button>
-<button class="swatch" data-color="#16150f" aria-pressed="false" aria-label="Ink" style="background:#16150f"></button>
-<span class="swatch-note" data-hex>#0f7a54 · every box, one save</span>
+<p>All eight screens are canvases in the console — drag your logo and text anywhere on the 720 × 720 screen, then pick a theme and background, text and accent repaint together. The studio on the right is replaying exactly that; grab a theme to take over.</p>
+<div class="themes">
+<button class="pill theme-pill" data-theme="warm-cafe" aria-pressed="false"><span class="swatch-dot" style="background:#B4541F"></span>warm café</button>
+<button class="pill theme-pill" data-theme="minimal-mono" aria-pressed="false"><span class="swatch-dot" style="background:#111827"></span>minimal mono</button>
+<button class="pill theme-pill" data-theme="bold-retail" aria-pressed="false"><span class="swatch-dot" style="background:#E5484D"></span>bold retail</button>
+<button class="pill theme-pill" data-theme="fresh-market" aria-pressed="true"><span class="swatch-dot" style="background:#3F9D4E"></span>fresh market</button>
 </div>
+<p class="mono-note" style="margin-top:12px">real console presets — or derive a whole palette from one accent · one save, every box</p>
 </div>
-<div class="brand-preview">
-<span class="cap">what the counter shows</span>
-<div class="panel-card">
-<div class="head"><span class="logo">Y</span><span class="name">Your shop</span></div>
-<div class="qr-wrap"><div class="qr" data-seed="brand0"></div></div>
+<div class="brand-preview studio" data-step="0">
+<span class="cap">the studio, replayed</span>
+<div class="studio-tray" aria-hidden="true">
+<span class="tray-chip" data-obj="logo">logo</span>
+<span class="tray-chip" data-obj="text">text</span>
+<span class="tray-chip dim">clock</span>
+<span class="tray-chip dim">wi-fi</span>
 </div>
+<div class="panel-card studio-screen">
+<div class="pc-logo"><i></i>your logo</div>
+<div class="pc-text">thanks — see you soon</div>
+</div>
+<div class="drag-ghost" aria-hidden="true">logo</div>
+<span class="studio-status" data-status>&nbsp;</span>
 </div>
 </div>
 </section>

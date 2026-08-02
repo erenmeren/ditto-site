@@ -109,6 +109,7 @@ input { font: inherit; }
 .device-hero .qr { position: absolute; left: 50%; top: 40px; margin-left: -46px; width: 92px; height: 92px; }
 .device-hero .cap { position: absolute; left: 0; right: 0; bottom: 10px; text-align: center; font: 400 8px var(--sans); color: var(--muted); }
 .counter-line { width: 230px; height: 9px; background: #c9c5bc; }
+.render-img { width: 100%; max-width: 268px; height: auto; border: 2px solid var(--ink); background: #eceade; }
 .meet-copy { padding: 34px 0 34px 30px; display: flex; flex-direction: column; justify-content: center; }
 .meet-copy h2 { font-size: clamp(24px, 3.6vw, 30px); line-height: .95; }
 .meet-copy p { margin-top: 14px; max-width: 54ch; font-size: 15.5px; line-height: 1.5; color: var(--body); }

@@ -19,7 +19,7 @@
 
 <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 26px;border-bottom:2px solid #16150f;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#16150f">
 <span style="font-family:'Archivo Black',Arial,sans-serif;font-size:15px;letter-spacing:-.02em;text-transform:lowercase">{{ brandName }}</span>
-<div style="display:flex;gap:20px;color:#6b675c"><span style="cursor:pointer" style-hover="color:#16150f">how it works</span><span style="cursor:pointer" style-hover="color:#16150f">screens</span><span style="cursor:pointer" style-hover="color:#16150f">pricing</span><span style="border:2px solid #16150f;color:#16150f;padding:2px 9px">order · soon</span></div>
+<div style="display:flex;gap:20px;color:#6b675c"><span style="cursor:pointer" style-hover="color:#16150f">how it works</span><span style="border:2px solid #16150f;color:#16150f;padding:2px 9px">order · soon</span></div>
 </div>
 
 <div style="padding:56px 26px 44px;border-bottom:2px solid #16150f">
@@ -31,6 +31,27 @@
 <div style="display:flex;gap:12px;margin-top:30px">
 <div style="padding:14px 24px;background:#16150f;color:#f4f3ee;font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="background:#e8ff2f;color:#16150f">see how it works</div>
 <div style="padding:14px 24px;border:2px solid #16150f;color:#16150f;font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="background:#e8ff2f">order a unit</div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:320px 1fr;border-bottom:2px solid #16150f">
+<div style="padding:30px 26px;border-right:2px solid #16150f;display:flex;flex-direction:column;align-items:center;gap:10px;background:#eae7de">
+<div style="width:190px;height:190px;background:#16150f;padding:11px;box-sizing:border-box;box-shadow:0 14px 24px -10px rgba(22,21,15,.4)">
+<div style="position:relative;width:100%;height:100%;background:#fff;overflow:hidden">
+<div style="position:absolute;left:11px;top:10px;display:flex;align-items:center;gap:5px"><div style="width:8px;height:8px;background:#0f7a54"></div><div style="font:600 9px 'Helvetica Neue',Arial,sans-serif;color:#16150f">Your shop</div></div>
+<div style="position:absolute;left:50%;top:40px;margin-left:-46px;width:92px;height:92px;display:grid;grid-template-columns:repeat(13,1fr);grid-template-rows:repeat(13,1fr)">
+<sc-for list="{{ t7Qr }}" as="c" hint-placeholder-count="169"><div style="background:{{ c }}"></div></sc-for>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:10px;text-align:center;font:400 8px 'Helvetica Neue',Arial,sans-serif;color:#8a8577">scan for your receipt</div>
+</div>
+</div>
+<div style="width:230px;height:9px;background:#c9c5bc"></div>
+<div style="font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#8a8577">the box · actual size-ish</div>
+</div>
+<div style="padding:34px 26px;display:flex;flex-direction:column;justify-content:center">
+<div style="font-family:'Archivo Black',Arial,sans-serif;font-size:30px;line-height:.95;letter-spacing:-.03em;color:#16150f;text-transform:lowercase">yes — it's a real little box <span style="background:#e8ff2f;padding:0 6px">on your counter.</span></div>
+<p style="margin:14px 0 0;max-width:54ch;font:400 15.5px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">A palm-sized touch screen that lives next to the till. Between customers it shows your brand and the time; the moment your till has something to hand over, it shows the code instead. Wi-fi in, nothing else.</p>
+<div style="margin-top:14px;font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8a8577">palm-sized · touch screen · wi-fi · qr shows 60 s, then back to your screen</div>
 </div>
 </div>
 
@@ -59,7 +80,7 @@
 
 <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 26px;border-bottom:2px solid #16150f;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#16150f">
 <span style="font-family:'Archivo Black',Arial,sans-serif;font-size:15px;letter-spacing:-.02em;text-transform:lowercase">{{ brandName }}</span>
-<div style="display:flex;gap:20px;color:#6b675c"><span style="border-bottom:2px solid #16150f;color:#16150f">how it works</span><span style="cursor:pointer" style-hover="color:#16150f">screens</span><span style="cursor:pointer" style-hover="color:#16150f">pricing</span><span style="border:2px solid #16150f;color:#16150f;padding:2px 9px">order · soon</span></div>
+<div style="display:flex;gap:20px;color:#6b675c"><span style="border-bottom:2px solid #16150f;color:#16150f">how it works</span><span style="border:2px solid #16150f;color:#16150f;padding:2px 9px">order · soon</span></div>
 </div>
 
 <div style="padding:46px 26px 36px;border-bottom:2px solid #16150f">
@@ -519,7 +540,7 @@
 
 <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 26px;border-bottom:2px solid #16150f;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#16150f">
 <span style="font-family:'Archivo Black',Arial,sans-serif;font-size:15px;letter-spacing:-.02em;text-transform:lowercase">{{ brandName }}</span>
-<div style="display:flex;gap:20px;color:#6b675c"><span style="cursor:pointer" style-hover="color:#16150f">the box</span><span style="cursor:pointer" style-hover="color:#16150f">screens</span><span style="cursor:pointer" style-hover="color:#16150f">pricing</span><span style="border:2px solid #16150f;color:#16150f;padding:2px 9px">order · soon</span></div>
+<div style="display:flex;gap:20px;color:#6b675c"><span style="cursor:pointer" style-hover="color:#16150f">the box</span><span style="border:2px solid #16150f;color:#16150f;padding:2px 9px">order · soon</span></div>
 </div>
 
 <div style="padding:50px 26px 38px;border-bottom:2px solid #16150f">
@@ -2459,10 +2480,11 @@ class Component extends DCLogic {
     this.setState({
       tgN: n, tgKind: k, tgMs: ms,
       tgLog: [
-        '$ POST /api/v1/devices/dev_8f21/trigger',
-        '  { action:"show_qr", payload:{ url:"…/' + k + '/8f21" } }',
-        '  202 · credit held → mqtt d/dev_8f21/cmd',
-        '  shown · ack ' + ms + ' ms · credit settled — paid on show'
+        'you    $ show this ' + k + ' on till 2',
+        '       POST /api/v1/devices/dev_8f21/trigger · 202 queued',
+        'cloud  your key ✓ · till 2 is on ✓ · 1 credit on hold',
+        'box    code on screen — confirming…',
+        'cloud  ✓ shown · ' + ms + ' ms · credit spent — paid on show'
       ]
     });
   };
@@ -2472,7 +2494,7 @@ class Component extends DCLogic {
     const qr = (() => { let h = this.hash('tg' + n); const o = []; for (let i = 0; i < 169; i++) { h = (Math.imul(h, 1664525) + 1013904223) >>> 0; o.push(h / 4294967296 > 0.52 ? '#16150f' : '#ffffff'); } return o; })();
     return {
       tgSend: this.tgSend,
-      tgLog: this.state.tgLog ?? ['$ waiting. press the button.', '', '', ''],
+      tgLog: this.state.tgLog ?? ['you    $ waiting. press the button.', '', '', '', ''],
       tgKind: this.state.tgKind ?? '—',
       tgMs: this.state.tgMs ?? 0,
       tgQr: qr,

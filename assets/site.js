@@ -44,28 +44,46 @@
     if (!log || !send) return;
     const KINDS = ['receipt', 'ticket', 'menu', 'warranty'];
     let n = 0, timers = [];
-    function put(lines) { log.replaceChildren(); lines.forEach(t => { const d = document.createElement('div'); d.textContent = t; log.appendChild(d); }); }
+    /* Each line: [actor, text, extra css class]. Actor-labelled plain English,
+       with the raw request kept as one dim line for developers. */
+    function put(lines) {
+      log.replaceChildren();
+      lines.forEach(([a, t, cls]) => {
+        const d = document.createElement('div');
+        if (cls) d.className = cls;
+        const s = document.createElement('span');
+        s.className = 'actor';
+        s.textContent = a;
+        d.appendChild(s);
+        d.appendChild(document.createTextNode(t));
+        log.appendChild(d);
+      });
+    }
     function run() {
       timers.forEach(clearTimeout);
       n++;
       const kind = KINDS[n % 4];
       const ms = 1500 + Math.floor(Math.random() * 700);
       if (kindEl) kindEl.textContent = kind;
-      const l1 = '$ POST /api/v1/devices/dev_8f21/trigger';
-      const l2 = '  { action:"show_qr", payload:{ url:"…/' + kind + '/8f21" } }';
-      const l3 = '  202 { id, status:"queued" } · credit held → mqtt d/dev_8f21/cmd';
-      const l4 = '  shown · ack ' + ms + ' ms · credit settled — paid on show';
+      const L = [
+        ['you', '$ show this ' + kind + ' on till 2'],
+        ['', 'POST /api/v1/devices/dev_8f21/trigger · 202 queued', 'dim'],
+        ['cloud', 'your key ✓ · till 2 is on ✓ · 1 credit on hold'],
+        ['box', 'code on screen — confirming…'],
+        ['cloud', '✓ shown · ' + ms + ' ms · credit spent — paid on show', 'ok']
+      ];
+      const showQr = () => { if (qr) { fillQr(qr, 'demo' + n); qr.classList.add('shown'); } };
       const done = () => {
-        put([l1, l2, l3, l4]);
+        put(L);
         if (msEl) msEl.textContent = ms + ' ms';
-        if (qr) { fillQr(qr, 'demo' + n); qr.classList.add('shown'); }
+        showQr();
       };
       if (rm) { done(); return; }
-      put([l1]);
+      put(L.slice(0, 2));
       if (qr) qr.classList.remove('shown');
       timers = [
-        setTimeout(() => put([l1, l2]), 180),
-        setTimeout(() => put([l1, l2, l3]), 480),
+        setTimeout(() => put(L.slice(0, 3)), 350),
+        setTimeout(() => { put(L.slice(0, 4)); showQr(); }, 850),
         setTimeout(done, ms)
       ];
     }

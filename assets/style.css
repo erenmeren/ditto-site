@@ -57,6 +57,21 @@ input { font: inherit; }
 .founder-note { margin-top: 14px; font: 400 12px/1.6 var(--mono); color: var(--muted); max-width: 56ch; }
 .founder-note a { color: var(--ink); border-bottom: 1px solid var(--ink); }
 
+/* ---------- docs page ---------- */
+.doc-sec { padding: 34px 0 38px; }
+.doc-h2 { font-size: clamp(22px, 3.2vw, 28px); }
+.doc-p { margin-top: 12px; max-width: 66ch; font-size: 14.5px; line-height: 1.6; color: var(--body); }
+.doc-p strong { color: var(--ink); }
+.doc-link { border-bottom: 1px solid var(--ink); }
+.inline-code { font: 500 12px var(--mono); background: #e9e7de; padding: 1px 6px; }
+.err-table { margin-top: 18px; border: 2px solid var(--ink); }
+.err-row { display: grid; grid-template-columns: 64px 240px 1fr; gap: 16px; padding: 9px 14px; font: 400 12px/1.5 var(--mono); color: var(--body); }
+.err-row + .err-row { border-top: 1px solid var(--hairline); }
+.err-row span:first-child { color: var(--ink); font-weight: 600; }
+.err-row span:nth-child(2) { color: var(--ink); }
+.err-ok { background: var(--acid); color: var(--ink); }
+.err-ok span { color: var(--ink) !important; }
+
 /* ---------- faq ---------- */
 .faq-sec { padding: 40px 0 44px; }
 .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 40px; }
@@ -200,6 +215,8 @@ input { font: inherit; }
 @media (max-width: 880px) {
   .hero-cols { grid-template-columns: 1fr; }
   .faq-grid { grid-template-columns: 1fr; }
+  .err-row { grid-template-columns: 48px 1fr; }
+  .err-row span:last-child { grid-column: 1 / -1; }
   .cost .wrap { flex-direction: column; gap: 14px; }
   .cost .side { max-width: none; }
   /* No inner scroll-trap on touch: beats stack in the page flow and the

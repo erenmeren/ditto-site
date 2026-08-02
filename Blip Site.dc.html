@@ -35,7 +35,7 @@
 </div>
 
 <div style="display:grid;grid-template-columns:repeat(4,1fr);border-bottom:2px solid #16150f">
-<div style="padding:28px 22px;border-right:1px solid #d8d5cc"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:34px;color:#16150f">01</div><div style="margin-top:8px;font:400 14.5px/1.45 'Helvetica Neue',Arial,sans-serif;color:#45423a">Plug it in, give it wi-fi. It already knows who it is.</div></div>
+<div style="padding:28px 22px;border-right:1px solid #d8d5cc"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:34px;color:#16150f">01</div><div style="margin-top:8px;font:400 14.5px/1.45 'Helvetica Neue',Arial,sans-serif;color:#45423a">Plug it in, give it wi-fi. A six-character code at most — often none at all.</div></div>
 <div style="padding:28px 22px;border-right:1px solid #d8d5cc"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:34px;color:#16150f">02</div><div style="margin-top:8px;font:400 14.5px/1.45 'Helvetica Neue',Arial,sans-serif;color:#45423a">Send a link. One credit goes on hold — not charged.</div></div>
 <div style="padding:28px 22px;border-right:1px solid #d8d5cc"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:34px;color:#16150f">03</div><div style="margin-top:8px;font:400 14.5px/1.45 'Helvetica Neue',Arial,sans-serif;color:#45423a">The code shows, the box confirms — <span style="background:#e8ff2f;padding:0 3px">that's the credit.</span></div></div>
 <div style="padding:28px 22px"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:34px;color:#16150f">04</div><div style="margin-top:8px;font:400 14.5px/1.45 'Helvetica Neue',Arial,sans-serif;color:#45423a">They scan with their camera. Free, forever, for everyone.</div></div>
@@ -43,7 +43,7 @@
 
 <div style="padding:40px 26px;border-bottom:2px solid #16150f;display:flex;align-items:baseline;justify-content:space-between;gap:30px">
 <div style="font-family:'Archivo Black',Arial,sans-serif;font-size:34px;line-height:1;letter-spacing:-.03em;color:#16150f;text-transform:lowercase">one credit per code <span style="background:#e8ff2f;padding:0 6px">actually shown.</span></div>
-<div style="font:400 13px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a;max-width:30ch;flex:none">Failed or late — released in full. Scanning is free. New accounts start with credits on the house.</div>
+<div style="font:400 13px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a;max-width:30ch;flex:none">Failed or late — released in full. Scanning is free. New accounts start with 50 credits on the house.</div>
 </div>
 
 <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 26px;font:500 10.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#8a8577">
@@ -85,8 +85,8 @@
 <div style="height:100%;box-sizing:border-box;padding:30px 26px;display:flex;flex-direction:column;justify-content:center;scroll-snap-align:start">
 <div style="font-family:'Archivo Black',Arial,sans-serif;font-size:40px;color:#16150f">03</div>
 <div style="margin-top:12px;font-family:'Archivo Black',Arial,sans-serif;font-size:19px;line-height:1.1;letter-spacing:-.02em;color:#16150f;text-transform:lowercase">the code appears — <span style="background:#e8ff2f;padding:0 4px">that's when you pay</span></div>
-<div style="margin-top:10px;max-width:290px;font:400 14px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">About a second later, the exact box you named shows the square code and confirms it. That confirmation spends the held credit. Box off, moment passed? Nothing shows, nothing is charged.</div>
-<div style="margin-top:14px;max-width:290px;font:400 9.5px/1.6 'IBM Plex Mono',monospace;color:#8a8577">mqtt d/dev_8f21/cmd · ack { ok:true } · credit: settled · late trigger → expired, released</div>
+<div style="margin-top:10px;max-width:290px;font:400 14px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">A couple of seconds later, the exact box you named shows the square code and confirms it. That confirmation spends the held credit. Box off, or a minute gone by? Nothing shows, nothing is charged.</div>
+<div style="margin-top:14px;max-width:290px;font:400 9.5px/1.6 'IBM Plex Mono',monospace;color:#8a8577">mqtt d/dev_8f21/cmd · ack { ok:true } · credit: settled · unacked 60 s → expired, released</div>
 </div>
 <div style="height:100%;box-sizing:border-box;padding:30px 26px;display:flex;flex-direction:column;justify-content:center;scroll-snap-align:start">
 <div style="font-family:'Archivo Black',Arial,sans-serif;font-size:40px;color:#16150f">04</div>
@@ -125,7 +125,7 @@
 </div>
 </div>
 </div>
-<div style="font:400 10px/1.6 'IBM Plex Mono',monospace;color:#8a8577;text-transform:uppercase">touch screen · wi-fi<br>nothing to install<br><span style="background:#e8ff2f;color:#16150f;padding:0 3px">paid on show</span></div>
+<div style="font:400 10px/1.6 'IBM Plex Mono',monospace;color:#8a8577;text-transform:uppercase">touch screen · wi-fi<br>qr shows 60 s → back to idle<br><span style="background:#e8ff2f;color:#16150f;padding:0 3px">paid on show</span></div>
 </div>
 </div>
 <div style="top:460px;left:96px;right:24px;position:absolute;transform:translateY(-50%);border:2px solid;padding:12px 16px;transition:all .4s;{{ hyNode3 }}">
@@ -169,7 +169,7 @@
 <div style="padding:34px 26px;border-right:2px solid #16150f">
 <div style="font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577;margin-bottom:14px">branding — the screen is yours</div>
 <div style="font-family:'Archivo Black',Arial,sans-serif;font-size:34px;line-height:.95;letter-spacing:-.03em;color:#16150f;text-transform:lowercase">your logo. your colour. <span style="background:#e8ff2f;padding:0 5px">instantly.</span></div>
-<p style="margin:14px 0 0;max-width:56ch;font:400 15px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">All eight screens are canvases in the console — drag, resize, theme, or derive a palette from one accent. Pick a colour; save would repaint every box in the store in about a second.</p>
+<p style="margin:14px 0 0;max-width:56ch;font:400 15px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">All eight screens are canvases in the console — drag, resize, theme, or derive a palette from one accent. Pick a colour; save would repaint every box across your stores, seconds later. Offline ones catch up when they're back.</p>
 <div style="display:flex;gap:9px;align-items:center;margin-top:18px">
 <div onClick="{{ pickG }}" style="width:36px;height:36px;background:#0f7a54;border:2px solid #16150f;cursor:pointer" style-hover="transform:translateY(-2px)"></div>
 <div onClick="{{ pickO }}" style="width:36px;height:36px;background:#d2541f;border:2px solid #16150f;cursor:pointer" style-hover="transform:translateY(-2px)"></div>
@@ -196,7 +196,7 @@
 
 <div style="padding:36px 26px;border-bottom:2px solid #16150f;display:flex;align-items:baseline;justify-content:space-between;gap:30px">
 <div style="font-family:'Archivo Black',Arial,sans-serif;font-size:30px;line-height:1;letter-spacing:-.03em;color:#16150f;text-transform:lowercase">one credit per code <span style="background:#e8ff2f;padding:0 6px">actually shown.</span></div>
-<div style="font:400 12.5px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a;max-width:32ch;flex:none">No subscriptions, no per-box fees, no charge for scanning. Failed or late — released in full.</div>
+<div style="font:400 12.5px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a;max-width:32ch;flex:none">Scanning is free, failures are released in full. Start prepaid with 50 credits on the house — chains can move to per-device plans later.</div>
 </div>
 
 <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 26px;font:500 10.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#8a8577">
@@ -224,7 +224,7 @@
 </div>
 
 <div style="display:grid;grid-template-columns:repeat(4,1fr);border-bottom:2px solid #16150f">
-<div style="padding:26px 22px;border-right:1px solid #d8d5cc"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:30px;color:#16150f">01</div><div style="margin-top:7px;font:400 14px/1.45 'Helvetica Neue',Arial,sans-serif;color:#45423a">Plug it in, give it wi-fi. It knows who it is.</div></div>
+<div style="padding:26px 22px;border-right:1px solid #d8d5cc"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:30px;color:#16150f">01</div><div style="margin-top:7px;font:400 14px/1.45 'Helvetica Neue',Arial,sans-serif;color:#45423a">Plug it in, give it wi-fi. A code at most — often none.</div></div>
 <div style="padding:26px 22px;border-right:1px solid #d8d5cc"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:30px;color:#16150f">02</div><div style="margin-top:7px;font:400 14px/1.45 'Helvetica Neue',Arial,sans-serif;color:#45423a">Send a link. A credit goes on hold.</div></div>
 <div style="padding:26px 22px;border-right:1px solid #d8d5cc"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:30px;color:#16150f">03</div><div style="margin-top:7px;font:400 14px/1.45 'Helvetica Neue',Arial,sans-serif;color:#45423a">Code shows, box confirms — <span style="background:#e8ff2f;padding:0 3px">that's the credit.</span></div></div>
 <div style="padding:26px 22px"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:30px;color:#16150f">04</div><div style="margin-top:7px;font:400 14px/1.45 'Helvetica Neue',Arial,sans-serif;color:#45423a">They scan. Free, forever, for everyone.</div></div>
@@ -248,7 +248,7 @@
 <div style="font-family:'Archivo Black',Arial,sans-serif;font-size:40px;color:#16150f">03</div>
 <div style="margin-top:12px;font-family:'Archivo Black',Arial,sans-serif;font-size:19px;line-height:1.1;letter-spacing:-.02em;color:#16150f;text-transform:lowercase">the code appears — <span style="background:#e8ff2f;padding:0 4px">that's when you pay</span></div>
 <div style="margin-top:10px;max-width:290px;font:400 14px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">The box you named shows the code and confirms it — that confirmation spends the credit. Nothing shown, nothing charged.</div>
-<div style="margin-top:14px;max-width:290px;font:400 9.5px/1.6 'IBM Plex Mono',monospace;color:#8a8577">mqtt d/dev_8f21/cmd · ack · settled · late → expired</div>
+<div style="margin-top:14px;max-width:290px;font:400 9.5px/1.6 'IBM Plex Mono',monospace;color:#8a8577">mqtt d/dev_8f21/cmd · ack · settled · unacked 60 s → expired</div>
 </div>
 <div style="height:100%;box-sizing:border-box;padding:30px 26px;display:flex;flex-direction:column;justify-content:center;scroll-snap-align:start">
 <div style="font-family:'Archivo Black',Arial,sans-serif;font-size:40px;color:#16150f">04</div>
@@ -328,7 +328,7 @@
 <div style="padding:30px 26px;border-right:2px solid #16150f">
 <div style="font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8a8577;margin-bottom:12px">branding — the screen is yours</div>
 <div style="font-family:'Archivo Black',Arial,sans-serif;font-size:30px;line-height:.95;letter-spacing:-.03em;color:#16150f;text-transform:lowercase">your logo. your colour. <span style="background:#e8ff2f;padding:0 5px">instantly.</span></div>
-<p style="margin:12px 0 0;max-width:56ch;font:400 14px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">Eight screens, one studio — drag, resize, theme, or derive a palette from one accent. Save repaints every box in about a second.</p>
+<p style="margin:12px 0 0;max-width:56ch;font:400 14px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">Eight screens, one studio — drag, resize, theme, or derive a palette from one accent. Save repaints every box across your stores, seconds later.</p>
 <div style="display:flex;gap:9px;align-items:center;margin-top:16px">
 <div onClick="{{ pickG }}" style="width:34px;height:34px;background:#0f7a54;border:2px solid #16150f;cursor:pointer" style-hover="transform:translateY(-2px)"></div>
 <div onClick="{{ pickO }}" style="width:34px;height:34px;background:#d2541f;border:2px solid #16150f;cursor:pointer" style-hover="transform:translateY(-2px)"></div>
@@ -367,7 +367,7 @@
 <div>&nbsp;&nbsp;-H "Idempotency-Key: 9f3a-…" \</div>
 <div>&nbsp;&nbsp;-d '{ "action": "show_qr", "payload": { "url": "…" } }'</div>
 </div>
-<div style="margin-top:10px;font:400 11px 'IBM Plex Mono',monospace;color:#8a8577">201 → shown → ack → settled · that's the whole thing · openapi.json has the rest</div>
+<div style="margin-top:10px;font:400 11px 'IBM Plex Mono',monospace;color:#8a8577">202 { id, status:"queued" } → shown → ack → settled · that's the whole thing · openapi.json has the rest</div>
 </div>
 <div style="padding:30px 26px;background:#eae7de;display:flex;flex-direction:column;justify-content:center">
 <div style="font-family:'Archivo Black',Arial,sans-serif;font-size:24px;line-height:1;letter-spacing:-.02em;color:#16150f;text-transform:lowercase">one endpoint.<br><span style="background:#e8ff2f;padding:0 5px">ten minutes.</span></div>
@@ -536,7 +536,7 @@
 </div>
 
 <div style="display:grid;grid-template-columns:repeat(4,1fr);border-bottom:2px solid #16150f">
-<div style="padding:28px 22px;border-right:1px solid #d8d5cc"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:34px;color:#16150f">01</div><div style="margin-top:8px;font:400 14.5px/1.45 'Helvetica Neue',Arial,sans-serif;color:#45423a">Plug it in, give it wi-fi. It already knows who it is.</div></div>
+<div style="padding:28px 22px;border-right:1px solid #d8d5cc"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:34px;color:#16150f">01</div><div style="margin-top:8px;font:400 14.5px/1.45 'Helvetica Neue',Arial,sans-serif;color:#45423a">Plug it in, give it wi-fi. A six-character code at most — often none at all.</div></div>
 <div style="padding:28px 22px;border-right:1px solid #d8d5cc"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:34px;color:#16150f">02</div><div style="margin-top:8px;font:400 14.5px/1.45 'Helvetica Neue',Arial,sans-serif;color:#45423a">Send a link. One credit goes on hold — not charged.</div></div>
 <div style="padding:28px 22px;border-right:1px solid #d8d5cc"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:34px;color:#16150f">03</div><div style="margin-top:8px;font:400 14.5px/1.45 'Helvetica Neue',Arial,sans-serif;color:#45423a">The code shows, the box confirms — <span style="background:#e8ff2f;padding:0 3px">that's the credit.</span></div></div>
 <div style="padding:28px 22px"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:34px;color:#16150f">04</div><div style="margin-top:8px;font:400 14.5px/1.45 'Helvetica Neue',Arial,sans-serif;color:#45423a">They scan with their camera. Free, forever, for everyone.</div></div>
@@ -2455,7 +2455,7 @@ class Component extends DCLogic {
     const kinds = ['receipt', 'ticket', 'menu', 'warranty'];
     const n = (this.state.tgN ?? 0) + 1;
     const k = kinds[n % 4];
-    const ms = 700 + Math.floor(Math.random() * 500);
+    const ms = 1500 + Math.floor(Math.random() * 700);
     this.setState({
       tgN: n, tgKind: k, tgMs: ms,
       tgLog: [

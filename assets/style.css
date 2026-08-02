@@ -50,6 +50,11 @@ input { font: inherit; }
 .nav-links .gh { display: inline-flex; align-items: center; color: var(--ink); }
 .nav-links .gh:hover { color: var(--body); }
 .order-soon { border: 2px solid var(--ink); color: var(--ink); padding: 3px 10px; cursor: default; }
+.pilot { padding: 44px 0; }
+.pilot-cols { display: grid; grid-template-columns: 1fr 300px; gap: 34px; align-items: center; }
+.pilot h2 { font-size: clamp(24px, 3.8vw, 32px); line-height: .95; }
+.pilot p { margin-top: 12px; max-width: 52ch; font-size: 14.5px; line-height: 1.5; color: var(--body); }
+.pilot-btn { text-align: left; }
 
 .footer .wrap { height: 54px; display: flex; align-items: center; justify-content: space-between; font: 500 10.5px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .footer .brand { color: var(--ink); font-size: 14px; }
@@ -207,6 +212,7 @@ input { font: inherit; }
   .brand-copy { border-right: none; border-bottom: 2px solid var(--ink); padding-right: 0; }
   .dev-cols { grid-template-columns: 1fr; }
   .meet-cols { grid-template-columns: 1fr; }
+  .pilot-cols { grid-template-columns: 1fr; }
   .meet-device { border-right: none; border-bottom: 2px solid var(--ink); }
   .meet-copy { padding-left: 0; }
   .nav-links { gap: 12px; }

@@ -1,10 +1,10 @@
-/* ditto site — QR fill, scroll story, live demo, theme picker.
-   Vanilla JS; all visual states are CSS-driven via data-* attributes. */
+/* ditto site — hybrid voice. QR fill, scroll story, live trigger demo,
+   brand colour picker. States are CSS-driven via data-* attributes. */
 (() => {
   'use strict';
   const rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* Deterministic fake QR (FNV-1a seed + LCG), same trick as the design canvas. */
+  /* Deterministic fake QR (FNV-1a seed + LCG). */
   const hash = s => { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; };
   function fillQr(el, seed, fg, bg) {
     let h = hash(seed || 'x');
@@ -12,14 +12,13 @@
     el.replaceChildren();
     for (let i = 0; i < 169; i++) {
       const d = document.createElement('div');
-      d.style.background = rnd() > 0.52 ? (fg || '#111413') : (bg || '#ffffff');
+      d.style.background = rnd() > 0.52 ? (fg || '#16150f') : (bg || '#ffffff');
       el.appendChild(d);
     }
   }
-  document.querySelectorAll('.qr[data-seed]').forEach(el =>
-    fillQr(el, el.dataset.seed, el.dataset.fg, el.dataset.bg));
+  document.querySelectorAll('.qr[data-seed]').forEach(el => fillQr(el, el.dataset.seed));
 
-  /* Scroll story: scroller position -> data-beat on .story (CSS does the rest). */
+  /* Scroll story -> data-beat on .story. */
   document.querySelectorAll('.story').forEach(story => {
     const sc = story.querySelector('.story-scroller');
     if (!sc) return;
@@ -34,83 +33,54 @@
     }, { passive: true });
   });
 
-  /* Live demo: SEND -> staged data-step timeline + real-millisecond stopwatch. */
-  document.querySelectorAll('.demo').forEach(demo => {
-    const send = demo.querySelector('.keycap');
-    const watch = demo.querySelector('.stopwatch');
-    const urlEl = demo.querySelector('.demo-url');
-    const note = demo.querySelector('.demo-note');
-    const qr = demo.querySelector('.device-lg .qr');
-    const pageTitle = demo.querySelector('.phone-overlay h4');
-    const pageLine = demo.querySelector('.phone-overlay .line');
-    const PAGES = {
-      receipt: { title: 'Your receipt', line: 'total 7.00 · returns 30 days' },
-      ticket: { title: 'Row F · Seat 12', line: 'doors 19:30' },
-      menu: { title: "Today's menu", line: 'kitchen closes 21:00' }
-    };
-    let timers = [], tick = null, seed = 0;
-    const kind = () => demo.dataset.kind || 'receipt';
-    const setNote = t => { if (note) note.textContent = t; };
-
-    demo.querySelectorAll('.kind').forEach(btn => btn.addEventListener('click', () => {
-      demo.dataset.kind = btn.dataset.kind;
-      demo.querySelectorAll('.kind').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
-      if (urlEl) urlEl.textContent = 'https://yourshop.example/' + btn.dataset.kind + '/8f21';
-      const p = PAGES[btn.dataset.kind];
-      if (pageTitle) pageTitle.textContent = p.title;
-      if (pageLine) pageLine.textContent = p.line;
-    }));
-
+  /* Live trigger demo: staged log lines + real request shape, ~1.5-2.2 s ack
+     (measured production ack latency is ~1.9 s). */
+  document.querySelectorAll('.demo-band').forEach(band => {
+    const log = band.querySelector('.terminal-log');
+    const msEl = band.querySelector('[data-ms]');
+    const kindEl = band.querySelector('[data-kind]');
+    const qr = band.querySelector('.panel-qr .qr');
+    const send = band.querySelector('.keycap');
+    if (!log || !send) return;
+    const KINDS = ['receipt', 'ticket', 'menu', 'warranty'];
+    let n = 0, timers = [];
+    function put(lines) { log.replaceChildren(); lines.forEach(t => { const d = document.createElement('div'); d.textContent = t; log.appendChild(d); }); }
     function run() {
-      if (demo.dataset.running === 'true') return;
-      timers.forEach(clearTimeout); clearInterval(tick);
-      seed++;
-      if (qr) fillQr(qr, 'demo' + kind() + seed);
-      const total = 900 + Math.floor(Math.random() * 300);
-      if (rm) { demo.dataset.step = '4'; if (watch) watch.textContent = total + ' ms'; setNote('ack { ok:true } — 1 credit, charged only now'); return; }
-      const t0 = performance.now();
-      demo.dataset.step = '0';
-      demo.dataset.running = 'true';
-      setNote('in flight — nothing charged yet');
-      tick = setInterval(() => { if (watch) watch.textContent = String(Math.round(performance.now() - t0)).padStart(3, '0') + ' ms'; }, 30);
+      timers.forEach(clearTimeout);
+      n++;
+      const kind = KINDS[n % 4];
+      const ms = 1500 + Math.floor(Math.random() * 700);
+      if (kindEl) kindEl.textContent = kind;
+      const l1 = '$ POST /api/v1/devices/dev_8f21/trigger';
+      const l2 = '  { action:"show_qr", payload:{ url:"…/' + kind + '/8f21" } }';
+      const l3 = '  202 { id, status:"queued" } · credit held → mqtt d/dev_8f21/cmd';
+      const l4 = '  shown · ack ' + ms + ' ms · credit settled — paid on show';
+      const done = () => {
+        put([l1, l2, l3, l4]);
+        if (msEl) msEl.textContent = ms + ' ms';
+        if (qr) { fillQr(qr, 'demo' + n); qr.classList.add('shown'); }
+      };
+      if (rm) { done(); return; }
+      put([l1]);
+      if (qr) qr.classList.remove('shown');
       timers = [
-        setTimeout(() => { demo.dataset.step = '1'; }, 30),
-        setTimeout(() => { demo.dataset.step = '2'; }, 260),
-        setTimeout(() => { demo.dataset.step = '3'; }, 640),
-        setTimeout(() => {
-          clearInterval(tick);
-          demo.dataset.step = '4';
-          demo.dataset.running = 'false';
-          if (watch) watch.textContent = total + ' ms';
-          setNote('ack { ok:true } — 1 credit, charged only now');
-        }, total)
+        setTimeout(() => put([l1, l2]), 180),
+        setTimeout(() => put([l1, l2, l3]), 480),
+        setTimeout(done, ms)
       ];
     }
-    if (send) send.addEventListener('click', run);
-    if (demo.dataset.autoplay === 'true') setTimeout(run, 900);
+    send.addEventListener('click', run);
+    setTimeout(run, 700);
   });
 
-  /* Theme picker: buttons set CSS variables on every .themed root on the page. */
-  const THEMES = {
-    'warm-cafe': { accent: '#B4541F', bg: '#FAF6F0', fg: '#2B211A', muted: '#9A8B7D' },
-    'minimal-mono': { accent: '#111827', bg: '#FFFFFF', fg: '#111827', muted: '#9CA3AF' },
-    'bold-retail': { accent: '#E5484D', bg: '#FFF8F7', fg: '#27191A', muted: '#A18C8D' },
-    'fresh-market': { accent: '#3F9D4E', bg: '#F5FAF4', fg: '#1B2A1D', muted: '#87977F' }
-  };
-  function applyTheme(id) {
-    const t = THEMES[id];
-    if (!t) return;
-    document.querySelectorAll('.themed').forEach(root => {
-      root.style.setProperty('--t-bg', t.bg);
-      root.style.setProperty('--t-fg', t.fg);
-      root.style.setProperty('--t-accent', t.accent);
-      root.style.setProperty('--t-muted', t.muted);
-      root.querySelectorAll('.qr[data-themed]').forEach(el => fillQr(el, 'theme' + id + (el.classList.contains('small') ? 's' : ''), t.fg, t.bg));
-    });
-    document.querySelectorAll('.pill[data-theme]').forEach(b =>
-      b.setAttribute('aria-pressed', String(b.dataset.theme === id)));
-  }
-  document.querySelectorAll('.pill[data-theme]').forEach(btn =>
-    btn.addEventListener('click', () => applyTheme(btn.dataset.theme)));
-  if (document.querySelector('.pill[data-theme]')) applyTheme('warm-cafe');
+  /* Brand colour picker: swatches set --b-color; the preview QR reseeds. */
+  document.querySelectorAll('.swatch[data-color]').forEach(btn =>
+    btn.addEventListener('click', () => {
+      document.documentElement.style.setProperty('--b-color', btn.dataset.color);
+      document.querySelectorAll('.swatch[data-color]').forEach(b =>
+        b.setAttribute('aria-pressed', String(b === btn)));
+      const hex = document.querySelector('[data-hex]');
+      if (hex) hex.textContent = btn.dataset.color + ' · every box, one save';
+      document.querySelectorAll('.panel-card .qr').forEach(el => fillQr(el, 'brand' + btn.dataset.color));
+    }));
 })();

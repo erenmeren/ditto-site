@@ -97,10 +97,10 @@
   const THEMES = {
     'warm-cafe': { accent: '#B4541F', bg: '#FAF6F0', fg: '#2B211A', muted: '#9A8B7D' },
     'minimal-mono': { accent: '#111827', bg: '#FFFFFF', fg: '#111827', muted: '#9CA3AF' },
-    'bold-retail': { accent: '#E5484D', bg: '#FFF8F7', fg: '#27191A', muted: '#A18C8D' },
-    'fresh-market': { accent: '#3F9D4E', bg: '#F5FAF4', fg: '#1B2A1D', muted: '#87977F' }
+    'midnight': { accent: '#9B8CFF', bg: '#121217', fg: '#F2F1FA', muted: '#8E8CA3' },
+    'espresso': { accent: '#E8A33D', bg: '#1A1410', fg: '#F5EFE6', muted: '#9C8E7C' }
   };
-  const ORDER = ['fresh-market', 'warm-cafe', 'bold-retail', 'minimal-mono'];
+  const ORDER = ['warm-cafe', 'midnight', 'espresso', 'minimal-mono'];
   document.querySelectorAll('.studio').forEach(studio => {
     const screen = studio.querySelector('.studio-screen');
     const ghost = studio.querySelector('.drag-ghost');

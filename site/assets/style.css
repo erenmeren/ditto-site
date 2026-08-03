@@ -102,6 +102,14 @@ input { font: inherit; }
 .hero-sub h1 { font-family: var(--display); font-size: clamp(38px, 6vw, 60px); line-height: .9; letter-spacing: -.04em; text-transform: lowercase; }
 .hero-sub p { margin-top: 22px; max-width: 58ch; font-size: 17px; line-height: 1.5; color: var(--body); }
 
+/* ---------- beyond receipts ---------- */
+.beyond { padding: 44px 0 46px; }
+.beyond h2 { font-size: clamp(24px, 3.6vw, 30px); line-height: .95; }
+.beyond-lines { margin-top: 20px; }
+.beyond-lines p { font-size: 17px; line-height: 1.7; color: var(--body); max-width: 58ch; }
+.beyond-lines p::first-letter { color: var(--ink); }
+.beyond .mono-note { margin-top: 18px; }
+
 /* ---------- meet the box ---------- */
 .meet-cols { display: grid; grid-template-columns: 320px 1fr; }
 .meet-device { padding: 30px 26px; border-right: 2px solid var(--ink); background: var(--panel); display: flex; flex-direction: column; align-items: center; gap: 10px; }

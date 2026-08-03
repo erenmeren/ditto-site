@@ -64,6 +64,13 @@
 
 <section class="doc-sec rule-b">
 <div class="wrap">
+<h2 class="display doc-h2">what can be behind the url — anything</h2>
+<p class="doc-p">The URL is the whole contract. We never fetch, inspect, or constrain what's behind it — a receipt, a warranty registration, a loyalty card, a ticket, a survey, a menu all travel through the same <span class="inline-code">show_qr</span> trigger, cost the same one credit, and fail the same honest way. If a phone browser can open it, the box can hand it over. New interaction types are pages you build, not endpoints you wait for.</p>
+</div>
+</section>
+
+<section class="doc-sec rule-b">
+<div class="wrap">
 <h2 class="display doc-h2">3 · how you know it worked</h2>
 <p class="doc-p"><strong>202 means queued, not shown.</strong> Within a couple of seconds the box displays the code and confirms it — that confirmation spends the held credit. If the box can't confirm within <strong>60 seconds</strong>, the request expires and the hold is released in full. A late code never appears.</p>
 <p class="doc-p">There is no status endpoint or callback yet — that's deliberate minimalism at this stage, not an accident. Billing is self-reconciling (you're only ever charged for confirmed showings); the console's activity and credit ledger show every command's outcome, and <span class="inline-code">GET /api/v1/usage</span> returns your organisation's usage programmatically. If your integration needs a per-command status call, tell us — it's on the roadmap.</p>

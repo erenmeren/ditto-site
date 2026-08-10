@@ -17,119 +17,113 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
+<body class="v-b">
+
+<a class="skip" href="#main">skip to content</a>
 
 <nav class="nav">
 <div class="wrap">
 <a class="brand" href="#top">ditto</a>
 <div class="nav-links">
 <a href="#how">how it works</a>
-<a href="docs.html">docs</a>
-<a class="gh" href="https://github.com/erenmeren/ditto-admin" aria-label="ditto on GitHub" title="the console, on GitHub">
+<a class="hide-sm" href="docs.html">docs</a>
+<a class="gh hide-sm" href="https://github.com/erenmeren/ditto-admin" aria-label="ditto on GitHub" title="the console, on GitHub">
 <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
 </a>
-<a class="order" href="mailto:erenaltan@gmail.com?subject=ditto%20pilot&body=Hi%20%E2%80%94%20I%20run%20___%20(shop%2Fchain%2C%20city)%2C%20with%20___%20tills.%0AI%27d%20like%20to%20put%20a%20box%20on%20a%20counter.">join the pilot</a>
+<a class="cta" href="mailto:erenaltan@gmail.com?subject=ditto%20pilot&body=Hi%20%E2%80%94%20I%20run%20___%20(shop%2Fchain%2C%20city)%2C%20with%20___%20tills.%0AI%27d%20like%20to%20put%20a%20box%20on%20a%20counter.">join the pilot</a>
 </div>
 </div>
 </nav>
 
-<header id="top" class="hero rule-b">
+<main id="main">
+
+<header id="top" class="hero grain">
 <div class="wrap">
-<h1>no more<br>paper. <span class="hl">bye.</span></h1>
-<div class="hero-cols">
-<p>A small touch screen by the till. Your system sends a link, the box shows a code, the customer scans it — receipt, ticket, warranty, whatever you'd hand over, now on their phone, theirs to keep. No app for the customer; one request from your till.</p>
-<p class="aside">For any counter with a till that can open a link — single café or fifty-store chain.</p>
-<div class="stamp">1 code shown<br>= 1 credit<br>= 1 <span class="hl-s">ditto</span></div>
-</div>
-<div class="hero-cta">
+<div class="board">
+<div class="hero-main">
+<div class="eyebrow rv">counter · till 2 · now serving</div>
+<h1 class="hero-h" style="margin-top:20px">
+<span class="l rv" style="--d:60ms">no more</span>
+<span class="l rv" style="--d:140ms">paper.</span>
+</h1>
+<p class="lede rv" style="--d:220ms;max-width:44ch">A small touch screen by the till. Your system sends a link, the box shows a code, the customer scans it — receipt, ticket, warranty, whatever you'd hand over, now on their phone, theirs to keep.</p>
+<div class="hero-cta rv" style="--d:280ms">
 <a class="btn" href="#how">see how it works</a>
 <a class="btn-ghost" href="#try">try the live demo</a>
 </div>
 </div>
+<div class="hero-bye"><span>bye.</span></div>
+</div>
+</div>
 </header>
 
-<section class="meet rule-b">
-<div class="wrap meet-cols">
-<div class="meet-device">
-<img class="render-img" src="assets/device-angled.jpg" alt="The ditto box at a slight angle — a palm-sized square touch screen idling with a shop's logo and the time" width="330" height="342">
-<span class="mono-note mono-up">the box itself — idling with your brand between customers</span>
+<section class="meet">
+<div class="meet-shelf">
+<div class="device-inflow rv-drop" style="background-image:url(assets/device-angled.jpg)" role="img" aria-label="The ditto box at a slight angle — a palm-sized square touch screen idling with a shop's logo and the time"></div>
+<p class="mono mono-up" style="margin-top:16px">the box itself — idling with your brand between customers</p>
 </div>
 <div class="meet-copy">
-<h2 class="display">yes — it's a real little box on your counter.</h2>
-<p>A palm-sized touch screen that lives next to the till. Between customers it shows your brand and the time; the moment your till has something to hand over, it shows the code instead. Wi-fi in, nothing else.</p>
-<div class="mono-note mono-up">palm-sized · touch screen · wi-fi · qr shows 60 s, then back to your screen</div>
+<h2 class="h2">yes — it's a real little box on your counter.</h2>
+<p class="body">Palm-sized, touch screen, wi-fi in and nothing else. Between customers it shows your brand and the time; the moment your till has something to hand over, it shows the code instead.</p>
 </div>
+<div class="meet-stamp">
+<div class="stamp-mono">1 code shown<br>= 1 credit<br>= 1 <span class="hl-s">ditto</span></div>
+<p class="mono mono-up">qr shows 60 s,<br>then back to your screen</p>
 </div>
 </section>
 
-<section id="how">
+<section id="how" class="story grain on-ink">
 <div class="wrap">
-<div class="story rule-b" data-beat="0">
-<div class="story-scroller" tabindex="0" aria-label="The four steps, scrollable">
-<div class="story-beat">
+<div class="story-head">
+<h2 class="h2">what happens, in order.</h2>
+<div class="meta">every single time<b>running now ↓</b></div>
+</div>
+<div class="rail" aria-hidden="true"><div class="runner"></div></div>
+</div>
+<div class="beats">
+<div class="beat">
 <div class="n">01</div>
 <h3>your till has something for the customer</h3>
-<p>A receipt, a ticket, a booking. Your system sends it our way — one message, carrying a link to the page you already host. We never see what's on that page.</p>
-<div class="mono-note">POST /api/v1/devices/dev_8f21/trigger · { action:"show_qr", payload:{ url } } · Idempotency-Key</div>
+<p>A receipt, a ticket, a booking. One message, carrying a link to the page you already host. We never see what's on it.</p>
 </div>
-<div class="story-beat">
+<div class="beat">
 <div class="n">02</div>
 <h3>we check, and set a credit aside</h3>
-<p>Is the request really from you? Is that box switched on? Then one credit goes on hold. On hold — not charged.</p>
-<div class="mono-note">api key · scope devices:trigger · device: online · credit: 1 reserved</div>
+<p>Is the request really from you? Is that box switched on? One credit goes on hold — on hold, not charged.</p>
 </div>
-<div class="story-beat">
+<div class="beat">
 <div class="n">03</div>
 <h3>the code appears — <span class="hl-s">that's when you pay</span></h3>
-<p>A couple of seconds later, the exact box you named shows the square code and confirms it. That confirmation spends the held credit. Box off, or a minute gone by? Nothing shows, nothing is charged.</p>
-<div class="mono-note">mqtt d/dev_8f21/cmd · ack { ok:true } · credit: settled · unacked 60 s → expired, released</div>
+<p>A couple of seconds later the box shows the square code and confirms it. That confirmation spends the held credit.</p>
 </div>
-<div class="story-beat">
+<div class="beat">
 <div class="n">04</div>
 <h3>the customer scans it</h3>
-<p>They point their camera — the page opens in their phone's browser. No app to download, no account to create, no email address to spell out loud.</p>
-<div class="mono-note">GET &lt;your url&gt; — their phone, their browser</div>
+<p>The page opens in their phone's browser. No app to download, no account to create, no email spelled out loud.</p>
 </div>
 </div>
-<div class="stage" aria-hidden="true">
-<div class="seg seg1"></div><div class="seg seg2"></div><div class="seg seg3"></div>
-<div class="pulse"></div>
-<div class="station s1">
-<div class="label">your system</div>
-<div class="val">one request out</div>
+<div class="wrap">
+<div class="story-foot">
+<div class="story-log">
+<div>POST /api/v1/devices/dev_8f21/trigger · Idempotency-Key</div>
+<div>202 { id, status:"queued" } · <span class="mid">credit: 1 reserved</span></div>
+<div>mqtt d/dev_8f21/cmd → ack { ok:true } · <span class="ok">settled — paid on show</span> · unacked 60 s → expired, released</div>
 </div>
-<div class="station s2">
-<div class="label">ditto cloud</div>
-<div class="row"><div class="val">key ✓ · box online ✓</div><div class="credit-pill">1 credit</div></div>
-</div>
-<div class="station s3">
-<div class="label">the box on the counter — till 2</div>
-<div class="station-media">
-<div class="box-mock">
-<div class="screen">
-<div class="idle">ready</div>
-<div class="qr" data-seed="story0"></div>
-</div>
-</div>
-<div class="mono-note mono-up">touch screen · wi-fi<br>qr shows 60 s → back to idle<br>paid on show</div>
-</div>
-</div>
-<div class="station s4">
-<div class="label">their phone</div>
-<div class="station-media">
-<div class="phone-sil"><span class="d"></span><i></i><i style="width:70%"></i><i style="width:85%"></i></div>
-<div class="mono-note mono-up">their camera<br>does the rest · free</div>
-</div>
-</div>
+<div class="story-live" aria-hidden="true">
+<div class="mini-box"><div class="mini-screen">
+<div class="mini-idle">ready</div>
+<div class="mini-qr qr" data-seed="story-b"></div>
+</div></div>
+<div class="credit-pill">1 credit</div>
 </div>
 </div>
 </div>
 </section>
 
-<section id="try" class="demo-band rule-b">
-<div class="wrap inner">
+<section id="try" class="demo">
+<div class="wrap">
 <div class="demo-head">
-<span class="eyebrow" style="color:var(--muted)">poke it — the real flow, replayed</span>
+<span class="eyebrow">poke it — the real flow, replayed</span>
 <span class="live">demo</span>
 </div>
 <div class="demo-grid">
@@ -139,45 +133,54 @@
 </div>
 <div class="panel-qr">
 <div class="qr"></div>
-<span class="mono-note mono-up" style="letter-spacing:.12em">the panel, right now</span>
+<span class="mono mono-up">the panel, right now</span>
 </div>
 </div>
 <div class="demo-actions">
-<button class="keycap"><span>ditto</span><span>→</span></button>
-<div class="demo-meta"><span class="k">kind</span><span class="v" data-kind>—</span><span class="k" style="margin-top:4px">credit</span><span class="v">paid on show</span></div>
+<button class="keycap"><span>ditto</span><span aria-hidden="true">→</span></button>
+<div class="demo-meta">
+<span class="k">kind</span><span class="v" data-kind>—</span>
+<span class="k">credit</span><span class="v">paid on show</span>
+</div>
 </div>
 </div>
 </section>
 
-<section class="beyond rule-b">
+<div class="marquee" aria-hidden="true">
+<div class="marquee-track">
+<span>receipt · ticket · warranty · menu · loyalty stamp · return slip · wi-fi code · late checkout · booking · </span>
+<span>receipt · ticket · warranty · menu · loyalty stamp · return slip · wi-fi code · late checkout · booking · </span>
+</div>
+</div>
+
+<section class="beyond grain">
 <div class="wrap">
-<div class="eyebrow" style="margin-bottom:14px">what shops put behind the code</div>
-<h2 class="display">it's a link. so it's whatever you host.</h2>
-<div class="beyond-lines">
-<p>the café hands over the receipt — and the loyalty stamp with it.</p>
-<p>the electronics shop hands over the warranty. the one nobody keeps.</p>
-<p>the hotel hands over the wi-fi, the menu, the late-checkout button.</p>
-<p>the venue hands over the ticket, before the queue forms.</p>
+<div class="eyebrow rv">what shops put behind the code</div>
+<h2 class="h2 rv" style="--d:60ms;margin-top:14px">it's a link.<br>so it's whatever you host.</h2>
+<div class="ledger" data-stagger="50">
+<div class="ledger-row rv"><span class="who">the café</span><span class="what">hands over the receipt — and the loyalty stamp with it.</span></div>
+<div class="ledger-row rv"><span class="who">electronics</span><span class="what">hands over the warranty. the one nobody keeps.</span></div>
+<div class="ledger-row rv"><span class="who">the hotel</span><span class="what">hands over the wi-fi, the menu, the late-checkout button.</span></div>
+<div class="ledger-row rv"><span class="who">the venue</span><span class="what">hands over the ticket, before the queue forms.</span></div>
 </div>
-<div class="mono-note mono-up">same box, same one request — only the url changes. you host the page; we never see it.</div>
+<p class="mono mono-up" style="margin-top:18px">same box, same one request — only the url changes. you host the page; we never see it.</p>
 </div>
 </section>
 
-<section id="brand">
-<div class="wrap brand-sec rule-b">
+<section id="brand" class="branding">
 <div class="brand-copy">
-<div class="eyebrow">branding — the screen is yours</div>
-<h2>your logo. your colour. instantly.</h2>
-<p>All eight screens are canvases in the console — drag your logo and text anywhere on the 720 × 720 screen, then pick a theme and background, text and accent repaint together. The studio on the right is replaying exactly that; grab a theme to take over.</p>
-<div class="themes">
-<button class="pill theme-pill" data-theme="warm-cafe" aria-pressed="true"><span class="swatch-dot" style="background:#B4541F"></span>warm café</button>
-<button class="pill theme-pill" data-theme="minimal-mono" aria-pressed="false"><span class="swatch-dot" style="background:#111827"></span>minimal mono</button>
-<button class="pill theme-pill" data-theme="midnight" aria-pressed="false"><span class="swatch-dot" style="background:#9B8CFF"></span>midnight</button>
-<button class="pill theme-pill" data-theme="espresso" aria-pressed="false"><span class="swatch-dot" style="background:#E8A33D"></span>espresso</button>
+<div class="eyebrow rv">branding — the screen is yours</div>
+<h2 class="h2 rv" style="--d:60ms;margin-top:14px">your logo. your colour. instantly.</h2>
+<p class="body rv" style="--d:120ms">All eight screens are canvases in the console — drag your logo and text anywhere on the 720 × 720 screen, then pick a theme and background, text and accent repaint together. The studio here is replaying exactly that; grab a theme to take over.</p>
+<div class="themes rv" style="--d:180ms">
+<button class="pill theme-pill" type="button" data-theme="warm-cafe" aria-pressed="true"><span class="swatch-dot" style="background:#B4541F"></span>warm café</button>
+<button class="pill theme-pill" type="button" data-theme="minimal-mono" aria-pressed="false"><span class="swatch-dot" style="background:#111827"></span>minimal mono</button>
+<button class="pill theme-pill" type="button" data-theme="midnight" aria-pressed="false"><span class="swatch-dot" style="background:#9B8CFF"></span>midnight</button>
+<button class="pill theme-pill" type="button" data-theme="espresso" aria-pressed="false"><span class="swatch-dot" style="background:#E8A33D"></span>espresso</button>
 </div>
-<p class="mono-note" style="margin-top:12px">real console presets — or derive a whole palette from one accent · one save, every box</p>
+<p class="mono rv" style="--d:240ms;margin-top:14px">real console presets — or derive a whole palette from one accent · one save, every box</p>
 </div>
-<div class="brand-preview studio" data-step="0">
+<div class="brand-stage studio" data-step="0">
 <span class="cap">the studio, replayed</span>
 <div class="studio-tray" aria-hidden="true">
 <span class="tray-chip" data-obj="logo">logo</span>
@@ -185,72 +188,72 @@
 <span class="tray-chip dim">clock</span>
 <span class="tray-chip dim">wi-fi</span>
 </div>
-<div class="panel-card studio-screen">
+<div class="studio-screen">
 <div class="pc-logo"><i></i>your logo</div>
 <div class="pc-text">thanks — see you soon</div>
 </div>
 <div class="drag-ghost" aria-hidden="true">logo</div>
 <span class="studio-status" data-status>&nbsp;</span>
 </div>
+</section>
+
+<section id="price" class="price grain">
+<div class="price-big">
+<h2 class="h2 rv">one credit<br>per code<br>actually shown.</h2>
+</div>
+<div class="price-side">
+<p class="rv" style="--d:80ms">Scanning is free, failures are released in full. Start prepaid with 50 credits on the house — chains can move to per-device plans later.</p>
+<p class="fine rv" style="--d:140ms">no monthly minimum · no per-scan fee · no contract</p>
 </div>
 </section>
 
-<section id="price" class="cost rule-b">
+<section id="faq" class="faq">
 <div class="wrap">
-<div class="big">one credit per code <span class="hl">actually shown.</span></div>
-<div class="side">Scanning is free, failures are released in full. Start prepaid with 50 credits on the house — chains can move to per-device plans later.</div>
-</div>
-</section>
-
-<section id="pilot" class="pilot rule-b">
-<div class="wrap pilot-cols">
-<div>
-<h2 class="display">we're putting the first boxes <span class="hl">on real counters.</span></h2>
-<p>Ordering isn't open yet — the first counters get set up with us, hands-on, 50 credits included. One email is enough; say what you run and how many tills.</p>
-<p class="founder-note">ditto is built in the open, by one engineer. Write to me directly — I read everything. <a href="mailto:erenaltan@gmail.com">erenaltan@gmail.com</a></p>
-</div>
-<a class="keycap pilot-btn" href="mailto:erenaltan@gmail.com?subject=ditto%20pilot&body=Hi%20%E2%80%94%20I%20run%20___%20(shop%2Fchain%2C%20city)%2C%20with%20___%20tills.%0AI%27d%20like%20to%20put%20a%20box%20on%20a%20counter."><span>join the pilot</span><span>→</span></a>
-</div>
-</section>
-
-<section id="faq" class="faq-sec rule-b">
-<div class="wrap">
-<div class="eyebrow" style="margin-bottom:18px">fair questions</div>
-<div class="faq-grid">
-<div><h3>Do I still have to print receipts?</h3><p>Where the law requires a printed fiscal receipt, you keep printing it — ditto sits beside your printer, not instead of it. It replaces everything else you hand over: e-receipt copies, tickets, warranties, menus, return slips.</p></div>
-<div><h3>What if the wi-fi is down?</h3><p>Your till gets an immediate "box offline" answer. Nothing shows, nothing queues, nothing is charged.</p></div>
-<div><h3>What if it can't show within a minute?</h3><p>The request expires and the held credit is released. A late code never appears — nobody sees a stranger's receipt.</p></div>
-<div><h3>Shown but never scanned — do I still pay?</h3><p>Yes. The credit pays for the showing; scanning is free whether zero people scan or fifty.</p></div>
-<div><h3>Do I need a developer?</h3><p>If your till or POS can call a URL when a sale closes, it's one request. If it can't, whoever set up your POS can usually add it in an afternoon.</p></div>
-<div><h3>How many boxes do I need?</h3><p>One per counter where you hand things to customers. They share one balance and one console.</p></div>
-<div><h3>What does it cost?</h3><p>One credit per code actually shown. We're setting pack prices together with pilot customers — pilots start with 50 credits on the house.</p></div>
-<div><h3>What does it show between codes?</h3><p>Whatever you design: your logo, colours, opening hours, the time. Every screen is a canvas in the console.</p></div>
+<div class="eyebrow">fair questions</div>
+<div class="faq-list">
+<div class="faq-row"><h3 class="h3">Do I still have to print receipts?</h3><p>Where the law requires a printed fiscal receipt, you keep printing it — ditto sits beside your printer, not instead of it. It replaces everything else you hand over: e-receipt copies, tickets, warranties, menus, return slips.</p></div>
+<div class="faq-row"><h3 class="h3">What if the wi-fi is down?</h3><p>Your till gets an immediate "box offline" answer. Nothing shows, nothing queues, nothing is charged.</p></div>
+<div class="faq-row"><h3 class="h3">What if it can't show within a minute?</h3><p>The request expires and the held credit is released. A late code never appears — nobody sees a stranger's receipt.</p></div>
+<div class="faq-row"><h3 class="h3">Shown but never scanned — do I still pay?</h3><p>Yes. The credit pays for the showing; scanning is free whether zero people scan or fifty.</p></div>
+<div class="faq-row"><h3 class="h3">Do I need a developer?</h3><p>If your till or POS can call a URL when a sale closes, it's one request. If it can't, whoever set up your POS can usually add it in an afternoon.</p></div>
+<div class="faq-row"><h3 class="h3">How many boxes do I need?</h3><p>One per counter where you hand things to customers. They share one balance and one console.</p></div>
+<div class="faq-row"><h3 class="h3">What does it cost?</h3><p>One credit per code actually shown. We're setting pack prices together with pilot customers — pilots start with 50 credits on the house.</p></div>
+<div class="faq-row"><h3 class="h3">What does it show between codes?</h3><p>Whatever you design: your logo, colours, opening hours, the time. Every screen is a canvas in the console.</p></div>
 </div>
 </div>
 </section>
 
-<section class="dev-strip rule-b">
-<div class="wrap dev-cols">
+<section class="dev">
 <div class="dev-code">
-<div class="eyebrow" style="margin-bottom:12px">for your developer — the whole integration</div>
+<div class="eyebrow">for your developer — the whole integration</div>
 <div class="codeblock">$ curl -X POST …/api/v1/devices/<span class="c-hl">dev_8f21</span>/trigger \
   -H "Authorization: Bearer sk_live_…" \
   -H "Idempotency-Key: 9f3a-…" \
   -d '{ "action": "show_qr", "payload": { "url": "…" } }'</div>
-<div class="mono-note" style="margin-top:10px">202 { id, status:"queued" } → shown → ack → settled · <a href="docs.html" style="color:var(--ink)">full docs →</a> · <a href="https://github.com/erenmeren/ditto-admin" style="color:var(--ink)">github ↗</a></div>
+<p class="mono" style="margin-top:12px">202 { id, status:"queued" } → shown → ack → settled · <a href="docs.html" style="color:var(--ink);border-bottom:1px solid var(--ink)">full docs →</a></p>
 </div>
 <div class="dev-side">
 <div class="display" style="font-size:24px;line-height:1">one endpoint.<br>ten minutes.</div>
-<p>One request, anything with a URL — receipt today, warranty or loyalty tomorrow, same call. You host the content; we never fetch, render, or store what's behind the link.</p>
-</div>
+<p>You host the content; we never fetch, render, or store what's behind the link.</p>
 </div>
 </section>
 
-<footer class="footer">
-<div class="wrap">
-<span class="brand">ditto</span>
-<span><a href="mailto:erenaltan@gmail.com">erenaltan@gmail.com</a> · made for counters</span>
+<section id="pilot" class="pilot">
+<div class="pilot-copy">
+<h2 class="h2 rv">we're putting the first boxes <span class="hl">on real counters.</span></h2>
+<p class="body rv" style="--d:80ms">Ordering isn't open yet — the first counters get set up with us, hands-on, 50 credits included. One email is enough; say what you run and how many tills.</p>
+<p class="founder rv" style="--d:140ms">ditto is built in the open, by one engineer. Write to me directly — I read everything. <a href="mailto:erenaltan@gmail.com">erenaltan@gmail.com</a></p>
 </div>
+<div class="pilot-act">
+<a class="keycap on-ink" href="mailto:erenaltan@gmail.com?subject=ditto%20pilot&body=Hi%20%E2%80%94%20I%20run%20___%20(shop%2Fchain%2C%20city)%2C%20with%20___%20tills.%0AI%27d%20like%20to%20put%20a%20box%20on%20a%20counter."><span>join the<br>pilot</span><span aria-hidden="true">→</span></a>
+</div>
+</section>
+
+</main>
+
+<footer class="footer">
+<span class="mark">ditto</span>
+<span class="meta"><a href="mailto:erenaltan@gmail.com">erenaltan@gmail.com</a><br>made for counters</span>
 </footer>
 
 <script src="assets/site.js"></script>

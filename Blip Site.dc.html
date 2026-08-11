@@ -27,6 +27,10 @@
    component state. Inline opacity/background are the reduced-motion
    resting state (the code shown, credit settled). --- */
 @keyframes dvCell{0%,2%{background:#f4f3ee}6%,22%{background:#e8ff2f}26%,100%{background:#f4f3ee}}
+/* Dark-band variant (12b, as shipped): the cell takes the beat on ink, so
+   `color` has to travel with the background — children inherit it, because
+   paper-coloured type on an acid cell is unreadable. */
+@keyframes dvCellDark{0%,2%{background:transparent;color:#f4f3ee}6%,22%{background:#e8ff2f;color:#16150f}26%,100%{background:transparent;color:#f4f3ee}}
 @keyframes dvNum{0%,2%{opacity:.3}6%,22%{opacity:1}26%,100%{opacity:.3}}
 @keyframes dvShow{0%,46%{opacity:0}52%,72%{opacity:1}78%,100%{opacity:0}}
 @keyframes dvHide{0%,46%{opacity:1}52%,72%{opacity:0}78%,100%{opacity:1}}
@@ -257,20 +261,27 @@
 </div>
 </div>
 
-<div style="background:#16150f;border-bottom:2px solid #16150f;overflow:hidden;padding:11px 0">
-<div style="display:flex;width:200%;animation:dvMarq 26s linear infinite;font-family:'Archivo Black',Arial,sans-serif;font-size:19px;letter-spacing:-.02em;text-transform:lowercase;color:#e8ff2f;white-space:nowrap">
-<span style="flex:none;width:50%">receipt · ticket · warranty · menu · loyalty stamp · return slip · wi-fi code · late checkout · booking · </span>
-<span style="flex:none;width:50%">receipt · ticket · warranty · menu · loyalty stamp · return slip · wi-fi code · late checkout · booking · </span>
+<div class="dv-grain dv-grain-lite" style="display:grid;grid-template-columns:repeat(12,1fr);background:#16150f;border-bottom:2px solid #16150f">
+<div style="grid-column:span 12;padding:26px 26px 0;display:flex;align-items:baseline;justify-content:space-between"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:40px;line-height:1;letter-spacing:-.04em;color:#f4f3ee;text-transform:lowercase">what happens, in order.</div><span style="font:500 10px/1.7 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#6f6d66;text-align:right">every single time<br><span style="color:#e8ff2f">running now ↓</span></span></div>
+<div style="grid-column:span 12;padding:22px 26px 18px"><div style="position:relative;height:14px"><div style="position:absolute;left:0;right:0;top:6px;height:2px;background:#3a3730"></div><div style="position:absolute;left:0;top:0;width:14px;height:14px;background:#e8ff2f;animation:dvRunX 8s cubic-bezier(.23,1,.32,1) infinite"></div></div></div>
+<div style="grid-column:span 3;padding:18px 20px 26px 26px;border-right:1px solid #3a3730;border-top:1px solid #3a3730;color:#f4f3ee;animation:dvCellDark 8s linear infinite"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:50px;line-height:1;color:inherit;letter-spacing:-.04em;opacity:1;animation:dvNum 8s linear infinite">01</div><div style="margin-top:8px;font:600 13px/1.3 'Helvetica Neue',Arial,sans-serif;color:inherit">your till has something for the customer</div><p style="margin:7px 0 0;font:400 12.5px/1.5 'Helvetica Neue',Arial,sans-serif;color:inherit;opacity:.74">One message, carrying a link to the page you already host.</p></div>
+<div style="grid-column:span 3;padding:18px 20px 26px;border-right:1px solid #3a3730;border-top:1px solid #3a3730;color:#f4f3ee;animation:dvCellDark 8s linear 2s infinite"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:50px;line-height:1;color:inherit;letter-spacing:-.04em;opacity:1;animation:dvNum 8s linear 2s infinite">02</div><div style="margin-top:8px;font:600 13px/1.3 'Helvetica Neue',Arial,sans-serif;color:inherit">we check, and set a credit aside</div><p style="margin:7px 0 0;font:400 12.5px/1.5 'Helvetica Neue',Arial,sans-serif;color:inherit;opacity:.74">Your key, that box, one credit on hold — not charged.</p></div>
+<div style="grid-column:span 3;padding:18px 20px 26px;border-right:1px solid #3a3730;border-top:1px solid #3a3730;color:#f4f3ee;animation:dvCellDark 8s linear 4s infinite"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:50px;line-height:1;color:inherit;letter-spacing:-.04em;opacity:1;animation:dvNum 8s linear 4s infinite">03</div><div style="margin-top:8px;font:600 13px/1.3 'Helvetica Neue',Arial,sans-serif;color:inherit">the code appears — <span style="background:#e8ff2f;color:#16150f;padding:0 4px">that's when you pay</span></div><p style="margin:7px 0 0;font:400 12.5px/1.5 'Helvetica Neue',Arial,sans-serif;color:inherit;opacity:.74">The box confirms; that confirmation spends the credit. 60 s, or released.</p></div>
+<div style="grid-column:span 3;padding:18px 26px 26px 20px;border-top:1px solid #3a3730;color:#f4f3ee;animation:dvCellDark 8s linear 6s infinite"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:50px;line-height:1;color:inherit;letter-spacing:-.04em;opacity:1;animation:dvNum 8s linear 6s infinite">04</div><div style="margin-top:8px;font:600 13px/1.3 'Helvetica Neue',Arial,sans-serif;color:inherit">the customer scans it</div><p style="margin:7px 0 0;font:400 12.5px/1.5 'Helvetica Neue',Arial,sans-serif;color:inherit;opacity:.74">Opens in their browser. No app, no account, free forever.</p></div>
+<div style="grid-column:span 12;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;border-top:1px solid #3a3730;padding:22px 26px">
+<div style="font:400 11px/1.95 'IBM Plex Mono',monospace;color:#6f6d66">
+<div>POST /api/v1/devices/dev_8f21/trigger · Idempotency-Key</div>
+<div>202 { id, status:"queued" } · <span style="color:#c9c5b8">credit: 1 reserved</span></div>
+<div>mqtt d/dev_8f21/cmd → ack { ok:true } · <span style="color:#e8ff2f">settled — paid on show</span> · unacked 60 s → expired, released</div>
+</div>
+<div style="display:flex;align-items:center;gap:16px">
+<div style="position:relative;flex:none;width:84px;height:84px;background:#2a2820;padding:6px;box-sizing:border-box"><div style="position:relative;width:100%;height:100%;background:#fff;overflow:hidden">
+<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:500 8.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#8a8577;opacity:0;animation:dvHide 8s linear infinite">ready</div>
+<div style="position:absolute;inset:4px;display:grid;grid-template-columns:repeat(13,1fr);grid-template-rows:repeat(13,1fr);opacity:1;animation:dvShow 8s linear infinite"><sc-for list="{{ t7Qr }}" as="c" hint-placeholder-count="169"><div style="background:{{ c }}"></div></sc-for></div>
+</div></div>
+<div style="flex:none;border:2px solid #16150f;background:#e8ff2f;color:#16150f;padding:5px 12px;font:500 10px 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.06em;animation:dvHold 8s linear infinite">1 credit</div>
 </div>
 </div>
-
-<div style="display:grid;grid-template-columns:repeat(12,1fr);border-bottom:2px solid #16150f">
-<div style="grid-column:span 12;padding:22px 26px 0;display:flex;align-items:baseline;justify-content:space-between"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:40px;line-height:1;letter-spacing:-.04em;color:#16150f;text-transform:lowercase">what happens, in order.</div><span style="font:500 10px/1.7 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#8a8577;text-align:right">every single time<br>running now ↓</span></div>
-<div style="grid-column:span 12;padding:20px 26px 18px"><div style="position:relative;height:14px"><div style="position:absolute;left:0;right:0;top:6px;height:2px;background:#d8d5cc"></div><div style="position:absolute;left:0;top:0;width:14px;height:14px;background:#e8ff2f;border:2px solid #16150f;box-sizing:border-box;animation:dvRunX 8s cubic-bezier(.23,1,.32,1) infinite"></div></div></div>
-<div style="grid-column:span 3;padding:18px 20px 26px 26px;border-right:1px solid #d8d5cc;border-top:1px solid #d8d5cc;animation:dvCell 8s linear infinite"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:50px;line-height:1;color:#16150f;letter-spacing:-.04em;opacity:1;animation:dvNum 8s linear infinite">01</div><div style="margin-top:8px;font:600 13px/1.3 'Helvetica Neue',Arial,sans-serif;color:#16150f">your till has something for the customer</div><p style="margin:7px 0 0;font:400 12.5px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">One message, carrying a link to the page you already host.</p></div>
-<div style="grid-column:span 3;padding:18px 20px 26px;border-right:1px solid #d8d5cc;border-top:1px solid #d8d5cc;animation:dvCell 8s linear 2s infinite"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:50px;line-height:1;color:#16150f;letter-spacing:-.04em;opacity:1;animation:dvNum 8s linear 2s infinite">02</div><div style="margin-top:8px;font:600 13px/1.3 'Helvetica Neue',Arial,sans-serif;color:#16150f">we check, and set a credit aside</div><p style="margin:7px 0 0;font:400 12.5px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">Your key, that box, one credit on hold — not charged.</p></div>
-<div style="grid-column:span 3;padding:18px 20px 26px;border-right:1px solid #d8d5cc;border-top:1px solid #d8d5cc;animation:dvCell 8s linear 4s infinite"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:50px;line-height:1;color:#16150f;letter-spacing:-.04em;opacity:1;animation:dvNum 8s linear 4s infinite">03</div><div style="margin-top:8px;font:600 13px/1.3 'Helvetica Neue',Arial,sans-serif;color:#16150f">the code appears — that's when you pay</div><p style="margin:7px 0 0;font:400 12.5px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">The box confirms; that confirmation spends the credit. 60 s, or released.</p></div>
-<div style="grid-column:span 3;padding:18px 26px 26px 20px;border-top:1px solid #d8d5cc;animation:dvCell 8s linear 6s infinite"><div style="font-family:'Archivo Black',Arial,sans-serif;font-size:50px;line-height:1;color:#16150f;letter-spacing:-.04em;opacity:1;animation:dvNum 8s linear 6s infinite">04</div><div style="margin-top:8px;font:600 13px/1.3 'Helvetica Neue',Arial,sans-serif;color:#16150f">the customer scans it</div><p style="margin:7px 0 0;font:400 12.5px/1.5 'Helvetica Neue',Arial,sans-serif;color:#45423a">Opens in their browser. No app, no account, free forever.</p></div>
 </div>
 
 <div style="display:grid;grid-template-columns:repeat(12,1fr);border-bottom:2px solid #16150f">
@@ -292,6 +303,13 @@
 </div>
 <span style="font:400 9px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#8a8577">the panel, right now</span>
 <span style="border:2px solid #16150f;padding:4px 11px;font:500 9.5px 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.06em;background:#e8ff2f;color:#16150f;animation:dvHold 8s linear infinite">1 credit</span>
+</div>
+</div>
+
+<div style="background:#16150f;border-bottom:2px solid #16150f;overflow:hidden;padding:11px 0">
+<div style="display:flex;width:200%;animation:dvMarq 26s linear infinite;font-family:'Archivo Black',Arial,sans-serif;font-size:19px;letter-spacing:-.02em;text-transform:lowercase;color:#e8ff2f;white-space:nowrap">
+<span style="flex:none;width:50%">receipt · ticket · warranty · menu · loyalty stamp · return slip · wi-fi code · late checkout · booking · </span>
+<span style="flex:none;width:50%">receipt · ticket · warranty · menu · loyalty stamp · return slip · wi-fi code · late checkout · booking · </span>
 </div>
 </div>
 
@@ -360,7 +378,7 @@
 </div>
 
 </div>
-<p class="dv-next">Both take 11c's grid of unequal cells and fill it with 11a's alternating materials — they differ only in which one leads. <a class="dv-oid" href="#12a">12a</a> keeps full-width bands as the spine and puts the cell grid inside them (calmer, editorial; the dark story band now carries the running clock). <a class="dv-oid" href="#12b">12b</a> makes the 12-column board the spine all the way down and lets cells carry the materials (louder, denser; beat cells go acid in turn). New in both: a **single 8 s clock** drives the storyboard with no component state — the square runs the rail, numbers light in turn, the box flips idle → code at beat 3, and the credit pill goes acid on hold and stays through settle. Mid-scale type (44px section heads) fills the gap that made everything read flat, the marquee carries the non-receipt uses, and the device photo still breaks a rule line — right edge in 12a, left in 12b. Reduced motion parks everything on the settled state (code shown, credit spent). Say "go with 12_" and I'll re-skin site/ to it, with the scroll-driven reveals and mobile stacking that only exist on a real page.</p>
+<p class="dv-next">Both take 11c's grid of unequal cells and fill it with 11a's alternating materials — they differ only in which one leads. <a class="dv-oid" href="#12a">12a</a> keeps full-width bands as the spine and puts the cell grid inside them (calmer, editorial; the dark story band now carries the running clock). <a class="dv-oid" href="#12b">12b</a> makes the 12-column board the spine all the way down and lets cells carry the materials (louder, denser). <strong>12b is what shipped</strong>, carrying 12a's dark story band by request: the whole beat CELL takes the turn on ink, which meant animating <code>color</code> alongside the background so children inherit a readable one — dim paper on ink at rest, solid ink on acid on the beat. Its marquee moved below the demo too; sitting directly above a dark band, the 2px seam between two ink surfaces disappeared and the two read as one heavy mass. New in both: a **single 8 s clock** drives the storyboard with no component state — the square runs the rail, numbers light in turn, the box flips idle → code at beat 3, and the credit pill goes acid on hold and stays through settle. Mid-scale type (44px section heads) fills the gap that made everything read flat, the marquee carries the non-receipt uses, and the device photo still breaks a rule line — right edge in 12a, left in 12b. Reduced motion parks everything on the settled state (code shown, credit spent). Say "go with 12_" and I'll re-skin site/ to it, with the scroll-driven reveals and mobile stacking that only exist on a real page.</p>
 </section>
 
 <section class="dv-turn" id="t11">

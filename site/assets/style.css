@@ -242,9 +242,11 @@ p.body { font-size: clamp(14px, 1.15vw, 15.5px); line-height: 1.55; color: var(-
 .panel-qr { border: 2px solid var(--ink); background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 16px; }
 .panel-qr .qr { width: 132px; height: 132px; opacity: .18; transition: opacity .4s var(--out); }
 .panel-qr .qr.shown { opacity: 1; }
-.demo-actions { display: flex; gap: 12px; align-items: stretch; margin-top: 14px; }
-.demo-actions .keycap { flex: 1; }
-.demo-meta { width: 190px; flex: none; border: 2px solid var(--ink); padding: 11px 14px; font: 500 9.5px/1.5 var(--mono); text-transform: uppercase; letter-spacing: .06em; display: flex; flex-direction: column; justify-content: center; }
+/* Same track sizes and gap as .demo-grid above it — the two rows read as
+   one two-column block, so the terminal/QR seam and the button/meta seam
+   have to fall on the same line. */
+.demo-actions { display: grid; grid-template-columns: 1fr 200px; gap: 16px; align-items: stretch; margin-top: 16px; }
+.demo-meta { border: 2px solid var(--ink); padding: 11px 14px; font: 500 9.5px/1.5 var(--mono); text-transform: uppercase; letter-spacing: .06em; display: flex; flex-direction: column; justify-content: center; }
 .demo-meta .k { color: var(--muted); }
 .demo-meta .v { color: var(--ink); font-size: 11.5px; }
 .demo-meta .k + .v { margin-bottom: 6px; }
@@ -370,8 +372,7 @@ p.body { font-size: clamp(14px, 1.15vw, 15.5px); line-height: 1.55; color: var(-
   .price-big { border-right: none; border-bottom: 2px solid var(--ink); }
   .dev-code { border-right: none; border-bottom: 2px solid var(--ink); }
   .faq-row { grid-template-columns: 1fr; gap: 6px; }
-  .demo-actions { flex-direction: column; }
-  .demo-meta { width: auto; }
+  .demo-actions { grid-template-columns: 1fr; }
   /* 12b's board collapses to single-column bands — a 12-column grid on a
      phone is just four illegible slivers. */
   .v-b .board, .v-b .meet, .v-b .price, .v-b .pilot, .v-b .dev { grid-template-columns: 1fr; }

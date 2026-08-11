@@ -116,13 +116,21 @@ p.body { font-size: clamp(14px, 1.15vw, 15.5px); line-height: 1.55; color: var(-
 
 /* ---------- scroll reveal ---------- */
 /* Transform + opacity only, one strong ease-out, staggered by --d.
-   Elements never enter from scale(0) — nothing in the world does that. */
-.rv { opacity: 0; transform: translateY(22px); transition: opacity .75s var(--out), transform .75s var(--out); transition-delay: var(--d, 0s); }
-.rv.in { opacity: 1; transform: none; }
-.rv-x { opacity: 0; transform: translateX(-16px); transition: opacity .65s var(--out), transform .65s var(--out); transition-delay: var(--d, 0s); }
-.rv-x.in { opacity: 1; transform: none; }
-.rv-drop { opacity: 0; transform: translateY(-16px) scale(1.05) rotate(-2.5deg); transition: opacity .85s var(--out), transform .85s var(--out); transition-delay: var(--d, 0s); }
-.rv-drop.in { opacity: 1; transform: rotate(-2.5deg); }
+   Elements never enter from scale(0) — nothing in the world does that.
+
+   EVERY hidden state is scoped to .js, which the inline snippet in <head>
+   sets before first paint. Content is therefore visible by DEFAULT and
+   only hides once scripting is confirmed to be running. Without that
+   scoping, a blocked or failed site.js leaves 24 elements stuck at
+   opacity:0 — which emptied the entire hero. Never hide content on the
+   assumption that JS will arrive to bring it back. */
+.rv-drop { transform: rotate(-2.5deg); }
+.js .rv { opacity: 0; transform: translateY(22px); transition: opacity .75s var(--out), transform .75s var(--out); transition-delay: var(--d, 0s); }
+.js .rv.in { opacity: 1; transform: none; }
+.js .rv-x { opacity: 0; transform: translateX(-16px); transition: opacity .65s var(--out), transform .65s var(--out); transition-delay: var(--d, 0s); }
+.js .rv-x.in { opacity: 1; transform: none; }
+.js .rv-drop { opacity: 0; transform: translateY(-16px) scale(1.05) rotate(-2.5deg); transition: opacity .85s var(--out), transform .85s var(--out); transition-delay: var(--d, 0s); }
+.js .rv-drop.in { opacity: 1; transform: rotate(-2.5deg); }
 
 /* ---------- hero ---------- */
 .hero { position: relative; border-bottom: 2px solid var(--ink); }
@@ -457,9 +465,11 @@ p.body { font-size: clamp(14px, 1.15vw, 15.5px); line-height: 1.55; color: var(-
 .studio-screen { position: relative; width: 210px; height: 210px; border: 2px solid #000; overflow: hidden;
   background: var(--p-bg, #FAF6F0); transition: background .5s ease;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
-.pc-logo { display: flex; align-items: center; gap: 8px; font: 600 18px var(--sans); color: var(--p-fg, #2B211A); transition: color .5s ease; opacity: 0; }
+.pc-logo { display: flex; align-items: center; gap: 8px; font: 600 18px var(--sans); color: var(--p-fg, #2B211A); transition: color .5s ease; }
+.js .pc-logo { opacity: 0; }
 .pc-logo i { width: 15px; height: 15px; background: var(--p-accent, #B4541F); transition: background .5s ease; }
-.pc-text { font: 400 11px var(--sans); color: var(--p-muted, #9A8B7D); transition: color .5s ease; opacity: 0; }
+.pc-text { font: 400 11px var(--sans); color: var(--p-muted, #9A8B7D); transition: color .5s ease; }
+.js .pc-text { opacity: 0; }
 @keyframes dropIn { 0% { opacity: 0; transform: translateY(-14px) scale(1.18); } 60% { opacity: 1; transform: translateY(2px) scale(.97); } 100% { opacity: 1; transform: none; } }
 .studio .on { opacity: 1; animation: dropIn .45s cubic-bezier(.34, 1.3, .5, 1); }
 .drag-ghost { position: absolute; left: 0; top: 0; z-index: 3; border: 2px dashed var(--acid); color: var(--acid);

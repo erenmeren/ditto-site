@@ -180,7 +180,13 @@ p.body { font-size: clamp(14px, 1.15vw, 15.5px); line-height: 1.55; color: var(-
 
 /* One 8 s clock, four 2 s beats. No JS: the page performs the thing it
    describes. Reduced motion parks every element on its settled state. */
-.rail { position: relative; height: 14px; margin: clamp(24px, 3vw, 34px) 0 24px; }
+/* overflow:hidden is load-bearing. .runner is a third of the rail wide so
+   that translateX(0/100/200/300%) lands the square on the four stations;
+   at the last one its trailing two-thirds hang past the rail and widen
+   the whole page (measured: 388px of horizontal scroll at 1440). Only the
+   14px square at its leading edge is ever visible, so clipping the rest
+   costs nothing. */
+.rail { position: relative; height: 14px; margin: clamp(24px, 3vw, 34px) 0 24px; overflow: hidden; }
 .rail::before { content: ''; position: absolute; left: 0; right: 0; top: 6px; height: 2px; background: var(--ink-line); }
 .runner { position: absolute; left: 0; top: 0; width: calc((100% - 14px) / 3); height: 14px; animation: runX 8s var(--out) infinite; }
 .runner::before { content: ''; display: block; width: 14px; height: 14px; background: var(--acid); }
@@ -292,7 +298,11 @@ p.body { font-size: clamp(14px, 1.15vw, 15.5px); line-height: 1.55; color: var(-
 
 /* ---------- dev strip ---------- */
 .dev { border-bottom: 2px solid var(--ink); display: grid; }
-.dev-code { padding: clamp(28px, 3.4vw, 42px) var(--gutter) clamp(28px, 3.4vw, 42px) var(--edge); border-right: 2px solid var(--ink); }
+/* min-width:0 defeats the grid item's automatic minimum size. Without it
+   the cell cannot shrink below the min-content width of the `pre` code
+   block it holds, so on a phone the 1fr column grows past the viewport
+   and the whole page scrolls sideways (measured: 418px in a 390px view). */
+.dev-code { min-width: 0; padding: clamp(28px, 3.4vw, 42px) var(--gutter) clamp(28px, 3.4vw, 42px) var(--edge); border-right: 2px solid var(--ink); }
 .codeblock { margin-top: 14px; background: var(--ink); color: var(--terminal-fg); padding: 16px 18px; font: 400 clamp(10px, .95vw, 11.5px)/1.85 var(--mono); overflow-x: auto; white-space: pre; }
 .codeblock .c-hl { color: var(--acid); }
 .dev-side { padding: clamp(28px, 3.4vw, 42px) var(--edge) clamp(28px, 3.4vw, 42px) var(--gutter); background: var(--panel); display: flex; flex-direction: column; justify-content: center; }

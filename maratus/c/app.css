@@ -1,0 +1,428 @@
+/* maratus — direction C, "structural colour".
+   Nothing here is decorative for its own sake: the grid is the argument, the
+   mono is the data, and the only colour on the page that is not ground, fore,
+   dim or signal comes out of the interference model in art/field.js. */
+
+/* ── locked system ─────────────────────────────────────────────────────── */
+:root {
+  /* type */
+  --display: "Anybody", "Arial Narrow", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* colour */
+  --ground: #08090B;
+  --fore:   #D6D9DE;
+  --dim:    #71767E;
+  --signal: #3DF5C5;
+
+  /* motion — these two curves, and no others */
+  --snap:  cubic-bezier(.2,.9,.1,1);
+  --drift: cubic-bezier(.5,0,.5,1);
+
+  /* derived surfaces */
+  --line:  rgba(214,217,222,.14);
+  --hair:  rgba(214,217,222,.07);
+  --panel: #0C0E12;
+
+  /* measure */
+  --edge: clamp(18px, 3.4vw, 62px);
+  --gut:  clamp(12px, 1.6vw, 26px);
+  --pad:  clamp(58px, 8.5vw, 132px);
+  --mast: 46px;
+}
+
+/* ── reset ─────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--fore);
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.62;
+  font-weight: 400;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { margin: 0; font-family: var(--display); font-weight: 700; }
+p, dl, dd, ol, ul, figure, pre, table { margin: 0; }
+ol, ul { list-style: none; padding: 0; }
+a { color: inherit; text-decoration: none; }
+img, svg, canvas { display: block; max-width: 100%; }
+code, pre { font-family: var(--mono); }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+.sr {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap;
+}
+
+/* ── masthead ──────────────────────────────────────────────────────────── */
+.mast {
+  position: fixed; inset: 0 0 auto 0; z-index: 40;
+  height: var(--mast);
+  display: flex; align-items: center; gap: var(--gut);
+  padding: 0 var(--edge);
+  background: rgba(8,9,11,.86);
+  backdrop-filter: blur(9px);
+  border-bottom: 1px solid var(--line);
+}
+.mast-mark {
+  font-family: var(--display); font-weight: 800; font-stretch: 72%;
+  font-size: 19px; letter-spacing: -.01em; line-height: 1;
+  transition: color .2s var(--snap);
+}
+.mast-mark:hover { color: var(--signal); }
+.mast-nav { display: flex; gap: clamp(10px, 1.5vw, 24px); margin-left: auto; }
+.mast-nav a {
+  font-size: 10px; letter-spacing: .16em; color: var(--dim);
+  transition: color .2s var(--snap);
+}
+.mast-nav a:hover { color: var(--fore); }
+.mast-tag {
+  font-size: 10px; letter-spacing: .16em; color: var(--dim);
+  padding-left: clamp(10px, 1.5vw, 24px); border-left: 1px solid var(--line);
+}
+
+/* ── bands and grid ────────────────────────────────────────────────────── */
+.band {
+  padding: var(--pad) var(--edge);
+  border-top: 1px solid var(--line);
+}
+.band--hero { border-top: 0; padding-top: calc(var(--mast) + var(--pad) * .8); }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gut);
+  row-gap: clamp(26px, 4vw, 54px);
+  align-items: start;
+}
+
+/* section furniture */
+.idx {
+  font-size: 10px; letter-spacing: .2em; color: var(--dim);
+  margin-bottom: 14px;
+}
+.head { grid-column: 1 / 5; }
+.head h2 {
+  font-size: clamp(30px, 4.2vw, 56px); font-stretch: 78%; font-weight: 700;
+  line-height: .92; letter-spacing: -.02em;
+}
+.head-note {
+  grid-column: 5 / 13; color: var(--dim);
+  font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+  align-self: start;
+}
+
+/* ── the optical plates ────────────────────────────────────────────────── */
+/* Decoration, and only decoration. Without JavaScript the field cannot exist,
+   so the plate does not exist either — no reserved hole, no broken frame. */
+.plate { display: none; }
+.has-field .plate { display: block; position: relative; }
+.plate canvas { width: 100%; height: 100%; }
+.plate-cap {
+  position: absolute; left: 0; bottom: 0;
+  display: flex; flex-direction: column; gap: 2px;
+  padding: 7px 10px;
+  background: rgba(8,9,11,.78);
+  border-top: 1px solid var(--line); border-right: 1px solid var(--line);
+  font-size: 9px; letter-spacing: .15em; line-height: 1.5; color: var(--dim);
+}
+
+.plate--hero {
+  grid-column: 9 / 13;
+  height: clamp(300px, 56vh, 580px);
+  border: 1px solid var(--line);
+}
+.plate--band {
+  height: clamp(112px, 16vh, 190px);
+  margin: calc(var(--pad) * -1) calc(var(--edge) * -1) var(--pad);
+  border-bottom: 1px solid var(--line);
+}
+.plate--band .plate-cap {
+  left: auto; right: 0; top: 0; bottom: auto; text-align: right;
+  border-top: 0; border-right: 0;
+  border-bottom: 1px solid var(--line); border-left: 1px solid var(--line);
+}
+
+/* ── 01 hero ───────────────────────────────────────────────────────────── */
+.hero-copy { grid-column: 1 / 8; }
+h1 { display: block; margin-bottom: clamp(24px, 3vw, 44px); }
+.h1-mark {
+  display: block;
+  font-size: clamp(58px, 11.5vw, 168px);
+  font-stretch: 74%; font-weight: 800;
+  line-height: .8; letter-spacing: -.035em;
+}
+.h1-sub {
+  display: block; margin-top: .28em;
+  font-size: clamp(19px, 2.5vw, 34px);
+  font-stretch: 96%; font-weight: 500;
+  line-height: 1.06; letter-spacing: -.015em;
+  color: var(--dim);
+}
+.hero-lede { max-width: 58ch; display: grid; gap: 1.1em; color: var(--fore); }
+.hero-lede p + p { color: var(--dim); }
+.rule-line {
+  margin-top: clamp(26px, 3.4vw, 48px);
+  padding-top: 12px; border-top: 1px solid var(--line);
+  font-size: 11px; letter-spacing: .16em; color: var(--dim);
+}
+
+/* buttons */
+.acts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: clamp(24px, 3vw, 40px); }
+.btn {
+  display: inline-block;
+  padding: 11px 20px;
+  border: 1px solid var(--line);
+  background: transparent;
+  font-size: 11px; letter-spacing: .18em; color: var(--fore);
+  cursor: pointer;
+  transition: border-color .22s var(--snap), color .22s var(--snap), background-color .22s var(--snap);
+}
+.btn:hover { border-color: var(--fore); }
+.btn--go { border-color: var(--signal); color: var(--signal); }
+.btn--go:hover { background: var(--signal); color: var(--ground); border-color: var(--signal); }
+
+/* ── 02 object ─────────────────────────────────────────────────────────── */
+.spec { grid-column: 5 / 13; border-top: 1px solid var(--hair); }
+.spec-row {
+  display: grid; grid-template-columns: 128px minmax(0, 1fr);
+  gap: var(--gut);
+  padding: 15px 0; border-bottom: 1px solid var(--hair);
+}
+.spec-row dt { font-size: 10px; letter-spacing: .18em; color: var(--dim); padding-top: 3px; }
+.spec-row dd { margin: 0; max-width: 62ch; }
+
+/* ── 03 sequence ───────────────────────────────────────────────────────── */
+.beats {
+  grid-column: 1 / 13;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--gut);
+  border-top: 1px solid var(--line);
+}
+.beat { padding: 20px 0 24px; border-right: 1px solid var(--hair); padding-right: var(--gut); }
+.beat:last-child { border-right: 0; }
+.beat-n {
+  font-family: var(--display); font-stretch: 68%; font-weight: 800;
+  font-size: clamp(34px, 5vw, 66px); line-height: .84; letter-spacing: -.03em;
+  color: var(--panel);
+  -webkit-text-stroke: 1px var(--line);
+  margin-bottom: 14px;
+}
+.beat h3 { font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: .2em; }
+.beat-b { margin-top: 8px; color: var(--dim); }
+.beat-c { margin-top: 10px; font-size: 11px; color: var(--fore); word-break: break-word; }
+.beat-c code { color: var(--fore); }
+.chip {
+  margin-top: 16px; display: inline-block;
+  padding: 4px 9px; border: 1px solid var(--line);
+  font-size: 9.5px; letter-spacing: .16em; color: var(--dim);
+}
+.chip b { font-weight: 600; color: var(--fore); }
+.chip--on { border-color: rgba(61,245,197,.4); color: rgba(61,245,197,.62); }
+.chip--on b { color: var(--signal); }
+
+/* the beat the demo is currently on */
+.beat.lit .beat-n { color: var(--fore); -webkit-text-stroke: 0; }
+
+.fail { grid-column: 5 / 13; }
+.fail-line {
+  font-size: clamp(11px, 1.25vw, 14px); letter-spacing: .16em; color: var(--signal);
+  padding-bottom: 10px; border-bottom: 1px solid rgba(61,245,197,.28);
+}
+.fail-b { margin-top: 12px; max-width: 62ch; color: var(--dim); }
+
+/* ── 04 demo ───────────────────────────────────────────────────────────── */
+#demo .head { grid-row: 1; }
+.demo-copy { grid-column: 1 / 6; grid-row: 2; display: grid; gap: 1.1em; max-width: 52ch; }
+.demo-copy p { color: var(--dim); }
+.demo-copy p:first-child { color: var(--fore); }
+
+/* the one deliberate break in the grid: the elevation runs off the right of
+   the page and up through the rule that starts the section. */
+.demo-fig {
+  grid-column: 7 / 13; grid-row: 1 / 4;
+  margin-top: calc((var(--pad) + 54px) * -1);
+  margin-right: calc(var(--edge) * -1);
+  padding: 54px 0 0 0;
+  position: relative; z-index: 2;
+  background: var(--ground);
+  border-left: 1px solid var(--line);
+}
+.demo-fig figcaption {
+  margin-top: 10px; padding: 0 0 0 22px;
+  font-size: 9.5px; letter-spacing: .18em; color: var(--dim);
+}
+.dev { width: 100%; height: auto; }
+.dev-body { fill: var(--panel); stroke: var(--line); stroke-width: 1; }
+.dev-glass { fill: #05060a; stroke: var(--line); stroke-width: 1; }
+.dev-screen { fill: var(--fore); }
+.dev-qr { fill: var(--ground); }
+.dev-slot { fill: rgba(8,9,11,.25); }
+.dev-foot { fill: none; stroke: var(--line); stroke-width: 1; }
+.dev-dim path { fill: none; stroke: var(--hair); stroke-width: 1; }
+.dev-lab { fill: var(--dim); font-family: var(--mono); font-size: 8.5px; letter-spacing: .18em; }
+.dev-led { fill: var(--dim); transition: fill .3s var(--snap); }
+.demo-fig.armed .dev-led { fill: var(--signal); }
+/* Before the trigger runs the glass is down at idle brightness; the code is
+   still legible, because a half-drawn drawing is not a drawing. With no
+   script at all the glass is simply up. */
+.js .dev-screen { fill: #545a63; transition: fill .34s var(--snap); }
+.js .dev-qr { fill: #1a1d24; transition: fill .34s var(--snap); }
+.js .demo-fig.shown .dev-screen { fill: var(--fore); }
+.js .demo-fig.shown .dev-qr { fill: var(--ground); }
+
+.states {
+  margin-top: 4px; border-top: 1px solid var(--hair);
+}
+.states li {
+  padding: 9px 0 9px 26px; border-bottom: 1px solid var(--hair);
+  font-size: 11px; letter-spacing: .14em; color: var(--dim);
+  position: relative;
+  transition: color .3s var(--snap);
+}
+.states li::before {
+  content: ""; position: absolute; left: 0; top: 50%;
+  width: 8px; height: 1px; background: var(--line);
+  transition: background-color .3s var(--snap), width .3s var(--snap);
+}
+.states li.on { color: var(--fore); }
+.states li.on::before { background: var(--signal); width: 16px; }
+.disc {
+  margin-top: 18px; padding: 10px 12px;
+  border: 1px solid var(--line);
+  font-size: 10px; letter-spacing: .14em; color: var(--dim);
+}
+
+/* ── 05 request ────────────────────────────────────────────────────────── */
+.req-code { grid-column: 5 / 13; }
+.req-code pre {
+  padding: 18px 20px; border: 1px solid var(--line); background: var(--panel);
+  font-size: 12px; line-height: 1.75; overflow-x: auto;
+}
+.req-code pre code { color: var(--fore); }
+.req-res { margin-top: 10px; border-color: rgba(61,245,197,.3); }
+.req-res code { color: var(--signal); }
+
+.codes { grid-column: 5 / 9; border-collapse: collapse; width: 100%; }
+.codes th {
+  text-align: left; font-weight: 400; font-size: 10px; letter-spacing: .18em;
+  color: var(--dim); padding-bottom: 9px; border-bottom: 1px solid var(--line);
+}
+.codes td { padding: 11px 12px 11px 0; border-bottom: 1px solid var(--hair); vertical-align: top; font-size: 12.5px; }
+.codes tr td:first-child { width: 62px; color: var(--signal); }
+.codes tbody tr td:first-child code { color: inherit; }
+
+.notes { grid-column: 9 / 13; display: grid; gap: 14px; align-content: start; }
+.notes li { padding-left: 0; font-size: 12.5px; color: var(--dim); }
+.notes b {
+  display: block; font-size: 9.5px; font-weight: 500; letter-spacing: .2em;
+  color: var(--fore); margin-bottom: 3px;
+}
+.notes code { color: var(--fore); word-break: break-word; }
+
+/* ── 06 credit ─────────────────────────────────────────────────────────── */
+.ledger { grid-column: 5 / 13; border-top: 1px solid var(--hair); }
+.led-row {
+  display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: var(--gut);
+  padding: 13px 0; border-bottom: 1px solid var(--hair);
+}
+.led-row dt { font-size: 10px; letter-spacing: .18em; color: var(--dim); padding-top: 3px; }
+.led-row dt code { font-size: 11px; letter-spacing: 0; }
+.led-row dd { margin: 0; }
+.led-row .on { color: var(--signal); font-weight: 500; }
+
+/* ── 07 pilot ──────────────────────────────────────────────────────────── */
+.pilot-spec { grid-column: 5 / 9; display: grid; gap: 16px; align-content: start; }
+.pilot-spec li { color: var(--dim); }
+.pilot-spec b {
+  display: block; font-size: 9.5px; font-weight: 500; letter-spacing: .2em;
+  color: var(--fore); margin-bottom: 3px;
+}
+.form { grid-column: 9 / 13; display: grid; gap: 14px; align-content: start; }
+.fld { display: grid; gap: 6px; }
+.fld span { font-size: 9.5px; letter-spacing: .2em; color: var(--dim); }
+.fld input {
+  padding: 10px 12px; background: var(--panel);
+  border: 1px solid var(--line); border-radius: 0;
+  font-size: 13px;
+  transition: border-color .22s var(--snap);
+}
+.fld input:hover { border-color: rgba(214,217,222,.28); }
+.fld input::placeholder { color: #454a52; }
+.form .btn { justify-self: start; margin-top: 6px; }
+.form-note {
+  font-size: 9.5px; letter-spacing: .16em; color: var(--dim);
+  padding-top: 12px; border-top: 1px solid var(--hair);
+}
+
+/* ── footer ────────────────────────────────────────────────────────────── */
+.foot {
+  display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between;
+  padding: 26px var(--edge) 34px;
+  border-top: 1px solid var(--line);
+}
+.foot-line { font-size: 12px; color: var(--fore); }
+.foot-meta { font-size: 10px; letter-spacing: .16em; color: var(--dim); }
+
+/* Nothing on this page arrives by fading in. The field moves, the demo runs,
+   hover and focus answer — and everything else is set type: it is there when
+   the page is there. A screenshot at any instant is the whole page. */
+
+/* ── narrower ──────────────────────────────────────────────────────────── */
+@media (max-width: 1080px) {
+  .plate--hero { grid-column: 8 / 13; }
+  .hero-copy { grid-column: 1 / 8; }
+  .codes { grid-column: 5 / 13; }
+  .notes { grid-column: 5 / 13; grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .pilot-spec { grid-column: 5 / 13; }
+  .form { grid-column: 5 / 13; grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .form .btn, .form-note { grid-column: 1 / -1; }
+}
+
+@media (max-width: 860px) {
+  .head, .head-note, .hero-copy, .spec, .beats, .fail, .demo-copy,
+  .req-code, .codes, .notes, .ledger, .pilot-spec, .form,
+  .plate--hero, .demo-fig { grid-column: 1 / -1; }
+  .head-note { margin-top: -18px; }
+  .beats { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .beat:nth-child(2) { border-right: 0; }
+  .plate--hero { height: clamp(200px, 34vh, 300px); order: -1; }
+  .demo-fig {
+    grid-row: auto; margin-top: 0; padding-top: 0;
+    border-left: 0; margin-right: 0;
+  }
+  #demo .head { grid-row: auto; }
+  .demo-copy { grid-row: auto; }
+  .demo-fig figcaption { padding-left: 0; }
+}
+
+@media (max-width: 700px) {
+  .mast-nav { display: none; }
+}
+
+@media (max-width: 560px) {
+  body { font-size: 13.5px; }
+  .beats { grid-template-columns: minmax(0,1fr); }
+  .beat { border-right: 0; border-bottom: 1px solid var(--hair); padding-right: 0; }
+  .beat:last-child { border-bottom: 0; }
+  .spec-row, .led-row { grid-template-columns: minmax(0,1fr); gap: 6px; }
+  .notes, .form { grid-template-columns: minmax(0,1fr); }
+  .mast-tag { display: none; }
+  .req-code pre { font-size: 11px; padding: 14px; }
+}
+
+/* ── reduced motion ────────────────────────────────────────────────────── */
+/* The field draws exactly one frame and never moves; nothing else moves at
+   all. Every state the animation would have reached is the resting state. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+  .states li { color: var(--fore); }
+  .states li::before { background: var(--signal); width: 16px; }
+  .js .dev-screen { fill: var(--fore); }
+  .js .dev-qr { fill: var(--ground); }
+  .dev-led { fill: var(--signal); }
+}

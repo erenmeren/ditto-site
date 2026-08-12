@@ -62,21 +62,27 @@ function cieX(l) { return 1.056 * lobe(l, 599.8, 37.9, 31.0) + 0.362 * lobe(l, 4
 function cieY(l) { return 0.821 * lobe(l, 568.8, 46.9, 40.5) + 0.286 * lobe(l, 530.9, 16.3, 31.1); }
 function cieZ(l) { return 1.217 * lobe(l, 437.0, 11.8, 36.0) + 0.681 * lobe(l, 459.0, 26.0, 13.8); }
 
-const OPD_MAX = 5200;   /* nanometres of path difference the table covers.
+const OPD_MAX = 20000;  /* nanometres of path difference the table covers.
                            Wide enough that the film never runs off the end of
-                           it: a clamped table shows up as a flat white patch. */
-const LUT_N = 3072;
+                           it: a clamped table shows up as a flat white patch.
+                           Twenty-odd orders fit inside this, which is what lets
+                           a fringe sequence repeat across the plate instead of
+                           one order filling it. */
+const LUT_N = 10240;
 
 /* reflectance of a thin film at path difference `opd`, integrated to sRGB.
  * Returns three Uint8 tables — one lookup per pixel at render time. */
-function buildLut(gain, saturation, contrast) {   /* gain is linear exposure */
+function buildLut(gain, saturation, contrast, stack) {  /* gain is linear exposure */
   const R = new Uint8ClampedArray(LUT_N);
   const G = new Uint8ClampedArray(LUT_N);
   const B = new Uint8ClampedArray(LUT_N);
 
   const lam = [], wx = [], wy = [], wz = [];
   let norm = 0;
-  for (let l = 390; l <= 730; l += 5) {
+  /* 2 nm steps, not 5: at twenty orders the reflectance oscillates fast enough
+     in wavelength that a coarse sum aliases, and aliasing here reads as false
+     colour in the high fringes. */
+  for (let l = 390; l <= 730; l += 2) {
     lam.push(l); wx.push(cieX(l)); wy.push(cieY(l)); wz.push(cieZ(l));
     norm += cieY(l);
   }
@@ -88,7 +94,16 @@ function buildLut(gain, saturation, contrast) {   /* gain is linear exposure */
       /* half the phase difference; the pi shift on external reflection is
        * folded in, so a vanishing film is dark rather than white. */
       const s = Math.sin(Math.PI * opd / lam[k]);
-      const r = s * s;
+      const s2 = s * s;
+      /* Two surfaces give sin^2: a broad, sleepy fringe that spends half its
+       * life half-lit, which is why a plain soap-film model averages to a grey
+       * wash. What actually makes a spider, a beetle or a mussel shell
+       * iridescent is a stack of many layers, and a stack resonates — the
+       * maxima sit in exactly the same places, but each one is narrow. Raising
+       * the fringe to a power is that narrowing: same physics, sharper stack.
+       * It is also what keeps the plate dark, because a narrow peak has a low
+       * mean, so the field reads as ruled bands of light over black. */
+      const r = stack > 1 ? Math.pow(s2, stack) : s2;
       X += wx[k] * r; Y += wy[k] * r; Z += wz[k] * r;
     }
     X /= norm; Y /= norm; Z /= norm;
@@ -135,22 +150,31 @@ export function createField(canvas, opts = {}) {
   const o = Object.assign({
     seed: 7,
     scale: 1,           /* render resolution as a fraction of CSS pixels */
-    maxWidth: 1040,     /* hard cap on the render buffer's width */
+    maxWidth: 1600,     /* hard cap on the render buffer's width */
     index: 1.36,        /* refractive index of the film */
     thickBase: 30,      /* nm — the film thins to nothing in places, and goes black there */
-    thickSwing: 1150,   /* nm of thickness variation across the map */
-    feature: 200,       /* render pixels per lattice cell at the first octave */
+    /* The balance between these two is the whole picture. `lens` is the smooth
+       curvature of the film, and it is what produces ORDERED, concentric ring
+       families — a real Newton's-rings figure, order after order. `thickSwing`
+       is the seeded roughness on top, and it only distorts those rings into
+       something organic. Roughness larger than curvature is the failure mode:
+       the orders stop lining up and the plate collapses into a noise wash. */
+    thickSwing: 220,    /* nm of thickness variation across the map */
+    feature: 60,        /* CSS pixels per lattice cell at the first octave */
     lattice: 24,        /* noise lattice resolution */
     octaves: 4,
-    lens: 380,          /* nm of extra thickness at the far corner: Newton rings */
+    lens: 9000,         /* nm of extra thickness at the far corner: Newton rings.
+                           Sixteen-odd orders across the plate, so the fringe
+                           sequence repeats and can be read as a sequence. */
     striae: 5,          /* nm of fine lamellar corrugation */
-    striaePeriod: 4,    /* render pixels per lamella */
-    gradeMin: 0.72,     /* the film is thinnest at the top of the page ... */
-    gradeSpan: 0.62,    /* ... and this much thicker at the bottom of it */
-    shape: 1.7,         /* biases the map thin, so the black regions are broad */
-    gain: 0.20,       /* exposure in linear light: a real film is not a poster */
-    saturation: 0.90,
-    contrast: 2.40,   /* linear-light contrast: keeps the peaks, drops the wash */
+    striaePeriod: 4,    /* CSS pixels per lamella */
+    gradeMin: 0.70,     /* the film is thinnest at the top of the page ... */
+    gradeSpan: 0.55,    /* ... and this much thicker at the bottom of it */
+    shape: 1.2,         /* biases the map thin, so the black regions are broad */
+    gain: 0.30,       /* exposure in linear light: a real film is not a poster */
+    saturation: 0.70,
+    contrast: 2.30,   /* linear-light contrast: keeps the peaks, drops the wash */
+    stack: 3,         /* 1 = two surfaces; higher = a multilayer stack, narrower fringes */
     ease: 0.11,
     pointer: [0.66, 0.34]  /* resting observer position, in unit coords */
   }, opts);
@@ -158,7 +182,7 @@ export function createField(canvas, opts = {}) {
   const ctx = canvas.getContext('2d', { alpha: true });
   const buf = document.createElement('canvas');
   const bctx = buf.getContext('2d', { alpha: false });
-  const lut = buildLut(o.gain, o.saturation, o.contrast);
+  const lut = buildLut(o.gain, o.saturation, o.contrast, o.stack);
 
   let rw = 0, rh = 0, cw = 0, ch = 0, dpr = 1;
   let thickness = null;      /* Float32Array, nm, seed-dependent only */
@@ -180,11 +204,15 @@ export function createField(canvas, opts = {}) {
    * seed and the buffer size and nothing else, so it is built once. */
   function buildThickness() {
     const rand = mulberry32(o.seed * 2654435761 % 4294967296 | 0);
+    /* `feature` is CSS pixels per lattice cell, not render pixels: the film has
+       to look the same on a retina screen as on a plain one. */
+    const cells = Math.max(1, cw || rw) / o.feature;
+    const zoom = rw / Math.max(1, cw || rw);
     const layers = [];
     for (let k = 0; k < o.octaves; k++) {
       layers.push({
         v: lattice(rand, o.lattice),
-        f: (rw / o.feature) * Math.pow(2, k) * (0.9 + rand() * 0.3),
+        f: cells * Math.pow(2, k) * (0.9 + rand() * 0.3),
         a: Math.pow(0.42, k),
         ox: rand() * 100,
         oy: rand() * 100
@@ -195,6 +223,7 @@ export function createField(canvas, opts = {}) {
 
     thickness = new Float32Array(rw * rh);
     const asp = rh / rw;   /* keep the noise square whatever shape the plate is */
+    const striaeK = 2 * Math.PI / Math.max(1, o.striaePeriod * zoom);
     for (let y = 0; y < rh; y++) {
       const v = (y / rh) * asp;
       for (let x = 0; x < rw; x++) {
@@ -206,7 +235,7 @@ export function createField(canvas, opts = {}) {
         n = Math.pow(n / amp, o.shape);
         /* lamellar corrugation: the fine parallel structure that makes a
          * grating a grating. Small, but it is what stops this reading as a wash. */
-        const lam = o.striae * Math.sin((y + x * 0.18) * (2 * Math.PI / o.striaePeriod));
+        const lam = o.striae * Math.sin((y + x * 0.18) * striaeK);
         thickness[y * rw + x] = o.thickBase + n * o.thickSwing + lam;
       }
     }
@@ -219,8 +248,11 @@ export function createField(canvas, opts = {}) {
     cw = w; ch = h;
     canvas.width = Math.max(1, Math.round(w * dpr));
     canvas.height = Math.max(1, Math.round(h * dpr));
-    rw = Math.max(1, Math.min(o.maxWidth, Math.round(w * o.scale)));
-    rh = Math.max(1, Math.round(rw * (h / Math.max(1, w))));
+    /* Render at the backing store's own resolution wherever that fits under
+       the cap. An upscale here is a low-pass filter, and the thing it filters
+       away first is the fringe — which is the whole picture. */
+    rw = Math.max(1, Math.min(o.maxWidth, Math.round(canvas.width * o.scale)));
+    rh = Math.max(1, Math.round(rw * (canvas.height / Math.max(1, canvas.width))));
     buf.width = rw; buf.height = rh;
     image = bctx.createImageData(rw, rh);
     buildThickness();
@@ -251,7 +283,10 @@ export function createField(canvas, opts = {}) {
         const sinI2 = 1 - cosI2;
         const cosR = Math.sqrt(1 - sinI2 / (n * n));
 
-        const d = thickness[i] * grade + lensK * r2;
+        /* the grade multiplies the whole film, curvature included, so scroll
+           walks every fringe up through its orders rather than only wobbling
+           the noise on top of a fixed ring family */
+        const d = (thickness[i] + lensK * r2) * grade;
         let opd = 2 * n * d * cosR;
         if (opd < 0) opd = 0;
 

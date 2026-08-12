@@ -7,6 +7,14 @@
  * samples a palette. What you see is the same physics that makes an oil slick,
  * a soap film and a beetle's shell shift colour as the surface tilts.
  *
+ * The picture it has to produce is an ORDERED one: concentric families of
+ * fringes, order after order, with the fringe sequence readable as a sequence.
+ * That comes from the smooth curvature of the film (`lens`); the seeded
+ * roughness (`thickSwing`) only distorts those families into something
+ * organic. Roughness much larger than curvature is the failure mode — the
+ * orders stop lining up and the plate degenerates into a coloured noise wash,
+ * which is a heat map, not an interference pattern.
+ *
  * Three inputs move the pattern:
  *   seed     the film's thickness map (fixed for the life of the page)
  *   scroll   a thickness grade, walking every fringe up through its orders

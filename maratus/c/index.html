@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>maratus — counter display, trigger-only</title>
+<meta name="description" content="POST a URL, the device displays a QR code, the credit settles when the display is confirmed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="app.css">
+<script>
+/* marks the document as scripted before first paint, and unmarks it if the
+   module never arrives, so no scripted-only state can strand the page */
+document.documentElement.className = 'js';
+setTimeout(function () { if (!window.__c) document.documentElement.classList.remove('js'); }, 2400);
+</script>
+</head>
+<body>
+
+<header class="mast">
+  <a class="mast-mark" href="#hero">maratus</a>
+  <nav class="mast-nav" aria-label="Sections">
+    <a href="#object">OBJECT</a>
+    <a href="#sequence">SEQUENCE</a>
+    <a href="#demo">DEMO</a>
+    <a href="#request">API</a>
+    <a href="#terms">CREDIT</a>
+    <a href="#pilot">PILOT</a>
+  </nav>
+  <span class="mast-tag">TRIGGER-ONLY</span>
+</header>
+
+<main>
+
+  <!-- 01 ................................................................. -->
+  <section class="band band--hero" id="hero">
+    <div class="grid">
+      <div class="hero-copy">
+        <p class="idx">§ 01 &nbsp;/&nbsp; COUNTER DISPLAY</p>
+        <h1>
+          <span class="h1-mark">maratus</span>
+          <span class="h1-sub">counter display.<br>trigger-only.</span>
+        </h1>
+        <div class="hero-lede">
+          <p>Palm-sized touchscreen. Sits by the till, faces the customer. One POST from your system, one QR on the glass, one scan by the customer's phone.</p>
+          <p>Behind the code: your URL — receipt, ticket, warranty, menu. On screen: for a bounded moment, then idle. Paper: none.</p>
+        </div>
+        <div class="acts">
+          <a class="btn btn--go" href="#pilot">PILOT</a>
+          <a class="btn" href="#sequence">SEQUENCE ↓</a>
+        </div>
+        <p class="rule-line">POST /trigger → QR → confirm → scan</p>
+      </div>
+
+      <figure class="plate plate--hero" data-field="hero" data-seed="7">
+        <figcaption class="plate-cap">
+          <span>FIG. 01 · THIN-FILM INTERFERENCE</span>
+          <span>PHASE ← SCROLL · ANGLE ← POINTER</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 02 ................................................................. -->
+  <section class="band" id="object">
+    <div class="grid">
+      <div class="head">
+        <p class="idx">§ 02</p>
+        <h2>The object.</h2>
+      </div>
+      <dl class="spec">
+        <div class="spec-row"><dt>FORM</dt><dd>Palm-sized touchscreen. Counter-mounted, customer-facing.</dd></div>
+        <div class="spec-row"><dt>FOOTPRINT</dt><dd>Occupies the receipt printer's footprint, not the till's.</dd></div>
+        <div class="spec-row"><dt>IDLE</dt><dd>The organisation's own screen.</dd></div>
+        <div class="spec-row"><dt>BRANDING</dt><dd>Layout and branding: set in the console, pushed org-wide to every claimed box in every store. Not settable per request — the trigger carries a URL and nothing else.</dd></div>
+        <div class="spec-row"><dt>OUTPUT</dt><dd>Display only. No print path, no capture path, no delivery path.</dd></div>
+        <div class="spec-row"><dt>HARDWARE</dt><dd>The screen. Reading is done by the customer's own phone.</dd></div>
+        <div class="spec-row"><dt>RETENTION</dt><dd>What the customer receives is never read, printed, sent or retained by the device.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 03 ................................................................. -->
+  <section class="band" id="sequence">
+    <div class="grid">
+      <div class="head">
+        <p class="idx">§ 03</p>
+        <h2>Sequence.</h2>
+      </div>
+      <p class="head-note">Four beats. The credit state at each one.</p>
+
+      <ol class="beats">
+        <li class="beat">
+          <p class="beat-n">01</p>
+          <h3>TRIGGER</h3>
+          <p class="beat-b">POST from your system.</p>
+          <p class="beat-c"><code>202 { id, status: "queued" }</code></p>
+          <p class="chip">CREDIT · <b>HOLD</b></p>
+        </li>
+        <li class="beat">
+          <p class="beat-n">02</p>
+          <h3>SHOW</h3>
+          <p class="beat-b">Command reaches the device. QR on the glass, carrying your URL directly.</p>
+          <p class="beat-c"><code>command delivered</code></p>
+          <p class="chip">CREDIT · <b>HOLD</b></p>
+        </li>
+        <li class="beat">
+          <p class="beat-n">03</p>
+          <h3>CONFIRM</h3>
+          <p class="beat-b">Device confirms the display. Paid on show.</p>
+          <p class="beat-c"><code>settled</code></p>
+          <p class="chip chip--on">CREDIT · <b>SETTLED</b></p>
+        </li>
+        <li class="beat">
+          <p class="beat-n">04</p>
+          <h3>SCAN</h3>
+          <p class="beat-b">The customer's own phone. Free, terminal.</p>
+          <p class="beat-c"><code>unchanged</code></p>
+          <p class="chip chip--on">CREDIT · <b>SETTLED</b></p>
+        </li>
+      </ol>
+
+      <div class="fail">
+        <p class="fail-line">NO DISPLAY → HOLD RELEASED → NO LATE CODE</p>
+        <p class="fail-b">No confirmation: the trigger expires, the hold is released, and a late code never appears. If the box cannot put the code on screen, the credit comes back.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 ................................................................. -->
+  <section class="band" id="demo">
+    <div class="grid">
+      <figure class="demo-fig">
+        <svg class="dev" viewBox="0 0 460 430" role="img" aria-label="Elevation drawing of the counter display, showing a QR code on its screen.">
+          <g class="dev-dim">
+            <path d="M46 44 H26 M46 322 H26 M31 44 V322"/>
+            <path d="M104 372 V392 M356 372 V392 M104 387 H356"/>
+            <path d="M368 96 H404 M404 96 V150 M404 150 H392"/>
+          </g>
+          <text class="dev-lab" x="20" y="188" transform="rotate(-90 20 188)">BODY</text>
+          <text class="dev-lab" x="230" y="406" text-anchor="middle">COUNTER LINE</text>
+          <text class="dev-lab" x="410" y="100">GLASS</text>
+
+          <path class="dev-foot" d="M150 322 H310 L340 366 H120 Z"/>
+          <rect class="dev-body" x="60" y="30" width="340" height="292" rx="12"/>
+          <rect class="dev-glass" x="82" y="52" width="296" height="248" rx="4"/>
+          <rect class="dev-screen" x="96" y="66" width="268" height="220" rx="2"/>
+          <g class="dev-qr" transform="translate(160 82) scale(6.2)"><path d="M0 0h7v1h-7zM8 0h3v1h-3zM12 0h3v1h-3zM17 0h2v1h-2zM20 0h1v1h-1zM22 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h3v1h-3zM14 1h1v1h-1zM22 1h1v1h-1zM28 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM8 2h5v1h-5zM15 2h2v1h-2zM19 2h1v1h-1zM22 2h1v1h-1zM24 2h3v1h-3zM28 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM9 3h2v1h-2zM14 3h1v1h-1zM18 3h3v1h-3zM22 3h1v1h-1zM24 3h3v1h-3zM28 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM10 4h2v1h-2zM13 4h1v1h-1zM15 4h1v1h-1zM18 4h3v1h-3zM22 4h1v1h-1zM24 4h3v1h-3zM28 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM8 5h3v1h-3zM12 5h1v1h-1zM14 5h1v1h-1zM16 5h1v1h-1zM22 5h1v1h-1zM28 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h7v1h-7zM9 7h4v1h-4zM15 7h2v1h-2zM3 8h2v1h-2zM6 8h5v1h-5zM12 8h3v1h-3zM21 8h4v1h-4zM27 8h1v1h-1zM1 9h2v1h-2zM4 9h2v1h-2zM8 9h1v1h-1zM11 9h1v1h-1zM13 9h1v1h-1zM16 9h2v1h-2zM19 9h2v1h-2zM22 9h1v1h-1zM25 9h1v1h-1zM27 9h1v1h-1zM3 10h1v1h-1zM6 10h1v1h-1zM10 10h2v1h-2zM14 10h1v1h-1zM16 10h2v1h-2zM20 10h6v1h-6zM27 10h1v1h-1zM2 11h2v1h-2zM7 11h2v1h-2zM11 11h3v1h-3zM15 11h6v1h-6zM23 11h2v1h-2zM2 12h3v1h-3zM6 12h2v1h-2zM12 12h4v1h-4zM17 12h3v1h-3zM23 12h5v1h-5zM0 13h3v1h-3zM4 13h1v1h-1zM9 13h1v1h-1zM11 13h1v1h-1zM13 13h1v1h-1zM16 13h1v1h-1zM18 13h1v1h-1zM21 13h1v1h-1zM23 13h3v1h-3zM0 14h1v1h-1zM3 14h1v1h-1zM5 14h4v1h-4zM11 14h4v1h-4zM16 14h1v1h-1zM21 14h1v1h-1zM24 14h2v1h-2zM27 14h1v1h-1zM2 15h2v1h-2zM11 15h2v1h-2zM18 15h2v1h-2zM21 15h1v1h-1zM23 15h2v1h-2zM26 15h1v1h-1zM28 15h1v1h-1zM1 16h2v1h-2zM5 16h4v1h-4zM10 16h1v1h-1zM13 16h2v1h-2zM17 16h4v1h-4zM22 16h1v1h-1zM28 16h1v1h-1zM2 17h1v1h-1zM4 17h1v1h-1zM8 17h2v1h-2zM11 17h1v1h-1zM13 17h1v1h-1zM15 17h1v1h-1zM18 17h1v1h-1zM23 17h1v1h-1zM25 17h1v1h-1zM28 17h1v1h-1zM1 18h1v1h-1zM4 18h3v1h-3zM13 18h4v1h-4zM22 18h1v1h-1zM25 18h1v1h-1zM1 19h2v1h-2zM5 19h1v1h-1zM7 19h3v1h-3zM13 19h1v1h-1zM17 19h1v1h-1zM20 19h2v1h-2zM23 19h1v1h-1zM27 19h1v1h-1zM1 20h2v1h-2zM4 20h1v1h-1zM6 20h2v1h-2zM14 20h1v1h-1zM16 20h1v1h-1zM20 20h8v1h-8zM10 21h3v1h-3zM14 21h1v1h-1zM17 21h1v1h-1zM19 21h2v1h-2zM24 21h1v1h-1zM26 21h3v1h-3zM0 22h7v1h-7zM8 22h2v1h-2zM11 22h1v1h-1zM14 22h1v1h-1zM20 22h1v1h-1zM22 22h1v1h-1zM24 22h4v1h-4zM0 23h1v1h-1zM6 23h1v1h-1zM9 23h1v1h-1zM12 23h1v1h-1zM15 23h1v1h-1zM17 23h1v1h-1zM20 23h1v1h-1zM24 23h4v1h-4zM0 24h1v1h-1zM2 24h3v1h-3zM6 24h1v1h-1zM8 24h1v1h-1zM12 24h1v1h-1zM15 24h1v1h-1zM18 24h1v1h-1zM20 24h5v1h-5zM26 24h2v1h-2zM0 25h1v1h-1zM2 25h3v1h-3zM6 25h1v1h-1zM8 25h2v1h-2zM14 25h1v1h-1zM16 25h1v1h-1zM21 25h2v1h-2zM25 25h1v1h-1zM28 25h1v1h-1zM0 26h1v1h-1zM2 26h3v1h-3zM6 26h1v1h-1zM8 26h1v1h-1zM11 26h1v1h-1zM14 26h3v1h-3zM19 26h3v1h-3zM25 26h1v1h-1zM27 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM9 27h1v1h-1zM11 27h1v1h-1zM14 27h3v1h-3zM18 27h1v1h-1zM26 27h1v1h-1zM28 27h1v1h-1zM0 28h7v1h-7zM9 28h1v1h-1zM11 28h1v1h-1zM14 28h1v1h-1zM17 28h2v1h-2zM20 28h1v1h-1zM23 28h1v1h-1zM27 28h2v1h-2z"/></g>
+          <rect class="dev-slot" x="160" y="266" width="140" height="6"/>
+          <circle class="dev-led" cx="230" cy="312" r="3"/>
+        </svg>
+        <figcaption>ELEVATION · SIMULATED DISPLAY</figcaption>
+      </figure>
+
+      <div class="head">
+        <p class="idx">§ 04</p>
+        <h2>Demo.<br>Simulated.</h2>
+      </div>
+
+      <div class="demo-copy">
+        <p>Fires on scroll into view. QR generated in-page, deterministic, from a fixed seed — not a valid code, not a real device, no credit consumed.</p>
+        <p>Beats and credit states are the production ones: queued/hold, display, confirm/settled, scan/free.</p>
+        <p class="acts"><button class="btn btn--go" type="button" id="run">RUN TRIGGER</button></p>
+        <ol class="states" id="states">
+          <li data-state="0">202 QUEUED · HOLD</li>
+          <li data-state="1">ON SCREEN</li>
+          <li data-state="2">CONFIRMED · SETTLED</li>
+          <li data-state="3">SCANNED · FREE</li>
+        </ol>
+        <p class="disc">SIMULATED — in-page QR, deterministic seed, no device, no credit.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 ................................................................. -->
+  <section class="band" id="request">
+    <div class="grid">
+      <div class="head">
+        <p class="idx">§ 05</p>
+        <h2>The request.</h2>
+      </div>
+
+      <div class="req-code">
+<pre><code>POST /api/v1/devices/{id}/trigger
+Authorization: Bearer &lt;api-key&gt;
+Idempotency-Key: &lt;your-key&gt;
+Content-Type: application/json
+
+{ "action": "show_qr", "payload": { "url": "https://your-shop.example/r/8f21" } }</code></pre>
+<pre class="req-res"><code>202 { "id": "trg_...", "status": "queued" }</code></pre>
+      </div>
+
+      <table class="codes">
+        <caption class="sr">Documented responses</caption>
+        <thead><tr><th scope="col">code</th><th scope="col">meaning</th></tr></thead>
+        <tbody>
+          <tr><td><code>202</code></td><td>queued, one credit on hold</td></tr>
+          <tr><td><code>401</code></td><td>no or bad API key</td></tr>
+          <tr><td><code>403</code></td><td><code>insufficient_scope</code> — the key is not allowed to trigger this device</td></tr>
+          <tr><td><code>409</code></td><td><code>device_offline</code> — raised before any hold is taken</td></tr>
+          <tr><td><code>429</code></td><td>too many requests</td></tr>
+        </tbody>
+      </table>
+
+      <ul class="notes">
+        <li><b>IDEMPOTENCY</b> <code>Idempotency-Key</code> required — retry-safe, no double display.</li>
+        <li><b>TRANSPORT</b> MQTT to the device. Device displays, device confirms, credit settles.</li>
+        <li><b>THE LINK</b> The URL is passed through to the code verbatim; never fetched, never rendered — we never see what's behind the link.</li>
+        <li><b>DURABLE</b> <code>POST /api/v1/devices/{id}/pin</code> — credit spent immediately, no hold.</li>
+        <li><b>REPORTING</b> <code>GET /api/v1/usage</code></li>
+        <li><b>NOT SHIPPED</b> Status endpoint. Callback. The trigger is fire-and-confirm, one way.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 06 ................................................................. -->
+  <section class="band band--terms" id="terms">
+    <figure class="plate plate--band" data-field="band" data-seed="23">
+      <figcaption class="plate-cap">
+        <span>FIG. 02 · SAME FILM, LATER PHASE</span>
+        <span>SEED 23</span>
+      </figcaption>
+    </figure>
+    <div class="grid">
+      <div class="head">
+        <p class="idx">§ 06</p>
+        <h2>Credit.</h2>
+      </div>
+      <p class="head-note">Paid on show.</p>
+
+      <dl class="ledger">
+        <div class="led-row"><dt><code>202</code> ACCEPTED</dt><dd>Hold.</dd></div>
+        <div class="led-row"><dt>DISPLAY CONFIRMED</dt><dd><b class="on">Settled.</b> Paid on show. Nothing else settles it.</dd></div>
+        <div class="led-row"><dt>SCAN</dt><dd>Free, unmetered, does not settle.</dd></div>
+        <div class="led-row"><dt>NO DISPLAY</dt><dd>Hold released, balance restored.</dd></div>
+        <div class="led-row"><dt><code>pin</code></dt><dd>Immediate spend, no hold, durable.</dd></div>
+        <div class="led-row"><dt>NEW ORGANISATION</dt><dd>50-credit starter grant.</dd></div>
+        <div class="led-row"><dt>ALTERNATIVE</dt><dd>Per-device subscription plans, <code>flat</code> and <code>base_usage</code>.</dd></div>
+        <div class="led-row"><dt>REPORTING</dt><dd><code>GET /api/v1/usage</code></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 07 ................................................................. -->
+  <section class="band" id="pilot">
+    <div class="grid">
+      <div class="head">
+        <p class="idx">§ 07</p>
+        <h2>Pilot.</h2>
+      </div>
+
+      <ul class="pilot-spec">
+        <li><b>SUPPLIED</b> One device. One console login. API keys.</li>
+        <li><b>SETUP</b> Factory-allocated serial: zero-touch auto-claim on power-up. Otherwise: six-character pairing code, typed into the console.</li>
+        <li><b>GRANT</b> 50 credits, covers the pilot.</li>
+        <li><b>BRANDING</b> Set once, pushed org-wide — device two matches device one with no second setup.</li>
+        <li><b>KNOWN GAP</b> No status endpoint, no callback.</li>
+      </ul>
+
+      <form class="form" id="form">
+        <label class="fld"><span>NAME</span><input type="text" name="name" autocomplete="name"></label>
+        <label class="fld"><span>ORGANISATION</span><input type="text" name="org" autocomplete="organization"></label>
+        <label class="fld"><span>EMAIL</span><input type="email" name="email" autocomplete="email"></label>
+        <label class="fld"><span>URL BEHIND THE CODE</span><input type="text" name="url" placeholder="https://"></label>
+        <button class="btn btn--go" type="submit">REQUEST DEVICE</button>
+        <p class="form-note" id="note" role="status">NOT SHIPPED: status endpoint, callback.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <p class="foot-line">maratus — counter display. trigger-only. paid on show.</p>
+  <p class="foot-meta">POST /trigger → QR → confirm → scan</p>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

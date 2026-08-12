@@ -605,7 +605,12 @@ code{
   }
 
   /* i · hero — the figure breaks the grid and runs off the right edge */
-  .hero{ align-items:center; min-height:78vh }
+  /* overflow-x:clip here (not on body, which doesn't contain it in Firefox)
+     is what turns the negative-margin bleed below into an actual crop at
+     the plate's own edge instead of extra scrollable document width. .plate
+     already establishes position:relative, so this clips in place without
+     touching layout or the sticky masthead, which lives outside #hero. */
+  .hero{ align-items:center; min-height:78vh; overflow-x:clip }
   .hero__text{ grid-column:2 / span 5; grid-row:1 }
   /* the deliberate break: the plate is wider than the page and is cropped
      by the right edge, the way a specimen sheet is cropped by its book */

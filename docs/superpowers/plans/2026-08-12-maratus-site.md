@@ -127,7 +127,11 @@ done
 if grep -nEi '\b(NFC|scanner|camera)\b' $FILES; then hit hardware "unshipped hardware named"; fi
 
 # Lazy easing. Custom cubic-beziers only.
-if grep -nE 'transition[^;]*\b(ease|ease-in|ease-out|ease-in-out|linear)\b|animation[^;]*\b(ease|ease-in-out|linear)\b' $FILES; then
+# The (^|[^-a-zA-Z]) guard matters: a bare \b treats the "ease" inside
+# var(--ease-soft) as a boundary match, which would fail every transition in
+# direction B, whose token is named --ease-soft. Longest alternative first so
+# ease-in-out is not reported as a bare "ease".
+if grep -nE '(transition|animation)[^;]*(^|[^-a-zA-Z])(ease-in-out|ease-in|ease-out|ease|linear)([^-a-zA-Z]|$)' $FILES; then
   hit easing "a default easing keyword is used"
 fi
 

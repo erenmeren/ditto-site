@@ -367,9 +367,26 @@ h1 { display: block; margin-bottom: clamp(24px, 3vw, 44px); }
 .foot-line { font-size: 12px; color: var(--fore); }
 .foot-meta { font-size: 10px; letter-spacing: .16em; color: var(--dim); }
 
-/* Nothing on this page arrives by fading in. The field moves, the demo runs,
-   hover and focus answer — and everything else is set type: it is there when
-   the page is there. A screenshot at any instant is the whole page. */
+/* ── arrivals ──────────────────────────────────────────────────────────── */
+/* A board this severe should not bounce, so the arrival is the smallest one
+   that still reads as arrival: a short drift up, on --drift, once per block.
+   The armed state is gated behind .armed, which only JavaScript sets — with
+   the script off, or before it runs, nothing is hidden and nothing can be
+   stranded invisible. app.js also unarms on a hard timeout regardless. */
+.rv { transition: opacity .7s var(--drift), transform .7s var(--drift); }
+.armed .rv { opacity: 0; transform: translateY(14px); }
+.armed .rv.in { opacity: 1; transform: none; }
+
+/* Without the field the hero's right-hand columns hold nothing. Rather than
+   leave four empty columns the reader has to excuse as negative space, the
+   no-script hero is a different composition: the block runs the full twelve,
+   and the lede sets in two mono columns under it. Same words, same order. */
+html:not(.js) .hero-copy { grid-column: 1 / 13; }
+html:not(.js) .hero-lede {
+  max-width: none;
+  grid-template-columns: repeat(auto-fit, minmax(min(46ch, 100%), 1fr));
+  column-gap: clamp(26px, 4vw, 68px);
+}
 
 /* ── narrower ──────────────────────────────────────────────────────────── */
 @media (max-width: 1080px) {
@@ -420,6 +437,8 @@ h1 { display: block; margin-bottom: clamp(24px, 3vw, 44px); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { transition: none !important; animation: none !important; }
+  /* app.js never arms the arrivals here; this is the belt as well as the braces */
+  .rv, .armed .rv { opacity: 1 !important; transform: none !important; }
   .states li { color: var(--fore); }
   .states li::before { background: var(--signal); width: 16px; }
   .js .dev-screen { fill: var(--fore); }

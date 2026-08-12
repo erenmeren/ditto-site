@@ -22,12 +22,12 @@ window.__c = 1;               /* tells the head script the module arrived */
 const plates = Array.from(document.querySelectorAll('.plate[data-field]'));
 const fields = [];
 
-/* Two specimens of the same film. The slit is short and wide, so it is given a
- * finer thickness map and a lower grade — otherwise it crops one broad zone
- * and the fringes never get to repeat inside it. */
+/* Two specimens of the same film. The slit is short and wide, so its ring
+ * family is cropped to a set of vertical arcs; a coarser, calmer thickness map
+ * keeps those arcs ordered instead of chopping them up. */
 const PROFILE = {
   hero: {},
-  band: { gradeMin: 0.42, gradeSpan: 0.5, feature: 120, lens: 240, shape: 1.9, contrast: 2.6 }
+  band: { feature: 90, thickSwing: 200 }
 };
 
 if (plates.length && document.createElement('canvas').getContext) {
@@ -77,6 +77,82 @@ if (fields.length) {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => { for (const f of fields) f.field.resize(); }, 140);
   }, { passive: true });
+}
+
+/* ── arrivals ──────────────────────────────────────────────────────────── */
+/* One drift per block, on --drift. Three independent guarantees that nothing
+ * can be left stranded at opacity 0, because that failure is invisible in a
+ * screenshot and fatal on the page:
+ *   1. the armed state exists only while .armed is on <html>, which only this
+ *      file sets, so no-script and pre-script are never hidden;
+ *   2. a rect sweep — on load and on every scroll and resize — reveals
+ *      anything that has reached the viewport, whether or not the observer
+ *      fired, so the observer is an optimisation rather than a dependency;
+ *   3. a hard timeout unarms the document outright.
+ * A full-page screenshot tool that never scrolls will therefore capture a
+ * complete page, and so will a reader who scrolls. */
+
+const REVEAL = [
+  'h1', '.hero-lede', '.acts', '.rule-line', '.plate--hero',
+  '.head', '.head-note', '.spec', '.beats', '.fail',
+  '.demo-fig', '.demo-copy', '.req-code', '.codes', '.notes',
+  '.plate--band', '.ledger', '.pilot-spec', '.form'
+].join(', ');
+
+if (!reduced) {
+  const items = Array.from(document.querySelectorAll(REVEAL));
+
+  if (items.length) {
+    /* stagger inside a section, never across the page: three steps, then flat */
+    const seen = new Map();
+    for (const el of items) {
+      const section = el.closest('section, footer') || document.body;
+      const i = (seen.get(section) || 0);
+      seen.set(section, i + 1);
+      el.style.transitionDelay = Math.min(i, 3) * 55 + 'ms';
+      el.classList.add('rv');
+    }
+
+    root.classList.add('armed');
+    void root.offsetHeight;   /* flush, so the first reveal transitions rather than snapping */
+
+    const pending = new Set(items);
+    const show = (el) => {
+      if (!pending.delete(el)) return;
+      el.classList.add('in');
+    };
+    const sweep = () => {
+      const h = window.innerHeight || 0;
+      for (const el of Array.from(pending)) {
+        const r = el.getBoundingClientRect();
+        if (r.top < h * 0.92 && r.bottom > -h * 0.25) show(el);
+      }
+    };
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          io.unobserve(entry.target);
+          show(entry.target);
+        }
+      }, { rootMargin: '0px 0px -8% 0px' });
+      for (const el of items) io.observe(el);
+    }
+
+    let armedFrame = false;
+    const schedule = () => {
+      if (armedFrame) return;
+      armedFrame = true;
+      requestAnimationFrame(() => { armedFrame = false; sweep(); });
+    };
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule, { passive: true });
+
+    requestAnimationFrame(sweep);          /* whatever is already in view, now */
+    setTimeout(() => { for (const el of Array.from(pending)) show(el); }, 7000);
+    setTimeout(() => root.classList.remove('armed'), 7400);   /* last resort */
+  }
 }
 
 /* ── the simulated trigger ─────────────────────────────────────────────── */

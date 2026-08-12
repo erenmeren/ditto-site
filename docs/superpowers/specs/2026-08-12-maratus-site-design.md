@@ -36,11 +36,13 @@ Every direction states these identically. Wording may differ; substance may not.
   body `{ action: "show_qr", payload: { url } }`.
 - Response `202 { id, status: "queued" }`. One credit goes **on hold** at this
   point. Other documented answers: 401, 409, 429.
-- The command travels over MQTT to the box; the box displays the QR and acks.
-  **The ack settles the credit — paid on show.** Typical ack is "a couple of
-  seconds".
-- 60 s TTL. No ack in time → the command expires, the hold is released, and a late
-  code never appears on screen.
+- The command travels over MQTT to the box. The box puts the QR on screen and
+  confirms back. **That confirmation is what settles the credit — paid on show.**
+  It typically takes a couple of seconds.
+- If the box never confirms, the command expires, the hold is released, and a late
+  code never appears on screen. **The site states this outcome and gives no
+  number.** See "The sixty seconds" below — there is no sixty-second rule to
+  state.
 - The QR carries the caller's URL directly. Maratus never fetches, renders, or
   stores what is behind that URL.
 - Scanning is free and happens last. It does not settle the credit.
@@ -50,6 +52,41 @@ Every direction states these identically. Wording may differ; substance may not.
   from the caller's request.
 - New organisations get a 50-credit starter grant. Per-device plans exist.
 
+### The sixty seconds
+
+Verified against `erenmeren/ditto-admin` at `356ac95`, confirmed level with
+`origin/main` on 2026-08-12, and against `erenmeren/ditto-firmware`.
+
+Two different sixty-second values exist, and earlier site copy conflated them into
+a product rule that does not exist:
+
+- **Server side, real and fixed.** `TTL_MS = 60_000` in
+  `app/api/v1/devices/[deviceId]/trigger/route.ts` — a delivery deadline. If the
+  box does not confirm within it, the trigger expires and the credit hold is
+  released.
+- **On the box, optional and configurable.** The countdown is a screen object
+  (`OBJ_COUNTDOWN` in `ditto-firmware/components/ui/ui.c`) that defaults to 60 but
+  is set through `ui_set_countdown(seconds)`, can be left off a screen layout
+  entirely, and is suppressed for pinned codes.
+
+So there is no sixty-second rule a shop owner or a customer could rely on. **No
+direction prints a duration anywhere.** What the site says instead is the
+consequence: if the box cannot put the code on screen, the credit comes back. That
+sentence is true under every configuration, and it is the part a shop owner
+actually cares about.
+
+The 60 s delivery deadline may be mentioned in the API section as an
+implementation detail if a direction's voice supports it, but never in display
+copy and never as a customer-facing promise.
+
+### Words the site does not use
+
+Jargon that the product's own owner had to ask about does not belong in front of
+shop owners. **"ack" and "acknowledgement" never appear in site copy**, in any
+direction, including the API section — write "the box confirms" or "confirmation".
+The same applies to "TTL". "MQTT" may appear only in the API section, where a
+developer is the reader.
+
 ## The brand spine
 
 *Maratus* is the genus of the peacock spider. What matters is not the name but the
@@ -57,8 +94,9 @@ behaviour it points at: the spider raises an iridescent fan, performs a short,
 high-stakes display, then folds it away.
 
 That is the product. The box raises a display, shows a code for a bounded moment,
-then returns to idle. The 60-second TTL is the display window. The credit is paid
-for the display, not for the scan.
+then returns to idle. The display is bounded — it does not stay up forever — and
+the credit is paid for the display, not for the scan. How long it lasts is a
+setting, not a promise, so the site draws the boundedness and never times it.
 
 All three directions are built on this one idea — **the display** — and differ only
 in how literally they draw it. This is what keeps the site from reading as
@@ -82,9 +120,11 @@ The spider appears exactly once, in the hero, as a bespoke SVG drawn in the mann
 of a natural-history specimen plate. On scroll it **raises its fan**, and that
 motion is tied to the product's display beat rather than running on its own timer.
 
-The scrub-able 60-second timeline from the `redesign/` study is carried here — it
-is the strongest existing idea in the repo and belongs to the direction that takes
-the display literally.
+The scrub-able timeline from the `redesign/` study is carried here — it is the
+strongest existing idea in the repo and belongs to the direction that takes the
+display literally. It is re-cut to scrub the **sequence** (trigger → show →
+confirm → scan, with the credit's state at each step) rather than a clock, since
+no duration is stated.
 
 Intended feel: precise, expensive, slightly uncanny. This is the direction closest
 to the "$10K site" brief.
@@ -93,7 +133,7 @@ to the "$10K site" brief.
 
 An illustrated character with three functional states — idle, displaying, paid —
 acting as a guide through the page: it sits on the counter, opens its fan when the
-QR appears, and settles against the credit pill when the ack lands.
+QR appears, and settles against the credit pill when the box confirms.
 
 Warmer palette, softer typography, spring-based micro-interactions.
 
@@ -115,7 +155,8 @@ signature layer that is not available off the shelf.
 
 1. **hero** — the name, the one-line claim, the object
 2. **the object** — what the box physically is, on the counter
-3. **the sequence** — trigger → show → ack → scan, with the 60 s window
+3. **the sequence** — trigger → show → confirm → scan, and what happens to the
+   credit at each step (no durations printed)
 4. **live demo** — the deterministic fake QR, fired on scroll into view
 5. **the request** — the actual API call and its answers
 6. **terms and credit** — paid on show, starter grant, plans exist

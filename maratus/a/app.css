@@ -245,9 +245,11 @@ code{
   border:1px solid var(--ink-28);
   background:none;
   cursor:pointer;
-  transition:transform .16s var(--fold);
+  /* press with --fold (see :active), release with --settle: the button
+     comes back up past its own size and settles, the way the fan does */
+  transition:transform .34s var(--settle);
 }
-.btn:active{ transform:scale(.978) }
+.btn:active{ transform:scale(.978); transition:transform .1s var(--fold) }
 
 .btn--solid{ background:var(--paper); color:var(--ground); border-color:var(--paper) }
 .btn--ink{ background:var(--ground); color:var(--paper); border-color:var(--ground) }
@@ -288,7 +290,11 @@ code{
 .specimen__caption em{ color:var(--ink-70) }
 
 /* The fan raise. --open is written by app.js from the hero's scroll
-   position and by nothing else. Its resting value, above, is 1: open. */
+   position and by nothing else. Its resting value, above, is 1: open —
+   which is what a reader with no JavaScript, or with reduced motion, gets.
+   With JavaScript the first frame is part-raised and already coloured, and
+   the raise finishes early enough that the open fan is still whole on the
+   screen; the measured numbers behind that live in app.js. */
 
 #fan-left{ transform:rotate(calc(var(--open,1) * -44deg)) }
 #fan-right{ transform:rotate(calc(var(--open,1) *  44deg)) }
@@ -488,6 +494,17 @@ code{
 
 /* ── vii · pilot ─────────────────────────────────────────────────── */
 
+/* The one inversion runs edge to edge at every width. Above --plate the
+   other plates are centred with dark gutters; paper in a gutter would read
+   as a card, so this plate drops its max-width and grows its own padding
+   instead, which lands its twelve columns on exactly the same left and
+   right text edges as the plates above it. Percentages here, never 100vw:
+   a vw unit includes the scrollbar and pushes the page sideways. */
+.plate.pilot{
+  max-width:none;
+  padding-inline:max(var(--edge), calc((100% - var(--plate)) / 2 + var(--edge)));
+}
+
 .pilot{
   background:var(--paper);
   color:rgba(14,15,18,.76);
@@ -635,11 +652,18 @@ code{
 
   .beat::before{ display:none }
   .beats__list{ grid-template-columns:repeat(4,minmax(0,1fr)); gap:0 }
+  /* The beat copy runs to different lengths, so the credit line has to be
+     pushed to the bottom of its column or the four labels sit on two
+     baselines. On a plate about precision that is the one visible slip. */
   .beat{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
     padding:0 clamp(14px,1.7vw,30px) 0 0;
     border-left:1px solid var(--hairline);
     padding-left:clamp(14px,1.5vw,24px);
   }
+  .beat__credit{ margin-top:auto }
   .beat:first-child{ border-left:none; padding-left:0 }
 
   /* iv · demo */

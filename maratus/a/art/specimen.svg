@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600"
      role="img" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <title>Specimen plate — the fan, folded</title>
+  <title>Specimen plate: a peacock spider and its display fan</title>
 
   <defs>
     <linearGradient id="irid-centre" x1="0.5" y1="1" x2="0.5" y2="0">
@@ -8,14 +8,9 @@
       <stop offset="0.52" stop-color="#7A3CF0"/>
       <stop offset="1" stop-color="#14B6A6"/>
     </linearGradient>
-    <linearGradient id="irid-left" x1="1" y1="1" x2="0" y2="0">
+    <linearGradient id="irid-blade" x1="0.5" y1="1" x2="0.5" y2="0">
       <stop offset="0" stop-color="#2B6BE4"/>
-      <stop offset="0.5" stop-color="#7A3CF0"/>
-      <stop offset="1" stop-color="#14B6A6"/>
-    </linearGradient>
-    <linearGradient id="irid-right" x1="0" y1="1" x2="1" y2="0">
-      <stop offset="0" stop-color="#2B6BE4"/>
-      <stop offset="0.5" stop-color="#7A3CF0"/>
+      <stop offset="0.46" stop-color="#7A3CF0"/>
       <stop offset="1" stop-color="#14B6A6"/>
     </linearGradient>
   </defs>
@@ -26,16 +21,19 @@
     <path d="M400 96 L400 540" stroke-width="0.75" stroke-dasharray="2 7" opacity="0.4"/>
     <path d="M64 528 L736 528" stroke-width="0.75" opacity="0.55"/>
 
-    <!-- scale bar -->
-    <path d="M64 552 L204 552" stroke-width="1"/>
-    <path d="M64 546 L64 558 M99 549 L99 558 M134 546 L134 558 M169 549 L169 558 M204 546 L204 558"
+    <!-- scale bar, on the axis and clear of the legs -->
+    <path d="M330 554 L470 554" stroke-width="1"/>
+    <path d="M330 548 L330 560 M365 551 L365 560 M400 548 L400 560 M435 551 L435 560 M470 548 L470 560"
           stroke-width="0.75"/>
-    <text x="216" y="557" fill="currentColor" stroke="none"
+    <text x="482" y="559" fill="currentColor" stroke="none"
           font-family="ui-monospace, 'IBM Plex Mono', monospace" font-size="11" letter-spacing="1.6">10 mm</text>
 
-    <!-- leader to the cephalothorax -->
-    <path d="M470 452 L700 452" stroke-width="0.75" stroke-dasharray="3 6" opacity="0.6"/>
-    <path d="M700 446 L700 458" stroke-width="0.75" opacity="0.6"/>
+    <!-- leader: anchored on the eye row, out to the right margin -->
+    <circle cx="456" cy="462" r="1.6" fill="currentColor" stroke="none" opacity="0.8"/>
+    <path d="M456 462 L600 430 L700 430" stroke-width="0.75" stroke-dasharray="3 6" opacity="0.6"/>
+    <path d="M700 424 L700 436" stroke-width="0.75" opacity="0.6"/>
+    <text x="618" y="422" fill="currentColor" stroke="none" opacity="0.75"
+          font-family="ui-monospace, 'IBM Plex Mono', monospace" font-size="10" letter-spacing="1.4">eye row</text>
 
     <!-- registration crosses -->
     <path d="M44 44 L60 44 M52 36 L52 52" stroke-width="0.75" opacity="0.7"/>
@@ -44,52 +42,79 @@
     <path d="M740 556 L756 556 M748 548 L748 564" stroke-width="0.75" opacity="0.7"/>
   </g>
 
-  <!-- The fan. Colour appears here and nowhere else. Drawn folded: the two
-       flaps lie closed over the central plate; CSS rotates them open about
-       the hinge at (400,400), the base of the opisthosoma. -->
-  <g id="fan-centre" stroke="currentColor">
-    <!-- flanking lobes: hidden under the folded flaps, revealed as the fan opens -->
-    <path d="M400 400 C392 356 382 306 377 272 C362 270 348 280 344 300
-             C354 340 374 378 400 400 Z"
-          fill="url(#irid-left)" fill-opacity="0.9" stroke-width="1"/>
-    <path d="M400 400 C408 356 418 306 423 272 C438 270 452 280 456 300
-             C446 340 426 378 400 400 Z"
-          fill="url(#irid-right)" fill-opacity="0.9" stroke-width="1"/>
-    <!-- the dorsal plate -->
-    <path d="M400 400 C386 344 366 282 366 242 C366 221 382 206 400 206
-             C418 206 434 221 434 242 C434 282 414 344 400 400 Z"
-          fill="url(#irid-centre)" fill-opacity="0.94" stroke-width="1.2"/>
-    <path d="M400 392 L400 212" stroke-width="0.75" opacity="0.6"/>
-    <path d="M400 384 C394 330 388 268 388 222" stroke-width="0.75" opacity="0.5"/>
-    <path d="M400 384 C406 330 412 268 412 222" stroke-width="0.75" opacity="0.5"/>
-    <path d="M369 274 C382 282 418 282 431 274" stroke-width="0.75" opacity="0.55"/>
-    <path d="M379 332 C388 338 412 338 421 332" stroke-width="0.75" opacity="0.55"/>
-  </g>
+  <!-- The fan. Colour appears here and nowhere else.
 
+       Each lateral flap is a 56-degree blade hinged at (400,400), the base of
+       the opisthosoma. A rigid rotation cannot change a blade's angular width,
+       so the width is set by the OPEN state — inner edge beside the dorsal
+       plate, outer edge at the rim. At rest the blade is drawn centred on the
+       midline (-28 to +28), crossed with its mirror and behind the plate: that
+       overlap is what a folded fan does, and centring is what makes the folded
+       silhouette as narrow as a blade this wide can be. The radius profile is
+       long in the middle of the blade and short at both ends, so the folded
+       union is a tapered oval rather than a wedge.
+       Rotating #fan-left by -44deg and #fan-right by +44deg opens it.
+
+       The empty rect in each flap group is an anchor: it fixes the group's
+       fill-box to a rectangle centred on the hinge, so transform-origin
+       50% 100% is exactly (400,400) and does not drift with the path's own
+       bounding box. -->
   <g id="fan-left" stroke="currentColor"
-     transform-box="fill-box" transform-origin="100% 100%"
-     style="transform-box: fill-box; transform-origin: 100% 100%;">
-    <path d="M400 400 L400 222 C374 220 344 236 330 262 C324 274 322 288 326 300
-             C338 330 362 368 400 400 Z"
-          fill="url(#irid-left)" fill-opacity="0.94" stroke-width="1.2"/>
-    <path d="M399 393 C393 344 384 292 377 238" stroke-width="0.75" opacity="0.6"/>
-    <path d="M398 392 C386 350 366 300 346 264" stroke-width="0.75" opacity="0.6"/>
-    <path d="M396 391 C382 356 358 320 330 293" stroke-width="0.75" opacity="0.5"/>
-    <path d="M336 288 C356 292 378 286 395 274" stroke-width="0.75" opacity="0.6"/>
-    <path d="M352 322 C368 326 384 322 397 314" stroke-width="0.75" opacity="0.55"/>
+     transform-box="fill-box" transform-origin="50% 100%"
+     style="transform-box: fill-box; transform-origin: 50% 100%;">
+    <rect x="200" y="188" width="400" height="212" fill="none" stroke="none"/>
+    <path d="M400 400 L477.9 253.4 C475 250.2 466.8 240.2 460.3 234.3
+             C453.8 228.3 446.6 222.2 438.8 217.6 C431 212.9 422.3 209.2 413.5 206.5
+             C404.8 203.7 395.2 201.1 386.1 201.1 C377 201.1 367.1 202.1 358.8 206.3
+             C350.6 210.5 342.5 217.6 336.7 226.1 C330.9 234.5 326.1 251.8 323.9 257
+             C338.7 312.4 370.9 355.2 400 400 Z"
+          fill="url(#irid-blade)" fill-opacity="0.94" stroke-width="1.2"/>
+    <g stroke-width="0.75" opacity="0.55">
+      <path d="M406.7 374.9 L442.7 240.8"/>
+      <path d="M400.5 374 L403.1 223.4"/>
+      <path d="M394.2 374.7 L360.1 227.1"/>
+      <path d="M440.5 317.1 C438.3 314.8 432.5 307.5 427.6 303.8 C422.7 300.1 416.9 297 411.1 294.8
+               C405.2 292.6 398.5 290.5 392.3 290.6 C386.2 290.7 379.1 291.5 373.9 295.4
+               C368.8 299.2 363.6 310.5 361.5 313.6"/>
+      <path d="M458.8 279.4 C455.7 276.1 447.3 265.4 440.1 260 C433 254.6 424.6 250.1 416.1 246.9
+               C407.5 243.7 397.9 240.7 388.9 240.9 C379.9 241 369.5 242.2 362.1 247.8
+               C354.6 253.4 347 269.9 344 274.3"/>
+    </g>
   </g>
 
   <g id="fan-right" stroke="currentColor"
-     transform-box="fill-box" transform-origin="0% 100%"
-     style="transform-box: fill-box; transform-origin: 0% 100%;">
-    <path d="M400 400 L400 222 C426 220 456 236 470 262 C476 274 478 288 474 300
-             C462 330 438 368 400 400 Z"
-          fill="url(#irid-right)" fill-opacity="0.94" stroke-width="1.2"/>
-    <path d="M401 393 C407 344 416 292 423 238" stroke-width="0.75" opacity="0.6"/>
-    <path d="M402 392 C414 350 434 300 454 264" stroke-width="0.75" opacity="0.6"/>
-    <path d="M404 391 C418 356 442 320 470 293" stroke-width="0.75" opacity="0.5"/>
-    <path d="M464 288 C444 292 422 286 405 274" stroke-width="0.75" opacity="0.6"/>
-    <path d="M448 322 C432 326 416 322 403 314" stroke-width="0.75" opacity="0.55"/>
+     transform-box="fill-box" transform-origin="50% 100%"
+     style="transform-box: fill-box; transform-origin: 50% 100%;">
+    <rect x="200" y="188" width="400" height="212" fill="none" stroke="none"/>
+    <path d="M400 400 L322.1 253.4 C325 250.2 333.2 240.2 339.7 234.3
+             C346.2 228.3 353.4 222.2 361.2 217.6 C369 212.9 377.7 209.2 386.5 206.5
+             C395.2 203.7 404.8 201.1 413.9 201.1 C423 201.1 432.9 202.1 441.2 206.3
+             C449.4 210.5 457.5 217.6 463.3 226.1 C469.1 234.5 473.9 251.8 476.1 257
+             C461.3 312.4 429.1 355.2 400 400 Z"
+          fill="url(#irid-blade)" fill-opacity="0.94" stroke-width="1.2"/>
+    <g stroke-width="0.75" opacity="0.55">
+      <path d="M393.3 374.9 L357.3 240.8"/>
+      <path d="M399.5 374 L396.9 223.4"/>
+      <path d="M405.8 374.7 L439.9 227.1"/>
+      <path d="M359.5 317.1 C361.7 314.8 367.5 307.5 372.4 303.8 C377.3 300.1 383.1 297 388.9 294.8
+               C394.8 292.6 401.5 290.5 407.7 290.6 C413.8 290.7 420.9 291.5 426.1 295.4
+               C431.2 299.2 436.4 310.5 438.5 313.6"/>
+      <path d="M341.2 279.4 C344.3 276.1 352.7 265.4 359.9 260 C367 254.6 375.4 250.1 383.9 246.9
+               C392.5 243.7 402.1 240.7 411.1 240.9 C420.1 241 430.5 242.2 437.9 247.8
+               C445.4 253.4 453 269.9 456 274.3"/>
+    </g>
+  </g>
+
+  <!-- the dorsal plate, on top of the folded blades and between them when open -->
+  <g id="fan-centre" stroke="currentColor">
+    <path d="M400 400 C383 344 359 290 359 252 C359 234 377 224 400 224
+             C423 224 441 234 441 252 C441 290 417 344 400 400 Z"
+          fill="url(#irid-centre)" fill-opacity="0.94" stroke-width="1.2"/>
+    <path d="M400 392 L400 230" stroke-width="0.75" opacity="0.6"/>
+    <path d="M400 384 C393 332 383 276 381 240" stroke-width="0.75" opacity="0.5"/>
+    <path d="M400 384 C407 332 417 276 419 240" stroke-width="0.75" opacity="0.5"/>
+    <path d="M365 288 C380 296 420 296 435 288" stroke-width="0.75" opacity="0.55"/>
+    <path d="M378 336 C388 342 412 342 422 336" stroke-width="0.75" opacity="0.55"/>
   </g>
 
   <!-- Four pairs. The third pair is held up beside the fan, as it is in the
@@ -97,21 +122,21 @@
   <g id="legs" stroke="currentColor" stroke-width="1.6">
     <path d="M360 490 C340 508 316 522 292 528 C268 534 246 542 232 552"/>
     <path d="M346 470 C320 484 290 496 262 502 C240 507 218 514 204 524"/>
-    <path d="M343 444 C322 424 306 396 296 366 C286 334 276 300 268 268"/>
+    <path d="M343 444 C320 424 304 398 294 368 C280 330 254 288 218 246"/>
     <path d="M350 420 C328 422 304 428 282 436 C258 444 236 452 220 464"/>
     <path d="M440 490 C460 508 484 522 508 528 C532 534 554 542 568 552"/>
     <path d="M454 470 C480 484 510 496 538 502 C560 507 582 514 596 524"/>
-    <path d="M457 444 C478 424 494 396 504 366 C514 334 524 300 532 268"/>
+    <path d="M457 444 C480 424 496 398 506 368 C520 330 546 288 582 246"/>
     <path d="M450 420 C472 422 496 428 518 436 C542 444 564 452 580 464"/>
     <!-- tarsal brushes on the raised pair -->
     <g stroke-width="0.9" opacity="0.85">
-      <path d="M268 268 L258 244 M268 268 L264 242 M268 268 L273 244"/>
-      <path d="M532 268 L542 244 M532 268 L536 242 M532 268 L527 244"/>
+      <path d="M218 246 L206 224 M218 246 L212 220 M218 246 L225 224"/>
+      <path d="M582 246 L594 224 M582 246 L588 220 M582 246 L575 224"/>
     </g>
     <!-- joints -->
     <g stroke-width="0.75" opacity="0.7">
-      <path d="M289 522 L296 534 M259 496 L266 508 M295 361 L305 369 M279 431 L287 442"/>
-      <path d="M511 522 L504 534 M541 496 L534 508 M505 361 L495 369 M521 431 L513 442"/>
+      <path d="M289 522 L296 534 M259 496 L266 508 M288 364 L299 372 M279 431 L287 442"/>
+      <path d="M511 522 L504 534 M541 496 L534 508 M512 364 L501 372 M521 431 L513 442"/>
     </g>
   </g>
 

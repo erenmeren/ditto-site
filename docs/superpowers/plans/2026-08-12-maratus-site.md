@@ -77,17 +77,26 @@ sleep 2
 URL="http://localhost:$PORT/${TARGET#./}/index.html"
 URL="${URL//\/\/index.html/\/index.html}"
 
-shoot() { # profile  width  height  name
+# A wrong TARGET must fail loudly. Firefox renders its own 404 page as a
+# perfectly valid ~22KB PNG, so [ -s file ] alone would call that success.
+CODE=$(curl -s -o /dev/null -w '%{http_code}' "$URL")
+if [ "$CODE" != "200" ]; then echo "FAIL: $URL returned $CODE" >&2; exit 1; fi
+
+# Width only, never a height. --window-size's height argument fixes the
+# CAPTURE height, not just the layout viewport: passing 2600 records the top
+# 2600px of a 4584px page and silently discards the rest. Omitting it makes
+# Firefox capture the full document at that width.
+shoot() { # profile  width  name
   timeout 120 firefox --headless --profile "$PROFS/$1" \
-    --window-size="$2,$3" --screenshot "$OUT/$4.png" "$URL" >/dev/null 2>&1 || true
-  if [ ! -s "$OUT/$4.png" ]; then echo "FAIL: no screenshot for $4" >&2; exit 1; fi
+    --window-size="$2" --screenshot "$OUT/$3.png" "$URL" >/dev/null 2>&1 || true
+  if [ ! -s "$OUT/$3.png" ]; then echo "FAIL: no screenshot for $3" >&2; exit 1; fi
 }
 
-shoot plain 1440 2600 plain-1440
-shoot plain  768 2600 plain-768
-shoot plain  390 2600 plain-390
-shoot rm    1440 2600 rm-1440
-shoot nojs  1440 2600 nojs-1440
+shoot plain 1440 plain-1440
+shoot plain  768 plain-768
+shoot plain  390 plain-390
+shoot rm    1440 rm-1440
+shoot nojs  1440 nojs-1440
 
 echo "shot $URL"
 magick identify "$OUT"/*.png | sed 's/^/  /'

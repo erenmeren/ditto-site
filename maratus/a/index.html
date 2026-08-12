@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>maratus — shown once, then folded away</title>
+<meta name="description" content="A counter display for shops. Your system sends a link, the box shows a QR code, the customer keeps it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..700&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&display=swap">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<a class="skip" href="#hero">Skip to the plate</a>
+
+<header class="masthead">
+  <a class="masthead__mark" href="#hero">maratus</a>
+  <nav class="masthead__nav" aria-label="Plates">
+    <a href="#object">The object</a>
+    <a href="#sequence">The sequence</a>
+    <a href="#demo">Demo</a>
+    <a href="#request">The request</a>
+    <a href="#terms">Credit</a>
+    <a href="#pilot">Pilot</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ─────────────────────────────────────────────  i · hero  ── -->
+<section class="plate hero" id="hero">
+  <p class="plate__no"><span>pl. i</span></p>
+
+  <div class="hero__text">
+    <p class="eyebrow">The display</p>
+    <h1 class="display">Shown&nbsp;once,<br>then folded away.</h1>
+    <p class="lead">maratus is a small touchscreen that sits on the counter, facing the customer. The shop&rsquo;s own system sends it a link.</p>
+    <p>The box raises a QR code on its screen, the customer scans it with their own phone, and what was behind the link &mdash; a receipt, a ticket, a warranty, a menu &mdash; is on that phone and stays there. Nothing is printed. The display is bounded: it goes up, it does its work, it folds away, and the box returns to idle.</p>
+    <p class="actions">
+      <a class="btn btn--solid" href="#pilot">Start a pilot</a>
+      <a class="btn" href="#sequence">See the sequence</a>
+    </p>
+    <p class="undernote">a counter display for shops &middot; trigger-only</p>
+  </div>
+
+  <figure class="hero__figure">
+    <div class="specimen">
+<svg class="specimen__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"
+     role="img" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Specimen plate: a peacock spider and its display fan</title>
+
+  <defs>
+    <linearGradient id="irid-centre" x1="0.5" y1="1" x2="0.5" y2="0">
+      <stop offset="0" stop-color="#2B6BE4"/>
+      <stop offset="0.52" stop-color="#7A3CF0"/>
+      <stop offset="1" stop-color="#14B6A6"/>
+    </linearGradient>
+    <linearGradient id="irid-blade" x1="0.5" y1="1" x2="0.5" y2="0">
+      <stop offset="0" stop-color="#2B6BE4"/>
+      <stop offset="0.46" stop-color="#7A3CF0"/>
+      <stop offset="1" stop-color="#14B6A6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Plate furniture: frame, axis, baseline, scale bar, registration marks. -->
+  <g id="plate-rules" stroke="currentColor">
+    <rect x="24" y="24" width="752" height="552" stroke-width="1"/>
+    <path d="M400 96 L400 540" stroke-width="0.75" stroke-dasharray="2 7" opacity="0.4"/>
+    <path d="M64 528 L736 528" stroke-width="0.75" opacity="0.55"/>
+
+    <!-- scale bar, on the axis and clear of the legs -->
+    <path d="M330 554 L470 554" stroke-width="1"/>
+    <path d="M330 548 L330 560 M365 551 L365 560 M400 548 L400 560 M435 551 L435 560 M470 548 L470 560"
+          stroke-width="0.75"/>
+    <text x="482" y="559" fill="currentColor" stroke="none"
+          font-family="ui-monospace, 'IBM Plex Mono', monospace" font-size="11" letter-spacing="1.6">10 mm</text>
+
+    <!-- leader: anchored on the eye row, out to the right margin -->
+    <circle cx="456" cy="462" r="1.6" fill="currentColor" stroke="none" opacity="0.8"/>
+    <path d="M456 462 L600 430 L700 430" stroke-width="0.75" stroke-dasharray="3 6" opacity="0.6"/>
+    <path d="M700 424 L700 436" stroke-width="0.75" opacity="0.6"/>
+    <text x="618" y="422" fill="currentColor" stroke="none" opacity="0.75"
+          font-family="ui-monospace, 'IBM Plex Mono', monospace" font-size="10" letter-spacing="1.4">eye row</text>
+
+    <!-- registration crosses -->
+    <path d="M44 44 L60 44 M52 36 L52 52" stroke-width="0.75" opacity="0.7"/>
+    <path d="M740 44 L756 44 M748 36 L748 52" stroke-width="0.75" opacity="0.7"/>
+    <path d="M44 556 L60 556 M52 548 L52 564" stroke-width="0.75" opacity="0.7"/>
+    <path d="M740 556 L756 556 M748 548 L748 564" stroke-width="0.75" opacity="0.7"/>
+  </g>
+
+  <!-- The fan. Colour appears here and nowhere else.
+
+       Each lateral flap is a 56-degree blade hinged at (400,400), the base of
+       the opisthosoma. A rigid rotation cannot change a blade's angular width,
+       so the width is set by the OPEN state — inner edge beside the dorsal
+       plate, outer edge at the rim. At rest the blade is drawn centred on the
+       midline (-28 to +28), crossed with its mirror and behind the plate: that
+       overlap is what a folded fan does, and centring is what makes the folded
+       silhouette as narrow as a blade this wide can be. The radius profile is
+       long in the middle of the blade and short at both ends, so the folded
+       union is a tapered oval rather than a wedge.
+       Rotating #fan-left by -44deg and #fan-right by +44deg opens it.
+
+       The empty rect in each flap group is an anchor: it fixes the group's
+       fill-box to a rectangle centred on the hinge, so transform-origin
+       50% 100% is exactly (400,400) and does not drift with the path's own
+       bounding box. -->
+  <g id="fan-left" stroke="currentColor"
+     transform-box="fill-box" transform-origin="50% 100%"
+     style="transform-box: fill-box; transform-origin: 50% 100%;">
+    <rect x="200" y="188" width="400" height="212" fill="none" stroke="none"/>
+    <path d="M400 400 L477.9 253.4 C475 250.2 466.8 240.2 460.3 234.3
+             C453.8 228.3 446.6 222.2 438.8 217.6 C431 212.9 422.3 209.2 413.5 206.5
+             C404.8 203.7 395.2 201.1 386.1 201.1 C377 201.1 367.1 202.1 358.8 206.3
+             C350.6 210.5 342.5 217.6 336.7 226.1 C330.9 234.5 326.1 251.8 323.9 257
+             C338.7 312.4 370.9 355.2 400 400 Z"
+          fill="url(#irid-blade)" fill-opacity="0.94" stroke-width="1.2"/>
+    <g stroke-width="0.75" opacity="0.55">
+      <path d="M406.7 374.9 L442.7 240.8"/>
+      <path d="M400.5 374 L403.1 223.4"/>
+      <path d="M394.2 374.7 L360.1 227.1"/>
+      <path d="M440.5 317.1 C438.3 314.8 432.5 307.5 427.6 303.8 C422.7 300.1 416.9 297 411.1 294.8
+               C405.2 292.6 398.5 290.5 392.3 290.6 C386.2 290.7 379.1 291.5 373.9 295.4
+               C368.8 299.2 363.6 310.5 361.5 313.6"/>
+      <path d="M458.8 279.4 C455.7 276.1 447.3 265.4 440.1 260 C433 254.6 424.6 250.1 416.1 246.9
+               C407.5 243.7 397.9 240.7 388.9 240.9 C379.9 241 369.5 242.2 362.1 247.8
+               C354.6 253.4 347 269.9 344 274.3"/>
+    </g>
+  </g>
+
+  <g id="fan-right" stroke="currentColor"
+     transform-box="fill-box" transform-origin="50% 100%"
+     style="transform-box: fill-box; transform-origin: 50% 100%;">
+    <rect x="200" y="188" width="400" height="212" fill="none" stroke="none"/>
+    <path d="M400 400 L322.1 253.4 C325 250.2 333.2 240.2 339.7 234.3
+             C346.2 228.3 353.4 222.2 361.2 217.6 C369 212.9 377.7 209.2 386.5 206.5
+             C395.2 203.7 404.8 201.1 413.9 201.1 C423 201.1 432.9 202.1 441.2 206.3
+             C449.4 210.5 457.5 217.6 463.3 226.1 C469.1 234.5 473.9 251.8 476.1 257
+             C461.3 312.4 429.1 355.2 400 400 Z"
+          fill="url(#irid-blade)" fill-opacity="0.94" stroke-width="1.2"/>
+    <g stroke-width="0.75" opacity="0.55">
+      <path d="M393.3 374.9 L357.3 240.8"/>
+      <path d="M399.5 374 L396.9 223.4"/>
+      <path d="M405.8 374.7 L439.9 227.1"/>
+      <path d="M359.5 317.1 C361.7 314.8 367.5 307.5 372.4 303.8 C377.3 300.1 383.1 297 388.9 294.8
+               C394.8 292.6 401.5 290.5 407.7 290.6 C413.8 290.7 420.9 291.5 426.1 295.4
+               C431.2 299.2 436.4 310.5 438.5 313.6"/>
+      <path d="M341.2 279.4 C344.3 276.1 352.7 265.4 359.9 260 C367 254.6 375.4 250.1 383.9 246.9
+               C392.5 243.7 402.1 240.7 411.1 240.9 C420.1 241 430.5 242.2 437.9 247.8
+               C445.4 253.4 453 269.9 456 274.3"/>
+    </g>
+  </g>
+
+  <!-- the dorsal plate, on top of the folded blades and between them when open -->
+  <g id="fan-centre" stroke="currentColor">
+    <path d="M400 400 C383 344 359 290 359 252 C359 234 377 224 400 224
+             C423 224 441 234 441 252 C441 290 417 344 400 400 Z"
+          fill="url(#irid-centre)" fill-opacity="0.94" stroke-width="1.2"/>
+    <path d="M400 392 L400 230" stroke-width="0.75" opacity="0.6"/>
+    <path d="M400 384 C393 332 383 276 381 240" stroke-width="0.75" opacity="0.5"/>
+    <path d="M400 384 C407 332 417 276 419 240" stroke-width="0.75" opacity="0.5"/>
+    <path d="M365 288 C380 296 420 296 435 288" stroke-width="0.75" opacity="0.55"/>
+    <path d="M378 336 C388 342 412 342 422 336" stroke-width="0.75" opacity="0.55"/>
+  </g>
+
+  <!-- Four pairs. The third pair is held up beside the fan, as it is in the
+       display; the others carry the animal. -->
+  <g id="legs" stroke="currentColor" stroke-width="1.6">
+    <path d="M360 490 C340 508 316 522 292 528 C268 534 246 542 232 552"/>
+    <path d="M346 470 C320 484 290 496 262 502 C240 507 218 514 204 524"/>
+    <path d="M343 444 C320 424 304 398 294 368 C280 330 254 288 218 246"/>
+    <path d="M350 420 C328 422 304 428 282 436 C258 444 236 452 220 464"/>
+    <path d="M440 490 C460 508 484 522 508 528 C532 534 554 542 568 552"/>
+    <path d="M454 470 C480 484 510 496 538 502 C560 507 582 514 596 524"/>
+    <path d="M457 444 C480 424 496 398 506 368 C520 330 546 288 582 246"/>
+    <path d="M450 420 C472 422 496 428 518 436 C542 444 564 452 580 464"/>
+    <!-- tarsal brushes on the raised pair -->
+    <g stroke-width="0.9" opacity="0.85">
+      <path d="M218 246 L206 224 M218 246 L212 220 M218 246 L225 224"/>
+      <path d="M582 246 L594 224 M582 246 L588 220 M582 246 L575 224"/>
+    </g>
+    <!-- joints -->
+    <g stroke-width="0.75" opacity="0.7">
+      <path d="M289 522 L296 534 M259 496 L266 508 M288 364 L299 372 M279 431 L287 442"/>
+      <path d="M511 522 L504 534 M541 496 L534 508 M512 364 L501 372 M521 431 L513 442"/>
+    </g>
+  </g>
+
+  <!-- Cephalothorax, eyes, palps. Line only. -->
+  <g id="body" stroke="currentColor">
+    <path d="M394 402 L394 412 M406 402 L406 412" stroke-width="1"/>
+    <path d="M400 404 C432 406 452 420 456 444 C459 466 452 486 436 494
+             C424 500 376 500 364 494 C348 486 341 466 344 444
+             C348 420 368 406 400 404 Z" stroke-width="1.6"/>
+    <path d="M362 424 C384 416 416 416 438 424" stroke-width="0.75" opacity="0.6"/>
+    <path d="M356 452 C382 446 418 446 444 452" stroke-width="0.75" opacity="0.55"/>
+    <g stroke-width="0.75" opacity="0.45">
+      <path d="M370 434 L366 444 M382 431 L378 442 M394 430 L390 441
+               M406 430 L410 441 M418 431 L422 442 M430 434 L434 444"/>
+    </g>
+    <circle cx="382" cy="477" r="15" stroke-width="1.6"/>
+    <circle cx="418" cy="477" r="15" stroke-width="1.6"/>
+    <circle cx="382" cy="477" r="7.5" stroke-width="0.9" opacity="0.6"/>
+    <circle cx="418" cy="477" r="7.5" stroke-width="0.9" opacity="0.6"/>
+    <g stroke-width="0.75" opacity="0.55">
+      <path d="M373 470 C376 466 380 464 384 464"/>
+      <path d="M427 470 C424 466 420 464 416 464"/>
+    </g>
+    <circle cx="351" cy="466" r="8" stroke-width="1.2"/>
+    <circle cx="449" cy="466" r="8" stroke-width="1.2"/>
+    <circle cx="355" cy="428" r="6" stroke-width="1"/>
+    <circle cx="445" cy="428" r="6" stroke-width="1"/>
+    <circle cx="348" cy="446" r="3" stroke-width="0.9"/>
+    <circle cx="452" cy="446" r="3" stroke-width="0.9"/>
+    <path d="M370 493 C362 502 357 510 358 517 C359 524 367 526 372 521
+             C377 516 378 506 376 498" stroke-width="1.2"/>
+    <path d="M430 493 C438 502 443 510 442 517 C441 524 433 526 428 521
+             C423 516 422 506 424 498" stroke-width="1.2"/>
+    <path d="M390 496 C388 505 390 512 394 515" stroke-width="1" opacity="0.7"/>
+    <path d="M410 496 C412 505 410 512 406 515" stroke-width="1" opacity="0.7"/>
+  </g>
+</svg>
+    </div>
+    <figcaption class="specimen__caption">
+      <em>Maratus</em> &middot; the peacock spider raises a fan, displays, folds it away.
+    </figcaption>
+  </figure>
+</section>
+
+
+<!-- ────────────────────────────────────────────  ii · object  ── -->
+<section class="plate object" id="object">
+  <p class="plate__no"><span>pl. ii</span></p>
+
+  <div class="object__head">
+    <p class="eyebrow">The object</p>
+    <h2>The object on the counter.</h2>
+  </div>
+
+  <figure class="object__figure">
+    <svg viewBox="0 0 560 400" class="schematic" role="img" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <title>Schematic: the box on a counter, with its idle screen</title>
+      <g stroke="currentColor">
+        <g transform="rotate(-9 288 300)">
+          <rect x="200" y="80" width="176" height="212" rx="16" stroke-width="1.6"/>
+          <rect x="213" y="93" width="150" height="171" rx="7" stroke-width="1"/>
+          <rect x="276" y="132" width="24" height="24" rx="4" stroke-width="1.2" opacity="0.85"/>
+          <path d="M240 182 H336" stroke-width="1" opacity="0.5"/>
+          <path d="M252 196 H324" stroke-width="0.75" opacity="0.35"/>
+          <path d="M262 276 H314" stroke-width="1" opacity="0.45"/>
+        </g>
+        <path d="M236 292 L248 340 H352 L340 288" stroke-width="1.2"/>
+        <path d="M76 340 H500" stroke-width="1" opacity="0.55"/>
+        <path d="M76 346 H500" stroke-width="0.75" opacity="0.22"/>
+
+        <!-- leaders -->
+        <g stroke-width="0.75" opacity="0.6">
+          <path d="M320 132 L446 96 L516 96" stroke-dasharray="3 6"/>
+          <path d="M372 246 L446 268 L516 268" stroke-dasharray="3 6"/>
+          <path d="M196 200 L120 176 L44 176" stroke-dasharray="3 6"/>
+          <path d="M44 176 L30 176" stroke-dasharray="0"/>
+        </g>
+        <text x="524" y="100" fill="currentColor" stroke="none" font-family="ui-monospace, 'IBM Plex Mono', monospace" font-size="13" letter-spacing="1.2">a</text>
+        <text x="524" y="272" fill="currentColor" stroke="none" font-family="ui-monospace, 'IBM Plex Mono', monospace" font-size="13" letter-spacing="1.2">b</text>
+        <text x="14" y="180" fill="currentColor" stroke="none" font-family="ui-monospace, 'IBM Plex Mono', monospace" font-size="13" letter-spacing="1.2">c</text>
+      </g>
+    </svg>
+  </figure>
+
+  <div class="object__body">
+    <p class="lead">The box is palm-sized, angled at the customer, and sits where the receipt printer would sit. Between sales it shows the shop&rsquo;s own idle screen.</p>
+    <p>That screen &mdash; the layout, the logo, the colours &mdash; is set once in the console and pushed to every claimed box in every store, so the boxes stay identical to each other. It never comes from the call that triggers a code, which means no change to a developer&rsquo;s request can alter what the shop looks like.</p>
+    <p>The box does one thing. It displays &mdash; a screen and nothing else. Reading the code is the customer&rsquo;s own phone&rsquo;s job, and what the customer receives is never read, printed, e-mailed or kept by the box.</p>
+
+    <dl class="legend">
+      <div><dt>a</dt><dd>the idle screen, set once in the console and pushed org-wide</dd></div>
+      <div><dt>b</dt><dd>a screen and nothing else &mdash; no print path, no delivery, no store</dd></div>
+      <div><dt>c</dt><dd>not drawn: the customer&rsquo;s own phone, which does the reading</dd></div>
+    </dl>
+  </div>
+</section>
+
+
+<!-- ──────────────────────────────────────────  iii · sequence  ── -->
+<section class="plate sequence" id="sequence">
+  <p class="plate__no"><span>pl. iii</span></p>
+
+  <div class="sequence__head">
+    <p class="eyebrow">The sequence</p>
+    <h2>Four beats.</h2>
+  </div>
+
+  <div class="sequence__intro">
+    <p class="lead">The shop&rsquo;s system posts a trigger and the answer comes straight back: queued, with one credit placed on hold.</p>
+    <p>The command travels to the box, and the box raises the code on its screen. The box then confirms that the code is up, and that confirmation &mdash; not the sale, not the scan &mdash; is what settles the credit. Paid on show. The customer scans last, with their own phone, and scanning costs nothing. Nothing on the counter reads the code; the phone does.</p>
+  </div>
+
+  <div class="beats" id="beats">
+    <div class="beats__rail" aria-hidden="true">
+      <span class="beats__held"></span>
+      <span class="beats__settled"></span>
+      <b class="beats__mark"></b>
+    </div>
+    <ol class="beats__list">
+      <li class="beat">
+        <p class="beat__fig">fig. 1</p>
+        <h3>trigger</h3>
+        <p class="beat__line">The shop&rsquo;s system posts. The answer is <code>202 { id, status: "queued" }</code>.</p>
+        <p class="beat__credit" data-state="held">credit <b>held</b></p>
+      </li>
+      <li class="beat">
+        <p class="beat__fig">fig. 2</p>
+        <h3>show</h3>
+        <p class="beat__line">The command reaches the box. The QR goes up, carrying the caller&rsquo;s URL.</p>
+        <p class="beat__credit" data-state="held">credit <b>held</b></p>
+      </li>
+      <li class="beat">
+        <p class="beat__fig">fig. 3</p>
+        <h3>confirm</h3>
+        <p class="beat__line">The box confirms the code is on screen. Paid on show.</p>
+        <p class="beat__credit" data-state="spent">credit <b>spent</b></p>
+      </li>
+      <li class="beat">
+        <p class="beat__fig">fig. 4</p>
+        <h3>scan</h3>
+        <p class="beat__line">The customer scans with their own phone and keeps what is behind the link. Free.</p>
+        <p class="beat__credit" data-state="spent">credit <b>spent</b></p>
+      </li>
+    </ol>
+  </div>
+
+  <p class="sequence__fail">no display, no charge &mdash; the hold is released and the code never appears late</p>
+  <p class="sequence__note">If the box cannot put the code on screen, the trigger expires, the hold is released, the credit comes back, and a late code never appears in front of somebody who has already left.</p>
+</section>
+
+
+<!-- ──────────────────────────────────────────────  iv · demo  ── -->
+<section class="plate demo-plate" id="demo">
+  <p class="plate__no"><span>pl. iv</span></p>
+
+  <div class="demo__head">
+    <p class="eyebrow">Demo</p>
+    <h2>A trigger, on this page.</h2>
+    <p class="lead">The box below is a drawing and the code on it is generated here in the browser, so nothing is triggered on real hardware and no credit is spent.</p>
+    <p>Everything else matches: the request goes out, the answer comes back queued with a credit held, the code appears, the box confirms, and the credit settles on that confirmation. The scan at the end is the customer&rsquo;s part and it is free.</p>
+  </div>
+
+  <div class="demo" id="demo-rig">
+    <figure class="demo__device">
+      <svg viewBox="0 0 340 400" class="device" role="img" fill="none">
+        <title>A drawing of the box, showing a generated code</title>
+        <rect x="30" y="20" width="280" height="336" rx="22" stroke="currentColor" stroke-width="1.6"/>
+        <rect x="46" y="36" width="248" height="288" rx="10" class="device__screen"/>
+        <g class="device__idle">
+          <rect x="152" y="150" width="36" height="36" rx="6" stroke="#0E0F12" stroke-width="1.4" fill="none" opacity="0.7"/>
+          <path d="M132 206 H208" stroke="#0E0F12" stroke-width="1.4" opacity="0.5"/>
+          <path d="M146 218 H194" stroke="#0E0F12" stroke-width="1" opacity="0.3"/>
+        </g>
+        <g class="device__qr" id="qr-holder" transform="translate(58 68) scale(7.72)">
+          <path id="qr-path" fill="#0E0F12" fill-rule="evenodd" d="M8 0h1v1h-1zM11 0h1v1h-1zM12 0h1v1h-1zM13 0h1v1h-1zM14 0h1v1h-1zM16 0h1v1h-1zM17 0h1v1h-1zM18 0h1v1h-1zM8 1h1v1h-1zM13 1h1v1h-1zM14 1h1v1h-1zM17 1h1v1h-1zM18 1h1v1h-1zM9 2h1v1h-1zM12 2h1v1h-1zM14 2h1v1h-1zM15 2h1v1h-1zM16 2h1v1h-1zM17 2h1v1h-1zM8 3h1v1h-1zM9 3h1v1h-1zM10 3h1v1h-1zM11 3h1v1h-1zM14 3h1v1h-1zM16 3h1v1h-1zM19 3h1v1h-1zM9 4h1v1h-1zM11 4h1v1h-1zM14 4h1v1h-1zM16 4h1v1h-1zM17 4h1v1h-1zM18 4h1v1h-1zM19 4h1v1h-1zM20 4h1v1h-1zM9 5h1v1h-1zM11 5h1v1h-1zM12 5h1v1h-1zM14 5h1v1h-1zM18 5h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM9 7h1v1h-1zM12 7h1v1h-1zM19 7h1v1h-1zM0 8h1v1h-1zM1 8h1v1h-1zM3 8h1v1h-1zM4 8h1v1h-1zM5 8h1v1h-1zM6 8h1v1h-1zM7 8h1v1h-1zM10 8h1v1h-1zM11 8h1v1h-1zM12 8h1v1h-1zM17 8h1v1h-1zM19 8h1v1h-1zM20 8h1v1h-1zM21 8h1v1h-1zM22 8h1v1h-1zM23 8h1v1h-1zM24 8h1v1h-1zM25 8h1v1h-1zM27 8h1v1h-1zM28 8h1v1h-1zM1 9h1v1h-1zM2 9h1v1h-1zM3 9h1v1h-1zM4 9h1v1h-1zM8 9h1v1h-1zM12 9h1v1h-1zM14 9h1v1h-1zM15 9h1v1h-1zM18 9h1v1h-1zM20 9h1v1h-1zM21 9h1v1h-1zM22 9h1v1h-1zM25 9h1v1h-1zM26 9h1v1h-1zM27 9h1v1h-1zM1 10h1v1h-1zM2 10h1v1h-1zM3 10h1v1h-1zM6 10h1v1h-1zM7 10h1v1h-1zM9 10h1v1h-1zM10 10h1v1h-1zM13 10h1v1h-1zM14 10h1v1h-1zM17 10h1v1h-1zM18 10h1v1h-1zM20 10h1v1h-1zM21 10h1v1h-1zM25 10h1v1h-1zM28 10h1v1h-1zM1 11h1v1h-1zM3 11h1v1h-1zM7 11h1v1h-1zM14 11h1v1h-1zM15 11h1v1h-1zM17 11h1v1h-1zM18 11h1v1h-1zM19 11h1v1h-1zM21 11h1v1h-1zM22 11h1v1h-1zM23 11h1v1h-1zM24 11h1v1h-1zM0 12h1v1h-1zM1 12h1v1h-1zM3 12h1v1h-1zM4 12h1v1h-1zM5 12h1v1h-1zM6 12h1v1h-1zM7 12h1v1h-1zM9 12h1v1h-1zM10 12h1v1h-1zM11 12h1v1h-1zM12 12h1v1h-1zM15 12h1v1h-1zM16 12h1v1h-1zM19 12h1v1h-1zM22 12h1v1h-1zM23 12h1v1h-1zM24 12h1v1h-1zM27 12h1v1h-1zM1 13h1v1h-1zM3 13h1v1h-1zM5 13h1v1h-1zM17 13h1v1h-1zM18 13h1v1h-1zM20 13h1v1h-1zM21 13h1v1h-1zM22 13h1v1h-1zM24 13h1v1h-1zM28 13h1v1h-1zM0 14h1v1h-1zM2 14h1v1h-1zM3 14h1v1h-1zM6 14h1v1h-1zM7 14h1v1h-1zM9 14h1v1h-1zM10 14h1v1h-1zM15 14h1v1h-1zM17 14h1v1h-1zM19 14h1v1h-1zM24 14h1v1h-1zM26 14h1v1h-1zM28 14h1v1h-1zM0 15h1v1h-1zM2 15h1v1h-1zM3 15h1v1h-1zM4 15h1v1h-1zM5 15h1v1h-1zM9 15h1v1h-1zM10 15h1v1h-1zM12 15h1v1h-1zM13 15h1v1h-1zM18 15h1v1h-1zM19 15h1v1h-1zM20 15h1v1h-1zM21 15h1v1h-1zM22 15h1v1h-1zM23 15h1v1h-1zM24 15h1v1h-1zM26 15h1v1h-1zM28 15h1v1h-1zM0 16h1v1h-1zM4 16h1v1h-1zM6 16h1v1h-1zM9 16h1v1h-1zM10 16h1v1h-1zM11 16h1v1h-1zM13 16h1v1h-1zM14 16h1v1h-1zM15 16h1v1h-1zM20 16h1v1h-1zM22 16h1v1h-1zM25 16h1v1h-1zM0 17h1v1h-1zM1 17h1v1h-1zM3 17h1v1h-1zM4 17h1v1h-1zM10 17h1v1h-1zM13 17h1v1h-1zM17 17h1v1h-1zM22 17h1v1h-1zM23 17h1v1h-1zM24 17h1v1h-1zM25 17h1v1h-1zM27 17h1v1h-1zM1 18h1v1h-1zM3 18h1v1h-1zM6 18h1v1h-1zM8 18h1v1h-1zM13 18h1v1h-1zM15 18h1v1h-1zM16 18h1v1h-1zM21 18h1v1h-1zM22 18h1v1h-1zM23 18h1v1h-1zM24 18h1v1h-1zM0 19h1v1h-1zM3 19h1v1h-1zM4 19h1v1h-1zM5 19h1v1h-1zM8 19h1v1h-1zM9 19h1v1h-1zM11 19h1v1h-1zM12 19h1v1h-1zM27 19h1v1h-1zM28 19h1v1h-1zM1 20h1v1h-1zM2 20h1v1h-1zM3 20h1v1h-1zM6 20h1v1h-1zM8 20h1v1h-1zM10 20h1v1h-1zM11 20h1v1h-1zM13 20h1v1h-1zM14 20h1v1h-1zM15 20h1v1h-1zM18 20h1v1h-1zM19 20h1v1h-1zM12 21h1v1h-1zM13 21h1v1h-1zM16 21h1v1h-1zM17 21h1v1h-1zM18 21h1v1h-1zM26 21h1v1h-1zM8 22h1v1h-1zM10 22h1v1h-1zM11 22h1v1h-1zM13 22h1v1h-1zM17 22h1v1h-1zM18 22h1v1h-1zM19 22h1v1h-1zM26 22h1v1h-1zM12 23h1v1h-1zM13 23h1v1h-1zM15 23h1v1h-1zM16 23h1v1h-1zM19 23h1v1h-1zM26 23h1v1h-1zM28 23h1v1h-1zM8 24h1v1h-1zM9 24h1v1h-1zM10 24h1v1h-1zM12 24h1v1h-1zM14 24h1v1h-1zM15 24h1v1h-1zM19 24h1v1h-1zM26 24h1v1h-1zM28 24h1v1h-1zM8 25h1v1h-1zM11 25h1v1h-1zM13 25h1v1h-1zM15 25h1v1h-1zM16 25h1v1h-1zM19 25h1v1h-1zM26 25h1v1h-1zM27 25h1v1h-1zM28 25h1v1h-1zM9 26h1v1h-1zM10 26h1v1h-1zM13 26h1v1h-1zM15 26h1v1h-1zM18 26h1v1h-1zM20 26h1v1h-1zM21 26h1v1h-1zM22 26h1v1h-1zM25 26h1v1h-1zM26 26h1v1h-1zM28 26h1v1h-1zM9 27h1v1h-1zM10 27h1v1h-1zM11 27h1v1h-1zM17 27h1v1h-1zM19 27h1v1h-1zM20 27h1v1h-1zM21 27h1v1h-1zM23 27h1v1h-1zM25 27h1v1h-1zM26 27h1v1h-1zM27 27h1v1h-1zM8 28h1v1h-1zM9 28h1v1h-1zM11 28h1v1h-1zM12 28h1v1h-1zM13 28h1v1h-1zM14 28h1v1h-1zM15 28h1v1h-1zM17 28h1v1h-1zM18 28h1v1h-1zM20 28h1v1h-1zM21 28h1v1h-1zM22 28h1v1h-1zM25 28h1v1h-1zM0 0h7v7h-7zM1 1h5v5h-5zM2 2h3v3h-3zM22 0h7v7h-7zM23 1h5v5h-5zM24 2h3v3h-3zM0 22h7v7h-7zM1 23h5v5h-5zM2 24h3v3h-3zM20 20h5v5h-5zM21 21h3v3h-3zM22 22h1v1h-1z"/>
+        </g>
+        <path d="M140 340 H200" stroke="currentColor" stroke-width="1.4" opacity="0.4"/>
+      </svg>
+      <figcaption>fig. 5 &mdash; the box, drawn</figcaption>
+    </figure>
+
+    <div class="demo__side">
+      <ol class="demo__log">
+        <li>queued &mdash; one credit held</li>
+        <li>on screen</li>
+        <li>confirmed &mdash; credit settled</li>
+        <li>scanned &mdash; free</li>
+      </ol>
+      <p class="demo__controls"><button class="btn btn--solid" type="button" id="fire">Fire a trigger</button></p>
+      <p class="fine">Simulated. The code is drawn in your browser; no device is triggered and no credit is spent.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ───────────────────────────────────────────  v · request  ── -->
+<section class="plate request" id="request">
+  <p class="plate__no"><span>pl. v</span></p>
+
+  <div class="request__head">
+    <p class="eyebrow">The request</p>
+    <h2>One call.</h2>
+  </div>
+
+  <div class="request__body">
+    <p class="lead">One authenticated POST, one required idempotency key, one URL in the body.</p>
+    <p>The answer is immediate &mdash; queued, with a credit held &mdash; and the command travels over MQTT to the box, which puts the code up and confirms. A <code>409 device_offline</code> is raised before any hold is taken, so an unreachable box never costs anything. The QR carries the caller&rsquo;s URL directly; maratus never sees what&rsquo;s behind the link, and never fetches or renders it.</p>
+    <p><code>pin</code> puts up a durable code, which spends a credit immediately rather than holding one. <code>usage</code> reports what has been spent. There is no status endpoint and no callback yet: today, a caller triggers and does not receive a result.</p>
+  </div>
+
+  <div class="request__code">
+    <p class="label">the call</p>
+<pre><code>POST /api/v1/devices/{id}/trigger
+Authorization: Bearer &lt;api-key&gt;
+Idempotency-Key: &lt;your-key&gt;
+Content-Type: application/json
+
+{ "action": "show_qr", "payload": { "url": "https://your-shop.example/r/8f21" } }</code></pre>
+    <p class="label">the answer</p>
+<pre><code>202 { "id": "trg_...", "status": "queued" }</code></pre>
+
+    <table class="codes">
+      <caption class="label">answers</caption>
+      <tbody>
+        <tr><th scope="row"><code>202</code></th><td>queued, one credit on hold</td></tr>
+        <tr><th scope="row"><code>401</code></th><td>no or bad API key</td></tr>
+        <tr><th scope="row"><code>403</code></th><td><code>insufficient_scope</code> &mdash; the key is not allowed to trigger this device</td></tr>
+        <tr><th scope="row"><code>409</code></th><td><code>device_offline</code> &mdash; raised before any hold is taken</td></tr>
+        <tr><th scope="row"><code>429</code></th><td>too many requests</td></tr>
+      </tbody>
+    </table>
+
+    <p class="fine">The <code>Idempotency-Key</code> header is required, not optional. A retry with the same key does not fire a second display. <code>POST /api/v1/devices/{id}/pin</code> pins a durable code. <code>GET /api/v1/usage</code> reports what has been spent.</p>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────  vi · terms  ── -->
+<section class="plate terms" id="terms">
+  <p class="plate__no"><span>pl. vi</span></p>
+
+  <div class="terms__head">
+    <p class="eyebrow">Credit</p>
+    <h2>Paid on show.</h2>
+  </div>
+
+  <div class="terms__body">
+    <p class="lead">A credit is held when the trigger is accepted and settles when the box confirms that the code is on screen. Nothing else settles it.</p>
+    <p>A code nobody scans costs the same as a code scanned ten times, and a code that never reaches the screen costs nothing at all &mdash; the hold is released and the credit comes back. Pinned codes are the exception: they are meant to stay up, so they spend their credit immediately.</p>
+  </div>
+
+  <dl class="ledger">
+    <div><dt>starter grant</dt><dd>New organisations start with fifty credits.</dd></div>
+    <div><dt>subscriptions</dt><dd>For boxes that run all day there are per-device plans, <code>flat</code> and <code>base_usage</code>, so credits are not the only way to pay.</dd></div>
+    <div><dt>reporting</dt><dd>What has been spent is readable at any time from <code>GET /api/v1/usage</code>.</dd></div>
+  </dl>
+</section>
+
+
+<!-- ─────────────────────────────────────────────  vii · pilot  ── -->
+<section class="plate pilot" id="pilot">
+  <p class="plate__no"><span>pl. vii</span></p>
+
+  <div class="pilot__head">
+    <p class="eyebrow">Pilot</p>
+    <h2>Run it on one counter.</h2>
+    <p class="lead">A pilot is one box, one console login and a set of API keys.</p>
+    <p>Boxes with factory-allocated serials claim themselves as soon as they are powered up; any other box is paired by typing a six-character code into the console. The starter grant covers the first fifty displays, which is enough to find out whether customers take the code without being asked twice. When a second box arrives, the screen it shows is the one already set in the console.</p>
+    <p class="fine">No status endpoint or callback yet &mdash; worth knowing before you build against it.</p>
+  </div>
+
+  <form class="pilot__form" id="pilot-form" novalidate>
+    <p class="label">request slip</p>
+    <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name"></div>
+    <div class="field"><label for="f-org">Organisation</label><input id="f-org" name="organisation" type="text" autocomplete="organization"></div>
+    <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email"></div>
+    <div class="field"><label for="f-use">What would be behind the link?</label><input id="f-use" name="use" type="text"></div>
+    <button class="btn btn--ink" type="submit">Request a pilot</button>
+    <p class="fine" id="pilot-note">A design study. This slip is not wired to anything.</p>
+  </form>
+</section>
+
+</main>
+
+<footer class="colophon">
+  <p class="colophon__line">maratus &mdash; a counter display for shops. Shown once, then folded away.</p>
+  <p class="colophon__meta">plates i&ndash;vii &middot; direction A</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

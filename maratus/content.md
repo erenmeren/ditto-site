@@ -71,13 +71,20 @@ These are gates, not preferences. A direction that breaks one is not done.
      speed without a unit — "confirmation comes straight back", "the credit
      settles as the code lands" — never as a figure, and never as a claim about
      how long the code is up.
-3. **Banned words**, written here with a middle dot through them so that this file
-   passes the same grep it imposes on the pages: `a·ck`, `a·cknowledgement`,
-   `T·TL`, `p·latform`, `e·xperience`, `i·nteraction`, `p·rogrammable`,
-   `s·tateless`. Remove the dot to read the word; never write any of them on a
-   page. In place of the first two, write "the box confirms" and "confirmation".
-   `MQTT` may appear only in the `request` section, where the reader is explicitly
-   a developer.
+3. **Banned words.** The list below is written with a middle dot (U+00B7) through
+   each word so that this file passes the same grep it imposes on the pages.
+
+   ```text
+   a·ck   a·cknowledgement   T·TL   p·latform
+   e·xperience   i·nteraction   p·rogrammable   s·tateless
+   ```
+
+   **This block is guidance and is never page content.** Do not paste it, or any
+   dotted word from it, into HTML, CSS, JS or a code comment — shipping U+00B7 to
+   a browser is a worse defect than the one it prevents. Remove the dot to read
+   each word, then never write it. In place of the first two, write "the box
+   confirms" and "confirmation". `MQTT` may appear only in the `request` section,
+   where the reader is explicitly a developer.
 4. **Never mention NFC, cameras or scanners.** That hardware does not exist. The
    customer's own phone does the scanning.
 5. **The privacy sentence is fixed in meaning.** "We never see what's behind the
@@ -97,9 +104,11 @@ These are gates, not preferences. A direction that breaks one is not done.
    an iridescent fan, performs a short and deliberate display, then folds it away.
    The box does the same: it raises a display, shows a code for a bounded moment,
    returns to idle, and the credit is paid for the display rather than for the
-   scan. Name it explicitly only where a line genuinely earns it. Direction A
-   names it once. Direction B builds a character on it. Direction C never names it
-   at all and carries it only in the optics.
+   scan. Name it explicitly only where a line genuinely earns it. **Direction A
+   names it exactly once, in the specimen caption in `hero`, and nowhere else** —
+   that caption is written out below, so A does not have to invent one. Direction
+   B names it once, in the opening line of `hero`, and then lets the character do
+   the work. Direction C never names it at all and carries it only in the optics.
 
 ## The three voices
 
@@ -113,7 +122,10 @@ These are gates, not preferences. A direction that breaks one is not done.
   first person and is never cute about money or failure.
 - **C — Structural colour.** Terse, technical, near-caption. Sentence fragments
   are correct here. Numbers, endpoint names and state labels carry the weight.
-  No metaphor at all. It never addresses the reader.
+  No metaphor at all. It uses the second person only possessively and only for
+  things the reader's system owns — "your system", "your URL", "your keys" —
+  never to address the reader as a person, and never with a verb of benefit or
+  feeling. There is no "you get", no "you'll love", no "imagine".
 
 ---
 
@@ -134,19 +146,27 @@ These are gates, not preferences. A direction that breaks one is not done.
 - Two calls to action: a primary one to `pilot`, a secondary one down to
   `sequence`.
 
+*Not a claim, a placement note: this is the section where the name gets explained,
+and each direction does it differently under rule 9. A carries a specimen caption
+beneath its drawing. B names the genus in its opening line. C does not name it at
+all.*
+
 **A — The Display**
 
 > **Shown once, then folded away.**
 
 maratus is a small touchscreen that sits on the counter, facing the customer. The
 shop's own system sends it a link. The box raises a QR code on its screen, the
-customer scans it, and what was behind the link — a receipt, a ticket, a
-warranty, a menu — is on their phone and stays there. Nothing is printed. The
-display is bounded: it goes up, it does its work, it folds away, and the box
-returns to idle.
+customer scans it with their own phone, and what was behind the link — a receipt,
+a ticket, a warranty, a menu — is on that phone and stays there. Nothing is
+printed. The display is bounded: it goes up, it does its work, it folds away, and
+the box returns to idle.
 
 - Primary: `Start a pilot` · Secondary: `See the sequence`
 - Under-line, small: `a counter display for shops · trigger-only`
+- Specimen caption, set beneath the drawing in the hero — **the one place
+  direction A names the genus, and it is not repeated anywhere else on the page:**
+  `*Maratus* · the peacock spider raises a fan, displays, folds it away.`
 
 **B — Maratus**
 
@@ -201,7 +221,9 @@ would sit. Between sales it shows the shop's own idle screen. That screen — th
 layout, the logo, the colours — is set once in the console and pushed to every
 claimed box in every store, so the boxes stay identical to each other. It never
 comes from the call that triggers a code, which means no change to a developer's
-request can alter what the shop looks like. The box does one thing. It displays.
+request can alter what the shop looks like. The box does one thing. It displays —
+a screen and nothing else. Reading the code is the customer's own phone's job, and
+what the customer receives is never read, printed, e-mailed or kept by the box.
 
 **B — Maratus**
 
@@ -213,7 +235,9 @@ shows your idle screen — your name, your colours, whatever you set in the cons
 claimed box in every shop you run changes together; nobody has to walk round with
 a laptop. The trigger your system sends cannot restyle anything, which is a
 polite way of saying your developer cannot accidentally redesign your shop on a
-Friday afternoon. It shows things. That is the whole job.
+Friday afternoon. It shows things. That is the whole job — it is a screen, nothing
+more, and the reading is done by the phone already in your customer's hand. It
+does not read, print, e-mail or keep what they walk out with.
 
 **C — Structural colour**
 
@@ -224,6 +248,8 @@ printer's footprint, not the till's. Idle state: the organisation's own screen.
 Layout and branding: set in the console, pushed org-wide to every claimed box in
 every store. Not settable per request — the trigger carries a URL and nothing
 else. Output: display only. No print path, no capture path, no delivery path.
+Hardware: the screen. Reading is done by the customer's own phone. What the
+customer receives is never read, printed, sent or retained by the device.
 
 ---
 
@@ -259,7 +285,8 @@ The shop's system posts a trigger and the answer comes straight back: queued, wi
 one credit placed on hold. The command travels to the box, and the box raises the
 code on its screen. The box then confirms that the code is up, and that
 confirmation — not the sale, not the scan — is what settles the credit. Paid on
-show. The customer scans last, and scanning costs nothing. If the box cannot put
+show. The customer scans last, with their own phone, and scanning costs nothing.
+Nothing on the counter reads the code; the phone does. If the box cannot put
 the code on screen, the trigger expires, the hold is released, the credit comes
 back, and a late code never appears in front of somebody who has already left.
 
@@ -278,7 +305,9 @@ that the code is really up — and that is the moment you are charged. Not when 
 asked, and not when the customer scans. Paid on show, which is the only version
 of this that is fair to you: if the box cannot put the code on screen, the trigger
 expires, your credit comes back, and no code turns up later in front of nobody.
-The customer scanning is the last thing that happens and it is free.
+The customer lifting their own phone to the screen is the last thing that happens,
+and it is free — you are not buying a scan, and there is nothing on your counter
+doing the reading.
 
 - Step labels: `you send` · `it opens` · `it confirms` · `they scan`
 - Credit labels: `set aside` · `set aside` · `paid` · `paid — nothing further`
@@ -479,7 +508,8 @@ nothing at all — the hold is released and the credit comes back. Pinned codes 
 the exception: they are meant to stay up, so they spend their credit immediately.
 New organisations start with fifty credits. For boxes that run all day there are
 per-device subscription plans, `flat` and `base_usage`, so credits are not the
-only way to pay.
+only way to pay. What has been spent is readable at any time from
+`GET /api/v1/usage`.
 
 **B — Maratus**
 
@@ -492,7 +522,8 @@ and you have your credit back — you are never billed for a display that did no
 happen. The one exception is a pinned code, which is meant to stay up, so it takes
 its credit there and then. You start with fifty credits to spend on finding out
 whether this suits you, and if a box ends up busy all day there are per-device
-plans — `flat` and `base_usage` — that work out better than counting.
+plans — `flat` and `base_usage` — that work out better than counting. Either way,
+`GET /api/v1/usage` tells you what you have spent whenever you want to know.
 
 **C — Structural colour**
 

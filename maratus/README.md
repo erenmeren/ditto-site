@@ -26,3 +26,12 @@ which walks the page so every observer fires, returns to the top, takes one
 full-page shot, and reports anything still stuck at `opacity: 0` — that
 remainder is a real bug. `frames` mode takes viewport screenshots at chosen
 scroll offsets, for judging a moment rather than a document.
+
+A captured PNG whose width equals the window width does NOT prove there is no
+sideways scroll — Firefox captures the viewport width however far the document
+overflows, so that check passes a broken page. Measure it:
+
+    URL=http://localhost:8940/a/index.html maratus/tools/scrollshot.py overflow
+
+which compares `scrollWidth` against `clientWidth` and tries to scroll right,
+at 390/768/1024/1440/1920, and exits non-zero if any width moves.

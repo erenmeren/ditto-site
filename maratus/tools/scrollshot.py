@@ -139,8 +139,39 @@ try:
             time.sleep(SETTLE)
             print(json.dumps({"scrollY": js("return window.scrollY"),
                               "shot": shot(os.path.join(OUT, "y%05d.png" % s), False)}))
+    elif MODE == "overflow":
+        # A captured PNG whose width equals the window width does NOT prove the
+        # absence of sideways scroll — Firefox captures the viewport width no
+        # matter how far the document overflows. The only honest test is
+        # scrollWidth against clientWidth, plus actually trying to scroll right.
+        widths = [int(x) for x in os.environ.get("WIDTHS", "390,768,1024,1440,1920").split(",")]
+        bad = 0
+        for w in widths:
+            cmd("WebDriver:SetWindowRect", {"width": w, "height": H})
+            time.sleep(0.4)
+            js("window.scrollTo(0, 0);")
+            time.sleep(0.3)
+            m = js("""
+              var d = document.documentElement;
+              window.scrollTo(9999, 0);
+              var shifted = window.scrollX;
+              window.scrollTo(0, 0);
+              return {scrollWidth: d.scrollWidth, clientWidth: d.clientWidth,
+                      shifted: shifted};
+            """)
+            over = m["scrollWidth"] - m["clientWidth"]
+            ok = over <= 0 and m["shifted"] == 0
+            if not ok:
+                bad += 1
+            print(json.dumps({"width": w, "overflowPx": over,
+                              "scrolledRightBy": m["shifted"], "ok": ok}))
+        if bad:
+            print("FAIL: %d of %d widths scroll sideways" % (bad, len(widths)),
+                  file=sys.stderr)
+            sys.exit(2)
+        print("OK: no horizontal overflow at any tested width")
     else:
-        sys.exit("unknown mode %r — use walk or frames" % MODE)
+        sys.exit("unknown mode %r — use walk, frames or overflow" % MODE)
 finally:
     try:
         cmd("Marionette:Quit")

@@ -20,15 +20,30 @@
   function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
 
   /* ── 1 · the fan raise ─────────────────────────────────────────────
-     Folded at the top of the page, fully open — 44° a side — by the time
-     the hero has travelled about two thirds of its own height. The value
-     is chased rather than snapped, so a flicked scroll wheel still reads
-     as one continuous opening. */
+     The payoff has to land while the fan is still on screen, so both
+     numbers below are set from measured geometry rather than taste.
+
+     At 1440×900 the open fan's own box sits at page y 293–702 and the
+     masthead is 62 tall, so the fan is whole and unobscured only while
+     the page is scrolled 0–231. A raise that finished later than that
+     finished off-screen: the reader got a folded blob, then a half-open
+     fan sliding out of the top, and never saw the open one.
+
+     REST is therefore a fan already part-raised and already carrying
+     colour on the first frame, and TRAVEL is short — the hero is 887
+     tall, so the raise completes about 124px in, roughly one notch of a
+     wheel, with the whole fan sitting clear in the upper half of the
+     viewport and staying there for another notch. A spider's display is
+     a fast gesture, not a slow reveal; this reads as one.
+
+     The value is chased rather than snapped, so a flicked wheel still
+     reads as one continuous opening. */
 
   var hero = document.getElementById('hero');
 
   if (hero && !reduce) {
-    var REST = 0.1;
+    var REST = 0.55;
+    var TRAVEL = 0.14;      /* of the hero's own height */
     var cur = REST;
     var goal = REST;
     var frame = 0;
@@ -37,7 +52,7 @@
 
     var measure = function () {
       var box = hero.getBoundingClientRect();
-      var travel = Math.max(1, box.height * 0.62);
+      var travel = Math.max(1, box.height * TRAVEL);
       goal = REST + (1 - REST) * clamp01(-box.top / travel);
     };
 

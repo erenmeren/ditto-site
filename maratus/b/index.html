@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>maratus — hand it over, don't print it</title>
+<meta name="description" content="The small screen by your till. Send it a link and it shows your customer a code to scan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Public+Sans:ital,wght@0,300..800;1,300..800&display=swap">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<a class="skip" href="#hero">Skip to the page</a>
+
+<header class="topbar">
+  <a class="wordmark" href="#hero">maratus</a>
+  <nav class="topnav" aria-label="Sections">
+    <a href="#object">The box</a>
+    <a href="#sequence">How it works</a>
+    <a href="#demo">Try it</a>
+    <a href="#request">For developers</a>
+    <a href="#terms">What it costs</a>
+  </nav>
+  <a class="topcta" href="#pilot">Get one</a>
+</header>
+
+<main>
+
+<!-- ───────────────────────────────── 1. hero ───────────────────────────── -->
+<section id="hero" class="hero">
+  <div class="wrap hero-grid">
+
+    <p class="eyebrow hero-eyebrow">the small screen by your till</p>
+
+    <h1 class="hero-title">Hand&nbsp;it over.<br><span class="ht-2">Don’t print it.</span></h1>
+
+    <p class="hero-lede">
+      There is a spider called <em>Maratus</em> that raises a fan of structural
+      colour, holds it up for exactly as long as the moment needs, and folds it
+      away again. <span class="lede-turn">Your counter can have one.</span>
+    </p>
+
+    <p class="hero-body">
+      You send the box a link — the receipt, the ticket, the warranty, today’s
+      menu — and it raises a QR code for the customer standing in front of it.
+      They scan, they keep it, they leave. You keep a counter free of curling
+      till roll, and the box goes back to sitting there quietly.
+    </p>
+
+    <p class="hero-cta">
+      <a class="btn btn-primary" href="#pilot">Put one on your counter</a>
+      <a class="btn btn-ghost" href="#sequence">Watch it work</a>
+    </p>
+
+    <div class="hero-figure" aria-hidden="true">
+      <img src="art/maratus-display.svg" alt="" width="400" height="400">
+    </div>
+
+  </div>
+</section>
+
+<!-- ──────────────────────────────── 2. object ──────────────────────────── -->
+<section id="object" class="object">
+  <div class="wrap object-grid">
+
+    <p class="eyebrow ob-eyebrow">the box</p>
+
+    <h2 class="ob-title">It sits where<br>the printer used to.</h2>
+
+    <div class="ob-device">
+      <figure class="device device-idle">
+        <div class="device-shell">
+          <div class="device-screen">
+            <div class="screen-idle">
+              <span class="screen-mark"></span>
+              <span class="screen-name">Your shop</span>
+            </div>
+          </div>
+        </div>
+        <figcaption>Between sales: your idle screen, your colours.</figcaption>
+      </figure>
+    </div>
+
+    <p class="ob-a">
+      It is small enough to palm and it points at whoever is paying. Between
+      sales it shows your idle screen — your name, your colours, whatever you
+      set in the console — and it holds that pose without being asked.
+    </p>
+
+    <p class="ob-b">
+      Set the screen once and every claimed box in every shop you run changes
+      together; nobody has to walk round with a laptop.
+    </p>
+
+    <blockquote class="ob-pull">
+      The trigger your system sends cannot restyle anything, which is a polite
+      way of saying your developer cannot accidentally redesign your shop on a
+      Friday afternoon.
+    </blockquote>
+
+    <p class="ob-c">
+      It shows things. That is the whole job — it is a screen, nothing more, and
+      the reading is done by the phone already in your customer’s hand. It does
+      not read, print, e-mail or keep what they walk out with.
+    </p>
+
+  </div>
+</section>
+
+<!-- ─────────────────────────────── 3. sequence ─────────────────────────── -->
+<section id="sequence" class="sequence">
+  <div class="wrap seq-grid">
+
+    <p class="eyebrow seq-eyebrow">how it works</p>
+
+    <h2 class="seq-title">What happens between<br>the till and the phone.</h2>
+
+    <p class="seq-a">
+      You send the trigger and you get an answer immediately: queued, one credit
+      set aside. The box wakes up and opens the code on its screen. Then it
+      confirms back that the code is really up — and that is the moment you are
+      charged. Not when you asked, and not when the customer scans.
+    </p>
+
+    <p class="seq-b">
+      Paid on show, which is the only version of this that is fair to you: if
+      the box cannot put the code on screen, the trigger expires, your credit
+      comes back, and no code turns up later in front of nobody. The customer
+      lifting their own phone to the screen is the last thing that happens, and
+      it is free — you are not buying a scan, and there is nothing on your
+      counter doing the reading.
+    </p>
+
+    <ol class="beats" data-stagger>
+      <li class="beat" data-credit="held">
+        <span class="beat-rule" aria-hidden="true"></span>
+        <span class="beat-name">you send</span>
+        <span class="beat-note">POST the link. The answer is <code>202 { id, status: "queued" }</code>.</span>
+        <span class="pill pill-held">set aside</span>
+      </li>
+      <li class="beat" data-credit="held">
+        <span class="beat-rule" aria-hidden="true"></span>
+        <span class="beat-name">it opens</span>
+        <span class="beat-note">The code goes up on the glass, carrying your link exactly as you sent it.</span>
+        <span class="pill pill-held">set aside</span>
+      </li>
+      <li class="beat" data-credit="paid">
+        <span class="beat-rule" aria-hidden="true"></span>
+        <span class="beat-name">it confirms</span>
+        <span class="beat-note">The box says the code is up. That is the charge — paid on show.</span>
+        <span class="pill pill-paid">paid</span>
+      </li>
+      <li class="beat" data-credit="paid">
+        <span class="beat-rule" aria-hidden="true"></span>
+        <span class="beat-name">they scan</span>
+        <span class="beat-note">Their own phone, their own copy. Free, and last.</span>
+        <span class="pill pill-paid">paid — nothing further</span>
+      </li>
+    </ol>
+
+    <p class="seq-fail"><span>nothing shown, nothing charged</span></p>
+
+  </div>
+</section>
+
+<!-- ───────────────────────────────── 4. demo ───────────────────────────── -->
+<section id="demo" class="demo">
+  <div class="wrap demo-grid">
+
+    <p class="eyebrow de-eyebrow">try it</p>
+
+    <h2 class="de-title">Try it here first.</h2>
+
+    <p class="de-a">
+      Press the button and watch the box do its one trick. It is a drawing, and
+      the code is made up on the spot in your browser — no real box wakes up and
+      nothing comes out of your balance.
+    </p>
+
+    <p class="de-b">
+      The order is the real order, though: the request goes, the answer comes
+      back with a credit set aside, the code opens on the screen, the box
+      confirms it is up, and that is the moment you would have paid. The scan is
+      the customer’s job, and it is free.
+    </p>
+
+    <p class="de-button">
+      <button class="btn btn-primary" type="button" id="demo-run">Show me</button>
+    </p>
+
+    <ol class="log" id="demo-log">
+      <li class="log-line" data-step="0"><span class="log-dot"></span>queued — credit set aside</li>
+      <li class="log-line" data-step="1"><span class="log-dot"></span>code’s up</li>
+      <li class="log-line" data-step="2"><span class="log-dot"></span>confirmed — that’s the charge</li>
+      <li class="log-line" data-step="3"><span class="log-dot"></span>scanned — free</li>
+    </ol>
+
+    <p class="de-disclaim">
+      A simulation. The code is drawn in your browser. No box is triggered, no
+      credit is spent.
+    </p>
+
+    <div class="stage">
+      <div class="stage-floor" aria-hidden="true"></div>
+
+      <figure class="device device-live" id="demo-device">
+        <div class="device-shell">
+          <div class="device-screen">
+            <div class="screen-idle">
+              <span class="screen-mark"></span>
+              <span class="screen-name">Your shop</span>
+            </div>
+            <div class="screen-code">
+              <svg class="qr" viewBox="0 0 21 21" role="img" aria-label="A drawn QR code, not a real one">
+      <rect x="0" y="0" width="7" height="1" rx="0.18"/><rect x="9" y="0" width="2" height="1" rx="0.18"/><rect x="14" y="0" width="7" height="1" rx="0.18"/>
+      <rect x="0" y="1" width="1" height="1" rx="0.18"/><rect x="6" y="1" width="1" height="1" rx="0.18"/><rect x="10" y="1" width="1" height="1" rx="0.18"/><rect x="14" y="1" width="1" height="1" rx="0.18"/><rect x="20" y="1" width="1" height="1" rx="0.18"/>
+      <rect x="0" y="2" width="1" height="1" rx="0.18"/><rect x="2" y="2" width="3" height="1" rx="0.18"/><rect x="6" y="2" width="1" height="1" rx="0.18"/><rect x="9" y="2" width="2" height="1" rx="0.18"/><rect x="12" y="2" width="1" height="1" rx="0.18"/><rect x="14" y="2" width="1" height="1" rx="0.18"/><rect x="16" y="2" width="3" height="1" rx="0.18"/><rect x="20" y="2" width="1" height="1" rx="0.18"/>
+      <rect x="0" y="3" width="1" height="1" rx="0.18"/><rect x="2" y="3" width="3" height="1" rx="0.18"/><rect x="6" y="3" width="1" height="1" rx="0.18"/><rect x="8" y="3" width="2" height="1" rx="0.18"/><rect x="14" y="3" width="1" height="1" rx="0.18"/><rect x="16" y="3" width="3" height="1" rx="0.18"/><rect x="20" y="3" width="1" height="1" rx="0.18"/>
+      <rect x="0" y="4" width="1" height="1" rx="0.18"/><rect x="2" y="4" width="3" height="1" rx="0.18"/><rect x="6" y="4" width="1" height="1" rx="0.18"/><rect x="8" y="4" width="2" height="1" rx="0.18"/><rect x="14" y="4" width="1" height="1" rx="0.18"/><rect x="16" y="4" width="3" height="1" rx="0.18"/><rect x="20" y="4" width="1" height="1" rx="0.18"/>
+      <rect x="0" y="5" width="1" height="1" rx="0.18"/><rect x="6" y="5" width="1" height="1" rx="0.18"/><rect x="8" y="5" width="2" height="1" rx="0.18"/><rect x="11" y="5" width="2" height="1" rx="0.18"/><rect x="14" y="5" width="1" height="1" rx="0.18"/><rect x="20" y="5" width="1" height="1" rx="0.18"/>
+      <rect x="0" y="6" width="7" height="1" rx="0.18"/><rect x="8" y="6" width="1" height="1" rx="0.18"/><rect x="10" y="6" width="1" height="1" rx="0.18"/><rect x="12" y="6" width="1" height="1" rx="0.18"/><rect x="14" y="6" width="7" height="1" rx="0.18"/>
+      <rect x="9" y="7" width="3" height="1" rx="0.18"/>
+      <rect x="3" y="8" width="2" height="1" rx="0.18"/><rect x="6" y="8" width="1" height="1" rx="0.18"/><rect x="8" y="8" width="2" height="1" rx="0.18"/><rect x="11" y="8" width="2" height="1" rx="0.18"/><rect x="14" y="8" width="1" height="1" rx="0.18"/><rect x="17" y="8" width="1" height="1" rx="0.18"/><rect x="19" y="8" width="1" height="1" rx="0.18"/>
+      <rect x="4" y="9" width="1" height="1" rx="0.18"/><rect x="9" y="9" width="1" height="1" rx="0.18"/><rect x="11" y="9" width="3" height="1" rx="0.18"/><rect x="15" y="9" width="2" height="1" rx="0.18"/><rect x="19" y="9" width="2" height="1" rx="0.18"/>
+      <rect x="0" y="10" width="1" height="1" rx="0.18"/><rect x="5" y="10" width="2" height="1" rx="0.18"/><rect x="9" y="10" width="1" height="1" rx="0.18"/><rect x="11" y="10" width="2" height="1" rx="0.18"/><rect x="14" y="10" width="3" height="1" rx="0.18"/><rect x="18" y="10" width="2" height="1" rx="0.18"/>
+      <rect x="0" y="11" width="1" height="1" rx="0.18"/><rect x="3" y="11" width="1" height="1" rx="0.18"/><rect x="7" y="11" width="1" height="1" rx="0.18"/><rect x="9" y="11" width="2" height="1" rx="0.18"/><rect x="14" y="11" width="4" height="1" rx="0.18"/><rect x="19" y="11" width="1" height="1" rx="0.18"/>
+      <rect x="6" y="12" width="1" height="1" rx="0.18"/><rect x="9" y="12" width="1" height="1" rx="0.18"/><rect x="14" y="12" width="3" height="1" rx="0.18"/><rect x="18" y="12" width="3" height="1" rx="0.18"/>
+      <rect x="9" y="13" width="1" height="1" rx="0.18"/><rect x="12" y="13" width="2" height="1" rx="0.18"/><rect x="15" y="13" width="1" height="1" rx="0.18"/><rect x="19" y="13" width="2" height="1" rx="0.18"/>
+      <rect x="0" y="14" width="7" height="1" rx="0.18"/><rect x="11" y="14" width="2" height="1" rx="0.18"/><rect x="16" y="14" width="2" height="1" rx="0.18"/><rect x="20" y="14" width="1" height="1" rx="0.18"/>
+      <rect x="0" y="15" width="1" height="1" rx="0.18"/><rect x="6" y="15" width="1" height="1" rx="0.18"/><rect x="11" y="15" width="1" height="1" rx="0.18"/><rect x="14" y="15" width="2" height="1" rx="0.18"/><rect x="18" y="15" width="1" height="1" rx="0.18"/>
+      <rect x="0" y="16" width="1" height="1" rx="0.18"/><rect x="2" y="16" width="3" height="1" rx="0.18"/><rect x="6" y="16" width="1" height="1" rx="0.18"/><rect x="8" y="16" width="3" height="1" rx="0.18"/><rect x="12" y="16" width="2" height="1" rx="0.18"/><rect x="15" y="16" width="1" height="1" rx="0.18"/><rect x="17" y="16" width="1" height="1" rx="0.18"/><rect x="19" y="16" width="2" height="1" rx="0.18"/>
+      <rect x="0" y="17" width="1" height="1" rx="0.18"/><rect x="2" y="17" width="3" height="1" rx="0.18"/><rect x="6" y="17" width="1" height="1" rx="0.18"/><rect x="10" y="17" width="4" height="1" rx="0.18"/><rect x="15" y="17" width="1" height="1" rx="0.18"/>
+      <rect x="0" y="18" width="1" height="1" rx="0.18"/><rect x="2" y="18" width="3" height="1" rx="0.18"/><rect x="6" y="18" width="1" height="1" rx="0.18"/><rect x="9" y="18" width="1" height="1" rx="0.18"/><rect x="14" y="18" width="4" height="1" rx="0.18"/>
+      <rect x="0" y="19" width="1" height="1" rx="0.18"/><rect x="6" y="19" width="1" height="1" rx="0.18"/><rect x="11" y="19" width="1" height="1" rx="0.18"/><rect x="13" y="19" width="1" height="1" rx="0.18"/><rect x="18" y="19" width="2" height="1" rx="0.18"/>
+      <rect x="0" y="20" width="7" height="1" rx="0.18"/><rect x="9" y="20" width="1" height="1" rx="0.18"/><rect x="13" y="20" width="1" height="1" rx="0.18"/><rect x="17" y="20" width="2" height="1" rx="0.18"/><rect x="20" y="20" width="1" height="1" rx="0.18"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </figure>
+
+      <div class="mar" id="mar" data-state="display" aria-hidden="true">
+        <div class="mar-layer mar-idle">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet" focusable="false"
+             role="img" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <title>maratus at rest, fan folded</title>
+
+          <defs>
+            <linearGradient id="fan-ramp-idle" x1="0.5" y1="0" x2="0.5" y2="1">
+              <stop offset="0" stop-color="#FF5A36"/>
+              <stop offset="0.28" stop-color="#F0B429"/>
+              <stop offset="0.54" stop-color="#17A8A0"/>
+              <stop offset="1" stop-color="#17A8A0"/>
+            </linearGradient>
+          </defs>
+
+          <ellipse cx="200" cy="344" rx="100" ry="12" fill="#2A2118" opacity="0.1"/>
+
+          <g id="mar-idle-fan">
+            <g transform="translate(200 252) rotate(-11) scale(0.82)">
+              <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-idle)" stroke="#2A2118" stroke-width="2.6"/>
+              <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+              <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+              <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+            </g>
+            <g transform="translate(200 252) rotate(11) scale(0.82)">
+              <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-idle)" stroke="#2A2118" stroke-width="2.6"/>
+              <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+              <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+              <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+            </g>
+            <g transform="translate(200 252) rotate(-7) scale(0.85)">
+              <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-idle)" stroke="#2A2118" stroke-width="2.6"/>
+              <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+              <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+              <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+            </g>
+            <g transform="translate(200 252) rotate(7) scale(0.85)">
+              <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-idle)" stroke="#2A2118" stroke-width="2.6"/>
+              <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+              <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+              <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+            </g>
+            <g transform="translate(200 252) rotate(-3) scale(0.87)">
+              <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-idle)" stroke="#2A2118" stroke-width="2.6"/>
+              <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+              <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+              <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+            </g>
+            <g transform="translate(200 252) rotate(3) scale(0.87)">
+              <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-idle)" stroke="#2A2118" stroke-width="2.6"/>
+              <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+              <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+              <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+            </g>
+            <g transform="translate(200 252) rotate(0) scale(0.88)">
+              <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-idle)" stroke="#2A2118" stroke-width="2.6"/>
+              <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+              <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+              <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+            </g>
+          </g>
+
+          <g id="mar-idle-legs" stroke="#2A2118" stroke-width="8">
+            <path d="M164 296 C142 312 122 326 100 334"/>
+            <path d="M 236 296 C 258 312 278 326 300 334"/>
+            <path d="M146 284 C120 292 96 300 74 302"/>
+            <path d="M 254 284 C 280 292 304 300 326 302"/>
+            <path d="M148 226 C122 220 96 222 76 232"/>
+            <path d="M 252 226 C 278 220 304 222 324 232"/>
+            <path d="M142 252 C116 254 92 260 74 270"/>
+            <path d="M 258 252 C 284 254 308 260 326 270"/>
+          </g>
+            <g stroke="#FFF8F0" stroke-width="6">
+              <path d="M78 268 L66 274"/>
+              <path d="M 322 268 L 334 274"/>
+            </g>
+
+          <g id="mar-idle-body">
+            <path d="M200 196 C234 196 264 213 266 244 C268 276 241 304 200 304 C159 304 132 276 134 244 C136 213 166 196 200 196 Z" fill="#2A2118"/>
+            <ellipse cx="200" cy="232" rx="52" ry="20" fill="#FFF8F0" opacity="0.07"/>
+            <g fill="#0F0C08" stroke="#F0B429">
+              <circle cx="178" cy="270" r="22" stroke-width="2.6"/>
+              <circle cx="222" cy="270" r="22" stroke-width="2.6"/>
+              <circle cx="150" cy="248" r="9.5" stroke-width="1.8"/>
+              <circle cx="250" cy="248" r="9.5" stroke-width="1.8"/>
+              <circle cx="163" cy="212" r="6" stroke-width="1.4"/>
+              <circle cx="237" cy="212" r="6" stroke-width="1.4"/>
+            </g>
+            <g fill="#FFF8F0" opacity="0.8">
+              <circle cx="170" cy="262" r="5"/>
+              <circle cx="214" cy="262" r="5"/>
+            </g>
+            <g fill="#17A8A0">
+              <path d="M188 289 C194 289 197 294 196 302 C195 311 192 316 189 316
+                       C185 316 183 310 184 301 C185 293 185 289 188 289 Z"/>
+              <path d="M212 289 C206 289 203 294 204 302 C205 311 208 316 211 316
+                       C215 316 217 310 216 301 C215 293 215 289 212 289 Z"/>
+            </g>
+            <g stroke="#2A2118" stroke-width="7" fill="none" stroke-linecap="round">
+              <path d="M174 302 C166 310 160 318 161 325"/>
+              <path d="M226 302 C234 310 240 318 239 325"/>
+            </g>
+            <g fill="#FFF8F0" stroke="#2A2118" stroke-width="2.4">
+              <circle cx="160" cy="329" r="9"/>
+              <circle cx="240" cy="329" r="9"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+        <div class="mar-layer mar-display">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet" focusable="false"
+             role="img" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <title>maratus displaying, fan open</title>
+
+          <defs>
+            <linearGradient id="fan-ramp-display" x1="0.5" y1="0" x2="0.5" y2="1">
+              <stop offset="0" stop-color="#FF5A36"/>
+              <stop offset="0.28" stop-color="#F0B429"/>
+              <stop offset="0.54" stop-color="#17A8A0"/>
+              <stop offset="1" stop-color="#17A8A0"/>
+            </linearGradient>
+          </defs>
+
+          <ellipse cx="200" cy="344" rx="100" ry="12" fill="#2A2118" opacity="0.1"/>
+
+          <g id="mar-display-fan">
+            <g transform="translate(200 245) rotate(-76) scale(0.8)">
+              <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-display)" stroke="#2A2118" stroke-width="2.6"/>
+              <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+              <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+              <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+            </g>
+            <g transform="translate(200 245) rotate(76) scale(0.8)">
+              <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-display)" stroke="#2A2118" stroke-width="2.6"/>
+              <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+              <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+              <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+            </g>
+            <g transform="translate(200 245) rotate(-51) scale(0.9)">
+              <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-display)" stroke="#2A2118" stroke-width="2.6"/>
+              <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+              <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+              <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+            </g>
+            <g transform="translate(200 245) rotate(51) scale(0.9)">
+              <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-display)" stroke="#2A2118" stroke-width="2.6"/>
+              <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+              <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+              <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+            </g>
+            <g transform="translate(200 245) rotate(-25) scale(0.97)">
+              <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-display)" stroke="#2A2118" stroke-width="2.6"/>
+              <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+              <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+              <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+            </g>
+            <g transform="translate(200 245) rotate(25) scale(0.97)">
+              <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-display)" stroke="#2A2118" stroke-width="2.6"/>
+              <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+              <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+              <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+            </g>
+            <g transform="translate(200 245) rotate(0) scale(1)">
+              <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-display)" stroke="#2A2118" stroke-width="2.6"/>
+              <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+              <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+              <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+            </g>
+          </g>
+
+          <g id="mar-display-legs" stroke="#2A2118" stroke-width="8">
+            <path d="M164 296 C142 312 122 326 100 334"/>
+            <path d="M 236 296 C 258 312 278 326 300 334"/>
+            <path d="M146 284 C120 292 96 300 74 302"/>
+            <path d="M 254 284 C 280 292 304 300 326 302"/>
+            <path d="M148 226 C122 220 96 222 76 232"/>
+            <path d="M 252 226 C 278 220 304 222 324 232"/>
+            <path d="M142 252 C112 234 92 202 84 166"/>
+            <path d="M 258 252 C 288 234 308 202 316 166"/>
+          </g>
+            <g stroke="#FFF8F0" stroke-width="6">
+              <path d="M84 172 L80 152"/>
+              <path d="M 316 172 L 320 152"/>
+            </g>
+
+          <g id="mar-display-body">
+            <path d="M200 196 C234 196 264 213 266 244 C268 276 241 304 200 304 C159 304 132 276 134 244 C136 213 166 196 200 196 Z" fill="#2A2118"/>
+            <ellipse cx="200" cy="232" rx="52" ry="20" fill="#FFF8F0" opacity="0.07"/>
+            <g fill="#0F0C08" stroke="#F0B429">
+              <circle cx="178" cy="270" r="22" stroke-width="2.6"/>
+              <circle cx="222" cy="270" r="22" stroke-width="2.6"/>
+              <circle cx="150" cy="248" r="9.5" stroke-width="1.8"/>
+              <circle cx="250" cy="248" r="9.5" stroke-width="1.8"/>
+              <circle cx="163" cy="212" r="6" stroke-width="1.4"/>
+              <circle cx="237" cy="212" r="6" stroke-width="1.4"/>
+            </g>
+            <g fill="#FFF8F0" opacity="0.8">
+              <circle cx="170" cy="262" r="5"/>
+              <circle cx="214" cy="262" r="5"/>
+            </g>
+            <g fill="#17A8A0">
+              <path d="M188 289 C194 289 197 294 196 302 C195 311 192 316 189 316
+                       C185 316 183 310 184 301 C185 293 185 289 188 289 Z"/>
+              <path d="M212 289 C206 289 203 294 204 302 C205 311 208 316 211 316
+                       C215 316 217 310 216 301 C215 293 215 289 212 289 Z"/>
+            </g>
+            <g stroke="#2A2118" stroke-width="7" fill="none" stroke-linecap="round">
+              <path d="M174 302 C166 310 160 318 161 325"/>
+              <path d="M226 302 C234 310 240 318 239 325"/>
+            </g>
+            <g fill="#FFF8F0" stroke="#2A2118" stroke-width="2.4">
+              <circle cx="160" cy="329" r="9"/>
+              <circle cx="240" cy="329" r="9"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+        <div class="mar-layer mar-paid">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet" focusable="false"
+             role="img" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <title>maratus settling, fan half folded</title>
+
+          <defs>
+            <linearGradient id="fan-ramp-paid" x1="0.5" y1="0" x2="0.5" y2="1">
+              <stop offset="0" stop-color="#FF5A36"/>
+              <stop offset="0.28" stop-color="#F0B429"/>
+              <stop offset="0.54" stop-color="#17A8A0"/>
+              <stop offset="1" stop-color="#17A8A0"/>
+            </linearGradient>
+          </defs>
+
+          <ellipse cx="200" cy="344" rx="100" ry="12" fill="#2A2118" opacity="0.1"/>
+
+          <g id="mar-paid-fan">
+            <g transform="translate(200 249) rotate(-42) scale(0.84)">
+              <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-paid)" stroke="#2A2118" stroke-width="2.6"/>
+              <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+              <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+              <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+            </g>
+            <g transform="translate(200 249) rotate(42) scale(0.84)">
+              <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-paid)" stroke="#2A2118" stroke-width="2.6"/>
+              <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+              <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+              <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+            </g>
+            <g transform="translate(200 249) rotate(-28) scale(0.9)">
+              <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-paid)" stroke="#2A2118" stroke-width="2.6"/>
+              <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+              <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+              <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+            </g>
+            <g transform="translate(200 249) rotate(28) scale(0.9)">
+              <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-paid)" stroke="#2A2118" stroke-width="2.6"/>
+              <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+              <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+              <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+            </g>
+            <g transform="translate(200 249) rotate(-14) scale(0.94)">
+              <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-paid)" stroke="#2A2118" stroke-width="2.6"/>
+              <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+              <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+              <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+            </g>
+            <g transform="translate(200 249) rotate(14) scale(0.94)">
+              <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-paid)" stroke="#2A2118" stroke-width="2.6"/>
+              <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+              <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+              <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+            </g>
+            <g transform="translate(200 249) rotate(0) scale(0.96)">
+              <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-paid)" stroke="#2A2118" stroke-width="2.6"/>
+              <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+              <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+              <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+            </g>
+          </g>
+
+          <g id="mar-paid-legs" stroke="#2A2118" stroke-width="8">
+            <path d="M164 296 C142 312 122 326 100 334"/>
+            <path d="M 236 296 C 258 312 278 326 300 334"/>
+            <path d="M146 284 C120 292 96 300 74 302"/>
+            <path d="M 254 284 C 280 292 304 300 326 302"/>
+            <path d="M148 226 C122 220 96 222 76 232"/>
+            <path d="M 252 226 C 278 220 304 222 324 232"/>
+            <path d="M142 252 C114 244 94 230 80 212"/>
+            <path d="M 258 252 C 286 244 306 230 320 212"/>
+          </g>
+            <g stroke="#FFF8F0" stroke-width="6">
+              <path d="M82 216 L70 200"/>
+              <path d="M 318 216 L 330 200"/>
+            </g>
+
+          <g id="mar-paid-body">
+            <path d="M200 196 C234 196 264 213 266 244 C268 276 241 304 200 304 C159 304 132 276 134 244 C136 213 166 196 200 196 Z" fill="#2A2118"/>
+            <ellipse cx="200" cy="232" rx="52" ry="20" fill="#FFF8F0" opacity="0.07"/>
+            <g fill="#0F0C08" stroke="#F0B429">
+              <circle cx="178" cy="270" r="22" stroke-width="2.6"/>
+              <circle cx="222" cy="270" r="22" stroke-width="2.6"/>
+              <circle cx="150" cy="248" r="9.5" stroke-width="1.8"/>
+              <circle cx="250" cy="248" r="9.5" stroke-width="1.8"/>
+              <circle cx="163" cy="212" r="6" stroke-width="1.4"/>
+              <circle cx="237" cy="212" r="6" stroke-width="1.4"/>
+            </g>
+            <g fill="#FFF8F0" opacity="0.8">
+              <circle cx="170" cy="262" r="5"/>
+              <circle cx="214" cy="262" r="5"/>
+            </g>
+            <g fill="#17A8A0">
+              <path d="M188 289 C194 289 197 294 196 302 C195 311 192 316 189 316
+                       C185 316 183 310 184 301 C185 293 185 289 188 289 Z"/>
+              <path d="M212 289 C206 289 203 294 204 302 C205 311 208 316 211 316
+                       C215 316 217 310 216 301 C215 293 215 289 212 289 Z"/>
+            </g>
+            <g stroke="#2A2118" stroke-width="7" fill="none" stroke-linecap="round">
+              <path d="M174 302 C166 310 160 318 161 325"/>
+              <path d="M226 302 C234 310 240 318 239 325"/>
+            </g>
+            <g fill="#FFF8F0" stroke="#2A2118" stroke-width="2.4">
+              <circle cx="160" cy="329" r="9"/>
+              <circle cx="240" cy="329" r="9"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─────────────────────────────── 5. request ──────────────────────────── -->
+<section id="request" class="request">
+  <div class="wrap req-grid">
+
+    <p class="eyebrow rq-eyebrow">for developers</p>
+
+    <h2 class="rq-title">What your developer<br>has to write.</h2>
+
+    <p class="rq-a">
+      One POST with your key, an idempotency key so a retry cannot show the same
+      code twice, and the link you want on screen. The answer comes back
+      immediately — queued, a credit set aside — and the command goes over MQTT
+      to the box, which puts the code up and confirms. If the box is offline you
+      get a <code>409</code> before anything is held, so an unplugged box never
+      costs you.
+    </p>
+
+    <p class="rq-b">
+      The code carries your link exactly as you sent it: we never see what’s
+      behind it, we do not open it, and we do not draw it. If you need a code
+      that stays put rather than one shown for a moment, <code>pin</code> does
+      that and takes its credit straight away. <code>usage</code> tells you what
+      you have spent.
+    </p>
+
+    <p class="rq-gap">
+      Two honest gaps: there is no status endpoint and no callback yet, so once
+      you have triggered, we do not call you back.
+    </p>
+
+    <div class="rq-code">
+      <pre class="code"><code>POST /api/v1/devices/{id}/trigger
+Authorization: Bearer &lt;api-key&gt;
+Idempotency-Key: &lt;your-key&gt;
+Content-Type: application/json
+
+{ "action": "show_qr", "payload": { "url": "https://your-shop.example/r/8f21" } }</code></pre>
+      <pre class="code code-answer"><code>202 { "id": "trg_...", "status": "queued" }</code></pre>
+    </div>
+
+    <table class="codes">
+      <caption>What comes back</caption>
+      <thead><tr><th scope="col">code</th><th scope="col">meaning</th></tr></thead>
+      <tbody>
+        <tr><td><code>202</code></td><td>queued, one credit on hold</td></tr>
+        <tr><td><code>401</code></td><td>no or bad API key</td></tr>
+        <tr><td><code>403</code></td><td><code>insufficient_scope</code> — the key is not allowed to trigger this device</td></tr>
+        <tr><td><code>409</code></td><td><code>device_offline</code> — raised before any hold is taken</td></tr>
+        <tr><td><code>429</code></td><td>too many requests</td></tr>
+      </tbody>
+    </table>
+
+    <ul class="rq-more">
+      <li><code>POST /api/v1/devices/{id}/pin</code> — a durable code. Spends a credit immediately, with no hold.</li>
+      <li><code>GET /api/v1/usage</code> — what has been spent.</li>
+    </ul>
+
+  </div>
+</section>
+
+<!-- ──────────────────────────────── 6. terms ───────────────────────────── -->
+<section id="terms" class="terms">
+  <div class="wrap terms-grid">
+
+    <p class="eyebrow tm-eyebrow">what it costs</p>
+
+    <h2 class="tm-title">You pay when<br>it’s on the glass.</h2>
+
+    <p class="tm-a">
+      The credit is set aside when you trigger and taken when the box confirms
+      the code is actually up. That is the only thing that takes it. Nobody
+      scanned it? Same price. Scanned five times? Same price. Box could not show
+      it? The hold is released and you have your credit back — you are never
+      billed for a display that did not happen.
+    </p>
+
+    <p class="tm-b">
+      The one exception is a pinned code, which is meant to stay up, so it takes
+      its credit there and then.
+    </p>
+
+    <div class="grant">
+      <span class="grant-num">50</span>
+      <span class="grant-label">starter credits, on the house</span>
+    </div>
+
+    <p class="tm-c">
+      You start with fifty credits to spend on finding out whether this suits
+      you, and if a box ends up busy all day there are per-device plans —
+      <code>flat</code> and <code>base_usage</code> — that work out better than
+      counting. Either way, <code>GET /api/v1/usage</code> tells you what you
+      have spent whenever you want to know.
+    </p>
+
+  </div>
+</section>
+
+<!-- ──────────────────────────────── 7. pilot ───────────────────────────── -->
+<section id="pilot" class="pilot">
+  <div class="wrap pilot-grid">
+
+    <p class="eyebrow pl-eyebrow">get one</p>
+
+    <h2 class="pl-title">Start with<br>one counter.</h2>
+
+    <p class="pl-a">
+      Tell us where the till is and we will get a box to it, with a console
+      login and your keys. If it came from us with its serial already allocated,
+      it claims itself the moment you plug it in; if not, you type a
+      six-character pairing code into the console and that is the setup
+      finished.
+    </p>
+
+    <p class="pl-b">
+      Your fifty starter credits cover the first fifty displays, which is plenty
+      to learn whether people scan without being nudged. Add a second box later
+      and it wakes up wearing the screen you already set.
+    </p>
+
+    <form class="pl-form" method="post" action="#pilot" novalidate>
+      <p class="field">
+        <label for="f-name">Your name</label>
+        <input id="f-name" name="name" type="text" autocomplete="name">
+      </p>
+      <p class="field">
+        <label for="f-shop">Your shop</label>
+        <input id="f-shop" name="shop" type="text" autocomplete="organization">
+      </p>
+      <p class="field">
+        <label for="f-mail">Email</label>
+        <input id="f-mail" name="email" type="email" autocomplete="email">
+      </p>
+      <p class="field field-wide">
+        <label for="f-url">What would you put behind the link?</label>
+        <input id="f-url" name="behind" type="text">
+      </p>
+      <p class="field field-wide field-submit">
+        <button class="btn btn-primary" type="submit">Ask for a box</button>
+      </p>
+    </form>
+
+    <p class="pl-note">Fair warning: no status endpoint and no callback yet.</p>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <p class="foot-mark">maratus</p>
+    <p class="foot-line">maratus — the small screen by your till.</p>
+  </div>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>

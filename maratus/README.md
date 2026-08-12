@@ -13,3 +13,16 @@ A comparison study, not a deployment. Nothing here is live and every page is
 direction under plain, reduced-motion, and no-JS conditions at three widths;
 `tools/check.sh` greps for banned copy, easing, and cross-direction references.
 Both must pass before a direction is called done.
+
+`tools/shoot.sh` never scrolls, so a scroll-triggered reveal below the fold is
+captured at `opacity: 0` — present in the DOM, invisible in the PNG. Do not
+read that as a broken design and do not delete the motion; two directions
+did exactly that before `scrollshot.py` existed. For any page with
+scroll-driven motion use:
+
+    URL=http://localhost:8940/a/index.html OUT=/tmp/x maratus/tools/scrollshot.py walk
+
+which walks the page so every observer fires, returns to the top, takes one
+full-page shot, and reports anything still stuck at `opacity: 0` — that
+remainder is a real bug. `frames` mode takes viewport screenshots at chosen
+scroll offsets, for judging a moment rather than a document.

@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400"
+     role="img" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>maratus at rest, fan folded</title>
+
+  <defs>
+    <linearGradient id="fan-ramp-idle" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0" stop-color="#FF5A36"/>
+      <stop offset="0.28" stop-color="#F0B429"/>
+      <stop offset="0.54" stop-color="#17A8A0"/>
+      <stop offset="1" stop-color="#17A8A0"/>
+    </linearGradient>
+  </defs>
+
+  <ellipse cx="200" cy="344" rx="100" ry="12" fill="#2A2118" opacity="0.1"/>
+
+  <g id="mar-idle-fan">
+    <g transform="translate(200 252) rotate(-11) scale(0.82)">
+      <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-idle)" stroke="#2A2118" stroke-width="2.6"/>
+      <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+      <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+      <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+    </g>
+    <g transform="translate(200 252) rotate(11) scale(0.82)">
+      <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-idle)" stroke="#2A2118" stroke-width="2.6"/>
+      <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+      <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+      <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+    </g>
+    <g transform="translate(200 252) rotate(-7) scale(0.85)">
+      <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-idle)" stroke="#2A2118" stroke-width="2.6"/>
+      <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+      <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+      <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+    </g>
+    <g transform="translate(200 252) rotate(7) scale(0.85)">
+      <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-idle)" stroke="#2A2118" stroke-width="2.6"/>
+      <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+      <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+      <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+    </g>
+    <g transform="translate(200 252) rotate(-3) scale(0.87)">
+      <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-idle)" stroke="#2A2118" stroke-width="2.6"/>
+      <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+      <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+      <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+    </g>
+    <g transform="translate(200 252) rotate(3) scale(0.87)">
+      <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-idle)" stroke="#2A2118" stroke-width="2.6"/>
+      <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+      <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+      <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+    </g>
+    <g transform="translate(200 252) rotate(0) scale(0.88)">
+      <path d="M0 0 C20 -12 30 -38 33 -70 C36 -104 26 -130 0 -132 C-26 -130 -36 -104 -33 -70 C-30 -38 -20 -12 0 0 Z" fill="url(#fan-ramp-idle)" stroke="#2A2118" stroke-width="2.6"/>
+      <path d="M0 -16 L0 -120" stroke="#2A2118" stroke-width="1.6" opacity="0.22"/>
+      <path d="M-30 -84 C-12 -94 12 -94 30 -84" stroke="#F0B429" stroke-width="3.4"/>
+      <path d="M-22 -112 C-8 -122 8 -122 22 -112" stroke="#FFF8F0" stroke-width="2.6" opacity="0.75"/>
+    </g>
+  </g>
+
+  <g id="mar-idle-legs" stroke="#2A2118" stroke-width="8">
+    <path d="M164 296 C142 312 122 326 100 334"/>
+    <path d="M 236 296 C 258 312 278 326 300 334"/>
+    <path d="M146 284 C120 292 96 300 74 302"/>
+    <path d="M 254 284 C 280 292 304 300 326 302"/>
+    <path d="M148 226 C122 220 96 222 76 232"/>
+    <path d="M 252 226 C 278 220 304 222 324 232"/>
+    <path d="M142 252 C116 254 92 260 74 270"/>
+    <path d="M 258 252 C 284 254 308 260 326 270"/>
+  </g>
+    <g stroke="#FFF8F0" stroke-width="6">
+      <path d="M78 268 L66 274"/>
+      <path d="M 322 268 L 334 274"/>
+    </g>
+
+  <g id="mar-idle-body">
+    <path d="M200 196 C234 196 264 213 266 244 C268 276 241 304 200 304 C159 304 132 276 134 244 C136 213 166 196 200 196 Z" fill="#2A2118"/>
+    <ellipse cx="200" cy="232" rx="52" ry="20" fill="#FFF8F0" opacity="0.07"/>
+    <g fill="#0F0C08" stroke="#F0B429">
+      <circle cx="178" cy="270" r="22" stroke-width="2.6"/>
+      <circle cx="222" cy="270" r="22" stroke-width="2.6"/>
+      <circle cx="150" cy="248" r="9.5" stroke-width="1.8"/>
+      <circle cx="250" cy="248" r="9.5" stroke-width="1.8"/>
+      <circle cx="163" cy="212" r="6" stroke-width="1.4"/>
+      <circle cx="237" cy="212" r="6" stroke-width="1.4"/>
+    </g>
+    <g fill="#FFF8F0" opacity="0.8">
+      <circle cx="170" cy="262" r="5"/>
+      <circle cx="214" cy="262" r="5"/>
+    </g>
+    <g fill="#17A8A0">
+      <path d="M188 289 C194 289 197 294 196 302 C195 311 192 316 189 316
+               C185 316 183 310 184 301 C185 293 185 289 188 289 Z"/>
+      <path d="M212 289 C206 289 203 294 204 302 C205 311 208 316 211 316
+               C215 316 217 310 216 301 C215 293 215 289 212 289 Z"/>
+    </g>
+    <g stroke="#2A2118" stroke-width="7" fill="none" stroke-linecap="round">
+      <path d="M174 302 C166 310 160 318 161 325"/>
+      <path d="M226 302 C234 310 240 318 239 325"/>
+    </g>
+    <g fill="#FFF8F0" stroke="#2A2118" stroke-width="2.4">
+      <circle cx="160" cy="329" r="9"/>
+      <circle cx="240" cy="329" r="9"/>
+    </g>
+  </g>
+</svg>

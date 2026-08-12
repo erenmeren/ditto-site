@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600"
+     role="img" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Specimen plate — the fan, folded</title>
+
+  <defs>
+    <linearGradient id="irid-centre" x1="0.5" y1="1" x2="0.5" y2="0">
+      <stop offset="0" stop-color="#2B6BE4"/>
+      <stop offset="0.52" stop-color="#7A3CF0"/>
+      <stop offset="1" stop-color="#14B6A6"/>
+    </linearGradient>
+    <linearGradient id="irid-left" x1="1" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#2B6BE4"/>
+      <stop offset="0.5" stop-color="#7A3CF0"/>
+      <stop offset="1" stop-color="#14B6A6"/>
+    </linearGradient>
+    <linearGradient id="irid-right" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#2B6BE4"/>
+      <stop offset="0.5" stop-color="#7A3CF0"/>
+      <stop offset="1" stop-color="#14B6A6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Plate furniture: frame, axis, baseline, scale bar, registration marks. -->
+  <g id="plate-rules" stroke="currentColor">
+    <rect x="24" y="24" width="752" height="552" stroke-width="1"/>
+    <path d="M400 96 L400 540" stroke-width="0.75" stroke-dasharray="2 7" opacity="0.4"/>
+    <path d="M64 528 L736 528" stroke-width="0.75" opacity="0.55"/>
+
+    <!-- scale bar -->
+    <path d="M64 552 L204 552" stroke-width="1"/>
+    <path d="M64 546 L64 558 M99 549 L99 558 M134 546 L134 558 M169 549 L169 558 M204 546 L204 558"
+          stroke-width="0.75"/>
+    <text x="216" y="557" fill="currentColor" stroke="none"
+          font-family="ui-monospace, 'IBM Plex Mono', monospace" font-size="11" letter-spacing="1.6">10 mm</text>
+
+    <!-- leader to the cephalothorax -->
+    <path d="M470 452 L700 452" stroke-width="0.75" stroke-dasharray="3 6" opacity="0.6"/>
+    <path d="M700 446 L700 458" stroke-width="0.75" opacity="0.6"/>
+
+    <!-- registration crosses -->
+    <path d="M44 44 L60 44 M52 36 L52 52" stroke-width="0.75" opacity="0.7"/>
+    <path d="M740 44 L756 44 M748 36 L748 52" stroke-width="0.75" opacity="0.7"/>
+    <path d="M44 556 L60 556 M52 548 L52 564" stroke-width="0.75" opacity="0.7"/>
+    <path d="M740 556 L756 556 M748 548 L748 564" stroke-width="0.75" opacity="0.7"/>
+  </g>
+
+  <!-- The fan. Colour appears here and nowhere else. Drawn folded: the two
+       flaps lie closed over the central plate; CSS rotates them open about
+       the hinge at (400,400), the base of the opisthosoma. -->
+  <g id="fan-centre" stroke="currentColor">
+    <!-- flanking lobes: hidden under the folded flaps, revealed as the fan opens -->
+    <path d="M400 400 C392 356 382 306 377 272 C362 270 348 280 344 300
+             C354 340 374 378 400 400 Z"
+          fill="url(#irid-left)" fill-opacity="0.9" stroke-width="1"/>
+    <path d="M400 400 C408 356 418 306 423 272 C438 270 452 280 456 300
+             C446 340 426 378 400 400 Z"
+          fill="url(#irid-right)" fill-opacity="0.9" stroke-width="1"/>
+    <!-- the dorsal plate -->
+    <path d="M400 400 C386 344 366 282 366 242 C366 221 382 206 400 206
+             C418 206 434 221 434 242 C434 282 414 344 400 400 Z"
+          fill="url(#irid-centre)" fill-opacity="0.94" stroke-width="1.2"/>
+    <path d="M400 392 L400 212" stroke-width="0.75" opacity="0.6"/>
+    <path d="M400 384 C394 330 388 268 388 222" stroke-width="0.75" opacity="0.5"/>
+    <path d="M400 384 C406 330 412 268 412 222" stroke-width="0.75" opacity="0.5"/>
+    <path d="M369 274 C382 282 418 282 431 274" stroke-width="0.75" opacity="0.55"/>
+    <path d="M379 332 C388 338 412 338 421 332" stroke-width="0.75" opacity="0.55"/>
+  </g>
+
+  <g id="fan-left" stroke="currentColor"
+     transform-box="fill-box" transform-origin="100% 100%"
+     style="transform-box: fill-box; transform-origin: 100% 100%;">
+    <path d="M400 400 L400 222 C374 220 344 236 330 262 C324 274 322 288 326 300
+             C338 330 362 368 400 400 Z"
+          fill="url(#irid-left)" fill-opacity="0.94" stroke-width="1.2"/>
+    <path d="M399 393 C393 344 384 292 377 238" stroke-width="0.75" opacity="0.6"/>
+    <path d="M398 392 C386 350 366 300 346 264" stroke-width="0.75" opacity="0.6"/>
+    <path d="M396 391 C382 356 358 320 330 293" stroke-width="0.75" opacity="0.5"/>
+    <path d="M336 288 C356 292 378 286 395 274" stroke-width="0.75" opacity="0.6"/>
+    <path d="M352 322 C368 326 384 322 397 314" stroke-width="0.75" opacity="0.55"/>
+  </g>
+
+  <g id="fan-right" stroke="currentColor"
+     transform-box="fill-box" transform-origin="0% 100%"
+     style="transform-box: fill-box; transform-origin: 0% 100%;">
+    <path d="M400 400 L400 222 C426 220 456 236 470 262 C476 274 478 288 474 300
+             C462 330 438 368 400 400 Z"
+          fill="url(#irid-right)" fill-opacity="0.94" stroke-width="1.2"/>
+    <path d="M401 393 C407 344 416 292 423 238" stroke-width="0.75" opacity="0.6"/>
+    <path d="M402 392 C414 350 434 300 454 264" stroke-width="0.75" opacity="0.6"/>
+    <path d="M404 391 C418 356 442 320 470 293" stroke-width="0.75" opacity="0.5"/>
+    <path d="M464 288 C444 292 422 286 405 274" stroke-width="0.75" opacity="0.6"/>
+    <path d="M448 322 C432 326 416 322 403 314" stroke-width="0.75" opacity="0.55"/>
+  </g>
+
+  <!-- Four pairs. The third pair is held up beside the fan, as it is in the
+       display; the others carry the animal. -->
+  <g id="legs" stroke="currentColor" stroke-width="1.6">
+    <path d="M360 490 C340 508 316 522 292 528 C268 534 246 542 232 552"/>
+    <path d="M346 470 C320 484 290 496 262 502 C240 507 218 514 204 524"/>
+    <path d="M343 444 C322 424 306 396 296 366 C286 334 276 300 268 268"/>
+    <path d="M350 420 C328 422 304 428 282 436 C258 444 236 452 220 464"/>
+    <path d="M440 490 C460 508 484 522 508 528 C532 534 554 542 568 552"/>
+    <path d="M454 470 C480 484 510 496 538 502 C560 507 582 514 596 524"/>
+    <path d="M457 444 C478 424 494 396 504 366 C514 334 524 300 532 268"/>
+    <path d="M450 420 C472 422 496 428 518 436 C542 444 564 452 580 464"/>
+    <!-- tarsal brushes on the raised pair -->
+    <g stroke-width="0.9" opacity="0.85">
+      <path d="M268 268 L258 244 M268 268 L264 242 M268 268 L273 244"/>
+      <path d="M532 268 L542 244 M532 268 L536 242 M532 268 L527 244"/>
+    </g>
+    <!-- joints -->
+    <g stroke-width="0.75" opacity="0.7">
+      <path d="M289 522 L296 534 M259 496 L266 508 M295 361 L305 369 M279 431 L287 442"/>
+      <path d="M511 522 L504 534 M541 496 L534 508 M505 361 L495 369 M521 431 L513 442"/>
+    </g>
+  </g>
+
+  <!-- Cephalothorax, eyes, palps. Line only. -->
+  <g id="body" stroke="currentColor">
+    <path d="M394 402 L394 412 M406 402 L406 412" stroke-width="1"/>
+    <path d="M400 404 C432 406 452 420 456 444 C459 466 452 486 436 494
+             C424 500 376 500 364 494 C348 486 341 466 344 444
+             C348 420 368 406 400 404 Z" stroke-width="1.6"/>
+    <path d="M362 424 C384 416 416 416 438 424" stroke-width="0.75" opacity="0.6"/>
+    <path d="M356 452 C382 446 418 446 444 452" stroke-width="0.75" opacity="0.55"/>
+    <g stroke-width="0.75" opacity="0.45">
+      <path d="M370 434 L366 444 M382 431 L378 442 M394 430 L390 441
+               M406 430 L410 441 M418 431 L422 442 M430 434 L434 444"/>
+    </g>
+    <circle cx="382" cy="477" r="15" stroke-width="1.6"/>
+    <circle cx="418" cy="477" r="15" stroke-width="1.6"/>
+    <circle cx="382" cy="477" r="7.5" stroke-width="0.9" opacity="0.6"/>
+    <circle cx="418" cy="477" r="7.5" stroke-width="0.9" opacity="0.6"/>
+    <g stroke-width="0.75" opacity="0.55">
+      <path d="M373 470 C376 466 380 464 384 464"/>
+      <path d="M427 470 C424 466 420 464 416 464"/>
+    </g>
+    <circle cx="351" cy="466" r="8" stroke-width="1.2"/>
+    <circle cx="449" cy="466" r="8" stroke-width="1.2"/>
+    <circle cx="355" cy="428" r="6" stroke-width="1"/>
+    <circle cx="445" cy="428" r="6" stroke-width="1"/>
+    <circle cx="348" cy="446" r="3" stroke-width="0.9"/>
+    <circle cx="452" cy="446" r="3" stroke-width="0.9"/>
+    <path d="M370 493 C362 502 357 510 358 517 C359 524 367 526 372 521
+             C377 516 378 506 376 498" stroke-width="1.2"/>
+    <path d="M430 493 C438 502 443 510 442 517 C441 524 433 526 428 521
+             C423 516 422 506 424 498" stroke-width="1.2"/>
+    <path d="M390 496 C388 505 390 512 394 515" stroke-width="1" opacity="0.7"/>
+    <path d="M410 496 C412 505 410 512 406 515" stroke-width="1" opacity="0.7"/>
+  </g>
+</svg>

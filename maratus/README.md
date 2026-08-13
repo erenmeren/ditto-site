@@ -9,6 +9,10 @@ A comparison study, not a deployment. Nothing here is live and every page is
 - `b/` — "Maratus": character led
 - `c/` — "Structural colour": no figure, generative optics
 
+`index.html` is the chooser — three links, each with its thesis and its risk,
+set in nothing that belongs to any of the three. `REVIEW.md` is the written pass
+over all three: what works, what does not, and what was fixed.
+
 `content.md` is the fact sheet all three obey. `tools/shoot.sh` screenshots a
 direction under plain, reduced-motion, and no-JS conditions at three widths;
 `tools/check.sh` greps for banned copy, easing, and cross-direction references.

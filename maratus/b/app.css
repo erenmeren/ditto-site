@@ -704,7 +704,12 @@ code {
   font-family: var(--f-mono);
   font-size: clamp(.74rem, .62rem + .3vw, .86rem);
   line-height: 1.75;
-  white-space: pre;
+  /* The request literals wrap rather than hide behind a scroll nobody sees.
+     This block sits in a half-width column at every width, so the JSON body
+     line runs past its right edge on a desktop too — and an overlay scrollbar
+     that only appears mid-gesture is not an affordance a reader can act on. */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 .code code { background: none; padding: 0; font-size: inherit; color: inherit; }
 .code-answer { background: var(--teal); color: var(--paper); }
@@ -960,8 +965,6 @@ code {
   .sequence { border-radius: var(--radius-l) 0 0 0; }
   .pilot { border-radius: 0 var(--radius-l) 0 0; }
   .codes td:first-child { width: 4.2rem; }
-  /* the request literals wrap rather than hide behind a scroll nobody sees */
-  .code { white-space: pre-wrap; overflow-wrap: anywhere; }
 }
 
 /* ═══════════════════════════ arming ════════════════════════════════════ */

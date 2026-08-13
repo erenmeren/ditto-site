@@ -1,0 +1,126 @@
+/* The chooser is deliberately plain. It borrows nothing from A, B or C — no
+   web font, no palette, no motion — so that whichever direction you open next
+   is the first designed thing you have seen on the screen. Anything expressive
+   here would tilt the comparison it exists to serve. */
+
+:root {
+  --ink: #1a1a1a;
+  --muted: #6b6b6b;
+  --rule: #d6d6d2;
+  --paper: #fbfbf9;
+  --measure: 34rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  color: var(--muted);
+}
+
+.sheet {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 5rem;
+}
+
+.head h1 {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.lede {
+  max-width: var(--measure);
+  margin: 0;
+  color: var(--muted);
+}
+
+.list {
+  margin: 3rem 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+
+.dir {
+  padding: 1.75rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+.tag {
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.dir h2 {
+  margin: 0 0 0.6rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.dir h2 a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.dir h2 a:hover,
+.dir h2 a:focus-visible {
+  text-decoration-thickness: 3px;
+}
+
+.thesis {
+  max-width: var(--measure);
+  margin: 0 0 0.75rem;
+}
+
+.risk {
+  max-width: var(--measure);
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.risk__label {
+  display: inline-block;
+  margin-right: 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.note {
+  max-width: var(--measure);
+  margin: 3rem 0 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.note p { margin: 0; }
+
+@media (max-width: 480px) {
+  .sheet { padding: 2.5rem 1.25rem 3.5rem; }
+  .list { margin-top: 2rem; }
+}

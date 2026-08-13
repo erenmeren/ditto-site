@@ -369,7 +369,9 @@ h1 { display: block; margin-bottom: clamp(24px, 3vw, 44px); }
 
 /* ── arrivals ──────────────────────────────────────────────────────────── */
 /* A board this severe should not bounce, so the arrival is the smallest one
-   that still reads as arrival: a short drift up, on --drift, once per block.
+   that still reads as arrival: a short drift up, on --drift. It is spent on
+   three elements in the whole document — the two plates and the beats; see the
+   list in app.js — because a drift on every block is a template's idea of life.
    The armed state is gated behind .armed, which only JavaScript sets — with
    the script off, or before it runs, nothing is hidden and nothing can be
    stranded invisible. app.js also unarms on a hard timeout regardless. */

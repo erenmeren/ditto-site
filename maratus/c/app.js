@@ -80,9 +80,17 @@ if (fields.length) {
 }
 
 /* ── arrivals ──────────────────────────────────────────────────────────── */
-/* One drift per block, on --drift. Three independent guarantees that nothing
- * can be left stranded at opacity 0, because that failure is invisible in a
- * screenshot and fatal on the page:
+/* Three arrivals on the whole page, not one per block. This list used to hold
+ * nineteen selectors — every heading, table, figure and form — which is the
+ * blanket fade-up the spec exists to prevent: a motion that is not specific to
+ * the thing it reveals is decoration, and decoration on this grid reads as a
+ * template. What is left are the three objects whose arrival means something:
+ * the two optical plates, which are drawn rather than laid out and would
+ * otherwise pop in the frame the canvas becomes ready, and the beats, which is
+ * where the credit changes state. Everything else is simply present.
+ *
+ * Three independent guarantees that nothing can be left stranded at opacity 0,
+ * because that failure is invisible in a screenshot and fatal on the page:
  *   1. the armed state exists only while .armed is on <html>, which only this
  *      file sets, so no-script and pre-script are never hidden;
  *   2. a rect sweep — on load and on every scroll and resize — reveals
@@ -92,26 +100,15 @@ if (fields.length) {
  * A full-page screenshot tool that never scrolls will therefore capture a
  * complete page, and so will a reader who scrolls. */
 
-const REVEAL = [
-  'h1', '.hero-lede', '.acts', '.rule-line', '.plate--hero',
-  '.head', '.head-note', '.spec', '.beats', '.fail',
-  '.demo-fig', '.demo-copy', '.req-code', '.codes', '.notes',
-  '.plate--band', '.ledger', '.pilot-spec', '.form'
-].join(', ');
+const REVEAL = ['.plate--hero', '.beats', '.plate--band'].join(', ');
 
 if (!reduced) {
   const items = Array.from(document.querySelectorAll(REVEAL));
 
   if (items.length) {
-    /* stagger inside a section, never across the page: three steps, then flat */
-    const seen = new Map();
-    for (const el of items) {
-      const section = el.closest('section, footer') || document.body;
-      const i = (seen.get(section) || 0);
-      seen.set(section, i + 1);
-      el.style.transitionDelay = Math.min(i, 3) * 55 + 'ms';
-      el.classList.add('rv');
-    }
+    /* No stagger: three arrivals on the whole page, each in its own section,
+       so there is nothing to stagger against. */
+    for (const el of items) el.classList.add('rv');
 
     root.classList.add('armed');
     void root.offsetHeight;   /* flush, so the first reveal transitions rather than snapping */

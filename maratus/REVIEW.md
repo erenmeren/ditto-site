@@ -101,18 +101,23 @@ returns once more as a band later in the page, which is the right amount. Under
 `prefers-reduced-motion` it draws a single still frame instead of stopping dead,
 so the identity survives with motion off.
 
-**Does not work.** It breaks one of the spec's own motion rules. `app.js`
-applies the `.rv` arrival — `opacity` plus `translateY(14px)` — to nineteen
-selectors covering effectively every block on the page. The spec says a motion
-must be specific to the thing it reveals or be cut, and a 14 px drift on every
-heading, table, figure and form is the blanket fade-up the rule exists to
-prevent. The stylesheet's own comment argues it is "the smallest arrival that
-still reads as arrival", and the safety work around it is careful — three
-independent guarantees against a stranded `opacity: 0`, which is why the walk
-finds nothing hidden — but careful is not the same as earned. **Not patched:
-cutting or narrowing it changes how the direction reads, and that is a call for
-whoever is choosing between the three.** The narrow version would be the beats,
-the two plates, and nothing else.
+**Did not work, now fixed.** It broke one of the spec's own motion rules.
+`app.js` applied the `.rv` arrival — `opacity` plus `translateY(14px)` — to
+nineteen selectors covering effectively every block on the page. The spec says a
+motion must be specific to the thing it reveals or be cut, and a 14 px drift on
+every heading, table, figure and form is the blanket fade-up the rule exists to
+prevent. The safety work around it was careful — three independent guarantees
+against a stranded `opacity: 0`, which is why the walk found nothing hidden —
+but careful is not the same as earned.
+
+The list is now three selectors: `.plate--hero`, `.beats`, `.plate--band`. The
+two plates are drawn rather than laid out and would otherwise pop in the frame
+the canvas becomes ready, so their arrival is the drawing arriving; the beats
+are where the credit changes state. Everything else on the page is simply
+present. The per-section stagger went with it — three arrivals, one per section,
+have nothing to stagger against. Re-measured: exactly three elements carry
+`.rv`, all three resolve to `.in` during a scroll walk, nothing is left hidden,
+no horizontal overflow, `check.sh` OK.
 
 **With JavaScript off:** all content is present and readable, and the hero
 recomposes to a full-twelve-column block rather than leaving four empty columns
@@ -131,8 +136,6 @@ Three links, each with its thesis and one honest line about its risk.
 
 - Pick a direction. The three risks stated on the chooser are the three real
   questions; none of them is answerable from the screenshots alone.
-- C's blanket arrival, above, if C is picked or if its optics are grafted onto
-  another direction.
 - `assets/` is still empty. The spec reserved it for the device photograph and
   a favicon as the only cross-direction files; all three directions ended up
   drawing the box instead, and none of them sets a favicon.

@@ -1,4 +1,4 @@
-/* ditto — the site stylesheet. Shared by index.html and docs.html.
+/* maratus — the site stylesheet. Shared by index.html and docs.html.
 
    The hybrid voice: paper, ink, one acid accent, Archivo Black lowercase
    display, IBM Plex Mono labels. The page is canvas turn 12b ("the
@@ -324,6 +324,14 @@ p.body { font-size: clamp(14px, 1.15vw, 15.5px); line-height: 1.55; color: var(-
 .footer .meta { position: absolute; right: var(--edge); bottom: 16px; text-align: right; font: 500 10.5px/1.7 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .footer .meta a { color: var(--muted); }
 .footer .meta a:hover { color: var(--ink); }
+/* Seven letters need more room than five. On a phone the wordmark would run
+   under the email line, so the two stop sharing a row: the meta lifts to the
+   top and the mark takes the floor, still cut off by the bottom edge. */
+@media (max-width: 560px) {
+  .footer { height: 100px; }
+  .footer .mark { font-size: 76px; top: 36px; }
+  .footer .meta { top: 12px; bottom: auto; }
+}
 
 /* ======================================================================
    12b — the grid leads. Same components, but every section is a row on

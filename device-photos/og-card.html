@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>og</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#16150f; --acid:#e8ff2f; --paper:#f4f3ee; --muted:#8a8577;
+          --display:'Archivo Black',system-ui,sans-serif; --mono:'IBM Plex Mono',monospace; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1200px; height:630px; }
+  body { background:var(--paper); color:var(--ink); font-family:var(--display);
+         padding:56px 40px 44px; display:flex; flex-direction:column; justify-content:space-between; }
+
+  .wordmark { display:flex; align-items:center; gap:16px; }
+  .wordmark i { width:30px; height:30px; background:var(--acid); border:3px solid var(--ink); display:block; }
+  .wordmark span { font-size:40px; letter-spacing:-.03em; line-height:1; }
+
+  h1 { font-size:128px; line-height:.94; letter-spacing:-.045em; text-transform:lowercase; }
+  h1 .hl { background:var(--acid); box-decoration-break:clone; -webkit-box-decoration-break:clone;
+           padding:.06em .07em .1em; margin-left:.06em; }
+
+  .foot { display:flex; align-items:flex-end; justify-content:space-between; }
+  .foot p { font-family:var(--mono); font-weight:500; font-size:15px; letter-spacing:.11em;
+            text-transform:uppercase; color:var(--muted); }
+  .foot .chip { font-family:var(--mono); font-weight:600; font-size:15px; letter-spacing:.11em;
+                text-transform:uppercase; background:var(--acid); color:var(--ink); padding:4px 8px; }
+</style>
+</head>
+<body>
+  <div class="wordmark"><i></i><span>maratus</span></div>
+  <h1>no more<br>paper.<span class="hl">bye.</span></h1>
+  <div class="foot">
+    <p>a small screen instead of a piece of paper</p>
+    <span class="chip">paid on show</span>
+  </div>
+</body>
+</html>

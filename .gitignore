@@ -1,3 +1,6 @@
 .superpowers/
 .thumbnail
 docs/reviews/
+
+# vendor material — kept on disk as source for the device photo, never published
+device-photos/devices-*.jpeg

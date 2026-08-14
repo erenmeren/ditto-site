@@ -1,0 +1,542 @@
+/* ditto — redesign study.
+   NOT the live site. site/ is untouched.
+
+   Direction: this is a hardware product, so the page behaves like the
+   object's own paperwork — a datasheet, not a landing page. The
+   vernacular is orthographic drawing, dimension lines, callouts and a
+   timing diagram, because that is how a small precise object is
+   actually described.
+
+   Colour is almost absent on purpose. The only chroma is the real
+   photograph and one accent taken from the subject's world: the red
+   stripe printed near the end of a till roll, which every shopkeeper
+   has seen and which happens to mean "the paper is running out".
+   It appears three times on the whole page. */
+
+:root {
+  --paper:   #FBFAF8;   /* warm near-white — receipt stock, not cream */
+  --card:    #F4F2EE;
+  --ink:     #14161A;   /* the device's own charcoal, cool cast */
+  --ink-2:   #3A3F47;
+  --steel:   #82888F;   /* annotation grey, as on a drawing */
+  --rule:    #E7E4DF;
+  --rule-2:  #D5D1CA;
+  --signal:  #D8342B;   /* till-roll red */
+
+  --display: 'Archivo', system-ui, sans-serif;
+  --text:    'Newsreader', Georgia, serif;
+  --mono:    'IBM Plex Mono', ui-monospace, monospace;
+
+  /* one curve, used everywhere, so motion feels like one hand */
+  --ease: cubic-bezier(.23, 1, .32, 1);      /* strong ease-out, entrances */
+  --ease-io: cubic-bezier(.77, 0, .175, 1);  /* strong ease-in-out, on-screen movement */
+
+  --gut:  clamp(20px, 5vw, 64px);
+  --col:  minmax(0, 1fr);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  background: var(--paper); color: var(--ink);
+  font: 400 18px/1.62 var(--text);
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+img, svg { display: block; max-width: 100%; }
+::selection { background: var(--ink); color: var(--paper); }
+:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+
+/* ---------------------------------------------------------- type roles */
+/* Display is Archivo pushed WIDE, not black — engineered, not shouty.
+   Body is a serif, which inverts the usual serif-display/sans-body
+   pairing and is the single most legible signal that a person set this. */
+.d {
+  font-family: var(--display);
+  font-variation-settings: 'wdth' 112, 'wght' 620;
+  letter-spacing: -.022em;
+  line-height: .98;
+  text-wrap: balance;
+}
+.d-xl { font-size: clamp(42px, 5.6vw, 82px); line-height: .92; letter-spacing: -.034em; }
+.d-l  { font-size: clamp(30px, 3.6vw, 46px); }
+.d-m  { font-size: clamp(22px, 2.1vw, 27px); line-height: 1.06; }
+
+.lede { font-size: clamp(18px, 1.55vw, 21px); line-height: 1.58; color: var(--ink-2); max-width: 46ch; text-wrap: pretty; }
+p.t { font-size: 17px; line-height: 1.65; color: var(--ink-2); max-width: 62ch; text-wrap: pretty; }
+
+/* Annotation type: this is the drawing's voice, so it is mono, small,
+   letterspaced, and it never grows. */
+.an {
+  font: 500 10.5px/1.5 var(--mono);
+  letter-spacing: .12em; text-transform: uppercase; color: var(--steel);
+  font-variant-numeric: tabular-nums;
+}
+.an-i { color: var(--ink); }
+.num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+
+/* ---------------------------------------------------------- structure */
+.shell { max-width: 1320px; margin: 0 auto; padding-inline: var(--gut); }
+
+/* Sections are separated by a dimension rule: a hairline with a tick at
+   each end, the way a measured drawing divides a sheet. */
+.sect { padding-block: clamp(56px, 8vw, 132px); position: relative; }
+.sect + .sect::before {
+  content: ''; position: absolute; inset-inline: var(--gut); top: 0; height: 1px; background: var(--rule);
+}
+.sect + .sect::after {
+  content: ''; position: absolute; left: var(--gut); top: -3px; width: 1px; height: 7px; background: var(--rule-2);
+}
+
+.head { display: grid; grid-template-columns: 148px minmax(0, 1fr); gap: clamp(18px, 3vw, 48px); align-items: baseline; }
+.head .an { padding-top: .62em; }
+.head h2 + .t, .head .d + .t { margin-top: 16px; }
+
+/* ---------------------------------------------------------- masthead */
+.mast { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--paper) 86%, transparent); backdrop-filter: blur(14px) saturate(1.4); border-bottom: 1px solid transparent; transition: border-color .3s var(--ease); }
+.mast.stuck { border-bottom-color: var(--rule); }
+.mast .shell { height: 62px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.mark { font-family: var(--display); font-variation-settings: 'wdth' 118, 'wght' 700; font-size: 15px; letter-spacing: .10em; text-transform: uppercase; }
+.mast nav { display: flex; align-items: center; gap: clamp(14px, 2vw, 30px); }
+.mast nav a { font: 500 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--steel); transition: color .2s var(--ease); }
+.mast nav a:hover { color: var(--ink); }
+
+/* The status pip is real information, not decoration: it is the same
+   green the console uses for a device that is online. */
+.pip { display: inline-flex; align-items: center; gap: 7px; font: 500 10.5px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--steel); }
+.pip::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #2E9E63; box-shadow: 0 0 0 3px rgba(46,158,99,.16); }
+
+/* ---------------------------------------------------------- buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 13px 15px 13px 22px; border-radius: 999px;
+  font: 500 12px var(--mono); letter-spacing: .09em; text-transform: uppercase;
+  background: var(--ink); color: var(--paper);
+  transition: transform .38s var(--ease), background .3s var(--ease);
+  will-change: transform;
+}
+.btn .cap {
+  width: 26px; height: 26px; border-radius: 999px; display: grid; place-items: center;
+  background: rgba(255,255,255,.14); font-size: 12px;
+  transition: transform .38s var(--ease), background .3s var(--ease);
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover { background: #000; }
+  .btn:hover .cap { transform: translate(3px, -1px); background: rgba(255,255,255,.24); }
+}
+.btn { transition-duration: .3s; }
+.btn:active { transform: scale(.97); transition-duration: .14s; }
+
+.btn-q { display: inline-flex; align-items: center; gap: 10px; padding: 13px 20px; border-radius: 999px;
+  font: 500 12px var(--mono); letter-spacing: .09em; text-transform: uppercase; color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--rule-2);
+  transition: transform .38s var(--ease), box-shadow .3s var(--ease), background .3s var(--ease); }
+@media (hover: hover) and (pointer: fine) {
+  .btn-q:hover { background: var(--card); box-shadow: inset 0 0 0 1px var(--ink); }
+}
+.btn-q:active { transform: scale(.97); transition-duration: .14s; }
+
+/* ---------------------------------------------------------- hero */
+.hero { padding-top: clamp(38px, 6vw, 88px); padding-bottom: 0; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); gap: clamp(28px, 5vw, 76px); align-items: center; }
+.hero h1 { margin-top: 22px; }
+.hero .lede { margin-top: 26px; }
+.hero .acts { display: flex; gap: 12px; margin-top: 34px; flex-wrap: wrap; }
+
+/* the spec rail closes the hero the way a drawing's title block closes a sheet */
+.rail { margin-top: clamp(40px, 6vw, 78px); border-top: 1px solid var(--rule); display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); }
+.rail div { padding: 18px 22px 4px 0; }
+.rail div + div { padding-left: 22px; box-shadow: inset 1px 0 0 var(--rule); }
+.rail dt { font: 500 10.5px/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--steel); }
+.rail dd { margin-top: 7px; font-family: var(--display); font-variation-settings: 'wdth' 108, 'wght' 560; font-size: clamp(15px, 1.35vw, 18px); letter-spacing: -.01em; }
+
+/* ---------------------------------------------------------- the drawing */
+/* Every stroke is drawn on entry, in the order a person would draw it:
+   outline, then screen, then dimensions, then callouts. */
+.dwg { width: 100%; height: auto; overflow: visible; }
+.dwg .ln { stroke: var(--ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.dwg .dim { stroke: var(--steel); fill: none; stroke-width: 1; stroke-linecap: round; }
+.dwg .lead { stroke: var(--rule-2); fill: none; stroke-width: 1; }
+.dwg text { font: 500 9px var(--mono); letter-spacing: .1em; text-transform: uppercase; fill: var(--steel); }
+.dwg text.hot { fill: var(--ink); }
+.dwg .qrcell { fill: var(--ink); }
+.js .dwg .draw { stroke-dasharray: var(--len); stroke-dashoffset: var(--len); }
+.js .dwg.in .draw { animation: stroke 1.15s var(--ease) forwards; animation-delay: var(--dl, 0s); }
+@keyframes stroke { to { stroke-dashoffset: 0; } }
+.js .dwg .fade { opacity: 0; }
+.js .dwg.in .fade { animation: appear .7s var(--ease) forwards; animation-delay: var(--dl, 0s); }
+@keyframes appear { to { opacity: 1; } }
+
+/* ---------------------------------------------------------- the object */
+.obj { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: clamp(26px, 5vw, 80px); align-items: start; margin-top: clamp(30px, 4vw, 54px); }
+/* Double enclosure: the photo sits in a tray, not flat on the page. */
+.tray { background: var(--card); border-radius: 20px; padding: 10px; box-shadow: 0 1px 0 rgba(20,22,26,.05), 0 24px 48px -32px rgba(20,22,26,.30); }
+.tray .plate { border-radius: 12px; overflow: hidden; background: #E9E6E0; }
+.tray img { width: 100%; height: auto; }
+.specs { border-top: 1px solid var(--rule); }
+.specs div { display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: baseline; padding: 13px 0; border-bottom: 1px solid var(--rule); }
+.specs dt { font: 500 10.5px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--steel); }
+.specs dd { font-size: 16px; text-align: right; }
+
+/* ---------------------------------------------------------- sequence */
+/* A timing diagram, because the honest thing to show about this product
+   is WHEN each thing happens and how long the window is. */
+.seq { margin-top: clamp(28px, 4vw, 48px); }
+.seqwrap { overflow-x: auto; padding-bottom: 6px; }
+.seqsvg { min-width: 720px; width: 100%; height: auto; overflow: visible; }
+.seqsvg .lane { stroke: var(--rule); stroke-width: 1; }
+.seqsvg .msg { stroke: var(--ink); stroke-width: 1.6; fill: none; marker-end: url(#ah); }
+.seqsvg .win { fill: var(--signal); fill-opacity: .07; }
+.seqsvg .winln { stroke: var(--signal); stroke-width: 1; stroke-dasharray: 3 3; }
+.seqsvg text { font: 500 9.5px var(--mono); letter-spacing: .09em; text-transform: uppercase; fill: var(--steel); }
+.seqsvg text.b { fill: var(--ink); }
+.seqsvg text.r { fill: var(--signal); }
+.seqsvg .node { fill: var(--paper); stroke: var(--ink); stroke-width: 1.6; }
+.seqsvg .node.solid { fill: var(--ink); }
+.js .seqsvg .draw { stroke-dasharray: var(--len); stroke-dashoffset: var(--len); }
+.js .seqsvg.in .draw { animation: stroke .9s var(--ease) forwards; animation-delay: var(--dl, 0s); }
+.js .seqsvg .fade { opacity: 0; }
+.js .seqsvg.in .fade { animation: appear .55s var(--ease) forwards; animation-delay: var(--dl, 0s); }
+
+.seqnotes { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(18px, 3vw, 40px); margin-top: 34px; }
+.seqnotes h3 { font-family: var(--display); font-variation-settings: 'wdth' 108, 'wght' 600; font-size: 16px; letter-spacing: -.008em; }
+.seqnotes p { margin-top: 8px; font-size: 15.5px; line-height: 1.6; color: var(--ink-2); }
+
+/* ---------------------------------------------------------- interface */
+.api { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .78fr); gap: clamp(26px, 4vw, 60px); align-items: start; margin-top: clamp(28px, 4vw, 46px); }
+.code { background: var(--ink); border-radius: 16px; padding: 22px 24px; overflow-x: auto; }
+.code pre { font: 400 13px/1.85 var(--mono); color: #C9CDD4; white-space: pre; }
+.code .k { color: #8FA3C0; }
+.code .s { color: #C8D6B9; }
+.code .c { color: #6C737C; }
+.resp { margin-top: 12px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 13px 16px; border-radius: 12px; background: var(--card); font: 500 12px var(--mono); }
+.resp .code202 { color: #2E9E63; letter-spacing: .06em; }
+.resp .arrow { color: var(--steel); }
+.honest { margin-top: 18px; padding-left: 16px; border-left: 2px solid var(--signal); }
+.honest p { font-size: 15.5px; line-height: 1.6; color: var(--ink-2); }
+
+/* ---------------------------------------------------------- uses */
+.uses { margin-top: clamp(24px, 3vw, 40px); border-top: 1px solid var(--rule); }
+.use { display: grid; grid-template-columns: 168px minmax(0,1fr) auto; gap: 24px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--rule); transition: background .35s var(--ease); }
+.use .what { font-size: clamp(17px, 1.7vw, 21px); color: var(--ink); }
+.use .url { font: 400 11px var(--mono); color: var(--steel); opacity: 0; transform: translateX(-6px); transition: opacity .35s var(--ease), transform .35s var(--ease); }
+@media (hover: hover) { .use:hover { background: linear-gradient(90deg, var(--card), transparent 82%); }
+  .use:hover .url { opacity: 1; transform: none; } }
+
+/* ---------------------------------------------------------- terms */
+.terms { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .7fr); gap: clamp(26px, 4vw, 64px); align-items: end; }
+.price { font-family: var(--display); font-variation-settings: 'wdth' 106, 'wght' 600; font-size: clamp(28px, 3.4vw, 44px); line-height: 1.06; letter-spacing: -.026em; }
+.price em { font-style: normal; box-shadow: inset 0 -.42em 0 rgba(216,52,43,.16); }
+.termlist { border-top: 1px solid var(--rule); }
+.termlist div { display: flex; justify-content: space-between; gap: 20px; padding: 12px 0; border-bottom: 1px solid var(--rule); font: 500 11.5px var(--mono); letter-spacing: .05em; color: var(--steel); }
+.termlist b { font-weight: 500; color: var(--ink); }
+
+/* ---------------------------------------------------------- pilot */
+.pilot { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .62fr); gap: clamp(26px, 4vw, 64px); align-items: end; }
+.sig { margin-top: 26px; font-size: 16px; line-height: 1.6; color: var(--ink-2); max-width: 52ch; }
+.sig a { box-shadow: inset 0 -1px 0 var(--rule-2); transition: box-shadow .25s var(--ease); }
+.sig a:hover { box-shadow: inset 0 -1px 0 var(--ink); }
+
+/* ---------------------------------------------------------- footer */
+.foot { padding-block: 34px 46px; border-top: 1px solid var(--rule); }
+.foot .shell { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: baseline; }
+
+/* ---------------------------------------------------------- reveal */
+/* Hidden states are scoped to .js so the page reads with scripting off. */
+.js .up { opacity: 0; transform: translateY(18px); }
+.js .up.in { opacity: 1; transform: none; transition: opacity .85s var(--ease), transform .85s var(--ease); transition-delay: var(--dl, 0s); }
+
+/* ---------------------------------------------------------- responsive */
+@media (max-width: 1040px) {
+  .hero-grid, .obj, .api, .terms, .pilot { grid-template-columns: minmax(0, 1fr); }
+  .obj, .terms, .pilot { align-items: start; }
+  .rail { grid-template-columns: 1fr 1fr; }
+  .rail div:nth-child(3), .rail div:nth-child(4) { border-top: 1px solid var(--rule); margin-top: 4px; }
+  .rail div:nth-child(odd) { padding-left: 0; box-shadow: none; }
+  .seqnotes { grid-template-columns: 1fr; gap: 22px; }
+}
+@media (max-width: 720px) {
+  .head { grid-template-columns: 1fr; gap: 10px; }
+  .head .an { padding-top: 0; }
+  .use { grid-template-columns: 1fr; gap: 4px; padding: 16px 0; }
+  .use .url { display: none; }
+  .mast nav a.hide-s { display: none; }
+  .rail { grid-template-columns: 1fr; }
+  .rail div { padding-left: 0 !important; box-shadow: none !important; border-top: 1px solid var(--rule); }
+  .rail div:first-child { border-top: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .js .up { opacity: 1; transform: none; }
+  .js .dwg .draw, .js .seqsvg .draw { stroke-dashoffset: 0; }
+  .js .dwg .fade, .js .seqsvg .fade { opacity: 1; }
+  .use .url { opacity: 1; transform: none; }
+}
+
+/* the drawing is a co-equal to the sentence, not a spot illustration */
+.hero .dwg { max-width: 560px; margin-left: auto; }
+.specs { margin-top: 4px; }
+
+/* =========================================================== the scrub
+   The one orchestrated motion on the page. The diagram's x axis is
+   time, so binding it to the scroll axis means the reader literally
+   scrolls through the sixty seconds — the window stops being a label
+   and becomes a distance. Explanation, not decoration, which is the
+   only reason a scroll-driven effect earns its place here. */
+.js .scrub { height: 260vh; }
+.js .scrub-inner { position: sticky; top: 84px; }
+.scrub-read {
+  display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+  font: 500 11px var(--mono); letter-spacing: .1em; text-transform: uppercase;
+  color: var(--steel); margin-bottom: 18px;
+}
+.scrub-read .clock { color: var(--ink); min-width: 9ch; }
+.scrub-read .status { color: var(--signal); min-width: 12ch; }
+.scrub-read .sep { opacity: .4; }
+.scrub-read .hint { margin-left: auto; opacity: 0; transition: opacity .4s var(--ease); }
+.js .scrub-read .hint { opacity: 1; }
+.scrub.done .scrub-read .hint { opacity: 0; }
+
+/* the playhead rides the diagram; it is positioned by transform only */
+.play { opacity: 0; transition: opacity .3s var(--ease); }
+.js .scrub.live .play { opacity: 1; }
+.play path { stroke: var(--ink); stroke-width: 1; stroke-dasharray: 2 4; }
+.play circle { fill: var(--ink); }
+
+/* events sit back until the clock reaches them */
+.js .seqsvg.in .ev { opacity: .18; transition: opacity .35s var(--ease); }
+.js .seqsvg.in .ev.hit { opacity: 1; }
+.js .seqsvg.in .ev.hit.node { transition: opacity .35s var(--ease); }
+
+/* the window fills as the clock crosses it, so the reader watches the
+   budget being spent rather than reading that one exists */
+.winfill { fill: var(--signal); fill-opacity: .1; }
+
+/* =========================================================== depth
+   Two small parallaxes, both under ±16px. Anything larger reads as an
+   effect; this reads as the page having a near and a far plane. */
+.tray { will-change: transform; }
+.tray .plate img { will-change: transform; }
+.hero .dwg { will-change: transform; }
+
+/* pointer tilt on the photograph — decorative mouse-tracking, which is
+   exactly the case springs exist for, so the values are eased toward
+   rather than bound directly to the pointer */
+@media (hover: hover) and (pointer: fine) {
+  .tray { transition: box-shadow .5s var(--ease); }
+  .tray.tilting { box-shadow: 0 1px 0 rgba(20,22,26,.05), 0 36px 60px -34px rgba(20,22,26,.42); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .scrub { height: auto; }
+  .js .scrub-inner { position: static; }
+  .js .seqsvg.in .ev { opacity: 1; }
+  .play { display: none; }
+  .scrub-read .hint { display: none; }
+  .tray, .tray .plate img, .hero .dwg { transform: none !important; }
+}
+@media (max-width: 900px) {
+  /* a sticky scrub on a phone fights the browser chrome; show it whole */
+  .js .scrub { height: auto; }
+  .js .scrub-inner { position: static; }
+  .js .seqsvg.in .ev { opacity: 1; }
+  .play { display: none; }
+  .scrub-read .hint { display: none; }
+}
+
+/* =========================================================== what moves
+   The shopkeeper's mental model is "I hand a document to a customer", so
+   the page has to answer in that language. What it must NOT do is show
+   the document travelling into the box — that was the pre-pivot ingest
+   design and it is not what ships. The honest version is also the better
+   pitch: only the ADDRESS goes to us, and the page itself takes a long
+   route from the shop straight to the phone, under everything. That arc
+   is the argument. */
+.stage { margin-top: clamp(28px, 4vw, 48px); }
+.flowsvg { width: 100%; height: auto; overflow: visible; }
+.flowsvg text { font: 500 10px var(--mono); letter-spacing: .1em; text-transform: uppercase; fill: var(--steel); }
+.flowsvg .zone text { fill: var(--ink); letter-spacing: .16em; }
+
+.flowsvg .doc rect, .flowsvg .box rect, .flowsvg .phone rect, .flowsvg .hub rect {
+  fill: var(--paper); stroke: var(--ink); stroke-width: 1.6;
+}
+.flowsvg .doc .docline rect { fill: var(--rule-2); stroke: none; }
+.flowsvg .docsum { fill: var(--ink) !important; }
+.flowsvg .doc .stay { fill: var(--steel); }
+.flowsvg .hub rect { stroke-width: 1.4; }
+.flowsvg .hub .hubnote { font-size: 9px; }
+.flowsvg .box .screen { fill: #fff; }
+.flowsvg .phone .pscreen { fill: #fff; }
+
+.flowsvg .route { fill: none; stroke: var(--rule-2); stroke-width: 1.4; stroke-dasharray: 4 5; }
+.flowsvg .route.direct { stroke: var(--signal); stroke-opacity: .35; stroke-dasharray: 6 6; }
+.flowsvg .directlab { fill: var(--signal); opacity: 0; transition: opacity .5s var(--ease); }
+
+/* the credit pip and the code only exist once the beat says so */
+.flowsvg .credit { fill: var(--paper); stroke: var(--ink); stroke-width: 1.4; transition: fill .4s var(--ease); }
+.flowsvg .qc { fill: var(--ink); opacity: 0; }
+.flowsvg .pdoc rect { fill: var(--rule-2); opacity: 0; transition: opacity .4s var(--ease); }
+.flowsvg .scan { stroke: var(--ink); stroke-opacity: 0; transition: stroke-opacity .35s var(--ease); }
+
+/* travelling chips ride the same paths the routes are drawn from */
+.flowsvg .chip { opacity: 0; offset-distance: 0%; offset-rotate: 0deg; }
+.flowsvg .chip rect { fill: var(--ink); stroke: none; }
+.flowsvg .chip text { fill: var(--paper); font-size: 9px; letter-spacing: .08em; }
+.flowsvg .chip-addr { offset-path: path("M180 176 C300 176 340 150 436 150"); }
+.flowsvg .chip-cmd  { offset-path: path("M504 150 C580 150 620 176 696 182"); }
+
+.js .stage[data-beat="1"] .chip-addr,
+.js .stage[data-beat="2"] .chip-cmd {
+  opacity: 1; offset-distance: 100%;
+  transition: offset-distance .95s var(--ease-io), opacity .2s var(--ease);
+}
+.js .stage[data-beat="2"] .credit,
+.js .stage[data-beat="3"] .credit,
+.js .stage[data-beat="4"] .credit,
+.js .stage[data-beat="5"] .credit { fill: var(--signal); }
+/* the code assembles cell by cell rather than fading in as a block */
+.js .stage[data-beat="3"] .qc,
+.js .stage[data-beat="4"] .qc,
+.js .stage[data-beat="5"] .qc {
+  opacity: 1; transition: opacity .28s var(--ease); transition-delay: calc(var(--i) * 9ms);
+}
+.js .stage[data-beat="4"] .scan,
+.js .stage[data-beat="5"] .scan { stroke-opacity: 1; }
+.js .stage[data-beat="5"] .pdoc rect { opacity: 1; transition-delay: calc(var(--i, 0) * 0ms + 120ms); }
+.js .stage[data-beat="5"] .directlab { opacity: 1; }
+.js .stage[data-beat="5"] .route.direct {
+  stroke-opacity: 1; stroke-dasharray: 1200; stroke-dashoffset: 1200;
+  animation: stroke 1.2s var(--ease-io) forwards;
+}
+
+/* the captions are the animation's subtitles, so only the live one is lit */
+.stage-cap { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 24px; align-items: end; margin-top: clamp(20px, 3vw, 34px); }
+.beats-list { list-style: none; display: grid; gap: 6px; }
+.beats-list li { font-size: 15.5px; line-height: 1.55; color: var(--steel); transition: color .4s var(--ease); }
+.beats-list li b { font-weight: 400; color: inherit; }
+.js .beats-list li { opacity: .45; transition: opacity .4s var(--ease), color .4s var(--ease); }
+.js .stage[data-beat="1"] li[data-b="1"], .js .stage[data-beat="2"] li[data-b="2"],
+.js .stage[data-beat="3"] li[data-b="3"], .js .stage[data-beat="4"] li[data-b="4"],
+.js .stage[data-beat="5"] li[data-b="5"] { opacity: 1; color: var(--ink-2); }
+.js .stage[data-beat="1"] li[data-b="1"] b, .js .stage[data-beat="2"] li[data-b="2"] b,
+.js .stage[data-beat="3"] li[data-b="3"] b, .js .stage[data-beat="4"] li[data-b="4"] b,
+.js .stage[data-beat="5"] li[data-b="5"] b { color: var(--ink); }
+
+.replay { display: inline-flex; align-items: center; gap: 10px; padding: 11px 13px 11px 18px; border-radius: 999px;
+  font: 500 11px var(--mono); letter-spacing: .09em; text-transform: uppercase; color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--rule-2); transition: transform .3s var(--ease), box-shadow .3s var(--ease); }
+.replay .cap { width: 22px; height: 22px; border-radius: 999px; display: grid; place-items: center; background: var(--card); }
+@media (hover: hover) and (pointer: fine) { .replay:hover { box-shadow: inset 0 0 0 1px var(--ink); } }
+.replay:active { transform: scale(.97); transition-duration: .14s; }
+
+@media (max-width: 760px) {
+  .stage-cap { grid-template-columns: 1fr; align-items: start; }
+  .flowsvg { min-width: 640px; }
+  .stage { overflow-x: auto; }
+}
+
+/* Reduced motion: the diagram parks on its final, complete state — the
+   page delivered, the code shown — so it still explains without moving. */
+@media (prefers-reduced-motion: reduce) {
+  .flowsvg .qc, .flowsvg .pdoc rect, .flowsvg .directlab { opacity: 1 !important; }
+  .flowsvg .credit { fill: var(--signal) !important; }
+  /* the arc is drawn by an animation; killing the animation without
+     also resetting the dash leaves the page's whole argument invisible */
+  .flowsvg .scan, .flowsvg .route.direct { stroke-opacity: 1 !important; }
+  .flowsvg .route.direct { stroke-dasharray: 6 6 !important; stroke-dashoffset: 0 !important; }
+  .flowsvg .chip { opacity: 1 !important; offset-distance: 100% !important; }
+  .js .beats-list li { opacity: 1 !important; color: var(--ink-2) !important; }
+  .js .beats-list li b { color: var(--ink) !important; }
+  .replay { display: none; }
+}
+
+/* =========================================================== the polish
+   Every addition here depicts something that genuinely happens: a light
+   on the wire is the request in flight, the wake is the panel lighting,
+   the mask means the page arrives INSIDE the phone rather than fading on
+   top of it. Nothing here is an effect for its own sake — that is the
+   difference between a page that feels made and one that feels dressed. */
+
+/* the diagram breathes at rest, so it never reads as a dead screenshot */
+.flowsvg .doc { transform-origin: 99px 210px; }
+.js .flowsvg .doc { animation: breathe 6.5s var(--ease-io) infinite; }
+@keyframes breathe {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-2.5px) scale(1.004); }
+}
+
+/* the light that leads each chip down the wire */
+.flowsvg .spark { fill: var(--ink); opacity: 0; offset-rotate: 0deg; offset-distance: 0%; }
+.flowsvg .spark-addr   { offset-path: path("M180 176 C300 176 340 150 436 150"); }
+.flowsvg .spark-cmd    { offset-path: path("M504 150 C580 150 620 176 696 182"); }
+.flowsvg .spark-direct { offset-path: path("M176 296 C340 424 760 434 934 322"); fill: var(--signal); }
+.js .stage[data-beat="1"] .spark-addr,
+.js .stage[data-beat="2"] .spark-cmd {
+  offset-distance: 100%;
+  animation: sparkRun .95s var(--ease-io) forwards;
+}
+.js .stage[data-beat="5"] .spark-direct {
+  offset-distance: 100%;
+  animation: sparkRun 1.2s var(--ease-io) forwards;
+}
+@keyframes sparkRun {
+  0%   { opacity: 0; }
+  12%  { opacity: 1; }
+  82%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* chips arrive with a little mass, and a touch of blur on departure so
+   the crossfade between "leaving" and "arrived" reads as one object */
+.flowsvg .chip rect, .flowsvg .chip text { transition: none; }
+.js .stage[data-beat="1"] .chip-addr,
+.js .stage[data-beat="2"] .chip-cmd { animation: chipRide 1.05s var(--ease-io) forwards; }
+@keyframes chipRide {
+  0%   { opacity: 0; filter: blur(3px); }
+  14%  { opacity: 1; filter: blur(0); }
+  86%  { opacity: 1; filter: blur(0); }
+  100% { opacity: 0; filter: blur(2px); }
+}
+
+/* the panel lights before it draws — a screen turning on, not a shape
+   appearing on paper */
+.flowsvg .wake { fill: var(--ink); opacity: 0; pointer-events: none; }
+.js .stage[data-beat="3"] .wake { animation: wake .5s var(--ease) forwards; }
+@keyframes wake { 0% { opacity: 0; } 22% { opacity: .16; } 100% { opacity: 0; } }
+
+/* the code resolves outward from the middle; --i is distance from centre */
+.js .stage[data-beat="3"] .qc,
+.js .stage[data-beat="4"] .qc,
+.js .stage[data-beat="5"] .qc {
+  opacity: 1; transition: opacity .3s var(--ease); transition-delay: calc(var(--i) * 12ms + 180ms);
+}
+
+/* the page rises into the phone behind the screen's own edge */
+.flowsvg .pdoc-in { transform: translateY(26px); opacity: 0; }
+.js .stage[data-beat="5"] .pdoc-in {
+  transform: none; opacity: 1;
+  transition: transform .8s var(--ease) .18s, opacity .5s var(--ease) .18s;
+}
+.js .stage[data-beat="5"] .pdoc rect { opacity: 1; transition-delay: 0ms; }
+
+/* the credit pip holds a soft ring while the credit is held */
+.js .stage[data-beat="2"] .credit,
+.js .stage[data-beat="3"] .credit,
+.js .stage[data-beat="4"] .credit { animation: held 2.4s var(--ease-io) infinite; }
+@keyframes held {
+  0%, 100% { r: 7; }
+  50%      { r: 8.6; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .flowsvg .doc { animation: none; }
+  .flowsvg .spark { display: none; }
+  .flowsvg .wake { display: none; }
+  .flowsvg .pdoc-in { transform: none !important; opacity: 1 !important; }
+  .js .stage .credit { animation: none !important; }
+}

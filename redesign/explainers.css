@@ -1,0 +1,162 @@
+/* Three explainers, three mechanics.
+   They share the page's tokens from app.css and add only what each one
+   needs. The rule they all keep: every moving thing depicts something
+   the product actually does, and the whole set parks on a readable
+   final state when motion is off. */
+
+.ex .head { margin-bottom: clamp(24px, 3vw, 40px); }
+.film { position: relative; }
+.film svg { width: 100%; height: auto; overflow: visible; }
+.film text { font: 500 10px var(--mono); letter-spacing: .1em; text-transform: uppercase; fill: var(--steel); }
+.film .lbl { fill: var(--steel); }
+
+.cap { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 24px; align-items: end; margin-top: clamp(18px, 2.6vw, 30px); }
+.cap ol { list-style: none; display: grid; gap: 5px; }
+.cap li { font-size: 15.5px; line-height: 1.55; color: var(--steel); }
+.js .cap li { opacity: .4; transition: opacity .4s var(--ease), color .4s var(--ease); }
+.js .film[data-beat="1"] li[data-b="1"], .js .film[data-beat="2"] li[data-b="2"],
+.js .film[data-beat="3"] li[data-b="3"], .js .film[data-beat="4"] li[data-b="4"],
+.js .film[data-beat="5"] li[data-b="5"] { opacity: 1; color: var(--ink); }
+.modes { display: flex; gap: 10px; flex-wrap: wrap; }
+.replay.alt { box-shadow: inset 0 0 0 1px rgba(216,52,43,.4); color: var(--signal); }
+@media (hover: hover) and (pointer: fine) { .replay.alt:hover { box-shadow: inset 0 0 0 1px var(--signal); } }
+.cap-i { width: 22px; height: 22px; border-radius: 999px; display: grid; place-items: center; background: var(--card); font-size: 11px; }
+
+/* ===================================================== A · the counter */
+.film[data-film="a"] .wood { fill: var(--ink); }
+.film[data-film="a"] .wood.dim { fill: var(--card); }
+.film[data-film="a"] .till rect, .film[data-film="a"] .box rect, .film[data-film="a"] .hub rect,
+.film[data-film="a"] .cust .ph { fill: var(--paper); stroke: var(--ink); stroke-width: 1.6; }
+.film[data-film="a"] .scr, .film[data-film="a"] .phscr { fill: #fff; }
+.film[data-film="a"] .sale { fill: var(--steel); }
+.film[data-film="a"] .amt { font-family: var(--display); font-variation-settings: 'wdth' 108, 'wght' 620;
+  font-size: 21px; letter-spacing: -.02em; text-transform: none; fill: var(--ink); opacity: 0; }
+.js .film[data-film="a"][data-beat="1"] .amt, .js .film[data-film="a"][data-beat="2"] .amt,
+.js .film[data-film="a"][data-beat="3"] .amt, .js .film[data-film="a"][data-beat="4"] .amt {
+  opacity: 1; transition: opacity .35s var(--ease); }
+
+.film[data-film="a"] .wire { fill: none; stroke: var(--rule-2); stroke-width: 1.4; stroke-dasharray: 4 5; }
+.film[data-film="a"] .bead { fill: var(--ink); opacity: 0; offset-rotate: 0deg; }
+.film[data-film="a"] .b1 { offset-path: path("M210 200 C300 150 330 70 388 60"); }
+.film[data-film="a"] .b2 { offset-path: path("M512 60 C580 70 610 150 668 208"); }
+.js .film[data-film="a"][data-beat="2"] .b1 { animation: beadRun .85s var(--ease-io) forwards; }
+.js .film[data-film="a"][data-beat="2"] .b2 { animation: beadRun .85s var(--ease-io) .5s forwards; }
+@keyframes beadRun { 0% { offset-distance: 0%; opacity: 0; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { offset-distance: 100%; opacity: 0; } }
+
+.film[data-film="a"] .mark2 { fill: var(--signal); stroke: none; }
+.film[data-film="a"] .idle text { fill: var(--ink); text-transform: none; letter-spacing: 0; font-family: var(--text); font-size: 11px; }
+.film[data-film="a"] .idle .tm { fill: var(--steel); }
+.film[data-film="a"] .idle { opacity: 1; transition: opacity .4s var(--ease); }
+.film[data-film="a"] .code .qc { fill: var(--ink); opacity: 0; }
+.js .film[data-film="a"][data-beat="3"] .idle, .js .film[data-film="a"][data-beat="4"] .idle { opacity: 0; }
+.js .film[data-film="a"][data-beat="3"] .code .qc, .js .film[data-film="a"][data-beat="4"] .code .qc {
+  opacity: 1; transition: opacity .28s var(--ease); transition-delay: calc(var(--i) * 12ms); }
+
+/* the customer arrives, and leaves again */
+.film[data-film="a"] .cust { transform: translateX(90px); opacity: 0; }
+.js .film[data-film="a"][data-beat="3"] .cust, .js .film[data-film="a"][data-beat="4"] .cust {
+  transform: none; opacity: 1; transition: transform .75s var(--ease), opacity .5s var(--ease); }
+.js .film[data-film="a"][data-beat="5"] .cust {
+  transform: translateX(70px); opacity: 0; transition: transform .8s var(--ease), opacity .6s var(--ease); }
+.film[data-film="a"] .beam { fill: none; stroke: var(--ink); stroke-width: 1.4; stroke-dasharray: 3 4; stroke-opacity: 0; }
+.js .film[data-film="a"][data-beat="4"] .beam { stroke-opacity: 1; transition: stroke-opacity .3s var(--ease); }
+.film[data-film="a"] .page-in { transform: translateY(20px); opacity: 0; }
+.film[data-film="a"] .page-in rect { fill: var(--rule-2); }
+.film[data-film="a"] .page-in .sum { fill: var(--ink); }
+.js .film[data-film="a"][data-beat="4"] .page-in, .js .film[data-film="a"][data-beat="5"] .page-in {
+  transform: none; opacity: 1; transition: transform .7s var(--ease) .25s, opacity .45s var(--ease) .25s; }
+
+/* ===================================================== B · the clock */
+.film.clock .big { font-family: var(--display); font-variation-settings: 'wdth' 104, 'wght' 640;
+  font-size: 58px; letter-spacing: -.04em; text-transform: none; fill: var(--ink); font-variant-numeric: tabular-nums; }
+.film.clock .mode { fill: var(--steel); }
+.film.clock[data-mode="fail"] .mode { fill: var(--signal); }
+.film.clock .track { stroke: var(--rule); stroke-width: 2; fill: none; }
+.film.clock .stop circle { fill: var(--paper); stroke: var(--rule-2); stroke-width: 2; }
+.film.clock .stop.on circle { fill: var(--ink); stroke: var(--ink); }
+.film.clock .stop.on text { fill: var(--ink); }
+.film.clock .runner { fill: var(--ink); }
+.film.clock[data-mode="fail"] .runner { fill: var(--signal); }
+
+.film.clock .slot { fill: var(--card); stroke: none; }
+.film.clock .coin rect { fill: var(--ink); }
+.film.clock .coin text { fill: var(--paper); font-size: 13px; }
+.film.clock .state { fill: var(--steel); }
+.film.clock .mlab { fill: var(--steel); }
+/* held: the coin lifts out of the slot and hovers, which is what a hold is */
+.film.clock .coin { transform: translateY(0); }
+.js .film.clock[data-beat="1"] .coin, .js .film.clock[data-beat="2"] .coin {
+  transform: translateY(-16px); transition: transform .5s var(--ease); }
+.js .film.clock[data-beat="1"] .coin rect, .js .film.clock[data-beat="2"] .coin rect { fill: var(--signal); }
+.js .film.clock[data-beat="3"] .coin { transform: translateY(-16px) scale(.86); opacity: .25; transition: transform .5s var(--ease), opacity .5s var(--ease); transform-origin: 82px 223px; }
+.js .film.clock[data-beat="4"] .coin { transform: translateY(0); transition: transform .6s var(--ease); }
+
+.film.clock .bx rect { fill: var(--paper); stroke: var(--ink); stroke-width: 1.6; }
+.film.clock .bx .scr { fill: #fff; }
+.film.clock .code .qc { fill: var(--ink); opacity: 0; }
+.js .film.clock[data-mode="ok"][data-beat="2"] .code .qc,
+.js .film.clock[data-mode="ok"][data-beat="3"] .code .qc {
+  opacity: 1; transition: opacity .26s var(--ease); transition-delay: calc(var(--i) * 11ms); }
+.film.clock .off { opacity: 0; fill: var(--signal); }
+.js .film.clock[data-mode="fail"][data-beat="2"] .off,
+.js .film.clock[data-mode="fail"][data-beat="3"] .off,
+.js .film.clock[data-mode="fail"][data-beat="4"] .off { opacity: 1; transition: opacity .4s var(--ease); }
+.js .film.clock[data-mode="fail"] .bx rect { stroke: var(--rule-2); }
+.js .film.clock[data-mode="ok"] li[data-fail] { display: none; }
+.js .film.clock[data-mode="fail"] li[data-b="3"] { display: none; }
+
+/* ===================================================== C · the sentence
+   Five complete sentences that replace each other in place. The noun is
+   the only thing that ever carries a glyph, because the noun is the only
+   thing that changes in the product. With motion off they stack as a
+   plain list — an earlier version concatenated the fragments and
+   produced nonsense, which is the whole risk of animating grammar. */
+.film.sent { padding-block: clamp(10px, 2vw, 28px); }
+.film.sent .line {
+  font-family: var(--display); font-variation-settings: 'wdth' 106, 'wght' 560;
+  font-size: clamp(24px, 3.8vw, 52px); line-height: 1.16; letter-spacing: -.03em;
+  position: relative; min-height: 2.4em;
+}
+.film.sent .step { display: block; }
+.film.sent .w { display: inline-flex; align-items: center; gap: .2em; white-space: nowrap;
+  box-shadow: inset 0 -.13em 0 rgba(216,52,43,.22); }
+.js .film.sent .step {
+  position: absolute; left: 0; top: 0; width: 100%;
+  opacity: 0; transform: translateY(.3em); filter: blur(5px); pointer-events: none;
+}
+.js .film.sent[data-beat="1"] .step[data-s="1"], .js .film.sent[data-beat="2"] .step[data-s="2"],
+.js .film.sent[data-beat="3"] .step[data-s="3"], .js .film.sent[data-beat="4"] .step[data-s="4"],
+.js .film.sent[data-beat="5"] .step[data-s="5"] {
+  opacity: 1; transform: none; filter: blur(0);
+  transition: opacity .55s var(--ease), transform .65s var(--ease), filter .55s var(--ease);
+}
+.film.sent .gl { width: .74em; height: .74em; overflow: visible; }
+.film.sent .gl path, .film.sent .gl circle, .film.sent .gl rect {
+  fill: none; stroke: var(--signal); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round;
+}
+.film.sent .gl .fillme { fill: var(--signal); stroke: none; }
+.film.sent .gl .qs rect { fill: var(--signal); stroke: none; }
+.film.sent .foot-note { margin-top: clamp(20px, 3vw, 34px); font-size: 15.5px; line-height: 1.6; color: var(--steel); max-width: 58ch; }
+.film.sent .replay { margin-top: 22px; }
+
+/* ===================================================== quiet fallbacks */
+@media (max-width: 760px) {
+  .cap { grid-template-columns: 1fr; align-items: start; }
+  .film[data-film="a"] svg, .film.clock svg { min-width: 620px; }
+  .film[data-film="a"], .film.clock { overflow-x: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .cap li { opacity: 1 !important; color: var(--ink) !important; }
+  .film[data-film="a"] .cust { transform: none !important; opacity: 1 !important; }
+  .film[data-film="a"] .code .qc, .film.clock .code .qc { opacity: 1 !important; }
+  .film[data-film="a"] .idle { opacity: 0 !important; }
+  .film[data-film="a"] .page-in { transform: none !important; opacity: 1 !important; }
+  .film[data-film="a"] .beam { stroke-opacity: 1 !important; }
+  .film[data-film="a"] .amt { opacity: 1 !important; }
+  .film[data-film="a"] .bead { display: none; }
+  .film.clock .coin { transform: none !important; opacity: 1 !important; }
+  .js .film.sent .step { position: static; opacity: 1 !important; transform: none !important; filter: none !important; }
+  .film.sent .line { min-height: 0; }
+  .film.sent .step + .step { margin-top: .18em; }
+  .replay, .modes { display: none; }
+}

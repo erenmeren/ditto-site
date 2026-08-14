@@ -1,4 +1,4 @@
-/* ditto — site behaviour. Shared by index.html and docs.html.
+/* maratus — site behaviour. Shared by index.html and docs.html.
 
    Four jobs only. The storyboard clock is deliberately NOT here: it is
    pure CSS, so it keeps running off the main thread and cannot drift.

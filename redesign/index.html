@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>ditto — hand it over, don't print it</title>
+<meta name="description" content="A palm-sized screen by the till. Your system sends a link, the box shows a code, the customer scans it. One credit per code actually shown.">
+<link rel="icon" type="image/svg+xml" href="../site/assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..700&family=Newsreader:opsz,wght@6..72,300..600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<header class="mast" id="mast">
+  <div class="shell">
+    <a class="mark" href="#top">ditto</a>
+    <nav>
+      <a href="#object" class="hide-s">the object</a>
+      <a href="#sequence" class="hide-s">sequence</a>
+      <a href="#interface">interface</a>
+      <a href="#terms" class="hide-s">terms</a>
+      <a class="pip" href="#pilot">pilot open</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============================================ hero -->
+<section class="sect hero">
+  <div class="shell">
+    <div class="hero-grid">
+      <div>
+        <div class="an up">counter hardware · one endpoint · pre-pilot</div>
+        <h1 class="d d-xl up" style="--dl:.08s">Hand it over.<br>Don't print it.</h1>
+        <p class="lede up" style="--dl:.16s">A palm-sized screen sits by the till. Your system sends a link, the box shows a code, the customer scans it — receipt, ticket, warranty, whatever you'd hand across the counter, now on their phone and theirs to keep.</p>
+        <div class="acts up" style="--dl:.24s">
+          <a class="btn" href="#sequence">See the sequence <span class="cap" aria-hidden="true">↓</span></a>
+          <a class="btn-q" href="#interface">Read the request</a>
+        </div>
+      </div>
+
+      <!-- the signature: the object as its own measured drawing -->
+      <div class="up" style="--dl:.2s">
+        <svg class="dwg" viewBox="0 0 560 430" role="img" aria-label="A measured drawing of the ditto box: front elevation with the screen showing a code, a side elevation beneath, and callouts for touch, wi-fi and power">
+          <!-- dimension: width -->
+          <g class="dim">
+            <path class="draw fade" style="--dl:.75s" d="M110 50 L110 24"/>
+            <path class="draw fade" style="--dl:.75s" d="M370 50 L370 24"/>
+            <path class="draw fade" style="--dl:.85s" d="M110 32 L370 32"/>
+            <path class="draw fade" style="--dl:.85s" d="M110 28 L110 36"/>
+            <path class="draw fade" style="--dl:.85s" d="M370 28 L370 36"/>
+          </g>
+          <!-- dimension: height -->
+          <g class="dim">
+            <path class="draw fade" style="--dl:.8s" d="M110 50 L84 50"/>
+            <path class="draw fade" style="--dl:.8s" d="M110 310 L84 310"/>
+            <path class="draw fade" style="--dl:.9s" d="M92 50 L92 310"/>
+            <path class="draw fade" style="--dl:.9s" d="M88 50 L96 50"/>
+            <path class="draw fade" style="--dl:.9s" d="M88 310 L96 310"/>
+          </g>
+
+          <!-- front elevation -->
+          <rect class="ln draw" style="--dl:0s" x="110" y="50" width="260" height="260" rx="16" stroke-width="2"/>
+          <rect class="ln draw" style="--dl:.35s" x="132" y="72" width="216" height="216" rx="4" stroke-width="1.2"/>
+
+          <!-- the screen, mid-show -->
+          <g class="fade" style="--dl:1.15s">
+            <g id="qr"></g>
+            <text x="240" y="268" text-anchor="middle" class="hot">code on screen</text>
+          </g>
+
+          <!-- callouts -->
+          <g class="lead">
+            <path class="draw fade" style="--dl:1.25s" d="M348 96 L396 96"/>
+            <path class="draw fade" style="--dl:1.32s" d="M340 60 L396 60"/>
+            <path class="draw fade" style="--dl:1.39s" d="M362 372 L396 372"/>
+          </g>
+          <g class="fade" style="--dl:1.3s">
+            <text x="404" y="99">capacitive touch</text>
+            <text x="404" y="63">wi-fi</text>
+            <text x="404" y="375">power in</text>
+            <text x="404" y="196">720 × 720</text>
+            <path class="lead" d="M348 192 L396 192"/>
+          </g>
+
+          <!-- side elevation -->
+          <rect class="ln draw" style="--dl:.55s" x="110" y="348" width="252" height="34" rx="10" stroke-width="1.6"/>
+          <path class="ln draw" style="--dl:.65s" d="M362 358 L374 358 L374 372 L362 372" stroke-width="1.6"/>
+          <text class="fade" style="--dl:1.4s" x="110" y="402">side</text>
+          <text class="fade" style="--dl:1.4s" x="110" y="20">front</text>
+        </svg>
+      </div>
+    </div>
+
+    <dl class="rail up" style="--dl:.3s">
+      <div><dt>screen</dt><dd>720 × 720, touch</dd></div>
+      <div><dt>link</dt><dd>wi-fi, nothing else</dd></div>
+      <div><dt>integration</dt><dd>one HTTP request</dd></div>
+      <div><dt>you pay</dt><dd>per code actually shown</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ============================================ the object -->
+<section class="sect" id="object">
+  <div class="shell">
+    <div class="head">
+      <span class="an">the object</span>
+      <div>
+        <h2 class="d d-l up">It is a real little box, and it only does one thing.</h2>
+        <p class="t up" style="--dl:.06s">It sits where the printer sits. Between customers it shows your own screen — logo, colours, the time. The moment your till has something to hand over, it shows the code instead, and then it goes back.</p>
+      </div>
+    </div>
+
+    <div class="obj">
+      <div class="tray up">
+        <div class="plate">
+          <img src="../site/assets/device-angled.jpg" width="1000" height="1037"
+               alt="The ditto box at a slight angle — a palm-sized square touch screen idling with a shop's logo and the time">
+        </div>
+      </div>
+      <dl class="specs up" style="--dl:.08s">
+        <div><dt>on the counter</dt><dd>palm-sized, sits flat</dd></div>
+        <div><dt>between customers</dt><dd>your screen</dd></div>
+        <div><dt>on a trigger</dt><dd>the code, then back</dd></div>
+        <div><dt>customer needs</dt><dd>a camera</dd></div>
+        <div><dt>you need</dt><dd>wi-fi and a till that can call a URL</dd></div>
+        <div><dt>we never see</dt><dd>what's behind the link</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ what moves -->
+<section class="sect" id="flow">
+  <div class="shell">
+    <div class="head">
+      <span class="an">what moves</span>
+      <div>
+        <h2 class="d d-l up">Your page goes to their phone. It never comes to us.</h2>
+        <p class="t up" style="--dl:.06s">You already host the thing you hand over — a receipt, a ticket, a warranty, a menu. Your till sends us its <em>address</em>, not the page. We put a code on the counter. Their camera opens your page directly, from you.</p>
+      </div>
+    </div>
+
+    <div class="stage" data-beat="0">
+      <svg class="flowsvg" viewBox="0 0 1000 430" role="img" aria-label="A diagram: the shop's page stays on the shop's own server; only its address is sent to ditto, which puts a code on the counter box; the customer's phone scans it and loads the page directly from the shop, never through ditto.">
+        <defs><clipPath id="pclip"><rect x="898" y="162" width="70" height="136" rx="6"/></clipPath></defs>
+        <!-- zones -->
+        <g class="zone">
+          <text x="20" y="26">your shop</text>
+          <text x="470" y="26" text-anchor="middle">ditto</text>
+          <text x="770" y="26" text-anchor="middle">the counter</text>
+          <text x="960" y="26" text-anchor="end">their phone</text>
+        </g>
+
+        <!-- the page, which never leaves home -->
+        <g class="doc">
+          <rect x="24" y="120" width="150" height="182" rx="10"/>
+          <g class="docline">
+            <rect x="44" y="146" width="72" height="9" rx="4.5"/>
+            <rect x="44" y="170" width="110" height="6" rx="3"/>
+            <rect x="44" y="186" width="96" height="6" rx="3"/>
+            <rect x="44" y="202" width="106" height="6" rx="3"/>
+            <rect x="44" y="228" width="60" height="6" rx="3"/>
+            <rect x="44" y="262" width="110" height="20" rx="6" class="docsum"/>
+          </g>
+          <text x="99" y="326" text-anchor="middle">the page you host</text>
+          <text x="99" y="344" text-anchor="middle" class="stay">stays on your server</text>
+        </g>
+
+        <!-- ditto: deliberately the smallest thing on the diagram -->
+        <g class="hub">
+          <rect x="440" y="120" width="60" height="60" rx="14"/>
+          <circle class="credit" cx="470" cy="150" r="7"/>
+          <text x="470" y="204" text-anchor="middle" class="hubnote">holds a credit<tspan x="470" dy="14">forwards a command</tspan></text>
+        </g>
+
+        <!-- the box -->
+        <g class="box">
+          <rect x="700" y="120" width="140" height="140" rx="14"/>
+          <rect class="screen" x="714" y="134" width="112" height="112" rx="4"/>
+          <rect class="wake" x="714" y="134" width="112" height="112" rx="4"/>
+          <g class="qr">
+            <rect class="qc" style="--i:0.0" x="765" y="185" width="11" height="11"/>
+            <rect class="qc" style="--i:3.4" x="754" y="185" width="11" height="11"/>
+            <rect class="qc" style="--i:3.4" x="765" y="174" width="11" height="11"/>
+            <rect class="qc" style="--i:3.4" x="765" y="196" width="11" height="11"/>
+            <rect class="qc" style="--i:3.4" x="776" y="185" width="11" height="11"/>
+            <rect class="qc" style="--i:4.8" x="776" y="196" width="11" height="11"/>
+            <rect class="qc" style="--i:6.8" x="743" y="185" width="11" height="11"/>
+            <rect class="qc" style="--i:6.8" x="765" y="207" width="11" height="11"/>
+            <rect class="qc" style="--i:7.6" x="743" y="196" width="11" height="11"/>
+            <rect class="qc" style="--i:7.6" x="754" y="163" width="11" height="11"/>
+            <rect class="qc" style="--i:9.6" x="743" y="163" width="11" height="11"/>
+            <rect class="qc" style="--i:9.6" x="743" y="207" width="11" height="11"/>
+            <rect class="qc" style="--i:9.6" x="787" y="163" width="11" height="11"/>
+            <rect class="qc" style="--i:9.6" x="787" y="207" width="11" height="11"/>
+            <rect class="qc" style="--i:10.2" x="765" y="152" width="11" height="11"/>
+            <rect class="qc" style="--i:10.2" x="798" y="185" width="11" height="11"/>
+            <rect class="qc" style="--i:10.8" x="732" y="174" width="11" height="11"/>
+            <rect class="qc" style="--i:10.8" x="754" y="218" width="11" height="11"/>
+            <rect class="qc" style="--i:10.8" x="776" y="152" width="11" height="11"/>
+            <rect class="qc" style="--i:12.3" x="732" y="163" width="11" height="11"/>
+            <rect class="qc" style="--i:12.3" x="732" y="207" width="11" height="11"/>
+            <rect class="qc" style="--i:12.3" x="743" y="152" width="11" height="11"/>
+            <rect class="qc" style="--i:12.3" x="743" y="218" width="11" height="11"/>
+            <rect class="qc" style="--i:12.3" x="787" y="152" width="11" height="11"/>
+            <rect class="qc" style="--i:13.6" x="809" y="185" width="11" height="11"/>
+            <rect class="qc" style="--i:14.0" x="754" y="141" width="11" height="11"/>
+            <rect class="qc" style="--i:14.0" x="776" y="141" width="11" height="11"/>
+            <rect class="qc" style="--i:14.0" x="809" y="174" width="11" height="11"/>
+            <rect class="qc" style="--i:14.4" x="732" y="152" width="11" height="11"/>
+            <rect class="qc" style="--i:14.4" x="732" y="218" width="11" height="11"/>
+            <rect class="qc" style="--i:14.4" x="798" y="152" width="11" height="11"/>
+            <rect class="qc" style="--i:15.2" x="721" y="163" width="11" height="11"/>
+            <rect class="qc" style="--i:15.2" x="721" y="207" width="11" height="11"/>
+            <rect class="qc" style="--i:15.2" x="743" y="229" width="11" height="11"/>
+            <rect class="qc" style="--i:15.2" x="787" y="229" width="11" height="11"/>
+            <rect class="qc" style="--i:17.0" x="721" y="152" width="11" height="11"/>
+            <rect class="qc" style="--i:17.0" x="721" y="218" width="11" height="11"/>
+            <rect class="qc" style="--i:17.0" x="732" y="229" width="11" height="11"/>
+            <rect class="qc" style="--i:17.0" x="798" y="229" width="11" height="11"/>
+            <rect class="qc" style="--i:17.0" x="809" y="152" width="11" height="11"/>
+            <rect class="qc" style="--i:19.2" x="721" y="229" width="11" height="11"/>
+            <rect class="qc" style="--i:19.2" x="809" y="229" width="11" height="11"/>
+          </g>
+          <text x="770" y="286" text-anchor="middle">shows the code</text>
+        </g>
+
+        <!-- the phone -->
+        <g class="phone">
+          <rect x="890" y="150" width="86" height="160" rx="12"/>
+          <rect class="pscreen" x="898" y="162" width="70" height="136" rx="6"/>
+          <g class="pdoc" clip-path="url(#pclip)"><g class="pdoc-in">
+            <rect x="908" y="176" width="34" height="7" rx="3.5"/>
+            <rect x="908" y="194" width="50" height="5" rx="2.5"/>
+            <rect x="908" y="206" width="42" height="5" rx="2.5"/>
+            <rect x="908" y="218" width="48" height="5" rx="2.5"/>
+            <rect x="908" y="240" width="50" height="14" rx="5" class="docsum"/>
+          </g></g>
+        </g>
+
+        <!-- routes -->
+        <path id="r-addr" class="route" d="M180 176 C300 176 340 150 436 150"/>
+        <path id="r-cmd"  class="route" d="M504 150 C580 150 620 176 696 182"/>
+        <path class="route scan" d="M886 220 C866 214 856 208 846 200"/>
+        <!-- the long way round: the page goes shop to phone, under everything -->
+        <path id="r-direct" class="route direct" d="M176 296 C340 424 760 434 934 322"/>
+        <text class="directlab" x="520" y="410" text-anchor="middle">your page → their phone · never through us</text>
+
+        <!-- a light runs the wire ahead of the label it carries -->
+        <circle class="spark spark-addr" r="4"/>
+        <circle class="spark spark-cmd" r="4"/>
+        <circle class="spark spark-direct" r="5"/>
+
+        <!-- travelling chips -->
+        <g class="chip chip-addr"><rect x="-30" y="-11" width="60" height="22" rx="11"/><text x="0" y="4" text-anchor="middle">url</text></g>
+        <g class="chip chip-cmd"><rect x="-34" y="-11" width="68" height="22" rx="11"/><text x="0" y="4" text-anchor="middle">show_qr</text></g>
+      </svg>
+
+      <div class="stage-cap">
+        <ol class="beats-list">
+          <li data-b="1"><b>Your till sends the address.</b> One request, carrying the link — not the page.</li>
+          <li data-b="2"><b>We hold one credit</b> and forward a command to that one box.</li>
+          <li data-b="3"><b>The code appears</b> on the counter and the box confirms it. That confirmation is what spends the credit — and how long it stays up is yours to set.</li>
+          <li data-b="4"><b>They point a camera at it.</b> No app, no account.</li>
+          <li data-b="5"><b>Your page opens on their phone</b> — fetched from you, directly. We never saw it.</li>
+        </ol>
+        <button class="replay" type="button" data-replay>Replay <span class="cap" aria-hidden="true">↻</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ sequence -->
+<section class="sect" id="sequence">
+  <div class="shell">
+    <div class="head">
+      <span class="an">sequence</span>
+      <div>
+        <h2 class="d d-l up">The whole thing is one round trip and a sixty-second window.</h2>
+        <p class="t up" style="--dl:.06s">What matters isn't the order of the steps, it's the timing — when the credit is held, when it is spent, and what happens if the box never answers. So here it is on a clock.</p>
+      </div>
+    </div>
+
+    <div class="seq scrub">
+      <div class="scrub-inner">
+      <div class="scrub-read">
+        <span class="clock num" data-clock>t = 0.0 s</span>
+        <span class="sep">/</span>
+        <span class="status" data-status>idle</span>
+        <span class="hint">scroll to run the clock</span>
+      </div>
+      <div class="seqwrap">
+        <svg class="seqsvg" viewBox="0 0 900 268" role="img" aria-label="A timing diagram: your till posts a trigger, ditto holds one credit and sends the command, the box shows the code and acknowledges within about two seconds, and the credit settles. If no acknowledgement arrives within sixty seconds the hold is released.">
+          <defs>
+            <marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0 0 L8 4 L0 8 z" fill="#14161A"/>
+            </marker>
+          </defs>
+
+          <!-- the sixty-second window, drawn first so everything sits on it -->
+          <rect class="win fade" style="--dl:.1s" x="300" y="36" width="520" height="176"/>
+          <path class="winln draw fade" style="--dl:.2s" d="M300 30 L300 218"/>
+          <path class="winln draw fade" style="--dl:.2s" d="M820 30 L820 218"/>
+          <text class="r fade" style="--dl:1.5s" x="560" y="24" text-anchor="middle">60 s to acknowledge · no ack, no charge</text>
+          <!-- the playhead: the page's scroll axis IS the time axis -->
+          <g data-play class="play"><path d="M0 30 L0 250" /><circle cx="0" cy="30" r="3.5"/></g>
+
+          <!-- lanes -->
+          <g class="lane">
+            <path class="draw" style="--dl:.15s" d="M140 60 L880 60"/>
+            <path class="draw" style="--dl:.2s"  d="M140 130 L880 130"/>
+            <path class="draw" style="--dl:.25s" d="M140 200 L880 200"/>
+          </g>
+          <g class="fade" style="--dl:.3s">
+            <text class="b" x="0" y="57">your till</text>
+            <text class="b" x="0" y="127">ditto</text>
+            <text class="b" x="0" y="197">the box</text>
+          </g>
+
+          <!-- messages -->
+          <path class="msg draw ev" data-at="190" style="--dl:.55s" d="M190 60 L190 122"/>
+          <text class="b fade ev" data-at="190" style="--dl:.75s" x="198" y="96">post /trigger</text>
+
+          <path class="msg draw ev" data-at="300" style="--dl:.8s" d="M300 130 L300 192"/>
+          <text class="b fade ev" data-at="300" style="--dl:1s" x="308" y="166">mqtt · show_qr</text>
+
+          <path class="msg draw ev" data-at="470" style="--dl:1.15s" d="M470 200 L470 138"/>
+          <text class="b fade ev" data-at="470" style="--dl:1.3s" x="478" y="172">ack · shown</text>
+
+          <!-- nodes -->
+          <circle class="node fade ev" data-at="190" style="--dl:.7s" cx="190" cy="60" r="5"/>
+          <circle class="node fade ev" data-at="255" style="--dl:.9s" cx="255" cy="130" r="5"/>
+          <text class="fade ev" data-at="255" style="--dl:.95s" x="255" y="118" text-anchor="middle">1 credit held</text>
+          <circle class="node fade ev" data-at="430" style="--dl:1.2s" cx="430" cy="200" r="5"/>
+          <text class="fade ev" data-at="430" style="--dl:1.25s" x="430" y="222" text-anchor="middle">code on screen</text>
+          <circle class="node solid fade ev" data-at="520" style="--dl:1.4s" cx="520" cy="130" r="6"/>
+          <text class="b fade ev" data-at="520" style="--dl:1.45s" x="530" y="118">settled — paid on show</text>
+
+          <!-- time axis -->
+          <path class="lane draw" style="--dl:1.5s" d="M140 244 L880 244"/>
+          <g class="fade" style="--dl:1.6s">
+            <path class="lane" d="M190 240 L190 248"/><text x="190" y="262" text-anchor="middle">0</text>
+            <path class="lane" d="M470 240 L470 248"/><text x="470" y="262" text-anchor="middle">≈ 2 s</text>
+            <path class="lane" d="M820 240 L820 248"/><text x="820" y="262" text-anchor="middle">60 s</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="seqnotes">
+        <div class="up">
+          <h3>Held, not charged</h3>
+          <p>The moment we accept the request one credit goes on hold. Your balance shows it, but nothing has been spent yet.</p>
+        </div>
+        <div class="up" style="--dl:.07s">
+          <h3>Spent on the showing</h3>
+          <p>The box confirms the code is on screen, and that confirmation is what spends the credit. Not the request, and not the scan.</p>
+        </div>
+        <div class="up" style="--dl:.14s">
+          <h3>Released on silence</h3>
+          <p>Nothing back inside the window and the command expires — the hold comes back in full and a late code never appears on the counter.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ interface -->
+<section class="sect" id="interface">
+  <div class="shell">
+    <div class="head">
+      <span class="an">interface</span>
+      <div>
+        <h2 class="d d-l up">One request. There is no second page of this.</h2>
+        <p class="t up" style="--dl:.06s">No SDK, nothing runs on the device side. You hold a key, you name a box, you pass a URL.</p>
+      </div>
+    </div>
+
+    <div class="api">
+      <div class="up">
+        <div class="code">
+<pre><span class="c"># show a code on till 2</span>
+curl -X POST <span class="s">https://&lt;host&gt;/api/v1/devices/dev_8f21/trigger</span> \
+  -H <span class="s">"Authorization: Bearer sk_live_…"</span> \
+  -H <span class="s">"Idempotency-Key: 9f3a-…"</span> \
+  -d <span class="s">'{ "action": "show_qr", "payload": { "url": "…" } }'</span></pre>
+        </div>
+        <div class="resp">
+          <span class="code202">202 accepted</span>
+          <span class="arrow">→</span>
+          <span>{ id, status: "queued" }</span>
+          <span class="arrow">→</span>
+          <span>shown</span>
+          <span class="arrow">→</span>
+          <span>settled</span>
+        </div>
+      </div>
+
+      <div class="up" style="--dl:.08s">
+        <h3 class="d d-m">Retry it. Nothing doubles.</h3>
+        <p class="t" style="margin-top:12px">The idempotency key is required, not optional. Send the same one twice and you get the stored answer back — never a second charge, never a second code on the counter.</p>
+        <div class="honest">
+          <p><strong>There is no status endpoint yet.</strong> That is deliberate at this stage, not an oversight. Billing reconciles itself because you are only ever charged for confirmed showings, and the console's ledger shows every command's outcome. If your integration needs a per-command status call, say so — it is on the roadmap.</p>
+        </div>
+        <p style="margin-top:22px"><a class="btn-q" href="../site/docs.html">Full API reference</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ behind the link -->
+<section class="sect">
+  <div class="shell">
+    <div class="head">
+      <span class="an">behind the link</span>
+      <div>
+        <h2 class="d d-l up">We never fetch it, so it can be anything.</h2>
+        <p class="t up" style="--dl:.06s">The URL is the whole contract. Same box, same one request — only the address changes. You host the page; it never passes through us.</p>
+      </div>
+    </div>
+
+    <div class="uses">
+      <div class="use up"><span class="an">the café</span><span class="what">the receipt, and the loyalty stamp with it</span><span class="url">/r/8f21</span></div>
+      <div class="use up" style="--dl:.05s"><span class="an">electronics</span><span class="what">the warranty — the one nobody keeps</span><span class="url">/warranty/…</span></div>
+      <div class="use up" style="--dl:.1s"><span class="an">the hotel</span><span class="what">the wi-fi, the menu, the late-checkout button</span><span class="url">/room/412</span></div>
+      <div class="use up" style="--dl:.15s"><span class="an">the venue</span><span class="what">the ticket, before the queue forms</span><span class="url">/t/…</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ terms -->
+<section class="sect" id="terms">
+  <div class="shell">
+    <div class="head">
+      <span class="an">terms</span>
+      <div class="terms">
+        <div>
+          <p class="price up">One credit per code<br><em>actually shown.</em></p>
+          <p class="t up" style="--dl:.06s;margin-top:22px">Scanning is free — nobody, or fifty people, it costs the same. Failures release in full. Pilots start prepaid with fifty credits on the house, and chains can move to per-device plans later.</p>
+        </div>
+        <dl class="termlist up" style="--dl:.1s">
+          <div><span>per code shown</span><b>1 credit</b></div>
+          <div><span>per scan</span><b>free</b></div>
+          <div><span>failed or expired</span><b>released in full</b></div>
+          <div><span>pilot start</span><b>50 credits</b></div>
+          <div><span>monthly minimum</span><b>none</b></div>
+          <div><span>pack prices</span><b>set with pilots</b></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ pilot -->
+<section class="sect" id="pilot">
+  <div class="shell">
+    <div class="head">
+      <span class="an">pilot</span>
+      <div class="pilot">
+        <div>
+          <h2 class="d d-l up">The first boxes are going onto real counters.</h2>
+          <p class="t up" style="--dl:.06s;margin-top:20px">Ordering isn't open. The first counters get set up with us, hands-on, fifty credits included. One email is enough — tell me what you run and how many tills.</p>
+          <p class="sig up" style="--dl:.12s">ditto is built in the open by one engineer, and the person who answers is the person who wrote the code. <a href="mailto:erenaltan@gmail.com">erenaltan@gmail.com</a></p>
+        </div>
+        <div class="up" style="--dl:.16s">
+          <a class="btn" href="mailto:erenaltan@gmail.com?subject=ditto%20pilot&body=Hi%20%E2%80%94%20I%20run%20___%20(shop%2Fchain%2C%20city)%2C%20with%20___%20tills.%0AI%27d%20like%20to%20put%20a%20box%20on%20a%20counter.">Put one on a counter <span class="cap" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="shell">
+    <span class="mark">ditto</span>
+    <span class="an">made for counters · <a href="https://github.com/erenmeren/ditto-admin" style="color:var(--ink)">console on github</a></span>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

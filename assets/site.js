@@ -95,9 +95,9 @@
       const lines = [
         ['you', '$ show this ' + kind + ' on till 2'],
         ['', 'POST /api/v1/devices/dev_8f21/trigger · 202 queued', 'dim'],
-        ['cloud', 'your key ✓ · till 2 is on ✓ · 1 of your 1000 on hold'],
+        ['cloud', 'your key ✓ · till 2 is on ✓ · 1 credit on hold'],
         ['box', 'code on screen — confirming…'],
-        ['cloud', '✓ shown · ' + ms + ' ms · counted — paid on show', 'ok']
+        ['cloud', '✓ shown · ' + ms + ' ms · credit spent — paid on show', 'ok']
       ];
       const showQr = () => { if (qr) { fillQr(qr, 'demo' + n); qr.classList.add('shown'); } };
       const settle = () => {

@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ditto — no more paper. bye.</title>
-<meta name="description" content="A small touch screen by the till. Your system sends a link, the box shows a code, the customer scans it. One credit per code actually shown.">
+<meta name="description" content="A small touch screen by the till. Your system sends a link, the box shows a code, the customer scans it. $15 a month per box, 1000 codes a month included.">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://erenmeren.github.io/ditto-site/">
 <meta property="og:title" content="ditto — no more paper. bye.">
-<meta property="og:description" content="A small touch screen by the till. Your system sends a link, the box shows a code, the customer scans it. One credit per code actually shown.">
+<meta property="og:description" content="A small touch screen by the till. Your system sends a link, the box shows a code, the customer scans it. $15 a month per box, 1000 codes a month included.">
 <meta property="og:image" content="https://erenmeren.github.io/ditto-site/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,7 +68,7 @@
 <p class="body">Palm-sized, touch screen, wi-fi in and nothing else. Between customers it shows your brand and the time; the moment your till has something to hand over, it shows the code instead.</p>
 </div>
 <div class="meet-stamp">
-<div class="stamp-mono">1 code shown<br>= 1 credit<br>= 1 <span class="hl-s">ditto</span></div>
+<div class="stamp-mono">1 code shown<br>= 1 of your 1000<br>= 1 <span class="hl-s">ditto</span></div>
 <p class="mono mono-up">the code clears itself,<br>back to your screen</p>
 </div>
 </section>
@@ -89,13 +89,13 @@
 </div>
 <div class="beat">
 <div class="n">02</div>
-<h3>we check, and set a credit aside</h3>
-<p>Is the request really from you? Is that box switched on? One credit goes on hold — on hold, not charged.</p>
+<h3>we check, and set one aside</h3>
+<p>Is the request really from you? Is that box switched on? One of your monthly 1000 goes on hold — on hold, not spent.</p>
 </div>
 <div class="beat">
 <div class="n">03</div>
 <h3>the code appears — <span class="hl-s">that's when you pay</span></h3>
-<p>A couple of seconds later the box shows the square code and confirms it. That confirmation spends the held credit.</p>
+<p>A couple of seconds later the box shows the square code and confirms it. That confirmation is what spends it.</p>
 </div>
 <div class="beat">
 <div class="n">04</div>
@@ -107,7 +107,7 @@
 <div class="story-foot">
 <div class="story-log">
 <div>POST /api/v1/devices/dev_8f21/trigger · Idempotency-Key</div>
-<div>202 { id, status:"queued" } · <span class="mid">credit: 1 reserved</span></div>
+<div>202 { id, status:"queued" } · <span class="mid">1 of 1000 reserved</span></div>
 <div>mqtt d/dev_8f21/cmd → ack { ok:true } · <span class="ok">settled — paid on show</span> · no confirm → expired, released</div>
 </div>
 <div class="story-live" aria-hidden="true">
@@ -115,7 +115,7 @@
 <div class="mini-idle">ready</div>
 <div class="mini-qr qr" data-seed="story-b"></div>
 </div></div>
-<div class="credit-pill">1 credit</div>
+<div class="credit-pill">1 of 1000</div>
 </div>
 </div>
 </div>
@@ -141,7 +141,7 @@
 <button class="keycap"><span>ditto</span><span aria-hidden="true">→</span></button>
 <div class="demo-meta">
 <span class="k">kind</span><span class="v" data-kind>—</span>
-<span class="k">credit</span><span class="v">paid on show</span>
+<span class="k">counted</span><span class="v">on show</span>
 </div>
 </div>
 </div>
@@ -200,11 +200,11 @@
 
 <section id="price" class="price grain">
 <div class="price-big">
-<h2 class="h2 rv">one credit<br>per code<br>actually shown.</h2>
+<h2 class="h2 rv">$15 a month.<br>1000 codes.<br>box included.</h2>
 </div>
 <div class="price-side">
-<p class="rv" style="--d:80ms">Scanning is free, failures are released in full. Start prepaid with 50 credits on the house — chains can move to per-device plans later.</p>
-<p class="fine rv" style="--d:140ms">no monthly minimum · no per-scan fee · no contract</p>
+<p class="rv" style="--d:80ms">One price per counter: $15 a month on a 12-month term. The box comes with it — you rent it, you don't buy it — and every month includes 1000 codes shown. Scanning is free, and a code that never shows is never counted.</p>
+<p class="fine rv" style="--d:140ms">per box · 12-month term · box included · no per-scan fee</p>
 </div>
 </section>
 
@@ -214,11 +214,11 @@
 <div class="faq-list">
 <div class="faq-row"><h3 class="h3">Do I still have to print receipts?</h3><p>Where the law requires a printed fiscal receipt, you keep printing it — ditto sits beside your printer, not instead of it. It replaces everything else you hand over: e-receipt copies, tickets, warranties, menus, return slips.</p></div>
 <div class="faq-row"><h3 class="h3">What if the wi-fi is down?</h3><p>Your till gets an immediate "box offline" answer. Nothing shows, nothing queues, nothing is charged.</p></div>
-<div class="faq-row"><h3 class="h3">What if the code never shows?</h3><p>The request expires and the held credit is released. A late code never appears — nobody sees a stranger's receipt.</p></div>
-<div class="faq-row"><h3 class="h3">Shown but never scanned — do I still pay?</h3><p>Yes. The credit pays for the showing; scanning is free whether zero people scan or fifty.</p></div>
+<div class="faq-row"><h3 class="h3">What if the code never shows?</h3><p>The request expires and nothing counts against your 1000. A late code never appears — nobody sees a stranger's receipt.</p></div>
+<div class="faq-row"><h3 class="h3">Shown but never scanned — do I still pay?</h3><p>Yes — it counts. The showing is what you're paying for; scanning is free whether zero people scan or fifty.</p></div>
 <div class="faq-row"><h3 class="h3">Do I need a developer?</h3><p>If your till or POS can call a URL when a sale closes, it's one request. If it can't, whoever set up your POS can usually add it in an afternoon.</p></div>
-<div class="faq-row"><h3 class="h3">How many boxes do I need?</h3><p>One per counter where you hand things to customers. They share one balance and one console.</p></div>
-<div class="faq-row"><h3 class="h3">What does it cost?</h3><p>One credit per code actually shown. We're setting pack prices together with pilot customers — pilots start with 50 credits on the house.</p></div>
+<div class="faq-row"><h3 class="h3">How many boxes do I need?</h3><p>One per counter where you hand things to customers. They share one console, and each box carries its own $15 a month and its own 1000.</p></div>
+<div class="faq-row"><h3 class="h3">What does it cost?</h3><p>$15 a month per box, on a 12-month term. The box is included — you rent it rather than buy it — and each month covers 1000 codes actually shown, counted fresh every month.</p></div>
 <div class="faq-row"><h3 class="h3">What does it show between codes?</h3><p>Whatever you design: your logo, colours, opening hours, the time. Every screen is a canvas in the console.</p></div>
 </div>
 </div>
@@ -242,7 +242,7 @@
 <section id="pilot" class="pilot">
 <div class="pilot-copy">
 <h2 class="h2 rv">we're putting the first boxes <span class="hl">on real counters.</span></h2>
-<p class="body rv" style="--d:80ms">Ordering isn't open yet — the first counters get set up with us, hands-on, 50 credits included. One email is enough; say what you run and how many tills.</p>
+<p class="body rv" style="--d:80ms">Ordering isn't open yet — the first counters get set up with us, hands-on, on the same $15 a month everyone else will pay. One email is enough; say what you run and how many tills.</p>
 <p class="founder rv" style="--d:140ms">ditto is built in the open, by one engineer. Write to me directly — I read everything. <a href="mailto:erenaltan@gmail.com">erenaltan@gmail.com</a></p>
 </div>
 <div class="pilot-act">

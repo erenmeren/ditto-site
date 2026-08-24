@@ -53,7 +53,7 @@
 <div class="wrap">
 <h2 class="doc-h2">2 · trigger a box</h2>
 <p class="doc-p">One POST. The <span class="inline-code">Idempotency-Key</span> header is required — retry with the same key and you get the stored response back, never a double charge.</p>
-<div class="codeblock">$ curl -X POST https://&lt;your-console-host&gt;/api/v1/devices/<span class="c-hl">dev_8f21</span>/trigger \
+<div class="codeblock">$ curl -X POST https://api.maratus.co/api/v1/devices/<span class="c-hl">dev_8f21</span>/trigger \
   -H "Authorization: Bearer sk_live_…" \
   -H "Idempotency-Key: 9f3a-…" \
   -H "Content-Type: application/json" \

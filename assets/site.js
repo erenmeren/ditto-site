@@ -1,12 +1,13 @@
 /* maratus — site behaviour. Shared by index.html and docs.html.
 
-   Four jobs only. The storyboard clock is deliberately NOT here: it is
+   Five jobs only. The storyboard clock is deliberately NOT here: it is
    pure CSS, so it keeps running off the main thread and cannot drift.
 
    1. deterministic fake QR fill
    2. scroll reveals (IntersectionObserver, once, staggered per group)
-   3. the live trigger demo (staged log lines, real request shape)
-   4. the branding-studio replay */
+   3. mobile storyboard lighting (scroll replaces the clock below 560px)
+   4. the live trigger demo (staged log lines, real request shape)
+   5. the branding-studio replay */
 (() => {
   'use strict';
 
@@ -52,6 +53,30 @@
       });
     }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
     revealables.forEach(el => io.observe(el));
+  }
+
+  /* ---------- mobile storyboard lighting ----------
+     Below 560px the beats stack and the shared 8 s clock would light
+     cells that are off-screen, so scroll position becomes the clock:
+     the beat crossing the middle of the viewport takes the acid state.
+     The CSS keyframes are switched off by the same media query. Under
+     reduced motion the band parks on its resting state, same as desktop. */
+  const beats = document.querySelectorAll('.beats .beat');
+  const narrow = window.matchMedia && window.matchMedia('(max-width: 560px)');
+  if (beats.length && narrow && !reduced && 'IntersectionObserver' in window) {
+    const litIo = new IntersectionObserver(entries => {
+      entries.forEach(e => e.target.classList.toggle('lit', e.isIntersecting));
+    }, { rootMargin: '-42% 0px -42% 0px' });
+    const applyNarrow = () => {
+      if (narrow.matches) {
+        beats.forEach(el => litIo.observe(el));
+      } else {
+        litIo.disconnect();
+        beats.forEach(el => el.classList.remove('lit'));
+      }
+    };
+    applyNarrow();
+    if (narrow.addEventListener) narrow.addEventListener('change', applyNarrow);
   }
 
   /* ---------- the live trigger demo ----------

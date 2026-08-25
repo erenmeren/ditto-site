@@ -419,6 +419,14 @@ p.body { font-size: clamp(14px, 1.15vw, 15.5px); line-height: 1.55; color: var(-
 @media (max-width: 560px) {
   .beats { grid-template-columns: 1fr; }
   .beat + .beat { border-left: none; border-top: 1px solid var(--ink-line); }
+  /* Stacked, the shared 8 s clock would light cells that are off-screen.
+     Here scroll position becomes the clock: site.js puts .lit on the beat
+     crossing mid-viewport. Transitions, not keyframes, so a fast scroll
+     retargets smoothly. The rail, mini box and credit pill stay on the
+     CSS clock — each is visible as one piece. */
+  .beat .n, .v-b .beat { animation: none; }
+  .v-b .beat { transition: background-color 200ms ease, color 200ms ease; }
+  .v-b .beat.lit { background: var(--acid); color: var(--ink); }
   .ledger-row { flex-direction: column; gap: 4px; }
   .ledger-row .who { width: auto; }
   .story-live { flex-wrap: wrap; }
